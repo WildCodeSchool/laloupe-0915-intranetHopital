@@ -5,3 +5,9 @@ app:
 # FOSUser routes
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+# Sonata Admin Routes
+admin_area:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin
