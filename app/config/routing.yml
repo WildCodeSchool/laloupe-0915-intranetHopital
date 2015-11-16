@@ -1,6 +1,6 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+iuch:
+    resource: "@IuchBundle/Resources/config/routing.yml"
+    prefix:   /
 
 # Sonata User Routes
 sonata_user_security:
