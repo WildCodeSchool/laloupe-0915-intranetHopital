@@ -1,0 +1,4 @@
+IuchBundle\Entity\Charte:
+    fichier:
+        mapping:           charte_fichier
+        filename_property: file_name

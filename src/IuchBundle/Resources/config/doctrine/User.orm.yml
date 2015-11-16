@@ -1,4 +1,4 @@
-AppBundle\Entity\User:
+IuchBundle\Entity\User:
     type: entity
     table: null
     repositoryClass: IuchBundle\Entity\UserRepository
@@ -8,4 +8,16 @@ AppBundle\Entity\User:
             id: true
             generator:
                 strategy: AUTO
+#    manyToMany:
+#        chartes:
+#            targetEntity: Charte
+#            inversedBy: users
+#            joinTable:
+#                name: users_chartes
+#                joinColumns:
+#                    user_id:
+#                        referencedColumnName: id
+#                inverseJoinColumns:
+#                    charte_id:
+#                        referencedColumnName: id
     lifecycleCallbacks: {  }

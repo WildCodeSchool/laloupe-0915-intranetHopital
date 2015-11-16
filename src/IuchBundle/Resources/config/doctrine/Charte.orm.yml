@@ -1,0 +1,19 @@
+IuchBundle\Entity\Charte:
+    type:   entity
+
+    fields:
+
+        id:
+            type:       integer
+            id:         true
+            generator:  { strategy: AUTO }
+
+        nom:
+            type:       string
+            length:     255
+
+        file_name:      string
+
+        description:
+            type: string
+            length: 255

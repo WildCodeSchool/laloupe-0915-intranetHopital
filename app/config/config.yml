@@ -117,3 +117,15 @@ sonata_block:
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
+
+#file uploader
+vich_uploader:
+    db_driver: orm
+    mappings:
+        charte_fichier:
+            uri_prefix:         /chartes
+            upload_destination: %kernel.root_dir%/../web/chartes
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
