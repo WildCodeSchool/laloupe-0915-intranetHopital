@@ -10,6 +10,14 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
+        <field name="zip" column="zip" type="string" length="5" nullable="true" />
+        <field name="ville" column="ville" type="string" length="255" nullable="true" />
+        <field name="chef_service" column="chef_service" type="boolean" nullable="true" />
+        <field name="date_entree" column="date_entree" type="date" nullable="true" />
+        <field name="date_sortie" column="date_sortie" type="date" nullable="true" />
+        <field name="raison_sortie" column="raison_sortie" type="string" length="255" nullable="true" />
+
         <many-to-one field="fonction" target-entity="IuchBundle\Entity\Fonction">
             <join-column name="fonction_id" referenced-column-name="id" />
         </many-to-one>

@@ -7,6 +7,12 @@ namespace IuchBundle\Entity;
  */
 class Fonction
 {
+
+    public function __toString()
+    {
+        return (string) $this->nom;
+    }
+
     /**
      * @var integer
      */
