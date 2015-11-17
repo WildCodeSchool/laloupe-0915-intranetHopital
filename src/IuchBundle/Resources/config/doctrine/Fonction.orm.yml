@@ -1,11 +1,15 @@
-IuchBundle\Entity\User:
+IuchBundle\Entity\Fonction:
     type: entity
     table: null
-    repositoryClass: IuchBundle\Entity\UserRepository
+    repositoryClass: IuchBundle\Entity\FonctionRepository
     id:
         id:
             type: integer
             id: true
             generator:
                 strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }
