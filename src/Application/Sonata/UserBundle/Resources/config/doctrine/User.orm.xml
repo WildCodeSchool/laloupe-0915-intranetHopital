@@ -10,6 +10,17 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
+        <field name="zip" column="zip" type="string" length="5" nullable="true" />
+        <field name="ville" column="ville" type="string" length="255" nullable="true" />
+        <field name="chef_service" column="chef_service" type="boolean" nullable="true" />
+        <field name="date_entree" column="date_entree" type="date" nullable="true" />
+        <field name="date_sortie" column="date_sortie" type="date" nullable="true" />
+        <field name="raison_sortie" column="raison_sortie" type="string" length="255" nullable="true" />
+        <field name="id_fonction" column="id_fonction" type="integer" nullable="true"/>
+        <field name="id_service" column="id_service" type="integer" nullable="true"/>
+
+
     </entity>
 
 </doctrine-mapping>

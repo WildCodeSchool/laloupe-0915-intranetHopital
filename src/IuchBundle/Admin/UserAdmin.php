@@ -123,22 +123,47 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Profile')
+            ->with('General')
                 ->add('firstname', null, array('required' => false))
                 ->add('lastname', null, array('required' => false))
-                ->add('dateOfBirth', 'birthday', array('required' => false))
                 ->add('gender', 'sonata_user_gender', array(
                     'required' => true,
                     'translation_domain' => $this->getTranslationDomain()
                 ))
+                ->add('dateOfBirth', 'birthday', array('required' => false))
                 ->add('phone', null, array('required' => false))
-            ->end()
-            ->with('General')
-                ->add('username')
-                ->add('email')
-                ->add('plainPassword', 'text', array(
-                    'required' => (!$this->getSubject() || is_null($this->getSubject()->getId()))
+                ->add('adresse', null, array(
+                    'label' => 'Adresse'
                 ))
+                ->add('zip', null, array(
+                    'label' => 'Code postal'
+                ))
+                ->add('ville' , null, array(
+                    'label' => 'Ville'
+                ))
+                ->add( 'chef_service', null, array(
+                    'label' => 'Chef de service'
+                ))
+                ->add('date_entree', null, array(
+                    'label' => 'Date d\'entrée'
+                ))
+                ->add('date_sortie', null, array(
+                    'label' => 'Date de sortie'
+                ))
+                ->add('raison_sortie', null, array(
+                    'label' => 'Raison de la sortie'
+                ))
+                ->add('id_fonction', null, array(
+                    'label' => 'Fonction'
+                ))
+                ->add('id_service', null, array(
+                    'label' => 'Service'
+                ))
+                ->add('username', null, array(
+                    'label' => 'Matricule'
+                ))
+                ->add('email')
+                ->add('plainPassword', 'text')
             ->end()
         ;
 
