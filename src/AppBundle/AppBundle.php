@@ -1,9 +1,9 @@
 <?php
 
-namespace IuchBundle;
+namespace AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class IuchBundle extends Bundle
+class AppBundle extends Bundle
 {
 }
