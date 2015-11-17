@@ -1,0 +1,29 @@
+IuchBundle\Entity\Charte_utilisateur:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        signature:
+            type: boolean
+        dateSignature:
+            type: datetime
+            column: date_signature
+
+    manyToOne:
+        charte:
+            targetEntity: Charte
+            joinColumn:
+                name: charte_id
+                referencedColumnName: id
+        user:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            joinColumn:
+                name: utilisateur_id
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }

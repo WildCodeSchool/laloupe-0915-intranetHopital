@@ -1,0 +1,3 @@
+iuch_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IuchBundle:Default:index }
