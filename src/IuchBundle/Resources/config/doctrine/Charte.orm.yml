@@ -24,3 +24,4 @@ IuchBundle\Entity\Charte:
             joinColumn:
                 name: service_id
                 referencedColumnName: id
+            cascade: ["persist", "merge"]

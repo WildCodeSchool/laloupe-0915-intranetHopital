@@ -8,8 +8,9 @@ namespace IuchBundle\Entity;
 class Service
 {
 
-    public function __toString() {
-        return $this->nom;
+    public function __toString()
+    {
+        return (string) $this->nom;
     }
 
     // GENERATED CODE
