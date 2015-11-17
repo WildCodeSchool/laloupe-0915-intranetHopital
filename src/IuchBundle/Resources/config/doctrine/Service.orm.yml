@@ -1,0 +1,21 @@
+IuchBundle\Entity\Service:
+    type: entity
+    table: null
+    repositoryClass: IuchBundle\Entity\ServiceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        telephone:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
