@@ -153,10 +153,10 @@ class UserAdmin extends Admin
                 ->add('raison_sortie', null, array(
                     'label' => 'Raison de la sortie'
                 ))
-                ->add('id_fonction', null, array(
+                ->add('fonction', null, array(
                     'label' => 'Fonction'
                 ))
-                ->add('id_service', null, array(
+                ->add('service', null, array(
                     'label' => 'Service'
                 ))
                 ->add('username', null, array(

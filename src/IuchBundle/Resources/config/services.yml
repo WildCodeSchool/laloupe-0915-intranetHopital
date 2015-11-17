@@ -10,3 +10,20 @@ services:
             - ~
             - IuchBundle\Entity\Charte
             - ~
+    sonata.Service:
+        class: IuchBundle\Admin\ServiceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Services", label: "Services" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Service
+            - ~
+
+    sonata.Fonction:
+        class: IuchBundle\Admin\FonctionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Fonctions", label: "Fonctions" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Fonction
+            - ~

@@ -17,5 +17,5 @@ IuchBundle\Entity\Service:
             length: 255
         telephone:
             type: string
-            length: 255
+            length: 64
     lifecycleCallbacks: {  }

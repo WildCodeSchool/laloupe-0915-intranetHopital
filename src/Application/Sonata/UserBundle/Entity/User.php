@@ -26,11 +26,7 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 class User extends BaseUser
 {
-    /**
-     * @var integer $id
-     */
     protected $id;
-
     private $adresse;
     private $zip;
     private $ville;
@@ -38,18 +34,19 @@ class User extends BaseUser
     private $date_entree;
     private $date_sortie;
     private $raison_sortie;
-    private $id_fonction;
-    private $id_service;
+    private $fonction_id;
+    private $service_id;
+
 
     /**
-     * Get id
-     *
-     * @return integer $id
+     * @var \IuchBundle\Entity\Fonction
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fonction;
+
+    /**
+     * @var \IuchBundle\Entity\Service
+     */
+    private $service;
 
 
     /**
@@ -221,50 +218,50 @@ class User extends BaseUser
     }
 
     /**
-     * Set idFonction
+     * Set fonction
      *
-     * @param integer $idFonction
+     * @param \IuchBundle\Entity\Fonction $fonction
      *
      * @return User
      */
-    public function setIdFonction($idFonction)
+    public function setFonction(\IuchBundle\Entity\Fonction $fonction = null)
     {
-        $this->id_fonction = $idFonction;
+        $this->fonction = $fonction;
 
         return $this;
     }
 
     /**
-     * Get idFonction
+     * Get fonction
      *
-     * @return integer
+     * @return \IuchBundle\Entity\Fonction
      */
-    public function getIdFonction()
+    public function getFonction()
     {
-        return $this->id_fonction;
+        return $this->fonction;
     }
 
     /**
-     * Set idService
+     * Set service
      *
-     * @param integer $idService
+     * @param \IuchBundle\Entity\Service $service
      *
      * @return User
      */
-    public function setIdService($idService)
+    public function setService(\IuchBundle\Entity\Service $service = null)
     {
-        $this->id_service = $idService;
+        $this->service = $service;
 
         return $this;
     }
 
     /**
-     * Get idService
+     * Get service
      *
-     * @return integer
+     * @return \IuchBundle\Entity\Service
      */
-    public function getIdService()
+    public function getService()
     {
-        return $this->id_service;
+        return $this->service;
     }
 }

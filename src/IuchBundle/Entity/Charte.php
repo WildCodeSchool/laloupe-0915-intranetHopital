@@ -131,4 +131,62 @@ class Charte
     {
         return $this->nom;
     }
+    /**
+     * @var \IuchBundle\Entity\Service
+     */
+    private $services;
+
+
+    /**
+     * Set services
+     *
+     * @param \IuchBundle\Entity\Service $services
+     *
+     * @return Charte
+     */
+    public function setServices(\IuchBundle\Entity\Service $services = null)
+    {
+        $this->services = $services;
+
+        return $this;
+    }
+
+    /**
+     * Get services
+     *
+     * @return \IuchBundle\Entity\Service
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+    /**
+     * @var \IuchBundle\Entity\Service
+     */
+    private $service;
+
+
+    /**
+     * Set service
+     *
+     * @param \IuchBundle\Entity\Service $service
+     *
+     * @return Charte
+     */
+    public function setService(\IuchBundle\Entity\Service $service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \IuchBundle\Entity\Service
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
 }
