@@ -13,7 +13,7 @@ class ServiceAdmin extends Admin
         $formMapper
             ->add('nom')
             ->add('email')
-            ->add('téléphone')
+            ->add('telephone')
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -26,6 +26,8 @@ class ServiceAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('nom')
+            ->add('email')
+            ->add('telephone')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
