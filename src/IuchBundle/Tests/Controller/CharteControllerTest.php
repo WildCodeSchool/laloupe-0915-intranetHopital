@@ -52,4 +52,37 @@ class CharteControllerTest extends WebTestCase
     }
 
     */
+
+   /* public function testCompleteScenario()
+    {
+        // Create a new client to browse the application
+        $client = static::createClient();
+
+        // Create a new entry in the database
+        $crawler = $client->request('GET', '/admin/login');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /");
+
+        $form = $crawler->selectButton('Login')->form(array(
+            '_username'  => 'Admin',
+            '_password'  => 'admin',
+            // ... other fields to fill
+        ));
+
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+
+        $crawler = $client->request('GET', '/admin/iuch/charte/create');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /");
+
+        // Fill in the form and submit it
+        $form = $crawler->selectButton('Create')->form(array(
+            '_nom'  => 'Test',
+            '_description'  => 'Test Desc',
+            '_fichier'  => 'fichier.jpg',
+            // ... other fields to fill
+        ));
+
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+    }*/
 }
