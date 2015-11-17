@@ -4,11 +4,13 @@
 
 namespace IuchBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use IuchBundle\Entity\Service;
 
-class LoadServiceData implements FixtureInterface
+class LoadServiceData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -43,5 +45,15 @@ class LoadServiceData implements FixtureInterface
         $manager->persist($service4);
         $manager->persist($service5);
         $manager->flush();
+
+        // store reference to admin role for User relation to Role
+       $this->addReference('1', $service1);
+       $this->addReference('2', $service2);
+       $this->addReference('3', $service3);
+    }
+
+    public function getOrder()
+    {
+        return 1; // ordre d'appel
     }
 }
