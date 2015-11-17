@@ -14,12 +14,14 @@ class CharteAdmin extends Admin
             ->add('nom')
             ->add('description')
             ->add('fichier', 'file')
+            ->add('service')
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('nom')
+            ->add('service')
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -27,6 +29,7 @@ class CharteAdmin extends Admin
         $listMapper
             ->addIdentifier('nom')
             ->add('link', 'string', array('template' => 'IuchBundle:Charte:list_link.html.twig'))
+            ->add('service')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

@@ -7,6 +7,12 @@ namespace IuchBundle\Entity;
  */
 class Service
 {
+
+    public function __toString() {
+        return $this->nom;
+    }
+
+    // GENERATED CODE
     /**
      * @var integer
      */
@@ -110,4 +116,3 @@ class Service
         return $this->telephone;
     }
 }
-
