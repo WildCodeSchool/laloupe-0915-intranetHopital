@@ -52,7 +52,7 @@ file that was distributed with this source code.
                 </div>
             {% endif %}
 
-            {% if form.vars.value.fonction is defined %}
+            {% if form.vars.value.fonction is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Fonction</h3>
@@ -64,7 +64,7 @@ file that was distributed with this source code.
             {% endif %}
 
             {%  set service = form.vars.value.service %}
-            {% if service is defined %}
+            {% if service is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Service {{ service.nom }}</h3>
