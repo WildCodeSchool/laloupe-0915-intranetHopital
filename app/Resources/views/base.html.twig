@@ -15,7 +15,7 @@
         <header class="main-header">
             <ul class="nav nav-justified navbar-primary">
                 {% if app.user %}
-                    <li><a href="{{ path('sonata_user_profile_edit') }}">Profil</a></li>
+                    <li><a href="{{ path('sonata_user_profile_show') }}">Accueil</a></li>
                     <li><a href="{{ path('sonata_user_admin_security_logout') }}">Déconnexion</a></li>
                 {% else %}
                     <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>

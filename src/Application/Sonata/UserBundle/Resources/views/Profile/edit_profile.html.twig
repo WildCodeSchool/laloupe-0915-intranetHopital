@@ -17,24 +17,65 @@ file that was distributed with this source code.
 {% endblock %}
 
 {% block sonata_profile_content %}
-
     {{ form_errors(form) }}
 
     {% form_theme form _self %}
 
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>
-        </div>
-        <div class="panel-body">
-            <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
-                {{ form_widget(form) }}
-                <div class="form-actions">
-                    <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>
                 </div>
-            </form>
+                <div class="panel-body">
+                    <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
+                        {{ form_widget(form) }}
+                        <div class="form-actions">
+                            <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <a class="btn btn-primary" href="{{ path('sonata_user_change_password') }}">Changer de mot de passe</a>
+        </div>
+
+        <div class="col-sm-4">
+            {% if form.vars.value.date_entree is defined %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Date d'entrée</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ form.vars.value.date_entree }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if form.vars.value.fonction is defined %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Fonction</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ form.vars.value.fonction }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {%  set service = form.vars.value.service %}
+            {% if service is defined %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Service {{ service.nom }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><strong>E-mail : </strong> {{ service.email }}</p>
+                        <p><strong>Téléphone : </strong> {{ service.telephone }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
         </div>
     </div>
-
-    <a class="btn btn-primary" href="{{ path('sonata_user_change_password') }}">Changer de mot de passe</a>
 {% endblock %}
