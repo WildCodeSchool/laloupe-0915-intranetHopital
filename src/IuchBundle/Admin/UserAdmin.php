@@ -165,7 +165,7 @@ class UserAdmin extends Admin
                 ->add('service', null, array(
                     'label' => 'Service'
                 ))
-                ->add('chef_service', 'checkbox', array(
+                ->add('chef_service', null, array(
                     'label' => 'Chef de service'
                 ))
             ->end()
