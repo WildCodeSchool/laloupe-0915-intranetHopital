@@ -1,1 +1,12 @@
+iuch_charte:
+    resource: "@IuchBundle/Resources/config/routing/charte_utilisateur.yml"
+    prefix:   /charte
 
+iuch_signature:
+    path: /signature/{charte_id}
+    defaults: { _controller: "IuchBundle:Default:Signature" }
+
+iuch_create_signature:
+    path: /create_signature/{charte_id}
+    defaults: { _controller: "IuchBundle:Default:CreateSignature" }
+    methods:  [POST, GET]
