@@ -37,6 +37,18 @@ class User extends BaseUser
     private $fonction_id;
     private $service_id;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $role = $this->getFonction();
+        if ($role[0] == 6) {
+            $this->setRoles = array('ROLE_RH');
+        }
+        else {
+            $this->setRoles = array('ROLE_USER');
+        }
+    }
+
 
     /**
      * @var \IuchBundle\Entity\Fonction
