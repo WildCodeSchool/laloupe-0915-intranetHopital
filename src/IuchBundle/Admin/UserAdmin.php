@@ -123,15 +123,21 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-                ->add('firstname', null, array('required' => false))
+            ->with('Informations Obligatoires')
+                ->add('username', null, array(
+                    'label' => 'Matricule'
+                ))
+                ->add('email')
+                ->add('plainPassword', 'text')
+            ->end()
+            ->with('Informations Générales')
                 ->add('lastname', null, array('required' => false))
+                ->add('firstname', null, array('required' => false))
                 ->add('gender', 'sonata_user_gender', array(
                     'required' => true,
                     'translation_domain' => $this->getTranslationDomain()
                 ))
                 ->add('dateOfBirth', 'birthday', array('required' => false))
-                ->add('phone', null, array('required' => false))
                 ->add('adresse', null, array(
                     'label' => 'Adresse'
                 ))
@@ -141,9 +147,9 @@ class UserAdmin extends Admin
                 ->add('ville' , null, array(
                     'label' => 'Ville'
                 ))
-                ->add( 'chef_service', null, array(
-                    'label' => 'Chef de service'
-                ))
+                ->add('phone', null, array('required' => false))
+            ->end()
+            ->with('Informations internes')
                 ->add('date_entree', null, array(
                     'label' => 'Date d\'entrée'
                 ))
@@ -159,11 +165,9 @@ class UserAdmin extends Admin
                 ->add('service', null, array(
                     'label' => 'Service'
                 ))
-                ->add('username', null, array(
-                    'label' => 'Matricule'
+                ->add('chef_service', null, array(
+                    'label' => 'Chef de service'
                 ))
-                ->add('email')
-                ->add('plainPassword', 'text')
             ->end()
         ;
 
