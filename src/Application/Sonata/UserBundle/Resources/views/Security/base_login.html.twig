@@ -9,11 +9,12 @@ file that was distributed with this source code.
 
 #}
 
-{% extends "SonataUserBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
+{% block body %}
 {% block fos_user_content %}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-info">
 
                 <div class="panel-heading">
@@ -74,10 +75,7 @@ file that was distributed with this source code.
                     </form>
                 </div>
             </div>
-
-        </div>
-        <div class="col-md-6">
-            {% render controller("FOSUserBundle:Registration:register") %}
         </div>
     </div>
 {% endblock fos_user_content %}
+{% endblock %}
