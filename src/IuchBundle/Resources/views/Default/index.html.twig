@@ -1,5 +1,47 @@
 {% extends '::base.html.twig' %}
 
 {%  block body %}
-    <h1>Bienvenue</h1>
+    <div class="row row-fluid">
+        <h1>Bienvenue {{ app.user.firstname }}</h1>
+
+        <p>Lorem ipsum</p>
+    </div>
+
+    <div class="row row-fluid">
+        <h3>Liste des chartes</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Service
+                </th>
+                <th>
+                    Charte
+                </th>
+                <th>
+                    Signature
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for charte in chartes %}
+                    <td scope="row">{{ charte.nom }}</td>
+                    <td scope="row">{{ charte.description }}</td>
+                    <td scope="row">{{ charte.service }}</td>
+                    <td scope="row"><a href="{{ asset('bundles/iuch') }}{{ vich_uploader_asset(charte, 'fichier') }}" target="_blank">{{ charte.filename }}</a></td>
+                    <td scope="row">oui ou non</td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
 {% endblock %}

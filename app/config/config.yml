@@ -128,6 +128,13 @@ sonata_user:
     security_acl: false
     manager_type: orm # can be orm or mongodb
 
+    profile:  # Profile Form (firstname, lastname, etc ...)
+        form:
+            type:               application_sonata_user_profile
+            handler:            sonata.user.profile.form.handler.default
+            name:               sonata_user_profile_form
+            validation_groups:  [Profile]
+
     admin:                  # Admin Classes
         user:
             class:          IuchBundle\Admin\UserAdmin
