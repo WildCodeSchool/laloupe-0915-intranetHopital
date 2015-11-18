@@ -31,7 +31,7 @@ class UserAdmin extends Admin
         $this->formOptions['data_class'] = $this->getClass();
 
         $options = $this->formOptions;
-        $options['validation_groups'] = (!$this->getSubject() || is_null($this->getSubject()->getId())) ? 'Registration' : 'Profile';
+        $options['validation_groups'] = (!$this->getSubject() || is_null($this->getSubject()->getId())) ? 'Own' : 'UserValidation';
 
         $formBuilder = $this->getFormContractor()->getFormBuilder( $this->getUniqid(), $options);
 
@@ -127,8 +127,8 @@ class UserAdmin extends Admin
                 ->add('username', null, array(
                     'label' => 'Matricule'
                 ))
-                ->add('email')
-                ->add('plainPassword', 'text')
+                ->add('email', null, array('required' => false))
+                ->add('plainPassword', 'text', array('required' => false))
             ->end()
             ->with('Informations Générales')
                 ->add('lastname', null, array('required' => false))
@@ -180,7 +180,10 @@ class UserAdmin extends Admin
                         'multiple' => true,
                         'required' => false
                     ))
-                    ->add('locked', null, array('required' => false))
+                    ->add('locked', null, array(
+                        'required' => false,
+                        'label' => 'locked'
+                    ))
                     ->add('expired', null, array('required' => false))
                     ->add('enabled', null, array('required' => false))
                     ->add('credentialsExpired', null, array('required' => false))

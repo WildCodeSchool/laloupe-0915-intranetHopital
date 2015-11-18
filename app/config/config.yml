@@ -99,11 +99,16 @@ fos_user:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
 
-
 # Sonata Admin Configuration
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
+
+sonata_doctrine_orm_admin:
+    templates:
+        form:
+            - ApplicationSonataUserBundle:Admin:custom_form_admin_fields.html.twig
+
 
 sonata_block:
     default_contexts: [cms]
