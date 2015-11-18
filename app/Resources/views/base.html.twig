@@ -2,12 +2,35 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Interface de gestion des utilisateurs du centre hospitalier de La Loupe{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+
+        <header class="main-header">
+            <ul class="nav nav-justified navbar-primary">
+                {% if app.user %}
+                    <li><a href="{{ path('sonata_user_profile_edit') }}">Profil</a></li>
+                    <li><a href="{{ path('sonata_user_admin_security_logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </header>
+
+        <div class="container">
+            <div class="row">
+
+                {% block body %}{% endblock %}
+
+            </div>
+        </div>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
