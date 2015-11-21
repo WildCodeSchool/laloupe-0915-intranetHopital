@@ -57,13 +57,24 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username')
+            ->addIdentifier('username', null, array(
+                'label' => 'Matricule',
+            ))
             ->add('lastname')
             ->add('firstname')
-            ->add('date_entree')
-            ->add('service_id')
-            ->add('enabled', null, array('editable' => true))
-            ->add('createdAt')
+            ->add('service.nom', null, array(
+                'label' => 'Service',
+            ))
+            ->add('date_entree', null, array(
+                'label' => 'Date d\'entrée',
+                'format' => 'd/m/Y',
+                'timezone' => 'Europe/Paris'
+            ))
+            ->add('date_sortie', null, array(
+                'label' => 'Date de sortie',
+                'format' => 'd/m/Y',
+                'timezone' => 'Europe/Paris'
+            ))
         ;
     }
 
@@ -73,11 +84,17 @@ class UserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('id')
-            ->add('username')
-            ->add('locked')
-            ->add('email')
-            ->add('groups')
+            ->add('username', null, array(
+                'label' => 'Matricule',
+            ))
+            ->add('firstname')
+            ->add('lastname')
+            ->add('service.nom', null, array(
+                'label' => 'Service',
+            ))
+            ->add('fonction.nom', null, array(
+                'label' => 'Fonction',
+            ))
         ;
     }
 
@@ -168,15 +185,6 @@ class UserAdmin extends Admin
             ->end()
         ;
 
-        if ($this->getSubject() && !$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
-            $formMapper
-                    ->add('enabled', null, array(
-                        'data' => true,
-                        'required' => false
-                    ))
-                ->end()
-            ;
-        }
     }
 
     /**

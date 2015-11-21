@@ -36,6 +36,14 @@ class User extends BaseUser
     private $raison_sortie;
     private $fonction_id;
     private $service_id;
+    protected $enabled;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->enabled = 1;
+    }
 
 
     /**
