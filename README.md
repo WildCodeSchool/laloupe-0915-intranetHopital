@@ -1,3 +1,25 @@
-A Symfony project created on November 13, 2015, 2:18 pm.
+#Interface Utilisateur Centre Hospitalier / IUCH
 
-# projet-intranet_hopital
+
+##Objectifs
+
+IUCH est une application visant à simplifier la gestion des arrivées/départs du personnel en centre hospitalier.
+
+
+##Installation
+
+#####Requis: 
+
+* [Installer composer](https://getcomposer.org/download/)
+
+#####Installer le projet
+
+``` shell
+$ git clone https://github.com/WildCodeSchool/projet-intranet_hopital.git
+$ cd projet-intranet_hopital
+$ composer install
+$ bash bash/chmod.sh
+$ php app/console doctrine:database:create
+$ php app/console doctrine:schema:update --force
+$ php app/console doctrine:fixtures:load
+```
