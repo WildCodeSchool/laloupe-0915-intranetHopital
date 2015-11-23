@@ -65,6 +65,9 @@ class UserAdmin extends Admin
             ->add('service.nom', null, array(
                 'label' => 'Service',
             ))
+            ->add('fonction.nom', null, array(
+                'label' => 'Fonction',
+            ))
             ->add('date_entree', null, array(
                 'label' => 'Date d\'entrée',
                 'format' => 'd/m/Y',
@@ -74,6 +77,14 @@ class UserAdmin extends Admin
                 'label' => 'Date de sortie',
                 'format' => 'd/m/Y',
                 'timezone' => 'Europe/Paris'
+            ))
+            ->add('_action', 'actions', array(
+                'label' => 'Actions',
+                'actions' => array(
+                    'edit' => array(),
+                    'show' => array(),
+                    'delete' => array()
+                )
             ))
         ;
     }
@@ -107,9 +118,6 @@ class UserAdmin extends Admin
             ->with('General')
                 ->add('username')
                 ->add('email')
-            ->end()
-            ->with('Groups')
-                ->add('groups')
             ->end()
             ->with('Profile')
                 ->add('dateOfBirth')

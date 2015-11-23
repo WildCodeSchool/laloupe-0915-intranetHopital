@@ -139,7 +139,7 @@ sonata_user:
     admin:                  # Admin Classes
         user:
             class:          IuchBundle\Admin\UserAdmin
-            controller:     ApplicationSonataUserBundle:CRUD
+            controller:     ApplicationSonataAdminBundle:CRUD
             translation:    SonataUserBundle
 
 

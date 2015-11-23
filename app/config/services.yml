@@ -17,6 +17,11 @@ services:
         class: IuchBundle\Redirection\AfterLoginRedirection
         arguments: [@router]
 
+
+    sonata.user.admin.group:
+          abstract: true
+          public: false
+
     login_listener:
         class: 'Application\Sonata\UserBundle\EventListener\LoginListener'
         arguments: ['@security.context', '@router', '@event_dispatcher']

@@ -43,6 +43,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->enabled = 1;
+        $this->dateOfBirth = new \DateTime('1950-01-01');
     }
 
 

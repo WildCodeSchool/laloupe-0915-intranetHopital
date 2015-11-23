@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Application\Sonata\UserBundle\Controller;
+namespace Application\Sonata\AdminBundle\Controller;
 
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -599,6 +599,12 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             $datePassword = $birthDate->format('dmy');
             $object->setPlainPassword($datePassword);
 
+            // IUCH Mise en place des rôles
+            $fonction = $object->getFonction();
+            if ($fonction == 'RH' ) {
+                $test = 1;
+                $object->addRole('ROLE_RH');
+            }
 
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
