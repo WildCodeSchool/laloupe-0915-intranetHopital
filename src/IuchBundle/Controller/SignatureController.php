@@ -13,6 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class SignatureController extends Controller
 {
     public function indexAction() {
+
+        $em = $this->getDoctrine()->getManager();
+
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -22,8 +25,24 @@ class SignatureController extends Controller
             ->getRepository('IuchBundle:Charte')
             ->findByService($user->getService());
 
+        $models = array();
+        foreach ($chartes as $charte)
+        {
+            $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
+
+            $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+            $path = $helper->asset($charte, 'fichier');
+
+            $model = new \IuchBundle\Model\Signature($charte, $charte_utilisateur);
+
+            $model->setPath($path);
+
+            $models[] = $model;
+
+        }
+
         return $this->render('IuchBundle:Signature:index.html.twig', array(
-            'chartes'=> $chartes,
+            'chartes'=> $models,
             'user'   => $user
         ));
     }
@@ -78,7 +97,7 @@ class SignatureController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('fos_user_profile_show'));
+            return $this->redirect($this->generateUrl('iuch_homepage'));
         }
 
         return $this->render('IuchBundle:Signature:signature.html.twig', array(

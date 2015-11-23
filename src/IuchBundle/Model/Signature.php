@@ -1,15 +1,15 @@
 <?php
 
 namespace IuchBundle\Model;
-use Application\Sonata\UserBundle\Entity\User;
-use IuchBundle\Entity\Charte_utilisateur;
+
+use Symfony\Component\HttpFoundation\File\File;
 
 class Signature extends \IuchBundle\Entity\Charte
 {
     private $signe = null;
     private $date_signature;
-    private $user;
-
+    private $path;
+    private $id_charte;
 
     /**
      * Set id
@@ -44,7 +44,7 @@ class Signature extends \IuchBundle\Entity\Charte
      *
      * @return Signature
      */
-    public function setsigne($signe)
+    public function setSigne($signe)
     {
         $this->signe = $signe;
 
@@ -85,62 +85,32 @@ class Signature extends \IuchBundle\Entity\Charte
         return $this->date_signature;
     }
 
-    /**
-     * Set user
-     *
-     * @param string $user
-     *
-     * @return Signature
-     */
-    public function setUser($user)
+    public function setPath($path)
     {
-        $this->user = $user;
-
+        $this->path = $path;
         return $this;
     }
 
-    /**
-     * Get user
-     *
-     * @return string
-     */
-    public function getUser()
+    public function getPath()
     {
-        return $this->user;
+        return $this->path;
     }
-
 
     public function __construct(\IuchBundle\Entity\Charte $charte,\IuchBundle\Entity\Charte_utilisateur $signature = null)
     {
-        $this->setFichier($charte->getFichier());
+        $this->setFileName($charte->getFileName());
+        $this->setIdCharte($charte->getId());
         $this->setNom($charte->getNom());
         $this->setDescription($charte->getDescription());
         $this->setService($charte->getService());
-        $this->setUser($signature->getUser());
+        $this->setServices($charte->getServices());
+       // $this->setUser($signature->getUser());
 
 
-        if ( $soiree->getType() == "repas" ) {
-            $this->montant = $soiree->getPrix();
-        }
-
-        elseif (isset($inscription))
-        {
-            $this->montant = $inscription->getMontant();
-        }
-        else
-        {
-            $this->setmontant = 0;
-        }
-
-        if ( isset($inscription) && $inscription->getPaye() ) {
-            $this->setPaye(true);
-        }
-
-
-        if (isset($inscription)) {
-            $this->inscrit = true;
+        if (isset($signature)) {
+            $this->signe = true;
         } else {
-            $this->inscrit = false;
+            $this->signe = false;
         }
     }
 }
