@@ -1,7 +1,3 @@
-iuch_charte:
-    resource: "@IuchBundle/Resources/config/routing/charte_utilisateur.yml"
-    prefix:   /charte
-
 iuch_signature:
     path: /signature/{charte_id}
     defaults: { _controller: "IuchBundle:Signature:Signature" }

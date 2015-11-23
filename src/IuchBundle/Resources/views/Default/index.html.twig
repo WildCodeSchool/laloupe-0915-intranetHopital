@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {%  block body %}
+    {{ dump() }}
     <div class="row row-fluid">
         <h1>Bienvenue {{ app.user.firstname }}</h1>
 
@@ -37,6 +38,7 @@
                     <td scope="row">{{ charte.service }}</td>
                     <td scope="row"><a href="{{ asset('bundles/iuch') }}{{ vich_uploader_asset(charte, 'fichier') }}" target="_blank">{{ charte.filename }}</a></td>
                     <td scope="row"><a href="{{ path('sonata_user_profile_show') }}signature/{{ charte.id }}">Signer la charte</a></td>
+
                 {% endfor %}
             </tr>
             </tbody>
@@ -44,5 +46,4 @@
     </div>
 
     <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
-    <a class="btn btn-primary" href="{{ path('charte') }}">Signer une charte</a>
 {% endblock %}

@@ -60,7 +60,7 @@ class SignatureController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('sonata_user_profile_edit', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('fos_user_profile_show'));
         }
 
         return $this->render('IuchBundle:Signature:signature.html.twig', array(
