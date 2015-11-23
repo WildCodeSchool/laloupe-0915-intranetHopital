@@ -19,7 +19,7 @@ class Charte
     protected $fichier;
     public function __toString()
     {
-        return $this->title ? $this->title : '';
+        return $this->nom ? $this->nom : '';
     }
 
     public function setFichier(File $fichier)
@@ -37,10 +37,6 @@ class Charte
      * @var integer
      */
     protected $id;
-    /**
-     * @var string
-     */
-    protected $title;
     /**
      * @var string
      */

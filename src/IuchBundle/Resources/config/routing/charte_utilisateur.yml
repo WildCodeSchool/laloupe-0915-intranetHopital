@@ -1,0 +1,30 @@
+charte:
+    path:     /
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:index" }
+
+charte_show:
+    path:     /{id}/show
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:show" }
+
+charte_new:
+    path:     /new
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:new" }
+
+charte_create:
+    path:     /create
+    defaults: { _controller: "IuchBundle:Default:create" }
+    methods:  POST
+
+charte_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:edit" }
+
+charte_update:
+    path:     /{id}/update
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:update" }
+    methods:  [POST, PUT]
+
+charte_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IuchBundle:Charte_utilisateur:delete" }
+    methods:  [POST, DELETE]
