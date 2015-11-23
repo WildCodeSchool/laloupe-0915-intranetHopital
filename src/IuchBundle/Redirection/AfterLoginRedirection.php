@@ -39,7 +39,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 
         // If is users we redirect to the profile area
         else
-            $redirection = new RedirectResponse($this->router->generate('sonata_user_profile_show'));
+            $redirection = new RedirectResponse($this->router->generate('iuch_homepage'));
 
         return $redirection;
     }
