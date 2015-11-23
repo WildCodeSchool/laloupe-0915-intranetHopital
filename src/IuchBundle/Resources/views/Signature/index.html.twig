@@ -1,7 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {%  block body %}
-    {{ dump(chartes) }}
 
     {% for flash_message in app.session.flashbag.get('notice') %}
         <div class="flash-notice warning">
