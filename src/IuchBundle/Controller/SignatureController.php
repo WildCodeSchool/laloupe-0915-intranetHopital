@@ -2,13 +2,11 @@
 
 namespace IuchBundle\Controller;
 
-use FOS\UserBundle\Model\UserInterface;
+use IuchBundle\Form\Type\SignatureType;
 use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;
 use IuchBundle\Entity\Charte;
-use IuchBundle\Form\Charte_utilisateurType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SignatureController extends Controller
 {
@@ -33,7 +31,7 @@ class SignatureController extends Controller
 
     private function createCreateForm(Charte_utilisateur $entity, $charte_id)
     {
-        $form = $this->createForm(new Charte_utilisateurType(), $entity, array(
+        $form = $this->createForm(new SignatureType(), $entity, array(
             'action' => $this->generateUrl('iuch_create_signature', array('charte_id' => $charte_id)),
             'method' => 'POST'
         ));
@@ -54,7 +52,7 @@ class SignatureController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $entity->setDateSignature(new \DateTime('now'));
-            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $user = $this->getUser();
             $entity->setUser($user);
 
             $entity->setCharte($charte_id);

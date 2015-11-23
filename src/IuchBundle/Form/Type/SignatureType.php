@@ -1,12 +1,12 @@
 <?php
 
-namespace IuchBundle\Form;
+namespace IuchBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Charte_utilisateurType extends AbstractType
+class SignatureType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
