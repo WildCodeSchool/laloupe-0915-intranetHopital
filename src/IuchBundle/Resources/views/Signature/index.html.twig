@@ -2,6 +2,13 @@
 
 {%  block body %}
     {{ dump(chartes) }}
+
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="flash-notice warning">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
     <div class="row row-fluid">
         <h1>Bienvenue {{ app.user.firstname }}</h1>
 
@@ -40,7 +47,7 @@
                         {% if charte.signe == false %}
                             <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
                         {% else %}
-                            <td scope="row">Signé le {{ charte.dateSignature|date('d m Yd') }}</td>
+                            <td scope="row">Signé le {{ charte.dateSignature|date('d m Y') }}</td>
                         {% endif %}
                     </tr>
                 {% endfor %}

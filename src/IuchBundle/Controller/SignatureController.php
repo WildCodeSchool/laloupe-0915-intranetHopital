@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;
 use IuchBundle\Entity\Charte;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class SignatureController extends Controller
 {
@@ -49,6 +50,8 @@ class SignatureController extends Controller
 
     public function signatureAction($charte_id)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $charte = $this->get('doctrine')
             ->getRepository('IuchBundle:Charte')
             ->findOneById($charte_id);
@@ -57,13 +60,28 @@ class SignatureController extends Controller
             throw $this->createNotFoundException('Unable to find Charte entity.');
         }
 
-        $entity = new Charte_utilisateur();
-        $form   = $this->createCreateForm($entity, $charte_id);
+        $user = $this->getUser();
 
-        return $this->render('IuchBundle:Signature:signature.html.twig', array(
-            'charte' => $charte,
-            'form' => $form->createView(),
-        ));
+        $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
+
+        if ($charte_utilisateur == null) {
+
+            $entity = new Charte_utilisateur();
+            $form = $this->createCreateForm($entity, $charte_id);
+
+            return $this->render('IuchBundle:Signature:signature.html.twig', array(
+                'charte' => $charte,
+                'form' => $form->createView(),
+            ));
+        }
+        else {
+            $this->addFlash(
+                'notice',
+                'Déjà signé !'
+            );
+
+            return $this->redirectToRoute('iuch_homepage');
+        }
     }
 
     private function createCreateForm(Charte_utilisateur $entity, $charte_id)
