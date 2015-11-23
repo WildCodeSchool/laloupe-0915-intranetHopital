@@ -165,6 +165,9 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $userManager->updateUser($user2, true);
         $userManager->updateUser($user3, true);
         $userManager->updateUser($user4, true);
+        $userManager->updateUser($user5, true);
+        $userManager->updateUser($user6, true);
+        $userManager->updateUser($user7, true);
 
     }
     public function getOrder()
