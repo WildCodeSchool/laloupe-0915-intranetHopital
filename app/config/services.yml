@@ -1,29 +1,37 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
+
 parameters:
+
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    ### Setting up the SonataUser profile's form ###
     sonata.user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
         arguments: [ "Application\Sonata\UserBundle\Entity\User" ]
         tags:
             - { name: "form.type", alias: "application_sonata_user_profile"}
 
+    ### Login Listener for after login redirection ###
     redirect.after.login:
         class: IuchBundle\Redirection\AfterLoginRedirection
         arguments: [@router]
 
-
+    ### Disabling SonataUser groups // Cause we dont need.. ###
     sonata.user.admin.group:
           abstract: true
           public: false
 
+    ### To check if first connexion redirection ###
     login_listener:
         class: 'Application\Sonata\UserBundle\EventListener\LoginListener'
         arguments: ['@security.context', '@router', '@event_dispatcher']
         tags:
             - { name: 'kernel.event_listener', event: 'security.interactive_login', method: onSecurityInteractiveLogin }
+
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

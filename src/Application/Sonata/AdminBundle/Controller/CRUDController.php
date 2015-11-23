@@ -11,6 +11,7 @@
 
 namespace Application\Sonata\AdminBundle\Controller;
 
+use Application\Sonata\UserBundle\ApplicationSonataUserBundle;
 use Application\Sonata\UserBundle\Entity\User;
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -19,6 +20,7 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Util\AdminObjectAclData;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
