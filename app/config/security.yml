@@ -9,6 +9,7 @@ security:
     acl:
         connection: default
 
+    ### Here we define all the CRUD Permissions as roles for SonataAdmin ###
     role_hierarchy:
         ROLE_SONATA_CHARTE_ADMIN:
             - ROLE_SONATA_CHARTE_LIST
@@ -42,9 +43,9 @@ security:
             - ROLE_SONATA_FONCTION_DELETE
             - ROLE_SONATA_FONCTION_EXPORT
 
-
+        ### And settings up the globals roles ###
         ROLE_RH:          [ROLE_SONATA_SERVICE_ADMIN, ROLE_SONATA_FONCTION_ADMIN, ROLE_SONATA_USER_ADMIN_USER_ADMIN]
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_RH]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         SONATA:
            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
@@ -97,3 +98,8 @@ security:
                 failure_path:   null
             logout:             true
             anonymous:          true
+
+    ### Restriction acces to SonataAdmin for standard users ###
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_RH }

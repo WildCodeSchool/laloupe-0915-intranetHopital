@@ -7,8 +7,14 @@ namespace IuchBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use IuchBundle\Entity\Fonction;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadFonctionData implements FixtureInterface
+class LoadFonctionData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
+
 {
     public function load(ObjectManager $manager)
     {
@@ -27,11 +33,26 @@ class LoadFonctionData implements FixtureInterface
         $fonction5 = new Fonction();
         $fonction5->setNom('médecin');
 
+        $fonction6 = new Fonction();
+        $fonction6->setNom('RSI');
+
         $manager->persist($fonction1);
         $manager->persist($fonction2);
         $manager->persist($fonction3);
         $manager->persist($fonction4);
         $manager->persist($fonction5);
+        $manager->persist($fonction6);
         $manager->flush();
+
+        $this->addReference('7', $fonction1);
+        $this->addReference('8', $fonction2);
+        $this->addReference('9', $fonction3);
+        $this->addReference('10', $fonction4);
+        $this->addReference('11', $fonction5);
+        $this->addReference('12', $fonction6);
+    }
+    public function getOrder()
+    {
+        return 3; // ordre d'appel
     }
 }
