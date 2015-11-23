@@ -11,6 +11,8 @@
 
 namespace Application\Sonata\AdminBundle\Controller;
 
+use Application\Sonata\UserBundle\ApplicationSonataUserBundle;
+use Application\Sonata\UserBundle\Entity\User;
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
@@ -18,6 +20,7 @@ use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Sonata\AdminBundle\Util\AdminObjectAclData;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -594,16 +597,19 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
             $isFormValid = $form->isValid();
 
-            // IUCH Mise à jour du password avec la date d'anniversaire
-            $birthDate = $object->getDateOfBirth();
-            $datePassword = $birthDate->format('dmy');
-            $object->setPlainPassword($datePassword);
+            if ($object instanceof User) {
 
-            // IUCH Mise en place des rôles
-            $fonction = $object->getFonction();
-            if ($fonction == 'RH' ) {
-                $test = 1;
-                $object->addRole('ROLE_RH');
+                // IUCH Mise à jour du password avec la date d'anniversaire
+                $birthDate = $object->getDateOfBirth();
+                $datePassword = $birthDate->format('dmy');
+                $object->setPlainPassword($datePassword);
+
+                // IUCH Mise en place des rôles
+                $fonction = $object->getFonction();
+                if ($fonction == 'RH') {
+                    $test = 1;
+                    $object->addRole('ROLE_RH');
+                }
             }
 
             // persist if the form was valid and if in preview mode the preview was approved
