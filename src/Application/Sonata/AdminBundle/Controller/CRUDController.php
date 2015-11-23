@@ -607,7 +607,6 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 // IUCH Mise en place des rôles
                 $fonction = $object->getFonction();
                 if ($fonction == 'RH') {
-                    $test = 1;
                     $object->addRole('ROLE_RH');
                 }
             }

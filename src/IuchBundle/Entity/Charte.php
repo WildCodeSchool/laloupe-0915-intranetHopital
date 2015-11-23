@@ -27,6 +27,7 @@ class Charte
         $this->fichier = $fichier;
         return $this;
     }
+
     public function getFichier()
     {
         return $this->fichier;
@@ -62,12 +63,12 @@ class Charte
     /**
      * Set file_name
      *
-     * @param string $fileName
+     * @param string $file_name
      * @return Charte
      */
-    public function setFileName($fileName)
+    public function setFileName($file_name)
     {
-        $this->file_name = $fileName;
+        $this->file_name = $file_name;
         return $this;
     }
     /**
