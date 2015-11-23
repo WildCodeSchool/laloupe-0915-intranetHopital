@@ -44,12 +44,15 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
         $manager->persist($service3);
         $manager->persist($service4);
         $manager->persist($service5);
+        $manager->persist($service5);
         $manager->flush();
 
         // store reference to admin role for User relation to Role
-       $this->addReference('1', $service1);
-       $this->addReference('2', $service2);
-       $this->addReference('3', $service3);
+        $this->addReference('1', $service1);
+        $this->addReference('2', $service2);
+        $this->addReference('3', $service3);
+        $this->addReference('4', $service4);
+        $this->addReference('5', $service5);
     }
 
     public function getOrder()
