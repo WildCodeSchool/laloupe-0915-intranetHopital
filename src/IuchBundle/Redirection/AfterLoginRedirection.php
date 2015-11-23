@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
+
 class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 {
     /**
@@ -32,11 +33,11 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         $rolesTab = array_map(function($role){
             return $role->getRole();
         }, $roles);
-        // If is a RH, admin or super admin we redirect to the backoffice area
+        // If is a RH, admin or super admin we redirect to the admin/dashboard area
         if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_RH', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
 
-        // otherwise we redirect user to the profile area
+        // If is users we redirect to the profile area
         else
             $redirection = new RedirectResponse($this->router->generate('sonata_user_profile_show'));
 
