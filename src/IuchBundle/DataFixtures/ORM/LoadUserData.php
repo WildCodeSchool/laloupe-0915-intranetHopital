@@ -105,6 +105,60 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
             $this->getReference('2')
         );
 
+        $user5 = $userManager->createUser();
+        $user5->setUsername('lucie');
+        $user5->setPlainPassword('lucie');
+        $user5->setEmail('lucie@email.com');
+        $user5->setRoles(array('ROLE_USER'));
+        $user5->setAdresse('18 Rue de la gare');
+        $user5->setZip('28400');
+        $user5->setVille('La Loupe');
+        $user5->setDateEntree(new \DateTime('now'));
+        $user5->setFirstname('Lucie');
+        $user5->setLastname('Mannechez');
+        $user5->setPhone('0235587589');
+        $user5->setFonction(
+            $this->getReference('8')
+        );
+        $user5->setService(
+            $this->getReference('4')
+        );
+
+        $user6 = $userManager->createUser();
+        $user6->setUsername('thierry');
+        $user6->setPlainPassword('thierry');
+        $user6->setEmail('thierry@email.com');
+        $user6->setRoles(array('ROLE_USER'));
+        $user6->setAdresse('18 Rue de la gare');
+        $user6->setZip('28400');
+        $user6->setVille('La Loupe');
+        $user6->setDateEntree(new \DateTime('now'));
+        $user6->setFirstname('Thierry');
+        $user6->setLastname('Damey');
+        $user6->setPhone('0235587699');
+        $user6->setFonction(
+            $this->getReference('12')
+        );
+
+        $user7 = $userManager->createUser();
+        $user7->setUsername('erwan');
+        $user7->setPlainPassword('erwan');
+        $user7->setEmail('erwan@email.com');
+        $user7->setRoles(array('ROLE_USER'));
+        $user7->setAdresse('18 Rue de la gare');
+        $user7->setZip('28400');
+        $user7->setVille('La Loupe');
+        $user7->setDateEntree(new \DateTime('now'));
+        $user7->setFirstname('Erwan');
+        $user7->setLastname('Haquet');
+        $user7->setPhone('0235587529');
+        $user7->setFonction(
+            $this->getReference('11')
+        );
+        $user7->setService(
+            $this->getReference('2')
+        );
+
 
         // Update the user
         $userManager->updateUser($user1, true);
