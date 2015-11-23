@@ -10,6 +10,15 @@
             <generator strategy="AUTO" />
         </id>
 
+        <attribute-overrides>
+            <attribute-override name="email">
+                <field column="email" nullable="true"></field>
+            </attribute-override>
+            <attribute-override name="emailCanonical">
+                <field column="emailCanonical" nullable="true"></field>
+            </attribute-override>
+        </attribute-overrides>
+
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
         <field name="zip" column="zip" type="string" length="5" nullable="true" />
         <field name="ville" column="ville" type="string" length="255" nullable="true" />

@@ -99,6 +99,7 @@ fos_user:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
 
+
 # Sonata Admin Configuration
 sonata_admin:
     security:
@@ -138,7 +139,7 @@ sonata_user:
     admin:                  # Admin Classes
         user:
             class:          IuchBundle\Admin\UserAdmin
-            controller:     SonataAdminBundle:CRUD
+            controller:     ApplicationSonataAdminBundle:CRUD
             translation:    SonataUserBundle
 
 

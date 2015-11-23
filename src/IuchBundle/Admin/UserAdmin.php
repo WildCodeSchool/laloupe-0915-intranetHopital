@@ -57,19 +57,36 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username')
-            ->add('email')
-            ->add('groups')
-            ->add('enabled', null, array('editable' => true))
-            ->add('locked', null, array('editable' => true))
-            ->add('createdAt')
+            ->addIdentifier('username', null, array(
+                'label' => 'Matricule',
+            ))
+            ->add('lastname')
+            ->add('firstname')
+            ->add('service.nom', null, array(
+                'label' => 'Service',
+            ))
+            ->add('fonction.nom', null, array(
+                'label' => 'Fonction',
+            ))
+            ->add('date_entree', null, array(
+                'label' => 'Date d\'entrée',
+                'format' => 'd/m/Y',
+                'timezone' => 'Europe/Paris'
+            ))
+            ->add('date_sortie', null, array(
+                'label' => 'Date de sortie',
+                'format' => 'd/m/Y',
+                'timezone' => 'Europe/Paris'
+            ))
+            ->add('_action', 'actions', array(
+                'label' => 'Actions',
+                'actions' => array(
+                    'edit' => array(),
+                    'show' => array(),
+                    'delete' => array()
+                )
+            ))
         ;
-
-        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-            $listMapper
-                ->add('impersonating', 'string', array('template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'))
-            ;
-        }
     }
 
     /**
@@ -78,11 +95,17 @@ class UserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $filterMapper)
     {
         $filterMapper
-            ->add('id')
-            ->add('username')
-            ->add('locked')
-            ->add('email')
-            ->add('groups')
+            ->add('username', null, array(
+                'label' => 'Matricule',
+            ))
+            ->add('firstname')
+            ->add('lastname')
+            ->add('service.nom', null, array(
+                'label' => 'Service',
+            ))
+            ->add('fonction.nom', null, array(
+                'label' => 'Fonction',
+            ))
         ;
     }
 
@@ -95,9 +118,6 @@ class UserAdmin extends Admin
             ->with('General')
                 ->add('username')
                 ->add('email')
-            ->end()
-            ->with('Groups')
-                ->add('groups')
             ->end()
             ->with('Profile')
                 ->add('dateOfBirth')
@@ -125,29 +145,31 @@ class UserAdmin extends Admin
         $formMapper
             ->with('Informations Obligatoires')
                 ->add('username', null, array(
-                    'label' => 'Matricule'
+                    'label' => 'Matricule',
+                    'required' => true
                 ))
-                ->add('email', null, array('required' => false))
-                ->add('plainPassword', 'text', array('required' => false))
-            ->end()
-            ->with('Informations Générales')
-                ->add('lastname', null, array('required' => false))
-                ->add('firstname', null, array('required' => false))
+                ->add('lastname', null, array('required' => true))
+                ->add('firstname', null, array('required' => true))
                 ->add('gender', 'sonata_user_gender', array(
-                    'required' => true,
                     'translation_domain' => $this->getTranslationDomain()
                 ))
-                ->add('dateOfBirth', 'birthday', array('required' => false))
+                ->add('dateOfBirth', 'birthday')
                 ->add('adresse', null, array(
-                    'label' => 'Adresse'
+                    'label' => 'Adresse',
+                    'required' => true
                 ))
                 ->add('zip', null, array(
-                    'label' => 'Code postal'
+                    'label' => 'Code postal',
+                    'required' => true
                 ))
                 ->add('ville' , null, array(
-                    'label' => 'Ville'
+                    'label' => 'Ville',
+                    'required' => true
                 ))
+            ->end()
+            ->with('Contact')
                 ->add('phone', null, array('required' => false))
+                ->add('email', null, array('required' => false))
             ->end()
             ->with('Informations internes')
                 ->add('date_entree', null, array(
@@ -171,25 +193,6 @@ class UserAdmin extends Admin
             ->end()
         ;
 
-        if ($this->getSubject() && !$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
-            $formMapper
-                ->with('Management')
-                    ->add('realRoles', 'sonata_security_roles', array(
-                        'label'    => 'form.label_roles',
-                        'expanded' => true,
-                        'multiple' => true,
-                        'required' => false
-                    ))
-                    ->add('locked', null, array(
-                        'required' => false,
-                        'label' => 'locked'
-                    ))
-                    ->add('expired', null, array('required' => false))
-                    ->add('enabled', null, array('required' => false))
-                    ->add('credentialsExpired', null, array('required' => false))
-                ->end()
-            ;
-        }
     }
 
     /**
