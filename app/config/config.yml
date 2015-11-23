@@ -65,6 +65,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        server_version: 5.6         # For the SensioInsight Dbal bug...
 
         types:
             json: Sonata\Doctrine\Types\JsonType
@@ -90,7 +91,13 @@ swiftmailer:
     spool:     { type: memory }
 
 
-# FOSUser Bundle Configuration
+
+
+                             ##### OWN CONFIGURATION #####
+
+
+
+#### FOSUser Bundle Configuration ####
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
@@ -105,9 +112,8 @@ fos_user:
 
 
 
-# Sonata Configuration
-
-# SonataAdmin
+#### Sonata Configuration ####
+####### SonataAdmin #######
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
@@ -135,7 +141,7 @@ sonata_block:
             contexts: [admin]
 
 
-# SonataUser
+####### SonataUser #######
 sonata_user:
     security_acl: false
     manager_type: orm
@@ -146,7 +152,6 @@ sonata_user:
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
 
-
     admin:
         user:
             class:          IuchBundle\Admin\UserAdmin           # Override User CRUD in SonataAdmin
@@ -155,7 +160,7 @@ sonata_user:
 
 
 
-# File uploader Configuration
+#### File uploader Configuration ####
 vich_uploader:
     db_driver: orm
     mappings:
