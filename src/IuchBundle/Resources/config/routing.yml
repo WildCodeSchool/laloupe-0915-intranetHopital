@@ -1,3 +1,7 @@
+iuch_homepage:
+    path: /
+    defaults: { _controller: "IuchBundle:Signature:Index" }
+
 iuch_signature:
     path: /signature/{charte_id}
     defaults: { _controller: "IuchBundle:Signature:Signature" }
