@@ -12,5 +12,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class DefaultController extends Controller
 {
-
+    public function indexAction() {
+        return $this->render('IuchBundle:Signature:signature.html.twig', array(
+            'charte' => $charte,
+            'form' => $form->createView(),
+        ));
+    }
 }

@@ -3,6 +3,8 @@
 namespace IuchBundle\Controller;
 
 use IuchBundle\Form\Type\SignatureType;
+use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;
 use IuchBundle\Entity\Charte;
@@ -10,6 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SignatureController extends Controller
 {
+    public function indexAction() {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $chartes = $this->get('doctrine')
+            ->getRepository('IuchBundle:Charte')
+            ->findByService($user->getService());
+
+        return $this->render('IuchBundle:Signature:index.html.twig', array(
+            'chartes'=> $chartes,
+            'user'   => $user
+        ));
+    }
+
     public function signatureAction($charte_id)
     {
         $charte = $this->get('doctrine')

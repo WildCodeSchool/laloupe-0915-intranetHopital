@@ -37,7 +37,7 @@
                     <td scope="row">{{ charte.description }}</td>
                     <td scope="row">{{ charte.service }}</td>
                     <td scope="row"><a href="{{ asset('bundles/iuch') }}{{ vich_uploader_asset(charte, 'fichier') }}" target="_blank">{{ charte.filename }}</a></td>
-                    <td scope="row"><a href="{{ path('sonata_user_profile_show') }}signature/{{ charte.id }}">Signer la charte</a></td>
+                    <td scope="row"><a href="{{ path('iuch_signature', {'charte_id': charte.id }) }}">Signer la charte</a></td>
 
                 {% endfor %}
             </tr>
