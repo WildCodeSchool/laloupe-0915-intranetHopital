@@ -9,7 +9,6 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use IuchBundle\Entity\Charte;
-use IuchBundle\Entity\Service;
 
 class LoadCharteData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
