@@ -1,6 +1,7 @@
 <?php
 
 namespace IuchBundle\Entity;
+use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * Service
@@ -115,5 +116,81 @@ class Service
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     *
+     * @return Service
+     */
+    public function addUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+    /**
+     * @var integer
+     */
+    private $chef_service;
+
+
+    /**
+     * Set chefService
+     *
+     * @param integer $chefService
+     *
+     * @return Service
+     */
+    public function setChefService($chefService)
+    {
+        $this->chef_service = $chefService;
+
+        return $this;
+    }
+
+    /**
+     * Get chefService
+     *
+     * @return integer
+     */
+    public function getChefService()
+    {
+        return $this->chef_service;
     }
 }

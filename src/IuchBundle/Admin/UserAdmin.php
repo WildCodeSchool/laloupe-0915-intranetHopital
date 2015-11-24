@@ -65,6 +65,9 @@ class UserAdmin extends Admin
             ->add('service.nom', null, array(
                 'label' => 'Service',
             ))
+            ->add('chef_service', null, array(
+                'label' => 'Chef de service',
+            ))
             ->add('fonction.nom', null, array(
                 'label' => 'Fonction',
             ))

@@ -64,6 +64,7 @@ file that was distributed with this source code.
             {% endif %}
 
             {%  set service = form.vars.value.service %}
+            {{ dump() }}
             {% if service is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">

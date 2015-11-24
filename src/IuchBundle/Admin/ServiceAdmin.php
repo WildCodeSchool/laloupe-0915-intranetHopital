@@ -29,6 +29,7 @@ class ServiceAdmin extends Admin
             ->addIdentifier('nom')
             ->add('email')
             ->add('telephone')
+            ->add('chef_service')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),

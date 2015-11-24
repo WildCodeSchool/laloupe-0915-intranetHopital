@@ -18,4 +18,13 @@ IuchBundle\Entity\Service:
         telephone:
             type: string
             length: 64
+        chef_service:
+            type: integer
+            nullable: true
+
+    oneToMany:
+        users:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            mappedBy: user
+
     lifecycleCallbacks: {  }
