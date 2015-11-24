@@ -8,29 +8,54 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Charte
 {
-
     /**
-     * https://github.com/K-Phoen/Vich-Uploader-Sandbox/tree/master/src/KPhoen/Bundle/SingleUploadableBundle
+     * @var File $file
      */
+    public $file;
 
-    /**
-     * @var File $image
-     */
-    protected $fichier;
-    public function __toString()
+    protected function getUploadDir()
     {
-        return $this->nom ? $this->nom : '';
+        return 'uploads';
     }
 
-    public function setFichier(File $fichier)
+    protected function getUploadRootDir()
     {
-        $this->fichier = $fichier;
-        return $this;
+        return __DIR__.'/../../../app/'.$this->getUploadDir();
     }
 
-    public function getFichier()
+    public function getAbsolutePath()
     {
-        return $this->fichier;
+        return null === $this->charte_file ? null : $this->getUploadRootDir().'/'.$this->charte_file;
+    }
+
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->file_name = $this->file->getClientOriginalName();
+            $this->charte_file = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->charte_file);
+
+        unset($this->file);
+    }
+
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
 
     // GENERATED CODE
@@ -185,5 +210,34 @@ class Charte
     public function getService()
     {
         return $this->service;
+    }
+    /**
+     * @var string
+     */
+    private $charte_file;
+
+
+    /**
+     * Set charte_file
+     *
+     * @param string $charteFile
+     *
+     * @return Charte
+     */
+    public function setCharteFile($charte_file)
+    {
+        $this->charte_file = $charte_file;
+
+        return $this;
+    }
+
+    /**
+     * Get charte_file
+     *
+     * @return string
+     */
+    public function getCharteFile()
+    {
+        return $this->charte_file;
     }
 }

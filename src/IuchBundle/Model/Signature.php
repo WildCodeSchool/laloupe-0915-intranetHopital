@@ -99,6 +99,7 @@ class Signature extends \IuchBundle\Entity\Charte
     public function __construct(\IuchBundle\Entity\Charte $charte,\IuchBundle\Entity\Charte_utilisateur $signature = null)
     {
         $this->setFileName($charte->getFileName());
+        $this->setCharteFile($charte->getCharteFile());
         $this->setIdCharte($charte->getId());
         $this->setNom($charte->getNom());
         $this->setDescription($charte->getDescription());

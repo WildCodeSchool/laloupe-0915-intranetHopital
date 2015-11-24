@@ -22,8 +22,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*",
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/user-bundle": "^2.2",
-        "knplabs/knp-menu-bundle": "~1.1",
-        "vich/uploader-bundle": "^0.14.0"
+        "knplabs/knp-menu-bundle": "~1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

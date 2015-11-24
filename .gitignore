@@ -11,3 +11,7 @@
 /web/bundles/
 .idea/
 /composer.lock
+/app/uploads/*
+!/app/uploads/charte1.pdf
+!/app/uploads/charte2.pdf
+!/app/uploads/charte3.pdf

@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
+{% endblock %}
+
 {%  block body %}
 
     {% for flash_message in app.session.flashbag.get('notice') %}
@@ -16,7 +20,7 @@
 
     <div class="row row-fluid">
         <h3>Liste des chartes</h3>
-        <table class="table table-hover">
+        <table id="chartesTable" class="table table-hover tablesorter">
             <thead>
             <tr>
                 <th>
@@ -42,7 +46,7 @@
                         <td scope="row">{{ charte.nom }}</td>
                         <td scope="row">{{ charte.description }}</td>
                         <td scope="row">{{ charte.service }}</td>
-                        <td scope="row"><a href="{{ asset('bundles/iuch') }}{{ charte.path }}" target="_blank">{{ charte.filename }}</a></td>
+                        <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
                         {% if charte.signe == false %}
                             <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
                         {% else %}
@@ -55,4 +59,15 @@
     </div>
 
     <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/iuch/js/jquery.tablesorter.min.js') }}"></script>
+    <script>
+        $(document).ready(function()
+            {
+                $("#chartesTable").tablesorter( {sortList: [[4,0],[0,0]]} );
+            }
+        );
+    </script>
 {% endblock %}

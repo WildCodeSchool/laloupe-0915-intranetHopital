@@ -23,3 +23,10 @@ $ php app/console doctrine:database:create
 $ php app/console doctrine:schema:update --force
 $ php app/console doctrine:fixtures:load
 ```
+
+Si vous utilisez le projet en local, pensez à donner les droits à Apache sur le dossier app.
+Sur Mac OS (config par défaut):
+`sudo chown _www app/uploads`
+
+Sur Linux :
+`sudo chown www-data app/uploads`

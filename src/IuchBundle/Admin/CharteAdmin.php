@@ -14,7 +14,7 @@ class CharteAdmin extends Admin
         $formMapper
             ->add('nom')
             ->add('description')
-            ->add('fichier', 'file')
+            ->add('file', 'file', array('label' => 'Charte'))
             ->add('service')
         ;
     }
@@ -29,7 +29,7 @@ class CharteAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('nom')
-            ->add('link', 'string', array('template' => 'IuchBundle:Charte:list_link.html.twig'))
+            ->add('charte', 'string', array('template' => 'IuchBundle:Charte:list_link.html.twig'))
             ->add('service')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -47,9 +47,8 @@ class CharteAdmin extends Admin
         $showMapper
             ->with('General')
             ->add('nom')
-            ->add('link', 'string', array(
-                'template' => 'IuchBundle:Charte:list_link.html.twig',
-                'label' => 'Lien'
+            ->add('charte', 'string', array(
+                'template' => 'IuchBundle:Charte:list_link.html.twig'
             ))
             ->add('service')
             ->end()
