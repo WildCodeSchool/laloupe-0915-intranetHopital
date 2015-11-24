@@ -11,7 +11,6 @@
 
 namespace Application\Sonata\AdminBundle\Controller;
 
-use Application\Sonata\UserBundle\ApplicationSonataUserBundle;
 use Application\Sonata\UserBundle\Entity\User;
 use IuchBundle\Entity\Charte;
 use Psr\Log\NullLogger;
@@ -19,12 +18,6 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
-use Sonata\AdminBundle\Util\AdminObjectAclData;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Console\Application;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -33,6 +26,14 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 {
 
+    private function logModelManagerException($e)
+    {
+        $context = array('exception' => $e);
+        if ($e->getPrevious()) {
+            $context['previous_exception_message'] = $e->getPrevious()->getMessage();
+        }
+        $this->getLogger()->error($e->getMessage(), $context);
+    }
     /**
      * Edit action.
      *
@@ -135,6 +136,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             'form'   => $view,
             'object' => $object,
         ));
+
     }
 
     /**
