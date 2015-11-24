@@ -65,7 +65,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        server_version: 5.6         # For the SensioInsight Dbal bug...
+        server_version: 5.5.46         # For the SensioInsight Dbal bug...
 
         types:
             json: Sonata\Doctrine\Types\JsonType
