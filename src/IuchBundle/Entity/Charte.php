@@ -32,6 +32,7 @@ class Charte
     {
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
+            $this->file_name = $this->file->getClientOriginalName();
             $this->charte_name = uniqid().'.'.$this->file->guessExtension();
         }
     }
