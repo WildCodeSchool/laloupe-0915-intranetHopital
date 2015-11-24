@@ -10,3 +10,8 @@ iuch_create_signature:
     path: /create_signature/{charte_id}
     defaults: { _controller: "IuchBundle:Signature:CreateSignature" }
     methods:  [POST, GET]
+
+iuch_get_charte:
+    path: /charte/{charte_name}
+    defaults: { _controller: "IuchBundle:Signature:getCharte" }
+    methods:  [GET]

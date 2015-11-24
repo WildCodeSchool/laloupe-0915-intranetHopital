@@ -23,11 +23,6 @@ class Charte
         return __DIR__.'/../../../app/'.$this->getUploadDir();
     }
 
-    public function getWebPath()
-    {
-        return null === $this->charte_name ? null : $this->getUploadDir().'/'.$this->charte_name;
-    }
-
     public function getAbsolutePath()
     {
         return null === $this->charte_name ? null : $this->getUploadRootDir().'/'.$this->charte_name;
