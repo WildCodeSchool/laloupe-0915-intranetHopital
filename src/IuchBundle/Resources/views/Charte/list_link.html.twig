@@ -1,5 +1,5 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field%}
-    <a href="{{ asset('bundles/iuch') }}{{ vich_uploader_asset(object, 'fichier') }}" target="_blank">Lire la charte</a>
+    <a href="{{ path('iuch_get_charte', {'charte_file': object.charteFile}) }}" target="_blank">{{ object.fileName }}</a>
 {% endblock %}
