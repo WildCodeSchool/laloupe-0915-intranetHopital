@@ -13,6 +13,7 @@ namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\ApplicationSonataUserBundle;
 use Application\Sonata\UserBundle\Entity\User;
+use IuchBundle\Entity\Charte;
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
@@ -362,6 +363,10 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
+                    if ($object instanceof Charte) {
+                        $object->preUpload();
+                    }
+                    
                     $object = $this->admin->update($object);
 
                     if ($this->isXmlHttpRequest()) {
