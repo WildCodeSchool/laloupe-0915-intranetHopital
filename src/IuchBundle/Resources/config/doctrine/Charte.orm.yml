@@ -18,7 +18,7 @@ IuchBundle\Entity\Charte:
             nullable: true
 
 
-        charte_name:
+        charte_file:
             type: string
             length: 255
 

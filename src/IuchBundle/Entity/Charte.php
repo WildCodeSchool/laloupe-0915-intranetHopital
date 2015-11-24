@@ -25,7 +25,7 @@ class Charte
 
     public function getAbsolutePath()
     {
-        return null === $this->charte_name ? null : $this->getUploadRootDir().'/'.$this->charte_name;
+        return null === $this->charte_file ? null : $this->getUploadRootDir().'/'.$this->charte_file;
     }
 
     public function preUpload()
@@ -33,7 +33,7 @@ class Charte
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
             $this->file_name = $this->file->getClientOriginalName();
-            $this->charte_name = uniqid().'.'.$this->file->guessExtension();
+            $this->charte_file = uniqid().'.'.$this->file->guessExtension();
         }
     }
 
@@ -46,7 +46,7 @@ class Charte
         // if there is an error when moving the file, an exception will
         // be automatically thrown by move(). This will properly prevent
         // the entity from being persisted to the database on error
-        $this->file->move($this->getUploadRootDir(), $this->charte_name);
+        $this->file->move($this->getUploadRootDir(), $this->charte_file);
 
         unset($this->file);
     }
@@ -214,30 +214,30 @@ class Charte
     /**
      * @var string
      */
-    private $charte_name;
+    private $charte_file;
 
 
     /**
-     * Set charteName
+     * Set charte_file
      *
-     * @param string $charteName
+     * @param string $charteFile
      *
      * @return Charte
      */
-    public function setCharteName($charteName)
+    public function setCharteFile($charte_file)
     {
-        $this->charte_name = $charteName;
+        $this->charte_file = $charte_file;
 
         return $this;
     }
 
     /**
-     * Get charteName
+     * Get charte_file
      *
      * @return string
      */
-    public function getCharteName()
+    public function getCharteFile()
     {
-        return $this->charte_name;
+        return $this->charte_file;
     }
 }

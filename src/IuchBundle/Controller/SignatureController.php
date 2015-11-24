@@ -145,10 +145,10 @@ class SignatureController extends Controller
     /**
      * Récupère le fichier de charte (pdf) en vérifiant les autorisations
      *
-     * @param $charte_name
+     * @param $charte_file
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function getCharteAction($charte_name)
+    public function getCharteAction($charte_file)
     {
         if (!$this->getUser())
         {
@@ -159,7 +159,7 @@ class SignatureController extends Controller
         $response = new Response();
 
         // Set headers
-        $filepath = $this->get('kernel')->getRootDir()."/uploads/".$charte_name;
+        $filepath = $this->get('kernel')->getRootDir()."/uploads/".$charte_file;
         $charteFile = new File($filepath);
         $response->headers->set('Cache-Control', 'private');
         $response->headers->set('Content-type', $charteFile->getMimeType());

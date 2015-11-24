@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <object width="860" height="700" data="{{ path('iuch_get_charte', {'charte_name': charte.charteName}) }}" type="application/pdf"></object>
+    <object width="860" height="700" data="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" type="application/pdf"></object>
     {{ form(form) }}
 {% endblock %}
