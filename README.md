@@ -24,6 +24,13 @@ $ php app/console doctrine:schema:update --force
 $ php app/console doctrine:fixtures:load
 ```
 
+#####Lancer les test
+
+``` shell
+$ phpunit -c app
+```
+
+
 Si vous utilisez le projet en local, pensez à donner les droits à Apache sur le dossier app.
 Sur Mac OS (config par défaut):
 `sudo chown _www app/uploads`

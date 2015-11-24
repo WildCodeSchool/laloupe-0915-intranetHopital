@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Tests\Sonata\UserBundle\Controller;
+namespace Application\Sonata\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Application\Sonata\UserBundle\Entity\User;
@@ -26,8 +26,8 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $form = $crawler->selectButton('_submit')->form();
 
         // set some values
-        $form['_username'] = 'admin';
-        $form['_password'] = 'admin';
+        $form['_username'] = 'testAdmin';
+        $form['_password'] = 'testAdmin';
 
         // submit the form
         $crawler = $client->submit($form);
@@ -43,8 +43,8 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $form = $crawler->selectButton('_submit')->form();
 
         // set some values
-        $form['_username'] = 'lucie';
-        $form['_password'] = 'lucie';
+        $form['_username'] = 'erwan';
+        $form['_password'] = 'erwan';
 
         // submit the form
         $crawler = $client->submit($form);

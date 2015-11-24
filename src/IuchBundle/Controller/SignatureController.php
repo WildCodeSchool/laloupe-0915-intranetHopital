@@ -4,10 +4,13 @@ namespace IuchBundle\Controller;
 
 use IuchBundle\Form\Type\SignatureType;
 use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;
 use IuchBundle\Entity\Charte;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class SignatureController extends Controller
 {
@@ -114,7 +117,7 @@ class SignatureController extends Controller
     public function createSignatureAction(Request $request, Charte $charte_id)
     {
         $entity = new Charte_utilisateur();
-        $form   = $this->createCreateForm($entity, $charte_id);
+        $form   = $this->createCreateForm($entity, $charte_id->getId());
 
         $form->handleRequest($request);
 
