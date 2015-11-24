@@ -37,9 +37,6 @@ class SignatureController extends Controller
         {
             $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
 
-            $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
-            $path = $helper->asset($charte, 'fichier');
-
             $model = new \IuchBundle\Model\Signature($charte, $charte_utilisateur);
 
             $models[] = $model;

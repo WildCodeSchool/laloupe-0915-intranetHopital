@@ -57,31 +57,6 @@ class Charte
         }
     }
 
-
-    /**
-     * https://github.com/K-Phoen/Vich-Uploader-Sandbox/tree/master/src/KPhoen/Bundle/SingleUploadableBundle
-     */
-
-    /**
-     * @var File $image
-     */
-    protected $fichier;
-    public function __toString()
-    {
-        return $this->nom ? $this->nom : '';
-    }
-
-    public function setFichier(File $fichier)
-    {
-        $this->fichier = $fichier;
-        return $this;
-    }
-
-    public function getFichier()
-    {
-        return $this->fichier;
-    }
-
     // GENERATED CODE
     /**
      * @var integer
