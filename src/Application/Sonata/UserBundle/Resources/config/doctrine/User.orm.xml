@@ -12,10 +12,10 @@
 
         <attribute-overrides>
             <attribute-override name="email">
-                <field column="email" nullable="true"></field>
+                <field column="email" nullable="true"/>
             </attribute-override>
             <attribute-override name="emailCanonical">
-                <field column="emailCanonical" nullable="true"></field>
+                <field column="emailCanonical" nullable="true"/>
             </attribute-override>
         </attribute-overrides>
 

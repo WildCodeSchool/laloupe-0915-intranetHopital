@@ -1,7 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <object width="860" height="700" data="{{ asset('bundles/iuch') }}{{ vich_uploader_asset(charte, 'fichier') }}" type="application/pdf"></object>
-
+    <object width="860" height="700" data="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" type="application/pdf"></object>
     {{ form(form) }}
 {% endblock %}

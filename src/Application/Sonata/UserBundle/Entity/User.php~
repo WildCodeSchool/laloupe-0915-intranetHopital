@@ -36,17 +36,14 @@ class User extends BaseUser
     private $raison_sortie;
     private $fonction_id;
     private $service_id;
+    protected $enabled;
+
 
     public function __construct()
     {
         parent::__construct();
-        $role = $this->getFonction();
-        if ($role[0] == 6) {
-            $this->setRoles = array('ROLE_RH');
-        }
-        else {
-            $this->setRoles = array('ROLE_USER');
-        }
+        $this->enabled = 1;
+        $this->dateOfBirth = new \DateTime('1950-01-01');
     }
 
 
