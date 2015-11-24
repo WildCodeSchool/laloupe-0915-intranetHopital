@@ -13,7 +13,7 @@ class ServiceAdmin extends Admin
     {
         $formMapper
             ->add('nom')
-            ->add('email')
+            ->add('email', 'email')
             ->add('telephone')
         ;
     }
