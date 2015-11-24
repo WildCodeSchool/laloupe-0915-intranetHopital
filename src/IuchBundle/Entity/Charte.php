@@ -8,6 +8,60 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Charte
 {
+    /**
+     * @var File $file
+     */
+    public $file;
+
+    protected function getUploadDir()
+    {
+        return 'uploads';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../app/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->charte_name ? null : $this->getUploadDir().'/'.$this->charte_name;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->charte_name ? null : $this->getUploadRootDir().'/'.$this->charte_name;
+    }
+
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->charte_name = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->charte_name);
+
+        unset($this->file);
+    }
+
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
 
     /**
      * https://github.com/K-Phoen/Vich-Uploader-Sandbox/tree/master/src/KPhoen/Bundle/SingleUploadableBundle
@@ -185,5 +239,34 @@ class Charte
     public function getService()
     {
         return $this->service;
+    }
+    /**
+     * @var string
+     */
+    private $charte_name;
+
+
+    /**
+     * Set charteName
+     *
+     * @param string $charteName
+     *
+     * @return Charte
+     */
+    public function setCharteName($charteName)
+    {
+        $this->charte_name = $charteName;
+
+        return $this;
+    }
+
+    /**
+     * Get charteName
+     *
+     * @return string
+     */
+    public function getCharteName()
+    {
+        return $this->charte_name;
     }
 }

@@ -14,7 +14,8 @@ class CharteAdmin extends Admin
         $formMapper
             ->add('nom')
             ->add('description')
-            ->add('fichier', 'file')
+            ->add('fichier', 'file', array('required' => false))
+            ->add('file', 'file', array('label' => 'Charte',))
             ->add('service')
         ;
     }

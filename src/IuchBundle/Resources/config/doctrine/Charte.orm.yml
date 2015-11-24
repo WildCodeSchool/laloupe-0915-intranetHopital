@@ -12,7 +12,15 @@ IuchBundle\Entity\Charte:
             type:       string
             length:     255
 
-        file_name:      string
+        file_name:
+            type: string
+            length: 255
+            nullable: true
+
+
+        charte_name:
+            type: string
+            length: 255
 
         description:
             type: string
@@ -25,3 +33,10 @@ IuchBundle\Entity\Charte:
                 name: service_id
                 referencedColumnName: id
             cascade: ["persist", "merge"]
+
+    lifecycleCallbacks:
+        prePersist: [ preUpload ]
+        preUpdate: [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate: [ upload ]
+        postRemove: [ removeUpload ]
