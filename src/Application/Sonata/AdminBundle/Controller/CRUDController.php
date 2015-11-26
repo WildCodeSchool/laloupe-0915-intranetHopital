@@ -13,6 +13,7 @@ namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
 use IuchBundle\Entity\Charte;
+use IuchBundle\Entity\Service;
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;

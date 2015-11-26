@@ -1,6 +1,8 @@
 <?php
 
 namespace IuchBundle\Entity;
+use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Service
@@ -11,6 +13,13 @@ class Service
     public function __toString()
     {
         return (string) $this->nom;
+    }
+
+    public function getChefService()
+    {
+        foreach ($this->getUsers() as $user)
+            if ($user->getChefService())
+                return $user;
     }
 
     // GENERATED CODE
@@ -115,5 +124,54 @@ class Service
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     *
+     * @return Service
+     */
+    public function addUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

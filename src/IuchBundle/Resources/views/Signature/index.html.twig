@@ -5,7 +5,6 @@
 {% endblock %}
 
 {%  block body %}
-
     {% for flash_message in app.session.flashbag.get('notice') %}
         <div class="flash-notice warning">
             {{ flash_message }}
@@ -14,10 +13,43 @@
 
     <div class="row row-fluid">
         <h1>Bienvenue {{ app.user.firstname }}</h1>
-
-        <p>Lorem ipsum</p>
     </div>
 
+    <div class="row row-fluid">
+        <div class="col-sm-4">
+            {% if user.fonction is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Fonction</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ user.fonction.nom }}</p>
+                    </div>
+                </div>
+            {% endif %}
+            <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
+        </div>
+        <div class="col-sm-8">
+            {% if user.service is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Service {{ user.service.nom }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if user.service.chefService is defined %}
+                            <p><strong>Chef de service : </strong>{{ user.service.chefService }}</p>
+                        {% endif %}
+                        {% if user.service.email is defined %}
+                            <p><strong>E-mail : </strong> {{ user.service.email }}</p>
+                        {% endif %}
+                        {% if user.service.telephone is defined %}
+                            <p><strong>Téléphone : </strong> {{ user.service.telephone }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
     <div class="row row-fluid">
         <h3>Liste des chartes</h3>
         <table id="chartesTable" class="table table-hover tablesorter">
@@ -57,8 +89,6 @@
             </tbody>
         </table>
     </div>
-
-    <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
 {% endblock %}
 
 {% block javascripts %}

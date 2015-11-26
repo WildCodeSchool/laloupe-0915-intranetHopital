@@ -35,7 +35,7 @@ class User extends BaseUser
     private $date_sortie;
     private $raison_sortie;
     private $fonction_id;
-    private $service_id;
+    protected $service_id;
     protected $enabled;
 
 
@@ -44,6 +44,11 @@ class User extends BaseUser
         parent::__construct();
         $this->enabled = 1;
         $this->dateOfBirth = new \DateTime('1950-01-01');
+    }
+
+    public function __toString()
+    {
+        return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
     }
 
 

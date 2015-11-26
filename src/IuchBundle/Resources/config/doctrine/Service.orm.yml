@@ -1,6 +1,5 @@
 IuchBundle\Entity\Service:
     type: entity
-    table: null
     repositoryClass: IuchBundle\Entity\ServiceRepository
     id:
         id:
@@ -18,4 +17,10 @@ IuchBundle\Entity\Service:
         telephone:
             type: string
             length: 64
+
+    oneToMany:
+        users:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            mappedBy: service
+
     lifecycleCallbacks: {  }
