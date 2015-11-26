@@ -1,17 +1,14 @@
 .help a {
-    color:#ccc;
-    /*text-shadow:0 -1px 0 black; */
-    text-decoration: none;
+    color:#337AB7;
 }
 .help a:hover,a:focus {
-    /*background:rgba(0,0,0,.4);*/
     box-shadow:0 1px 0 rgba(255,255,255,.4);
 }
 .help a span {
     position:absolute;
     margin-top:23px;
     margin-left:-35px;
-    color:#09c;
+    color:#337AB7;
     text-align: center;
     background:rgba(0,0,0,.9);
     padding:15px;
