@@ -64,15 +64,21 @@ file that was distributed with this source code.
             {% endif %}
 
             {%  set service = form.vars.value.service %}
-            {{ dump() }}
             {% if service is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Service {{ service.nom }}</h3>
                     </div>
                     <div class="panel-body">
-                        <p><strong>E-mail : </strong> {{ service.email }}</p>
-                        <p><strong>Téléphone : </strong> {{ service.telephone }}</p>
+                        {% if service.chefService is defined %}
+                            <p><strong>Chef de service : </strong>{{ service.chefService }}</p>
+                        {% endif %}
+                        {% if service.mail is defined %}
+                            <p><strong>E-mail : </strong> {{ service.email }}</p>
+                        {% endif %}
+                        {% if service.telephone is defined %}
+                            <p><strong>Téléphone : </strong> {{ service.telephone }}</p>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
