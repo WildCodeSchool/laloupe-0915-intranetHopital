@@ -11,6 +11,8 @@ file that was distributed with this source code.
 
 {% extends "::base.html.twig" %}
 
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('bundles/iuch/css/help.css') }}"> {% endblock %}
+
 {% block body %}
 {% block fos_user_content %}
     <div class="row">
@@ -35,18 +37,25 @@ file that was distributed with this source code.
                             <label for="username"
                                    class="col-lg-3 col-sm-3 control-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
 
-                            <div class="col-lg-9 col-sm-9"><input type="text" class="form-control" id="username"
+                            <div class="col-lg-6 col-sm-6"><input type="text" class="form-control" id="username"
                                                                   name="_username" value="{{ last_username }}"
                                                                   required="required"/></div>
                         </div>
 
 
                         <div class="form-group control-group">
+
                             <label for="password"
                                    class="col-lg-3 col-sm-3 control-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
 
-                            <div class="col-lg-9 col-sm-9"><input type="password" class="form-control" id="password"
-                                                                  name="_password" required="required"/></div>
+                            <div class="col-lg-6 col-sm-6"><input type="password" class="form-control" id="password" name="_password" required="required"/></div>
+                            <div class="col-lg-3 col-sm-3">
+                                <p class="help">
+                                    <a href="#"> Help ?
+                                        <span>Lors de la 1ère connexion<br />veuillez utiliser votre date de naissance.</span>
+                                    </a>
+                                </p>
+                            </div>
                         </div>
 
                         <div class="form-group">
