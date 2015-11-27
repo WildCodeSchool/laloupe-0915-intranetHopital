@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Charte
 {
+    public function __toString()
+    {
+        return $this->getNom();
+    }
+
     /**
      * @var File $file
      */

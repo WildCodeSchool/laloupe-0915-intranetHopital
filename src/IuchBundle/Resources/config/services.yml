@@ -28,3 +28,12 @@ services:
             - IuchBundle\Entity\Fonction
             - ~
 
+    sonata.CharteUtilisateur:
+        class: IuchBundle\Admin\CharteUtilisateurAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Chartes signées", label: "Charte signée" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Charte_utilisateur
+            - ~
+
