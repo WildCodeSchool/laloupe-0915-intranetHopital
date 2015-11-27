@@ -27,28 +27,6 @@ class ProfileType extends \Sonata\UserBundle\Form\Type\ProfileType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', 'sonata_user_gender', array(
-                'label'    => 'form.label_gender',
-                'required' => true,
-                'translation_domain' => 'SonataUserBundle',
-                'choices' => array(
-                    UserInterface::GENDER_FEMALE => 'gender_female',
-                    UserInterface::GENDER_MALE   => 'gender_male',
-                )
-            ))
-            ->add('firstname', null, array(
-                'label'    => 'form.label_firstname',
-                'required' => false
-            ))
-            ->add('lastname', null, array(
-                'label'    => 'form.label_lastname',
-                'required' => false
-            ))
-            ->add('dateOfBirth', 'birthday', array(
-                'label'    => 'form.label_date_of_birth',
-                'required' => false,
-                'widget'   => 'single_text'
-            ))
             ->add('phone', null, array(
                 'label'    => 'form.label_phone',
                 'required' => false

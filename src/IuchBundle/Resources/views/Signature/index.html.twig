@@ -39,11 +39,14 @@
                         {% if user.service.chefService is defined %}
                             <p><strong>Chef de service : </strong>{{ user.service.chefService }}</p>
                         {% endif %}
+                        {% if user.service.chefService.email is defined %}
+                            <p><strong>E-mail Chef de Service : </strong> {{ user.service.chefService.email }}</p>
+                        {% endif %}
                         {% if user.service.email is defined %}
-                            <p><strong>E-mail : </strong> {{ user.service.email }}</p>
+                            <p><strong>E-mail Service : </strong> {{ user.service.email }}</p>
                         {% endif %}
                         {% if user.service.telephone is defined %}
-                            <p><strong>Téléphone : </strong> {{ user.service.telephone }}</p>
+                            <p><strong>Téléphone Service : </strong> {{ user.service.telephone }}</p>
                         {% endif %}
                     </div>
                 </div>
