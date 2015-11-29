@@ -73,11 +73,14 @@ file that was distributed with this source code.
                         {% if service.chefService is defined %}
                             <p><strong>Chef de service : </strong>{{ service.chefService }}</p>
                         {% endif %}
+                        {% if user.service.chefService.email is defined %}
+                            <p><strong>E-mail Chef de Service : </strong> {{ user.service.chefService.email }}</p>
+                        {% endif %}
                         {% if service.email is defined %}
-                            <p><strong>E-mail : </strong> {{ service.email }}</p>
+                            <p><strong>E-mail Service : </strong> {{ service.email }}</p>
                         {% endif %}
                         {% if service.telephone is defined %}
-                            <p><strong>Téléphone : </strong> {{ service.telephone }}</p>
+                            <p><strong>Téléphone Service : </strong> {{ service.telephone }}</p>
                         {% endif %}
                     </div>
                 </div>
