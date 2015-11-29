@@ -5,6 +5,7 @@
         <title>{% block title %}Interface de gestion des utilisateurs du centre hospitalier de La Loupe{% endblock %}</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/iuch/css/main.css') }}">
 
         {% block stylesheets %}
         {% endblock %}
@@ -14,14 +15,33 @@
     <body>
 
         <header class="main-header">
-            <ul class="nav nav-justified navbar-primary">
-                {% if app.user %}
-                    <li><a href="{{ path('iuch_homepage') }}">Accueil</a></li>
-                    <li><a href="{{ path('sonata_user_admin_security_logout') }}">Déconnexion</a></li>
-                {% else %}
-                    <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>
-                {% endif %}
-            </ul>
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ path('iuch_homepage') }}">Interface des utilisateurs de du CH de La Loupe</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if app.user %}
+                                <li><a href="{{ path('sonata_user_profile_show') }}">{{ app.user.firstname }}</a></li>
+                                {% if ('ADMIN' or 'RH') in app.user.roles|keys %}
+                                    <li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
+                                {% endif %}
+                                <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
+                            {% else %}
+                                <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </header>
 
         <div class="container">

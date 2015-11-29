@@ -11,40 +11,74 @@ file that was distributed with this source code.
 
 {% extends "ApplicationSonataUserBundle:Profile:action.html.twig" %}
 
+{% block sonata_profile_title %}
+    Mon profile
+{% endblock %}
+
 {% block sonata_profile_content %}
 
     <div class="row row-fluid">
-        {% set has_center = false %}
-        {% for block in blocks %}
-            {% if block.position == 'center' %}
-                {% set has_center = true %}
+        <ul class="show_profile">
+            <li>
+                <strong>Matricule :</strong>
+                {{ user.username }}
+            </li>
+
+            {% if user.lastname %}
+                <li>
+                    <strong>Nom :</strong>
+                    {{ user.lastname }}
+                </li>
             {% endif %}
-        {% endfor %}
 
-        <div class="{% if has_center %}span4 col-lg-4{% else %}span6 col-lg-6{% endif %}">
-            {% for block in blocks %}
-                {% if block.position == 'left' %}
-                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                {% endif %}
-            {% endfor %}
-        </div>
+            {% if user.firstname %}
+                <li>
+                    <strong>Prénom :</strong>
+                    {{ user.firstname }}
+                </li>
+            {% endif %}
 
-        {% if has_center %}
-            <div class="span4 col-lg-4">
-                {% for block in blocks %}
-                    {% if block.position == 'center' %}
-                        {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                    {% endif %}
-                {% endfor %}
-            </div>
-        {% endif %}
+            <li>
+                <strong>Date de naissance :</strong>
+                {{ user.dateOfBirth|date('d M Y') }}
+            </li>
 
-        <div class="{% if has_center %}span4 col-lg-4{% else %}span6 col-lg-6{% endif %}">
-            {% for block in blocks %}
-                {% if block.position == 'right' %}
-                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                {% endif %}
-            {% endfor %}
-        </div>
+            {% if user.adresse and user.ville and user.zip %}
+                <li>
+                    <strong>Adresse :</strong>
+                    {{ user.adresse }} {{ user.zip }} {{ user.ville }}
+                </li>
+            {% endif %}
+
+            {% if user.phone %}
+                <li>
+                    <strong>Téléphone :</strong>
+                    {{ user.phone }}
+                </li>
+            {% endif %}
+
+            {% if user.email %}
+                <li>
+                    <strong>Email :</strong>
+                    {{ user.email }}
+                </li>
+            {% endif %}
+
+            {% if user.fonction %}
+                <li>
+                    <strong>Fonction :</strong>
+                    {{ user.fonction.nom }}
+                </li>
+            {% endif %}
+
+            {% if user.service %}
+                <li>
+                    <strong>Service :</strong>
+                    {{ user.service.nom }}
+                </li>
+            {% endif %}
+        </ul>
     </div>
+
+    <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier mon profile</a>
 {% endblock %}
