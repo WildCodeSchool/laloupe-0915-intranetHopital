@@ -23,6 +23,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte1->setService(
             $this->getReference('1')
         );
+        $Charte1->setObligatoire(true);
 
         $Charte2 = new Charte();
         $Charte2->setNom('Charte 2');
@@ -32,6 +33,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte2->setService(
             $this->getReference('2')
         );
+        $Charte2->setObligatoire(false);
 
         $Charte3 = new Charte();
         $Charte3->setNom('Charte 3');
@@ -41,6 +43,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte3->setService(
             $this->getReference('3')
         );
+        $Charte3->setObligatoire(true);
 
         $manager->persist($Charte1);
         $manager->persist($Charte2);

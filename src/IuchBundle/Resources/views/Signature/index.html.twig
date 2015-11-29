@@ -68,17 +68,28 @@
                     Charte
                 </th>
                 <th>
+                    Obligatoire
+                </th>
+                <th>
                     Signature
                 </th>
             </tr>
             </thead>
             <tbody>
                 {% for charte in chartes %}
+                    {{ dump(charte) }}
                     <tr>
                         <td scope="row">{{ charte.nom }}</td>
                         <td scope="row">{{ charte.description }}</td>
                         <td scope="row">{{ charte.service }}</td>
                         <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
+                        <td>
+                            {% if charte.obligatoire == true %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
                         {% if charte.signe == false %}
                             <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
                         {% else %}
@@ -96,7 +107,7 @@
     <script>
         $(document).ready(function()
             {
-                $("#chartesTable").tablesorter( {sortList: [[4,0],[0,0]]} );
+                $("#chartesTable").tablesorter( {sortList: [[4,0],[5,0]]} );
             }
         );
     </script>

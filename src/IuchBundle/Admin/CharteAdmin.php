@@ -55,7 +55,7 @@ class CharteAdmin extends Admin
             ->add('nom')
             ->add('description')
             ->add('charte', 'string', array(
-                'template' => 'IuchBundle:Charte:list_link.html.twig'
+                'template' => 'IuchBundle:Charte:show.html.twig'
             ))
             ->add('service')
             ->add('obligatoire')
