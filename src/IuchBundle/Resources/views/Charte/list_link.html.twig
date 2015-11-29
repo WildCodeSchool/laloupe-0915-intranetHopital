@@ -1,5 +1,8 @@
-{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
 
+{% block name %}
+Lien
+{% endblock %}
 {% block field%}
     <a href="{{ path('iuch_get_charte', {'charte_file': object.charteFile}) }}" target="_blank">{{ object.fileName }}</a>
 {% endblock %}
