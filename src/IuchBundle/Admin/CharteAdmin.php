@@ -16,6 +16,7 @@ class CharteAdmin extends Admin
             ->add('description')
             ->add('file', 'file', array('label' => 'Charte', 'required' => false))
             ->add('service')
+            ->add('obligatoire')
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -23,7 +24,11 @@ class CharteAdmin extends Admin
         $datagridMapper
             ->add('nom')
             ->add('service')
-        ;
+            ->add('obligatoire', 'doctrine_orm_choice', array(), 'choice' , array(
+                'choices' => array('1' => 'oui', '0' => 'non'),
+                'expanded'=> true,
+                'multiple'=> false
+            ));
     }
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -31,6 +36,7 @@ class CharteAdmin extends Admin
             ->addIdentifier('nom')
             ->add('charte', 'string', array('template' => 'IuchBundle:Charte:list_link.html.twig'))
             ->add('service')
+            ->add('obligatoire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -47,10 +53,12 @@ class CharteAdmin extends Admin
         $showMapper
             ->with('General')
             ->add('nom')
+            ->add('description')
             ->add('charte', 'string', array(
-                'template' => 'IuchBundle:Charte:list_link.html.twig'
+                'template' => 'IuchBundle:Charte:show.html.twig'
             ))
             ->add('service')
+            ->add('obligatoire')
             ->end()
         ;
     }

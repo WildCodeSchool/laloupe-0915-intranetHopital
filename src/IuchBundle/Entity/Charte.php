@@ -245,4 +245,33 @@ class Charte
     {
         return $this->charte_file;
     }
+    /**
+     * @var boolean
+     */
+    private $obligatoire;
+
+
+    /**
+     * Set obligatoire
+     *
+     * @param boolean $obligatoire
+     *
+     * @return Charte
+     */
+    public function setObligatoire($obligatoire)
+    {
+        $this->obligatoire = $obligatoire;
+
+        return $this;
+    }
+
+    /**
+     * Get obligatoire
+     *
+     * @return boolean
+     */
+    public function getObligatoire()
+    {
+        return $this->obligatoire;
+    }
 }
