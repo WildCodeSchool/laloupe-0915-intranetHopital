@@ -27,7 +27,6 @@
                     </div>
                 </div>
             {% endif %}
-            <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier le profile</a>
         </div>
         <div class="col-sm-8">
             {% if user.service is not empty %}
@@ -36,7 +35,7 @@
                         <h3 class="panel-title">Service {{ user.service.nom }}</h3>
                     </div>
                     <div class="panel-body">
-                        {% if user.service.chefService is defined %}
+                        {% if user.service.chefService is not null %}
                             <p><strong>Chef de service : </strong>{{ user.service.chefService }}</p>
                         {% endif %}
                         {% if user.service.chefService.email is defined %}
