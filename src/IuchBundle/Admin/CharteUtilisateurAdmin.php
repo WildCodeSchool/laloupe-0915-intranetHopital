@@ -15,7 +15,6 @@ class CharteUtilisateurAdmin extends Admin
         $datagridMapper
             ->add('charte')
             ->add('user')
-            ->add('signature')
             ->add('dateSignature')
         ;
     }
@@ -48,7 +47,6 @@ class CharteUtilisateurAdmin extends Admin
             ->with('General')
             ->add('charte')
             ->add('user')
-            ->add('signature')
             ->add('dateSignature')
             ->end()
         ;

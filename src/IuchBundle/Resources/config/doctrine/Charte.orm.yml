@@ -17,7 +17,6 @@ IuchBundle\Entity\Charte:
             length: 255
             nullable: true
 
-
         charte_file:
             type: string
             length: 255
@@ -25,6 +24,9 @@ IuchBundle\Entity\Charte:
         description:
             type: string
             length: 255
+
+        obligatoire:
+            type: boolean
 
     manyToOne:
         service:
