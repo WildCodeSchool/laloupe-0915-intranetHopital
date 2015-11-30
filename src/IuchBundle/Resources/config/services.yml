@@ -46,3 +46,8 @@ services:
                 - IuchBundle\Entity\Tenue
                 - ~
 
+    iuch.tenue_listener:
+            class: IuchBundle\Listener\TenueListener
+            tags:
+                - { name: doctrine.event_listener, event: preUpdate }
+

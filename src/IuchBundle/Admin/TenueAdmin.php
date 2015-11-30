@@ -20,7 +20,6 @@ class TenueAdmin extends Admin
             ))
             ->add('date_donnee', 'datetime')
             ->add('nombre_donne', 'number')
-            ->add('date_rendu', 'datetime', array('required'=> false))
             ->add('nombre_rendu', 'number', array('required' => false))
         ;
     }
