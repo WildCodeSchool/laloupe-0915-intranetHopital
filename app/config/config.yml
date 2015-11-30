@@ -120,6 +120,8 @@ sonata_admin:
 
     title:      'Administration IUCH'
     title_logo:  bundles/iuch/img/ch-la-loupe.png
+    templates:
+        layout:  'IuchBundle:Admin:standart_layout.html.twig'
 
 sonata_doctrine_orm_admin:
     templates:
@@ -157,4 +159,3 @@ sonata_user:
             class:          IuchBundle\Admin\UserAdmin           # Override User CRUD in SonataAdmin
             controller:     ApplicationSonataAdminBundle:CRUD    # Extend CRUDController of SonataAdmin
             translation:    SonataUserBundle
-
