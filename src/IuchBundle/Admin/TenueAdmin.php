@@ -40,7 +40,10 @@ class TenueAdmin extends Admin
 
         $listMapper
             ->addIdentifier('nom')
-            ->add('user')
+            ->add('user', null, array(
+                'route' => array(
+                    'name' => 'show'
+                )))
             ->add('date_donnee')
             ->add('nombre_donne')
             ->add('date_rendu')
@@ -60,9 +63,11 @@ class TenueAdmin extends Admin
             ->with('Général')
             ->add('user')
             ->add('nom')
+            ->end()
             ->with('Entrée')
             ->add('date_donnee')
             ->add('nombre_donne')
+            ->end()
             ->with('Sortie')
             ->add('date_rendu')
             ->add('nombre_rendu')

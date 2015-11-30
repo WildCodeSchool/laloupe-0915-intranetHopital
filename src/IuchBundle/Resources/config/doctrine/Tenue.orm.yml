@@ -20,9 +20,11 @@ IuchBundle\Entity\Tenue:
         date_rendu:
             type: datetime
             column: date_rendu
+            nullable: true
         nombre_rendu:
             type: integer
             column: nombre_rendu
+            nullable: true
 
     oneToOne:
         user:

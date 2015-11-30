@@ -7,6 +7,10 @@ namespace IuchBundle\Entity;
  */
 class Tenue
 {
+
+    public function __construct() {
+        $this->date_donnee = new \DateTime('now');
+    }
     /**
      * @var integer
      */
