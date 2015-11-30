@@ -1,0 +1,33 @@
+IuchBundle\Entity\Tenue:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        date_donnee:
+            type: datetime
+            column: date_donnee
+        nombre_donne:
+            type: integer
+            column: nombre_donne
+        date_rendu:
+            type: datetime
+            column: date_rendu
+        nombre_rendu:
+            type: integer
+            column: nombre_rendu
+
+    oneToOne:
+        user:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

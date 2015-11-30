@@ -37,3 +37,12 @@ services:
             - IuchBundle\Entity\Charte_utilisateur
             - ~
 
+    sonata.Tenue:
+            class: IuchBundle\Admin\TenueAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Gestion des tenues", label: "Admin donnée/rendue" }
+            arguments:
+                - ~
+                - IuchBundle\Entity\Tenue
+                - ~
+
