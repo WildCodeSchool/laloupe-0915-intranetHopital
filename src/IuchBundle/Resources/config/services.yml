@@ -38,16 +38,30 @@ services:
             - ~
 
     sonata.Tenue:
-            class: IuchBundle\Admin\TenueAdmin
-            tags:
-                - { name: sonata.admin, manager_type: orm, group: "Gestion des tenues", label: "Admin donnée/rendue" }
-            arguments:
-                - ~
-                - IuchBundle\Entity\Tenue
-                - ~
+        class: IuchBundle\Admin\TenueAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des tenues", label: "Tenue donnée/rendue" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Tenue
+            - ~
 
     iuch.tenue_listener:
-            class: IuchBundle\Listener\TenueListener
+        class: IuchBundle\Listener\TenueListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    sonata.Cle:
+        class: IuchBundle\Admin\CleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des clés", label: "Clés données/rendues" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Cle
+            - ~
+
+    iuch.cle_listener:
+            class: IuchBundle\Listener\CleListener
             tags:
                 - { name: doctrine.event_listener, event: preUpdate }
 
