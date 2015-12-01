@@ -50,7 +50,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user1->setFirstname('Admin');
         $user1->setLastname('Admin');
         $user1->setPhone('0233258975');
-        $user1->setLastLogin(new \DateTime('now'));;
+        $user1->setLastLogin(new \DateTime('now'));
 
         $user2 = $userManager->createUser();
         $user2->setUsername('ressources-humaines');
@@ -64,12 +64,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user2->setFirstname('Martine');
         $user2->setLastname('Durand');
         $user2->setPhone('0233668548');
-        $user2->setFonction(
-            $this->getReference('7')
-        );
-        $use2->setService(
-            $this->getReference('7')
-        );
+        $user2->setFonction($this->getReference('7'));
+        $user2->setService($this->getReference('7'));
 
         $user3 = $userManager->createUser();
         $user3->setUsername('medecin');
@@ -83,12 +79,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user3->setFirstname('Joseph');
         $user3->setLastname('Langlade');
         $user3->setPhone('0235214872');
-        $user3->setFonction(
-            $this->getReference('11')
-        );
-        $user3->setService(
-            $this->getReference('1')
-        );
+        $user3->setFonction($this->getReference('11'));
+        $user3->setService($this->getReference('1'));
         $user3->setChefService(true);
 
         $user4 = $userManager->createUser();
@@ -103,12 +95,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user4->setFirstname('Martin');
         $user4->setLastname('Duval');
         $user4->setPhone('0235587596');
-        $user4->setFonction(
-            $this->getReference('8')
-        );
-        $user4->setService(
-            $this->getReference('2')
-        );
+        $user4->setFonction($this->getReference('8'));
+        $user4->setService($this->getReference('2'));
         $user4->setChefService(true);
 
         $user5 = $userManager->createUser();
@@ -122,14 +110,10 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user5->setDateEntree(new \DateTime('now'));
         $user5->setFirstname('Lucie');
         $user5->setLastname('Mannechez');
-        $user5->setPhone('0235587589')
-        $user5->setLastLogin(new \DateTime('now'));;
-        $user5->setFonction(
-            $this->getReference('8')
-        );
-        $user5->setService(
-            $this->getReference('1')
-        );
+        $user5->setPhone('0235587589');
+        $user5->setLastLogin(new \DateTime('now'));
+        $user5->setFonction($this->getReference('8'));
+        $user5->setService($this->getReference('1'));
 
         $user6 = $userManager->createUser();
         $user6->setUsername('thierry');
@@ -143,9 +127,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user6->setFirstname('Thierry');
         $user6->setLastname('Damey');
         $user6->setPhone('0235587699');
-        $user6->setFonction(
-            $this->getReference('12')
-        );
+        $user6->setFonction($this->getReference('12'));
 
 
         // On fixe les credential sur Erwan pour passer les tests
@@ -162,12 +144,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user7->setLastname('Haquet');
         $user7->setPhone('0235587529');
         $user7->setLastLogin(new \DateTime('now'));
-        $user7->setFonction(
-            $this->getReference('11')
-        );
-        $user7->setService(
-            $this->getReference('2')
-        );
+        $user7->setFonction($this->getReference('11'));
+        $user7->setService($this->getReference('2'));
 
         $user8 = $userManager->createUser();
         $user8->setUsername('testAdmin');
@@ -196,13 +174,24 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user9->setLastname('Henri');
         $user9->setPhone('0233258975');
         $user9->setLastLogin(new \DateTime('now'));
-        $user9->setFonction(
-            $this->getReference('13')
-        );
-        $user9->setService(
-            $this->getReference('6')
-        );
+        $user9->setFonction($this->getReference('13'));
+        $user9->setService($this->getReference('6'));
 
+        $user10 = $userManager->createUser();
+        $user10->setUsername('services-techniques');
+        $user10->setPlainPassword('services-techniques');
+        $user10->setEmail('maurice@email.com');
+        $user10->setRoles(array('ROLE_SERVICE_TECHNIC'));
+        $user10->setAdresse('18 Rue de la gare');
+        $user10->setZip('28400');
+        $user10->setVille('La Loupe');
+        $user10->setDateEntree(new \DateTime('now'));
+        $user10->setFirstname('Dupont');
+        $user10->setLastname('Maurice');
+        $user10->setPhone('0233258975');
+        $user10->setLastLogin(new \DateTime('now'));
+        $user10->setFonction($this->getReference('14'));
+        $user10->setService($this->getReference('8'));
 
         // Update the user
         $userManager->updateUser($user1, true);
@@ -214,6 +203,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $userManager->updateUser($user7, true);
         $userManager->updateUser($user8, true);
         $userManager->updateUser($user9, true);
+        $userManager->updateUser($user10, true);
 
     }
     public function getOrder()
