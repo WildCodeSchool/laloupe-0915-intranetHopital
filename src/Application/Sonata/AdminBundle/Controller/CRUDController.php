@@ -181,6 +181,9 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 if ($fonction == 'RH') {
                     $object->addRole('ROLE_RH');
                 }
+                elseif ($fonction == 'BLANCHISSERIE') {
+                    $object->addRole('ROLE_BLANCHISSERIE');
+                }
             }
 
             // persist if the form was valid and if in preview mode the preview was approved
