@@ -2,18 +2,11 @@ services:
 #    iuch.example:
 #        class: IuchBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    sonata.Charte:
-        class: IuchBundle\Admin\CharteAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Chartes", label: "Chartes" }
-        arguments:
-            - ~
-            - IuchBundle\Entity\Charte
-            - ~
+
     sonata.Service:
         class: IuchBundle\Admin\ServiceAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Services", label: "Services" }
+            - { name: sonata.admin, manager_type: orm, group: "Services/Fonctions", label: "Services" }
         arguments:
             - ~
             - IuchBundle\Entity\Service
@@ -22,16 +15,25 @@ services:
     sonata.Fonction:
         class: IuchBundle\Admin\FonctionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Fonctions", label: "Fonctions" }
+            - { name: sonata.admin, manager_type: orm, group: "Services/Fonctions", label: "Fonctions" }
         arguments:
             - ~
             - IuchBundle\Entity\Fonction
             - ~
 
+    sonata.Charte:
+        class: IuchBundle\Admin\CharteAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Chartes", label: "Chartes" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Charte
+            - ~
+            
     sonata.CharteUtilisateur:
         class: IuchBundle\Admin\CharteUtilisateurAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Chartes signées", label: "Charte signée" }
+            - { name: sonata.admin, manager_type: orm, group: "Chartes", label: "Chartes signée" }
         arguments:
             - ~
             - IuchBundle\Entity\Charte_utilisateur
@@ -40,7 +42,7 @@ services:
     sonata.Tenue:
         class: IuchBundle\Admin\TenueAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Gestion des tenues", label: "Tenue donnée/rendue" }
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des tenues", label: "Tenues données/rendues" }
         arguments:
             - ~
             - IuchBundle\Entity\Tenue
@@ -68,7 +70,7 @@ services:
     sonata.admin.badge:
         class: IuchBundle\Admin\BadgeAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Gestion clés/badges", label: "Badge donné/rendu" }
+            - { name: sonata.admin, manager_type: orm, group: "Gestion clés/badges", label: "Badge donnés/rendus" }
         arguments:
             - ~
             - IuchBundle\Entity\Badge
