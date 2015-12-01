@@ -1,0 +1,212 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
+{% endblock %}
+
+{%  block body %}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="flash-notice warning">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <div class="row row-fluid">
+        <h1>Bienvenue {{ app.user.firstname }}</h1>
+    </div>
+
+    <div class="row row-fluid">
+        <div class="col-sm-4">
+            {% if user.fonction is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Fonction</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ user.fonction.nom }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-8">
+            {% if user.service is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Service {{ user.service.nom }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if user.service.chefService is not null %}
+                            <p><strong>Chef de service : </strong>{{ user.service.chefService }}</p>
+                        {% endif %}
+                        {% if user.service.chefService.email is defined %}
+                            <p><strong>E-mail Chef de Service : </strong> {{ user.service.chefService.email }}</p>
+                        {% endif %}
+                        {% if user.service.email is defined %}
+                            <p><strong>E-mail Service : </strong> {{ user.service.email }}</p>
+                        {% endif %}
+                        {% if user.service.telephone is defined %}
+                            <p><strong>Téléphone Service : </strong> {{ user.service.telephone }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row row-fluid">
+        <h3>Liste des chartes</h3>
+        <table id="chartesTable" class="table table-hover tablesorter">
+            <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Service
+                </th>
+                <th>
+                    Charte
+                </th>
+                <th>
+                    Obligatoire
+                </th>
+                <th>
+                    Signature
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for charte in chartes %}
+                <tr>
+                    <td scope="row">{{ charte.nom }}</td>
+                    <td scope="row">{{ charte.description }}</td>
+                    <td scope="row">{{ charte.service }}</td>
+                    <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
+                    <td>
+                        {% if charte.obligatoire == true %}
+                            Oui
+                        {% else %}
+                            Non
+                        {% endif %}
+                    </td>
+                    {% if charte.signe == false %}
+                        <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
+                    {% else %}
+                        <td scope="row">Signé le {{ charte.dateSignature|date('d m Y') }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row row-fluid">
+        <h3>Remise des tenues</h3>
+        {% if tenue is not null %}
+            <table id="tenueTable" class="table table-hover tablesorter">
+                <thead>
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Nombre donné
+                    </th>
+                    <th>
+                        Date donnée
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td scope="row">{{ tenue.nom }}</td>
+                    <td scope="row">{{ tenue.nombreDonne }}</td>
+                    <td scope="row">{{ tenue.dateDonnee|date('D m Y H:i') }}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            Vous n'avez pas encore eu vos tenues.
+        {% endif %}
+    </div>
+
+    <div class="row row-fluid">
+        <div class="col-sm-6">
+            <h3>Remise des Clés</h3>
+            {% if cle is not null %}
+                <table id="tenueTable" class="table table-hover tablesorter">
+                    <thead>
+                    <tr>
+                        <th>
+                            Remis
+                        </th>
+                        <th>
+                            Date remise
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            {% if badge.remis == true %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
+                        <td scope="row">{{ cle.dateRemise|date('D m Y H:i') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                Vous n'avez pas encore eu vos clés ou vous n'en avez pas.
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6">
+            <h3>Remise des Badges</h3>
+            {% if badge is not null %}
+                <table id="tenueTable" class="table table-hover tablesorter">
+                    <thead>
+                    <tr>
+                        <th>
+                            Remis
+                        </th>
+                        <th>
+                            Date remise
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            {% if badge.remis == true %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
+                        <td scope="row">{{ badge.dateRemise|date('D m Y H:i') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                Vous n'avez pas encore eu vos badges ou vous n'en avez pas.
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/iuch/js/jquery.tablesorter.min.js') }}"></script>
+    <script>
+        $(document).ready(function()
+                {
+                    $("#chartesTable").tablesorter( {sortList: [[4,0],[5,0]]} );
+                }
+        );
+    </script>
+{% endblock %}
