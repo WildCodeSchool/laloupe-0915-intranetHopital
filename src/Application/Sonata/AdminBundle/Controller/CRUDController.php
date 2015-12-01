@@ -171,15 +171,21 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
             if ($object instanceof User) {
 
-                // IUCH Mise à jour du password avec la date d'anniversaire
+                // IUCH Send a welcome mail
+                $this->sendWelcomeMail($object);
+
+                // IUCH Update the password with the dateOfBirth
                 $birthDate = $object->getDateOfBirth();
                 $datePassword = $birthDate->format('dmy');
                 $object->setPlainPassword($datePassword);
 
-                // IUCH Mise en place des rôles
+                // IUCH Setting up the roles
                 $fonction = $object->getFonction();
                 if ($fonction == 'RH') {
                     $object->addRole('ROLE_RH');
+                }
+                elseif ($fonction == 'BLANCHISSERIE') {
+                    $object->addRole('ROLE_BLANCHISSERIE');
                 }
             }
 
@@ -245,5 +251,31 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             'form'   => $view,
             'object' => $object,
         ));
+    }
+
+    // IUCH welcomeMail send function - $object represent the created user
+    private function sendWelcomeMail($object){
+
+        if ($object->getEmail() == NULL){
+
+        }
+        else {
+            $destinataire = $object->getEmail();
+            $sendMessage = \Swift_Message::newInstance()
+                ->setSubject('Bienvenue à l\'hôpital de La Loupe')
+                // TODO Modify the setFrom with CHLaLoupe mailserver informations
+                ->setFrom('CHLaLoupe@gmail.com')
+                ->setTo($destinataire)
+                ->setBody(
+                    $this->renderView(
+                        'Emails/welcome_mail.html.twig',
+                        array(
+                            'user' => $object,
+                        )
+                    ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($sendMessage);
+        }
     }
 }
