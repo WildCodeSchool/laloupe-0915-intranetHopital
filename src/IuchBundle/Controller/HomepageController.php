@@ -41,8 +41,18 @@ class HomepageController extends Controller
             ->getRepository('IuchBundle:Tenue')
             ->findOneByUser($user);
 
+        $cle = $this->get('doctrine')
+            ->getRepository('IuchBundle:Cle')
+            ->findOneByUser($user);
+
+        $badge = $this->get('doctrine')
+            ->getRepository('IuchBundle:Badge')
+            ->findOneByUser($user);
+
         return $this->render('IuchBundle::index.html.twig', array(
             'tenue'=> $tenue,
+            'cle'=> $cle,
+            'badge'=> $badge,
             'chartes'=> $models,
             'user'   => $user
         ));
