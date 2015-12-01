@@ -132,6 +132,72 @@
         {% endif %}
     </div>
 
+    <div class="row row-fluid">
+        <div class="col-sm-6">
+            <h3>Remise des Clés</h3>
+            {% if cle is not null %}
+                <table id="tenueTable" class="table table-hover tablesorter">
+                    <thead>
+                    <tr>
+                        <th>
+                            Remis
+                        </th>
+                        <th>
+                            Date remise
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            {% if badge.remis == true %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
+                        <td scope="row">{{ cle.dateRemise|date('D m Y H:i') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                Vous n'avez pas encore eu vos clés ou vous n'en avez pas.
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6">
+            <h3>Remise des Badges</h3>
+            {% if badge is not null %}
+                <table id="tenueTable" class="table table-hover tablesorter">
+                    <thead>
+                    <tr>
+                        <th>
+                            Remis
+                        </th>
+                        <th>
+                            Date remise
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            {% if badge.remis == true %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
+                        <td scope="row">{{ badge.dateRemise|date('D m Y H:i') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                Vous n'avez pas encore eu vos badges ou vous n'en avez pas.
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
