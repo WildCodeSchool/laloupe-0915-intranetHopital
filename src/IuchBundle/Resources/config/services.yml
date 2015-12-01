@@ -61,7 +61,21 @@ services:
             - ~
 
     iuch.cle_listener:
-            class: IuchBundle\Listener\CleListener
-            tags:
-                - { name: doctrine.event_listener, event: preUpdate }
+        class: IuchBundle\Listener\CleListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    sonata.Badge:
+        class: IuchBundle\Admin\BadgeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Gestion des badges", label: "Badges données/rendues" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Badge
+            - ~
+
+    iuch.badge_listener:
+        class: IuchBundle\Listener\BadgeListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
 
