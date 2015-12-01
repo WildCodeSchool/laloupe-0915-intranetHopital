@@ -125,6 +125,8 @@ sonata_admin:
     templates:
         layout:  'IuchBundle:Admin:standart_layout.html.twig'
 
+
+
 sonata_doctrine_orm_admin:
     templates:
         form:

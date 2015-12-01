@@ -110,7 +110,7 @@ class Badge
      *
      * @return string
      */
-    public function getDate_rendu()
+    public function getDateRendu()
     {
         return $this->date_rendu;
     }
@@ -142,15 +142,5 @@ class Badge
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Get dateRendu
-     *
-     * @return \DateTime
-     */
-    public function getDateRendu()
-    {
-        return $this->date_rendu;
     }
 }
