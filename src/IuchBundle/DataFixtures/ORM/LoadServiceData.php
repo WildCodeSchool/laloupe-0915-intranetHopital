@@ -39,12 +39,23 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
         $service5->setEmail('neuro@email.com');
         $service5->setTelephone('02.41.42.43.44');
 
+        $service6 = new Service();
+        $service6->setNom('blanchisserie');
+        $service6->setEmail('blanc@email.com');
+        $service6->setTelephone('02.51.52.53.54');
+
+        $service7 = new Service();
+        $service7->setNom('ressources humaines');
+        $service7->setEmail('rh@email.com');
+        $service7->setTelephone('02.61.62.63.64');
+
         $manager->persist($service1);
         $manager->persist($service2);
         $manager->persist($service3);
         $manager->persist($service4);
         $manager->persist($service5);
-        $manager->persist($service5);
+        $manager->persist($service6);
+        $manager->persist($service7);
         $manager->flush();
 
         // store reference to admin role for User relation to Role
@@ -53,6 +64,8 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
         $this->addReference('3', $service3);
         $this->addReference('4', $service4);
         $this->addReference('5', $service5);
+        $this->addReference('6', $service6);
+        $this->addReference('7', $service7);
     }
 
     public function getOrder()
