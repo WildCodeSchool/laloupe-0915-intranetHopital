@@ -50,6 +50,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user1->setFirstname('Admin');
         $user1->setLastname('Admin');
         $user1->setPhone('0233258975');
+        $user1->setLastLogin(new \DateTime('now'));;
 
         $user2 = $userManager->createUser();
         $user2->setUsername('ressources-humaines');
@@ -118,12 +119,13 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user5->setDateEntree(new \DateTime('now'));
         $user5->setFirstname('Lucie');
         $user5->setLastname('Mannechez');
-        $user5->setPhone('0235587589');
+        $user5->setPhone('0235587589')
+        $user5->setLastLogin(new \DateTime('now'));;
         $user5->setFonction(
             $this->getReference('8')
         );
         $user5->setService(
-            $this->getReference('4')
+            $this->getReference('1')
         );
 
         $user6 = $userManager->createUser();

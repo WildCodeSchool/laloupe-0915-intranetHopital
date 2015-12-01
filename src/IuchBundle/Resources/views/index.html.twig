@@ -78,38 +78,69 @@
             </tr>
             </thead>
             <tbody>
-                {% for charte in chartes %}
-                    <tr>
-                        <td scope="row">{{ charte.nom }}</td>
-                        <td scope="row">{{ charte.description }}</td>
-                        <td scope="row">{{ charte.service }}</td>
-                        <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
-                        <td>
-                            {% if charte.obligatoire == true %}
-                                Oui
-                            {% else %}
-                                Non
-                            {% endif %}
-                        </td>
-                        {% if charte.signe == false %}
-                            <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
+            {% for charte in chartes %}
+                <tr>
+                    <td scope="row">{{ charte.nom }}</td>
+                    <td scope="row">{{ charte.description }}</td>
+                    <td scope="row">{{ charte.service }}</td>
+                    <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
+                    <td>
+                        {% if charte.obligatoire == true %}
+                            Oui
                         {% else %}
-                            <td scope="row">Signé le {{ charte.dateSignature|date('d m Y') }}</td>
+                            Non
                         {% endif %}
-                    </tr>
-                {% endfor %}
+                    </td>
+                    {% if charte.signe == false %}
+                        <td scope="row"><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
+                    {% else %}
+                        <td scope="row">Signé le {{ charte.dateSignature|date('d m Y') }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
+
+    <div class="row row-fluid">
+        <h3>Remise des tenues</h3>
+        {% if tenue is not null %}
+            <table id="tenueTable" class="table table-hover tablesorter">
+                <thead>
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Nombre donné
+                    </th>
+                    <th>
+                        Date donnée
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td scope="row">{{ tenue.nom }}</td>
+                    <td scope="row">{{ tenue.nombreDonne }}</td>
+                    <td scope="row">{{ tenue.dateDonnee|date('D m Y H:i') }}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            Vous n'avez pas encore eu vos tenues.
+        {% endif %}
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('bundles/iuch/js/jquery.tablesorter.min.js') }}"></script>
     <script>
         $(document).ready(function()
-            {
-                $("#chartesTable").tablesorter( {sortList: [[4,0],[5,0]]} );
-            }
+                {
+                    $("#chartesTable").tablesorter( {sortList: [[4,0],[5,0]]} );
+                }
         );
     </script>
 {% endblock %}
