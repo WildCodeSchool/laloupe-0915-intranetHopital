@@ -184,8 +184,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 if ($fonction == 'RH') {
                     $object->addRole('ROLE_RH');
                 }
-                elseif ($fonction == 'BLANCHISSERIE') {
+                elseif ($fonction == 'blanchisserie') {
                     $object->addRole('ROLE_BLANCHISSERIE');
+                }
+                elseif ($fonction == 'services techniques') {
+                    $object->addRole('ROLE_SERVICE_TECHNIC');
                 }
             }
 
