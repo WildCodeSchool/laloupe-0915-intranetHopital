@@ -116,6 +116,5 @@ security:
     ### Restriction acces to SonataAdmin for standard users ###
     access_control:
         # require ROLE_ADMIN for /admin*
-        - { path: ^/admin, roles: ROLE_DASHBOARD }
-
+        - { path: ^/admin, roles: ROLE_DASHBOARD}
 
