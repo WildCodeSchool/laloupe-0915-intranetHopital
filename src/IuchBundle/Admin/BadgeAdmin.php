@@ -10,6 +10,9 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class BadgeAdmin extends Admin
 {
+
+    protected $parentAssociationMapping = 'cle';
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

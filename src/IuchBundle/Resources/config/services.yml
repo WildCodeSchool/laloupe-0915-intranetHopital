@@ -54,7 +54,7 @@ services:
     sonata.Cle:
         class: IuchBundle\Admin\CleAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Gestion des clés", label: "Clés données/rendues" }
+            - { name: sonata.admin, manager_type: orm, group: "Gestion clés/badges", label: "Clés données/rendues" }
         arguments:
             - ~
             - IuchBundle\Entity\Cle
@@ -65,17 +65,16 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.Badge:
+    sonata.admin.badge:
         class: IuchBundle\Admin\BadgeAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Gestion des badges", label: "Badges données/rendues" }
+            - { name: sonata.admin, manager_type: orm, group: "Gestion clés/badges", label: "Badge donné/rendu" }
         arguments:
             - ~
             - IuchBundle\Entity\Badge
-            - ~
+            -
 
     iuch.badge_listener:
         class: IuchBundle\Listener\BadgeListener
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
-
