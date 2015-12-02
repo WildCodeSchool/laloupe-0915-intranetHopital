@@ -23,6 +23,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 class StatBlockService extends BaseBlockService
 {
     /**
@@ -59,9 +63,49 @@ class StatBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id         = $user_current->getId();
+        $user_id        = $user_current->getId();
 
-        // Votre code métier...
+        /*
+         * Chartes statistiques
+         */
+
+        $chartesAll = $this->em
+            ->getRepository('IuchBundle:Charte')
+            ->findAll();
+
+        $nbChartes = count($chartesAll);
+
+        $chartesNo = [];
+        foreach ($chartesAll as $charte)
+        {
+            if ($charte->getObligatoire() == false)
+                $chartesNO[] = $charte;
+        }
+
+        $nbChartesNO = count($chartesNO);
+
+        $nbChartesNS = $nbChartes - $nbChartesNO;
+
+        $datas = array(
+            array(
+                'value' => $nbChartesNO,
+                'color' => "#F7464A",
+                'highlight' => "#FF5A5E",
+                'label' => "Chartes non obligatoires signées"
+            ),
+            array(
+                'value' => $nbChartesNS,
+                'color' => "#FDB45C",
+                'highlight' => "#FFC870",
+                'label' => "Chartes non obligatoires non signées"
+            )
+        );
+
+        $encoders = array(new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+        $jsonObject = $serializer->serialize($datas, 'json');
 
         // merge settings
         $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
@@ -69,7 +113,9 @@ class StatBlockService extends BaseBlockService
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
-            'settings'      => $blockContext->getSettings()
+            'settings'      => $blockContext->getSettings(),
+            'chartesNO' => $chartesNO,
+            'datas' => $jsonObject
         ), $response);
     }
     /**

@@ -10,7 +10,7 @@ services:
     ### Setting up the SonataUser profile's form ###
     sonata.user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
-        arguments: [ "Application\Sonata\UserBundle\Entity\User" ]
+        arguments: ["Application\Sonata\UserBundle\Entity\User"]
         tags:
             - { name: "form.type", alias: "application_sonata_user_profile"}
 

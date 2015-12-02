@@ -15,3 +15,7 @@ iuch_get_charte:
     path: /charte/{charte_file}
     defaults: { _controller: "IuchBundle:Signature:getCharte" }
     methods:  [GET]
+
+iuch_statistiques:
+    path: /statistiques
+    defaults:
