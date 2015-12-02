@@ -110,8 +110,9 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
 #### Sonata Configuration ####
-####### SonataAdmin #######
+    ####### SonataAdmin #######
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
@@ -122,20 +123,25 @@ sonata_admin:
         layout:  'IuchBundle:Admin:standart_layout.html.twig'
 
 
-    ### config ###
+    ### config blocks dashboard admin ###
     dashboard:
         blocks:
           -
-            position: right
-            class: col-md-6
-            type: sonata.block.service.stat
+            position: top
+            class: col-md-12
+            type: sonata.block.service.text
+            settings:
+                content: >
+                  <h2>Bienvenue sur le tableau de bord</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel turpis at lacusvehicula fringilla at eu lectus.</p>
           -
             position: left
             class: col-md-6
             type: sonata.block.service.stat
-
-
-
+          -
+            position: right
+            class: col-md-6
+            type: sonata.block.service.user
 
 
 sonata_doctrine_orm_admin:
@@ -162,6 +168,7 @@ sonata_block:
 
         # Block Stat créé pour le DashBoard
         sonata.block.service.stat: ~
+        sonata.block.service.user: ~
 
 ####### SonataUser #######
 sonata_user:
