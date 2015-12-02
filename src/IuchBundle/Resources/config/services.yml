@@ -20,7 +20,6 @@ services:
             - ~
             - IuchBundle\Entity\Fonction
             - ~
-
     sonata.Charte:
         class: IuchBundle\Admin\CharteAdmin
         tags:
@@ -29,7 +28,6 @@ services:
             - ~
             - IuchBundle\Entity\Charte
             - ~
-            
     sonata.CharteUtilisateur:
         class: IuchBundle\Admin\CharteUtilisateurAdmin
         tags:
@@ -67,7 +65,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.admin.badge:
+    sonata.Badge:
         class: IuchBundle\Admin\BadgeAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Gestion clés/badges", label: "Badge donnés/rendus" }
