@@ -8,6 +8,7 @@ imports:
 
 parameters:
     locale: fr
+    #sonata.user.profile.form.handler.class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
 
 framework:
     #esi:             ~
@@ -154,7 +155,7 @@ sonata_user:
     profile:
         form:
             type:               application_sonata_user_profile
-            handler:            sonata.user.profile.form.handler.default
+            #handler:            application.sonata.user.profile.form.handler
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
 
