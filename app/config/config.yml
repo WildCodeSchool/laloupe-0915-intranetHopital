@@ -126,6 +126,18 @@ sonata_admin:
         layout:  'IuchBundle:Admin:standart_layout.html.twig'
 
 
+    ### config ###
+    dashboard:
+        blocks:
+          -
+            position: left
+            type: sonata.admin.block.admin_list
+          -
+            position: top
+            class: col-md-12
+            type: sonata.block.service.stat
+
+
 
 sonata_doctrine_orm_admin:
     templates:
@@ -139,13 +151,21 @@ sonata_block:
             contexts: [admin]
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text:
         sonata.block.service.rss:
         sonata.admin.block.search_result:
             contexts: [admin]
 
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+         # Block Stat créé pour le DashBoard
+        sonata.block.service.stat: ~
 
 ####### SonataUser #######
 sonata_user:
