@@ -52,14 +52,14 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $manager->persist($fonction8);
         $manager->flush();
 
-        $this->addReference('7', $fonction1);
-        $this->addReference('8', $fonction2);
-        $this->addReference('9', $fonction3);
-        $this->addReference('10', $fonction4);
-        $this->addReference('11', $fonction5);
-        $this->addReference('12', $fonction6);
-        $this->addReference('13', $fonction7);
-        $this->addReference('14', $fonction8);
+        $this->addReference('10', $fonction1);
+        $this->addReference('11', $fonction2);
+        $this->addReference('12', $fonction3);
+        $this->addReference('13', $fonction4);
+        $this->addReference('14', $fonction5);
+        $this->addReference('15', $fonction6);
+        $this->addReference('16', $fonction7);
+        $this->addReference('17', $fonction8);
     }
     public function getOrder()
     {
