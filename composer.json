@@ -22,7 +22,9 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*",
         "sonata-project/easy-extends-bundle": "^2.1",
         "sonata-project/user-bundle": "^2.2",
-        "knplabs/knp-menu-bundle": "~1.1"
+        "knplabs/knp-menu-bundle": "~1.1",
+        "symfony/serializer": "^2.7",
+        "friendsofsymfony/jsrouting-bundle": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

@@ -84,3 +84,10 @@ services:
         arguments: [ "sonata.block.service.stat", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
         tags:
             - { name: sonata.block }
+
+    assetic.filter.twig:
+        class: IuchBundle\Filter\TwigFilter
+        arguments:
+            - @templating
+        tags:
+            - { name: "assetic.filter", alias: "twig"}
