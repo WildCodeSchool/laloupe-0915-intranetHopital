@@ -1,0 +1,20 @@
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+        <div class="alert alert-danger" role="alert">
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+        </div>
+            {% endif %}
+        {% if invalid_email is defined %}
+            <div class="alert alert-danger" role="alert">
+                Votre n'avez pas associer d'email à votre compte ou celui-ci n'est pas correct. </br>
+                Pour changer votre mot de passe, demandez à votre chef de service.
+            </div>
+        {% endif %}
+        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="text" id="username" name="username" required="required" />
+    </div>
+    <div>
+        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+</form>
