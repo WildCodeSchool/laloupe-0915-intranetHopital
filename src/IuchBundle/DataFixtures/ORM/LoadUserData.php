@@ -205,6 +205,18 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $userManager->updateUser($user9, true);
         $userManager->updateUser($user10, true);
 
+        // store reference to admin role for User relation to Role
+        $this->addReference('201', $user1);
+        $this->addReference('202', $user2);
+        $this->addReference('203', $user3);
+        $this->addReference('204', $user4);
+        $this->addReference('205', $user5);
+        $this->addReference('206', $user6);
+        $this->addReference('207', $user7);
+        $this->addReference('208', $user8);
+        $this->addReference('209', $user9);
+        $this->addReference('210', $user10);
+
     }
     public function getOrder()
     {
