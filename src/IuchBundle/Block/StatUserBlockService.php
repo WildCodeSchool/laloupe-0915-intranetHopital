@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class UserBlockService extends BaseBlockService
+class StatUserBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -65,57 +65,48 @@ class UserBlockService extends BaseBlockService
         $user_current   = $this->securityContext->getToken()->getUser();
         $user_id        = $user_current->getId();
 
-        /*
-         * Chartes statistiques
-         */
-
-        $chartesAll = $this->em
-            ->getRepository('IuchBundle:Charte')
+        // Tenues stats
+        $tenues = $this->em
+            ->getRepository('IuchBundle:Tenue')
             ->findAll();
 
-        $nbChartes = count($chartesAll);
-
-        $chartesNo = [];
-        foreach ($chartesAll as $charte)
-        {
-            if ($charte->getObligatoire() == false)
-                $chartesNO[] = $charte;
+        $nbr_tenues = 0;
+        foreach ($tenues as $tenue) {
+            $nbr_tenues += $tenue->getNombreDonne();
         }
 
-        $nbChartesNO = count($chartesNO);
 
-        $nbChartesNS = $nbChartes - $nbChartesNO;
+        // Cles stats
+        $cles = $this->em
+            ->getRepository('IuchBundle:Cle')
+            ->findAll();
 
-        $datas = array(
-            array(
-                'value' => $nbChartesNO,
-                'color' => "#F7464A",
-                'highlight' => "#FF5A5E",
-                'label' => "Chartes non obligatoires signées"
-            ),
-            array(
-                'value' => $nbChartesNS,
-                'color' => "#FDB45C",
-                'highlight' => "#FFC870",
-                'label' => "Chartes non obligatoires non signées"
-            )
-        );
+        $nbr_cles = 0;
+        foreach ($cles as $cle) {
+            if ($cle->getRemis() == true) $nbr_cles ++;
+        }
 
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
 
-        $serializer = new Serializer($normalizers, $encoders);
-        $jsonObject = $serializer->serialize($datas, 'json');
+        // Badges stats
+        $badges = $this->em
+            ->getRepository('IuchBundle:Badge')
+            ->findAll();
 
-        // merge settings
-        $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
+        $nbr_badges = 0;
+        foreach ($badges as $badge) {
+            if ($badge->getRemis() == true) $nbr_badges ++;
+        }
+
+
+
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:user.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'chartesNO' => $chartesNO,
-            'datas' => $jsonObject
+            'tenues'        => $nbr_tenues,
+            'cles'          => $nbr_cles,
+            'badges'        => $nbr_badges
         ), $response);
     }
     /**
@@ -125,7 +116,7 @@ class UserBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:user.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:statuser.html.twig' // Le template à render dans execute()
         ));
     }
 

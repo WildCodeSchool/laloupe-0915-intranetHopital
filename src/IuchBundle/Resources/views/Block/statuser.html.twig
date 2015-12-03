@@ -1,0 +1,31 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Matériel remis</h3>
+            <div class="row">
+
+                <div id="block__tenues" class="col-md-4 blocks__statuser">
+                    <h2><i class="fa fa-male"></i> Tenues</h2>
+                    <h1>{{ tenues }}</h1>
+                </div>
+
+                <div id="block__cles" class="col-md-4 blocks__statuser">
+                    <h2><i class="fa fa-key"></i> Clés</h2>
+                    <h1>{{ cles }}</h1>
+                </div>
+
+                <div id="block__badges" class="col-md-4 blocks__statuser">
+                    <h2><i class="fa fa-credit-card"></i> Badges</h2>
+                    <h1>{{ badges }}</h1>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+{% endblock %}
