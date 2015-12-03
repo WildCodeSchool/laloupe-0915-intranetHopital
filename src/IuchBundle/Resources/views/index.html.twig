@@ -32,7 +32,7 @@
             {% if user.service is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Service {{ user.service.nom }}</h3>
+                        <h3 class="panel-title">Service référent {{ user.service.nom }}</h3>
                     </div>
                     <div class="panel-body">
                         {% if user.service.chefService is not null %}
@@ -47,6 +47,36 @@
                         {% if user.service.telephone is defined %}
                             <p><strong>Téléphone Service : </strong> {{ user.service.telephone }}</p>
                         {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row row-fluid">
+        <div class="col-sm-12">
+            {% if user.service is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Services secondaires</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% for service in user.services %}
+                            <div class="col-sm-4">
+                                <h4>{{ service.nom }}</h4>
+                                {% if service.chefService is not null %}
+                                    <p><strong>Chef de service : </strong>{{ service.chefService }}</p>
+                                {% endif %}
+                                {% if service.chefService.email is defined %}
+                                    <p><strong>E-mail Chef de Service : </strong> {{ service.chefService.email }}</p>
+                                {% endif %}
+                                {% if service.email is defined %}
+                                    <p><strong>E-mail Service : </strong> {{ service.email }}</p>
+                                {% endif %}
+                                {% if service.telephone is defined %}
+                                    <p><strong>Téléphone Service : </strong> {{ service.telephone }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             {% endif %}
