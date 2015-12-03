@@ -85,6 +85,12 @@ services:
         tags:
             - { name: sonata.block }
 
+    sonata.block.service.user:
+        class: IuchBundle\Block\UserBlockService
+        arguments: [ "sonata.block.service.user", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
     assetic.filter.twig:
         class: IuchBundle\Filter\TwigFilter
         arguments:
