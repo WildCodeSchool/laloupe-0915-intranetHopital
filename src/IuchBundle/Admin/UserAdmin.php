@@ -105,12 +105,12 @@ class UserAdmin extends Admin
             ))
             ->add('firstname')
             ->add('lastname')
-            ->add('service.nom', null, array(
-                'label' => 'Service',
-            ))
-            ->add('fonction.nom', null, array(
-                'label' => 'Fonction',
-            ))
+            ->add('service', null, array(
+                'label' => 'Service'
+            ), null, array('multiple' => true))
+            ->add('fonction', null, array(
+                'label'=> 'Fonction'
+            ), null, array('multiple' => true))
         ;
     }
 
