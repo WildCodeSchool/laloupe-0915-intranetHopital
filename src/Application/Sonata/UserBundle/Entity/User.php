@@ -317,4 +317,33 @@ class User extends BaseUser
     {
         return $this->services;
     }
+    /**
+     * @var \IuchBundle\Entity\Photo
+     */
+    private $photo;
+
+
+    /**
+     * Set photo
+     *
+     * @param \IuchBundle\Entity\Photo $photo
+     *
+     * @return User
+     */
+    public function setPhoto(\IuchBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \IuchBundle\Entity\Photo
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
 }
