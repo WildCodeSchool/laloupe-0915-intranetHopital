@@ -46,6 +46,11 @@ class User extends BaseUser
         $this->dateOfBirth = new \DateTime('1950-01-01');
     }
 
+    public function __toString()
+    {
+        return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
+    }
+
 
     /**
      * @var \IuchBundle\Entity\Fonction

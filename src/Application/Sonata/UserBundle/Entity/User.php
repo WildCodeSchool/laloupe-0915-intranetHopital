@@ -278,4 +278,43 @@ class User extends BaseUser
     {
         return $this->service;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $services;
+
+
+    /**
+     * Add service
+     *
+     * @param \IuchBundle\Entity\Service $service
+     *
+     * @return User
+     */
+    public function addService(\IuchBundle\Entity\Service $service)
+    {
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \IuchBundle\Entity\Service $service
+     */
+    public function removeService(\IuchBundle\Entity\Service $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
 }

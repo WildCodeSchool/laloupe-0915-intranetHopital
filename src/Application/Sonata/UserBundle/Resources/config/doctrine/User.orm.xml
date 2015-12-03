@@ -35,6 +35,17 @@
             <join-column name="service_id" referenced-column-name="id" />
         </many-to-one>
 
+        <many-to-many field="services" target-entity="IuchBundle\Entity\Service">
+            <join-table name="users_services">
+                <join-columns>
+                    <join-column name="user_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="service_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
     </entity>
 
 </doctrine-mapping>

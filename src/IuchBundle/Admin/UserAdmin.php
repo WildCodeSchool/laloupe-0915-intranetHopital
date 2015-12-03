@@ -188,7 +188,13 @@ class UserAdmin extends Admin
                     'label' => 'Fonction'
                 ))
                 ->add('service', null, array(
-                    'label' => 'Service'
+                    'label' => 'Service référent'
+                ))
+                ->add('services', null, array(
+                    'required' => false,
+                    'expanded' => true,
+                    'multiple' => true,
+                    'label' => 'Services secondaires'
                 ))
                 ->add('chef_service', null, array(
                     'label' => 'Chef de service'
