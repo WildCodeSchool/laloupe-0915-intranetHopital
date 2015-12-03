@@ -16,7 +16,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\UserBundle\Model\UserInterface;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 
@@ -63,7 +62,10 @@ class UserAdmin extends Admin
             ->add('lastname')
             ->add('firstname')
             ->add('service.nom', null, array(
-                'label' => 'Service',
+                'label' => 'Service référent',
+            ))
+            ->add('services', null, array(
+                'label' => 'Services secondaires'
             ))
             ->add('chef_service', null, array(
                 'label' => 'Chef de service'
@@ -120,22 +122,25 @@ class UserAdmin extends Admin
         $showMapper
             ->with('General')
                 ->add('username')
-                ->add('email')
-            ->end()
-            ->with('Profile')
-                ->add('dateOfBirth')
+                ->add('gender')
                 ->add('firstname')
                 ->add('lastname')
-                ->add('website')
-                ->add('biography')
-                ->add('gender')
-                ->add('locale')
-                ->add('timezone')
-                ->add('phone')
+                ->add('dateOfBirth', 'date', array('format' => 'd/m/Y',))
             ->end()
-            ->with('Security')
-                ->add('token')
-                ->add('twoStepVerificationCode')
+            ->with('Contact')
+                ->add('phone')
+                ->add('email', 'email')
+                ->add('adresse', null, array('label' => 'Adresse'))
+                ->add('zip', null, array('label' => 'Code postal'))
+                ->add('ville', null, array('label' => 'Ville'))
+            ->end()
+            ->with('Informations internes')
+                ->add('fonction', null, array('label' => 'Fonction'))
+                ->add('service', null, array('label' => 'Service référent'))
+                ->add('services', null, array('label' => 'Services secondaire'))
+                ->add('date_entree', 'date', array('label' => 'Date d\'entrée', 'format' => 'd/m/Y'))
+                ->add('date_sortie', 'date', array('label' => 'Date de sortie', 'format' => 'd/m/Y'))
+                ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
             ->end()
         ;
     }
@@ -157,6 +162,10 @@ class UserAdmin extends Admin
                     'translation_domain' => $this->getTranslationDomain()
                 ))
                 ->add('dateOfBirth', 'birthday')
+            ->end()
+            ->with('Contact')
+                ->add('phone', null, array('required' => false))
+                ->add('email', null, array('required' => false))
                 ->add('adresse', null, array(
                     'label' => 'Adresse',
                     'required' => true
@@ -169,10 +178,6 @@ class UserAdmin extends Admin
                     'label' => 'Ville',
                     'required' => true
                 ))
-            ->end()
-            ->with('Contact')
-                ->add('phone', null, array('required' => false))
-                ->add('email', null, array('required' => false))
             ->end()
             ->with('Informations internes')
                 ->add('date_entree', null, array(
