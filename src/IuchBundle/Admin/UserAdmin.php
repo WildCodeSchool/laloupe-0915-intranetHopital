@@ -180,7 +180,11 @@ class UserAdmin extends Admin
                     'label' => 'Ville',
                     'required' => true
                 ))
-                ->add('enabled', null, array('required' => false))
+                ->add('enabled', 'choice', array(
+                    'required' => false,
+                    'expanded' => true,
+                    'multiple' => true,
+                    ))
             ->end()
             ->with('Informations internes')
                 ->add('date_entree', null, array(
@@ -192,10 +196,10 @@ class UserAdmin extends Admin
                 ->add('raison_sortie', null, array(
                     'label' => 'Raison de la sortie'
                 ))
-                ->add('fonction', null, array(
+                ->add('fonction', 'sonata_type_model_list', array(
                     'label' => 'Fonction'
                 ))
-                ->add('service', null, array(
+                ->add('service', 'sonata_type_model_list', array(
                     'label' => 'Service référent'
                 ))
                 ->add('services', null, array(
