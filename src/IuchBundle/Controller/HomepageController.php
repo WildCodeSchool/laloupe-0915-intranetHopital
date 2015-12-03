@@ -49,12 +49,17 @@ class HomepageController extends Controller
             ->getRepository('IuchBundle:Badge')
             ->findOneByUser($user);
 
+        $photo = $this->get('doctrine')
+            ->getRepository('ApplicationSonataUserBundle:User')
+            ->hasNoPhoto();
+
         return $this->render('IuchBundle::index.html.twig', array(
             'tenue'=> $tenue,
             'cle'=> $cle,
             'badge'=> $badge,
             'chartes'=> $models,
-            'user'   => $user
+            'user'   => $user,
+            'photo' => $photo
         ));
     }
 }

@@ -8,10 +8,15 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Photo
 {
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     /**
      * @var File $file
      */
-    public $photo;
+    public $photo_file;
 
     protected function getUploadDir()
     {
@@ -30,34 +35,35 @@ class Photo
 
     public function preUpload()
     {
-        if (null !== $this->photo) {
+        if (null !== $this->photo_file) {
             // do whatever you want to generate a unique name
-            $this->nom = $this->getUser()->getUsername().'.'.$this->photo->guessExtension();
+            $this->nom = $this->getUser()->getUsername().'.'.$this->photo_file->guessExtension();
         }
     }
 
     public function upload()
     {
-        if (null === $this->photo) {
+        if (null === $this->photo_file) {
             return;
         }
 
         // if there is an error when moving the file, an exception will
         // be automatically thrown by move(). This will properly prevent
         // the entity from being persisted to the database on error
-        $this->photo->move($this->getUploadRootDir(), $this->nom);
+        $this->photo_file->move($this->getUploadRootDir(), $this->nom);
 
-        unset($this->photo);
+        unset($this->photo_file);
     }
 
     public function removeUpload()
     {
-        if ($photo = $this->getAbsolutePath()) {
-            unlink($photo);
+        if ($photo_file = $this->getAbsolutePath()) {
+            unlink($photo_file);
         }
     }
 
     // GENERATED CODE
+
     /**
      * @var integer
      */
@@ -67,6 +73,11 @@ class Photo
      * @var string
      */
     private $nom;
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
 
 
     /**
@@ -102,11 +113,6 @@ class Photo
     {
         return $this->nom;
     }
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Set user

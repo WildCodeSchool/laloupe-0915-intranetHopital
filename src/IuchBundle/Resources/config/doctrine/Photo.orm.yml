@@ -1,6 +1,5 @@
 IuchBundle\Entity\Photo:
     type: entity
-    table: null
     id:
         id:
             type: integer
@@ -15,10 +14,7 @@ IuchBundle\Entity\Photo:
     oneToOne:
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: photo
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
+            mappedBy: photo
 
     lifecycleCallbacks:
         prePersist: [ preUpload ]

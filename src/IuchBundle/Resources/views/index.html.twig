@@ -5,6 +5,7 @@
 {% endblock %}
 
 {%  block body %}
+    {{ dump() }}
     {% for flash_message in app.session.flashbag.get('notice') %}
         <div class="flash-notice warning">
             {{ flash_message }}

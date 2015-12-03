@@ -12,9 +12,14 @@ class PhotoAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
-            ->add('photo', 'file')
-            ->add('user')
+            ->add('photo_file', 'file')
+            ->add('user', 'sonata_type_model', array('btn_add'=>false,'query'=> $this->modelManager->getEntityManager('ApplicationSonataUserBundle:User')->createQueryBuilder()
+                ->select('u')
+                ->from('ApplicationSonataUserBundle:User','u')// Dans un repository, $this->_entityName est le namespace de l'entité gérée
+                ->Where('u.photo is null')
+        ))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -25,10 +30,9 @@ class PhotoAdmin extends Admin
     }
     protected function configureListFields(ListMapper $listMapper)
     {
-
         $listMapper
-            ->addIdentifier('photo')
-            ->add('user', 'entity', array('label'=>'Utilisateur'))
+            ->addIdentifier('photo_file','image', array('template' => 'IuchBundle:Photo:photo.html.twig'))
+            ->add('user', null, array('label'=>'Utilisateur'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -42,7 +46,7 @@ class PhotoAdmin extends Admin
     {
         $showMapper
             ->add('user')
-            ->add('photo')
+            ->add('photo_file')
         ;
     }
 }

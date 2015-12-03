@@ -16,6 +16,11 @@ iuch_get_charte:
     defaults: { _controller: "IuchBundle:Signature:getCharte" }
     methods:  [GET]
 
+iuch_get_photo:
+    path: /photo/{photo_id}
+    defaults: { _controller: "IuchBundle:Photo:getPhoto" }
+    methods:  [GET]
+
 iuch_statistiques:
     path: /statistiques
     defaults:

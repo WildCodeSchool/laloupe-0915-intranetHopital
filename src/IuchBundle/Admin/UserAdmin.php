@@ -56,6 +56,7 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('photo', null, array('label'=>'Photo', 'template' => 'IuchBundle:Photo:photo.html.twig'))
             ->addIdentifier('username', null, array(
                 'label' => 'Matricule',
             ))

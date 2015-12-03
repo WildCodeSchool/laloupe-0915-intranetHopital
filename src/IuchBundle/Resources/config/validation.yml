@@ -9,10 +9,10 @@ IuchBundle\Entity\Charte:
 
 IuchBundle\Entity\Photo:
     properties:
-        photo:
+        photo_file:
             - Image:
                 maxSize: 1024k
-                minWidth: 200
-                maxWidth: 600
-                minHeight: 200
-                maxHeight: 600
+                minWidth: 100
+                maxWidth: 300
+                minHeight: 100
+                maxHeight: 300
