@@ -143,7 +143,7 @@ sonata_admin:
           -
             position: right
             class: col-md-6
-            type: sonata.block.service.user
+            type: sonata.block.service.statuser
 
 
 sonata_doctrine_orm_admin:
@@ -170,7 +170,7 @@ sonata_block:
 
         # Block Stat créé pour le DashBoard
         sonata.block.service.stat: ~
-        sonata.block.service.user: ~
+        sonata.block.service.statuser: ~
 
 ####### SonataUser #######
 sonata_user:
