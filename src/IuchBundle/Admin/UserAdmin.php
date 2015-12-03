@@ -89,6 +89,7 @@ class UserAdmin extends Admin
                     'delete' => array()
                 )
             ))
+            ->add('enabled', null, array('editable' => true))
         ;
     }
 
@@ -169,6 +170,7 @@ class UserAdmin extends Admin
                     'label' => 'Ville',
                     'required' => true
                 ))
+                ->add('enabled', null, array('required' => false))
             ->end()
             ->with('Contact')
                 ->add('phone', null, array('required' => false))
