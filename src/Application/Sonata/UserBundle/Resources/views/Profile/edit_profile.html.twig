@@ -52,9 +52,7 @@ file that was distributed with this source code.
                 </div>
             {% endif %}
 
-            {{ dump() }}
-
-            {#{% if form.vars.value.fonction is not empty %}
+            {% if form.vars.value.fonction is not empty %}
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Fonction</h3>
@@ -86,7 +84,7 @@ file that was distributed with this source code.
                         {% endif %}
                     </div>
                 </div>
-            {% endif %}#}
+            {% endif %}
 
         </div>
     </div>
