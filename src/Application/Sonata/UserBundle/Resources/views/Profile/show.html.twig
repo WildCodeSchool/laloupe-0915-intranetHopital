@@ -73,8 +73,18 @@ file that was distributed with this source code.
 
             {% if user.service %}
                 <li>
-                    <strong>Service :</strong>
+                    <strong>Service référent :</strong>
                     {{ user.service.nom }}
+                </li>
+            {% endif %}
+
+            {% if user.services %}
+                <li>
+                    <strong>Services secondaires :</strong>
+
+                    {% for service in user.services %}
+                        {{ service}}
+                    {% endfor %}
                 </li>
             {% endif %}
         </ul>
