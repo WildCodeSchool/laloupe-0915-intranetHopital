@@ -126,12 +126,15 @@ sonata_admin:
     dashboard:
         blocks:
           -
-            position: left
-            type: sonata.admin.block.admin_list
-          -
-            position: top
-            class: col-md-12
+            position: right
+            class: col-md-6
             type: sonata.block.service.stat
+          -
+            position: left
+            class: col-md-6
+            type: sonata.block.service.stat
+
+
 
 
 
@@ -157,10 +160,7 @@ sonata_block:
         #sonata.media.block.gallery:
         #sonata.media.block.feature_media:
 
-        # Enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-         # Block Stat créé pour le DashBoard
+        # Block Stat créé pour le DashBoard
         sonata.block.service.stat: ~
 
 ####### SonataUser #######
