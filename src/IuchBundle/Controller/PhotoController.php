@@ -9,6 +9,21 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class PhotoController extends Controller
 {
+    /**
+     *
+     * @param $photo_file
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function trombinoscopeAction()
+    {
+        $services = $this->get('doctrine')
+            ->getRepository('IuchBundle:Service')
+            ->findAll();
+
+        return $this->render('IuchBundle:Photo:trombinoscope.html.twig', array(
+            'services' => $services
+        ));
+    }
 
     /**
      *

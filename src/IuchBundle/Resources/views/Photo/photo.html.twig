@@ -3,9 +3,11 @@
 {% block field %}
     {% if object.username is defined %}
         {% if object.photo is not null %}
-            <img width="100" src="{{ path('iuch_get_photo', {'photo_id': object.photo.id}) }}" />
+            <img width="60" src="{{ path('iuch_get_photo', {'photo_id': object.photo.id}) }}" />
+        {% else %}
+            <img width="60" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
         {% endif %}
     {% else %}
-        <img width="100" src="{{ path('iuch_get_photo', {'photo_id': object.id}) }}" />
+        <img width="60" src="{{ path('iuch_get_photo', {'photo_id': object.id}) }}" />
     {% endif %}
 {% endblock %}

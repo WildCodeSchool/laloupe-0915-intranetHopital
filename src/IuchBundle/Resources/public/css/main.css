@@ -47,3 +47,19 @@
 .show_profile .photo-profile {
     margin-right: 30px;
 }
+
+.trombinoscope {
+    margin: 30px -20px;
+    padding: 0;
+    text-align: center;
+}
+
+.trombinoscope figure {
+    display: inline-block;
+    padding: 20px;
+}
+
+.trombinoscope figcaption {
+    text-align: center;
+    padding-top:5px;
+}

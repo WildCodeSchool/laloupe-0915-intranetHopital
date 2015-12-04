@@ -21,6 +21,11 @@ iuch_get_photo:
     defaults: { _controller: "IuchBundle:Photo:getPhoto" }
     methods:  [GET]
 
+iuch_trombinoscope:
+    path: /trombinoscope
+    defaults: { _controller: "IuchBundle:Photo:trombinoscope" }
+    methods:  [GET]
+
 iuch_statistiques:
     path: /statistiques
     defaults:

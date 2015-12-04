@@ -33,8 +33,10 @@
                             {% if app.user %}
                                 <li class="profile-link">
                                     <a href="{{ path('sonata_user_profile_show') }}">
-                                        {% if app.user.photo is defined %}
+                                        {% if app.user.photo is not null %}
                                             <img height="60" src="{{ path('iuch_get_photo', {'photo_id': app.user.photo.id}) }}" />
+                                        {% else %}
+                                            <img width="60" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
                                         {% endif %}
                                         {{ app.user.firstname }}
                                     </a>
