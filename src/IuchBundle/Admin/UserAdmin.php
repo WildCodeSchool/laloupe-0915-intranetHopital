@@ -179,7 +179,9 @@ class UserAdmin extends Admin
                     'label' => 'Ville',
                     'required' => true
                 ))
-                ->add('enabled', null, array('required' => false))
+                ->add('enabled', null, array(
+                    'required' => false
+                ))
             ->end()
             ->with('Informations internes')
                 ->add('date_entree', null, array(
