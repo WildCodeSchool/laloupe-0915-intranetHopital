@@ -19,7 +19,11 @@
                                     {% endif %}
                                     <figcaption>CHEF : {{ user }} <br/>{{ user.fonction.nom }}</figcaption>
                                 </figure>
-                            {% else %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for user in service.users %}
+                            {% if user.chefService  == false %}
                                 <figure>
                                     {% if user.photo is not null %}
                                         <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
@@ -31,6 +35,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
+
                 {% endif %}
             {% endfor %}
 

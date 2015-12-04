@@ -71,16 +71,7 @@ class UserAdmin extends Admin
             ->add('fonction.nom', null, array(
                 'label' => 'Fonction',
             ))
-            ->add('date_entree', null, array(
-                'label' => 'Date d\'entrée',
-                'format' => 'd/m/Y',
-                'timezone' => 'Europe/Paris'
-            ))
-            ->add('date_sortie', null, array(
-                'label' => 'Date de sortie',
-                'format' => 'd/m/Y',
-                'timezone' => 'Europe/Paris'
-            ))
+            ->add('enabled', null, array('editable' => true))
             ->add('_action', 'actions', array(
                 'label' => 'Actions',
                 'actions' => array(
@@ -89,7 +80,6 @@ class UserAdmin extends Admin
                     'delete' => array()
                 )
             ))
-            ->add('enabled', null, array('editable' => true))
         ;
     }
 

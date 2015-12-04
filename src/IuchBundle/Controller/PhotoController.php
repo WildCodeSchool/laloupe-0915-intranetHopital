@@ -21,7 +21,7 @@ class PhotoController extends Controller
             ->findAll();
 
         return $this->render('IuchBundle:Photo:trombinoscope.html.twig', array(
-            'services' => $services
+            'services' => $services,
         ));
     }
 
