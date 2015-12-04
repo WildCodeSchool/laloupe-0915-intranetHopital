@@ -31,7 +31,14 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             {% if app.user %}
-                                <li><a href="{{ path('sonata_user_profile_show') }}">{{ app.user.firstname }}</a></li>
+                                <li class="profile-link">
+                                    <a href="{{ path('sonata_user_profile_show') }}">
+                                        {% if app.user.photo is defined %}
+                                            <img height="60" src="{{ path('iuch_get_photo', {'photo_id': app.user.photo.id}) }}" />
+                                        {% endif %}
+                                        {{ app.user.firstname }}
+                                    </a>
+                                </li>
                                 {% if ('ADMIN' or 'RH') in app.user.roles|keys %}
                                     <li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
                                 {% endif %}
