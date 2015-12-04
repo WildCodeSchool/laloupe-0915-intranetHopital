@@ -30,7 +30,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->enabled = 1;
+        $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
     }
 

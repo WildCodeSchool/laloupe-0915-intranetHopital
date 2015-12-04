@@ -65,9 +65,6 @@ class UserAdmin extends Admin
             ->add('service.nom', null, array(
                 'label' => 'Service référent',
             ))
-            ->add('services', null, array(
-                'label' => 'Services secondaires'
-            ))
             ->add('chef_service', null, array(
                 'label' => 'Chef de service'
             ))
@@ -180,11 +177,9 @@ class UserAdmin extends Admin
                     'label' => 'Ville',
                     'required' => true
                 ))
-                ->add('enabled', 'choice', array(
-                    'required' => false,
-                    'expanded' => true,
-                    'multiple' => true,
-                    ))
+                ->add('enabled', null, array(
+                    'required' => false
+                ))
             ->end()
             ->with('Informations internes')
                 ->add('date_entree', null, array(
