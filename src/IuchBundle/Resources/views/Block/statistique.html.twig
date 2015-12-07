@@ -1,21 +1,43 @@
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    {{ dump() }}
+
     <div class="row">
         <div class="col-md-12">
-            <h3>Statistiques Chartes non obligatoires</h3>
-            <canvas id="myChart" width="200" height="200"></canvas>
+            <h3>Nombre de signatures par chartes non obligatoires</h3>
+            <canvas id="bar" width="500" height="300"></canvas>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
+
+            var data = {
+                labels: [
+                    {% for key,data in bar %}
+                        "{{ key }}",
+                    {% endfor %}
+                ],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [
+                            {% for data in bar %}
+                                {{ data }},
+                            {% endfor %}
+                        ]
+                    }]
+            };
+
             // Get context with jQuery - using jQuery's .get() method.
-           // var ctx = $("#myChart").get(0).getContext("2d");
+            var ctx = $("#bar").get(0).getContext("2d");
             // For a pie chart
-           // var myPieChart = new Chart(ctx).Pie();
+            var myBarChart = new Chart(ctx).Bar(data);
         });
     </script>
 

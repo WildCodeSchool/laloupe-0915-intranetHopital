@@ -63,70 +63,85 @@ class StatBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
-
-        /*
-         * Chartes statistiques
-         */
-
-        /*$chartesAll = $this->em
-            ->getRepository('IuchBundle:Charte')
-            ->findAll();
-
-        $nbChartes = count($chartesAll);
-
-        $chartesNo = [];
-        foreach ($chartesAll as $charte)
-        {
-            if ($charte->getObligatoire() == false)
-                $chartesNO[] = $charte;
-        }
-
-        $nbChartesNO = count($chartesNO);
-
-        $nbChartesNS = $nbChartes - $nbChartesNO;
-
-        $datas = array(
-            array(
-                'value' => $nbChartesNO,
-                'color' => "#F7464A",
-                'highlight' => "#FF5A5E",
-                'label' => "Chartes non obligatoires signées"
-            ),
-            array(
-                'value' => $nbChartesNS,
-                'color' => "#FDB45C",
-                'highlight' => "#FFC870",
-                'label' => "Chartes non obligatoires non signées"
-            )
-        );*/
-
-        $chartes = $this->em
-            ->getRepository('IuchBundle:Charte')
-            ->findAll();
+        $user_id = $user_current->getId();
 
         $signatures = $this->em
             ->getRepository('IuchBundle:Charte_utilisateur')
             ->findAll();
 
+        $users = $this->em
+            ->getRepository('ApplicationSonataUserBundle:User')
+            ->findAll();
+
+        /*$services = $this->em
+            ->getRepository('IuchBundle:Service')
+            ->findAll();*/
+
+/*        $nbUserByService = [];
+        foreach ($services as $service)
+        {
+            $nbUserByService[$service->getId()] = count($service->getUsers());
+        }*/
+
         $chartesSignees = [];
 
         foreach ($signatures as $signature) {
             $charte = $signature->getCharte();
-            $chartesSignees[] = $charte->getNom();
+            $chartesSignees[] = $charte;
         }
 
-        $nbSignatureByCharte = array_count_values($chartesSignees);
+        $map = function($charte) {
+            return $charte->getNom();
+        };
 
+        $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
 
+        $labels = [];
+        $datas = [];
 
+        foreach ($nbSignaturesByCharte as $charte => $nbSignature)
+        {
+            $labels[] = $charte;
+            $datas[] = $nbSignature;
+        }
+
+        //$labels = join(',',array_values($labels));
+        //$datas = join(',', $datas);
+
+        $datasBar = array(
+            'labels' => array($labels),
+            'datasets' => array(
+                array(
+                    'label' => 'Signées',
+                    'fillColor'=> "rgba(220,220,220,0.5)",
+                    'strokeColor'=> "rgba(220,220,220,0.8)",
+                    'highlightFill'=> "rgba(220,220,220,0.75)",
+                    'highlightStroke'=> "rgba(220,220,220,1)",
+                    'data' => $datas
+                )
+            )
+        );
+
+ /*       $datasPie = array(
+            array(
+                'value' => array_sum($nbSignaturesByCharte),
+                'color' => "#F7464A",
+                'highlight' => "#FF5A5E",
+                'label' => "signées"
+            ),
+            array(
+                'value' => array_sum($nbSignaturesByCharte) - count($users),
+                'color' => "#FDB45C",
+                'highlight' => "#FFC870",
+                'label' => "non signées"
+            )
+        );
 
         $encoders = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
-        //$jsonObject = $serializer->serialize($datas, 'json');
-
+        $jsonObject = $serializer->serialize($datasPie, 'json');*/
         // merge settings
         $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
@@ -134,7 +149,8 @@ class StatBlockService extends BaseBlockService
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'datas' => $nbSignatureByCharte
+            'bar' => $nbSignaturesByCharte
+
         ), $response);
     }
     /**
