@@ -42,6 +42,9 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $fonction8 = new Fonction();
         $fonction8->setNom('services techniques');
 
+        $fonction9 = new Fonction();
+        $fonction9->setNom('QGDR');
+
         $manager->persist($fonction1);
         $manager->persist($fonction2);
         $manager->persist($fonction3);
@@ -50,6 +53,7 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $manager->persist($fonction6);
         $manager->persist($fonction7);
         $manager->persist($fonction8);
+        $manager->persist($fonction9);
         $manager->flush();
 
         $this->addReference('10', $fonction1);
@@ -60,6 +64,7 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $this->addReference('15', $fonction6);
         $this->addReference('16', $fonction7);
         $this->addReference('17', $fonction8);
+        $this->addReference('18', $fonction9);
     }
     public function getOrder()
     {
