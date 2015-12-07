@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row row-fluid">
+        <div class="trombinoscope">
+
+            {% for service in services %}
+                {% if service.users is not empty %}
+                    <div class="service.nom">
+                        <h2>{{ service.nom }}</h2>
+
+                        {% for user in service.users %}
+                            {% if user.chefService %}
+                                <figure>
+                                    {% if user.photo is not null %}
+                                        <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+                                    {% else %}
+                                        <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                    {% endif %}
+                                    <figcaption>CHEF : {{ user }} <br/>{{ user.fonction.nom }}</figcaption>
+                                </figure>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for user in service.users %}
+                            {% if user.chefService  == false %}
+                                <figure>
+                                    {% if user.photo is not null %}
+                                        <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+                                    {% else %}
+                                        <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                    {% endif %}
+                                    <figcaption>{{ user }} <br/>{{ user.fonction.nom }}</figcaption>
+                                </figure>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

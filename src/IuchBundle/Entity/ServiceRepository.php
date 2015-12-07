@@ -10,4 +10,5 @@ namespace IuchBundle\Entity;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }
