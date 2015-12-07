@@ -1,6 +1,7 @@
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
+    {{ dump() }}
     <div class="row">
         <div class="col-md-12">
             <h3>Statistiques Chartes non obligatoires</h3>
@@ -12,9 +13,9 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#myChart").get(0).getContext("2d");
+           // var ctx = $("#myChart").get(0).getContext("2d");
             // For a pie chart
-            var myPieChart = new Chart(ctx).Pie({{ datas|raw }});
+           // var myPieChart = new Chart(ctx).Pie();
         });
     </script>
 

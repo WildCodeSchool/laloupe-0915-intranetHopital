@@ -69,7 +69,7 @@ class StatBlockService extends BaseBlockService
          * Chartes statistiques
          */
 
-        $chartesAll = $this->em
+        /*$chartesAll = $this->em
             ->getRepository('IuchBundle:Charte')
             ->findAll();
 
@@ -99,13 +99,41 @@ class StatBlockService extends BaseBlockService
                 'highlight' => "#FFC870",
                 'label' => "Chartes non obligatoires non signées"
             )
-        );
+        );*/
+
+        $chartes = $this->em
+            ->getRepository('IuchBundle:Charte')
+            ->findAll();
+
+        $signatures = $this->em
+            ->getRepository('IuchBundle:Charte_utilisateur')
+            ->findAll();
+
+        $res = [];
+
+        foreach ($signatures as $signature)
+        {
+
+        }
+
+        $result = [];
+        $nbSignatures = 0;
+
+        foreach ($signatures as $signature) {
+            $charte = $signature->getCharte()->getNom();
+
+            $result[] = $charte;
+        }
+
+        $test = array_count_values($result);
+
+
 
         $encoders = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
-        $jsonObject = $serializer->serialize($datas, 'json');
+        //$jsonObject = $serializer->serialize($datas, 'json');
 
         // merge settings
         $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
@@ -114,8 +142,7 @@ class StatBlockService extends BaseBlockService
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'chartesNO' => $chartesNO,
-            'datas' => $jsonObject
+            'datas' => $test
         ), $response);
     }
     /**
