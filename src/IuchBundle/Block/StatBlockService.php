@@ -63,41 +63,77 @@ class StatBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
+        $user_id = $user_current->getId();
 
-        /*
-         * Chartes statistiques
-         */
-
-        $chartesAll = $this->em
-            ->getRepository('IuchBundle:Charte')
+        $signatures = $this->em
+            ->getRepository('IuchBundle:Charte_utilisateur')
             ->findAll();
 
-        $nbChartes = count($chartesAll);
+        $users = $this->em
+            ->getRepository('ApplicationSonataUserBundle:User')
+            ->findAll();
 
-        $chartesNo = [];
-        foreach ($chartesAll as $charte)
+        /*$services = $this->em
+            ->getRepository('IuchBundle:Service')
+            ->findAll();*/
+
+/*        $nbUserByService = [];
+        foreach ($services as $service)
         {
-            if ($charte->getObligatoire() == false)
-                $chartesNO[] = $charte;
+            $nbUserByService[$service->getId()] = count($service->getUsers());
+        }*/
+
+        $chartesSignees = [];
+
+        foreach ($signatures as $signature) {
+            $charte = $signature->getCharte();
+            $chartesSignees[] = $charte;
         }
 
-        $nbChartesNO = count($chartesNO);
+        $map = function($charte) {
+            return $charte->getNom();
+        };
 
-        $nbChartesNS = $nbChartes - $nbChartesNO;
+        $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
 
-        $datas = array(
+        $labels = [];
+        $datas = [];
+
+        foreach ($nbSignaturesByCharte as $charte => $nbSignature)
+        {
+            $labels[] = $charte;
+            $datas[] = $nbSignature;
+        }
+
+        //$labels = join(',',array_values($labels));
+        //$datas = join(',', $datas);
+
+        $datasBar = array(
+            'labels' => array($labels),
+            'datasets' => array(
+                array(
+                    'label' => 'Signées',
+                    'fillColor'=> "rgba(220,220,220,0.5)",
+                    'strokeColor'=> "rgba(220,220,220,0.8)",
+                    'highlightFill'=> "rgba(220,220,220,0.75)",
+                    'highlightStroke'=> "rgba(220,220,220,1)",
+                    'data' => $datas
+                )
+            )
+        );
+
+ /*       $datasPie = array(
             array(
-                'value' => $nbChartesNO,
+                'value' => array_sum($nbSignaturesByCharte),
                 'color' => "#F7464A",
                 'highlight' => "#FF5A5E",
-                'label' => "Chartes non obligatoires signées"
+                'label' => "signées"
             ),
             array(
-                'value' => $nbChartesNS,
+                'value' => array_sum($nbSignaturesByCharte) - count($users),
                 'color' => "#FDB45C",
                 'highlight' => "#FFC870",
-                'label' => "Chartes non obligatoires non signées"
+                'label' => "non signées"
             )
         );
 
@@ -105,8 +141,7 @@ class StatBlockService extends BaseBlockService
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
-        $jsonObject = $serializer->serialize($datas, 'json');
-
+        $jsonObject = $serializer->serialize($datasPie, 'json');*/
         // merge settings
         $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
@@ -114,8 +149,8 @@ class StatBlockService extends BaseBlockService
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'chartesNO' => $chartesNO,
-            'datas' => $jsonObject
+            'bar' => $nbSignaturesByCharte
+
         ), $response);
     }
     /**
