@@ -6,3 +6,13 @@ IuchBundle\Entity\Charte:
                 maxSize: 1024k
                 mimeTypes: [application/pdf, application/x-pdf]
                 mimeTypesMessage: Please upload a valid PDF
+
+IuchBundle\Entity\Photo:
+    properties:
+        photo_file:
+            - Image:
+                maxSize: 1024k
+                minWidth: 100
+                maxWidth: 300
+                minHeight: 100
+                maxHeight: 300

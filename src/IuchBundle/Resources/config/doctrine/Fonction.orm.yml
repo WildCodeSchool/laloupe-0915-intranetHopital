@@ -1,7 +1,5 @@
 IuchBundle\Entity\Fonction:
     type: entity
-    table: null
-    repositoryClass: IuchBundle\Entity\FonctionRepository
     id:
         id:
             type: integer

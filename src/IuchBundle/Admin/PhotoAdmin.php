@@ -8,41 +8,31 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class BadgeAdmin extends Admin
+class PhotoAdmin extends Admin
 {
-
-    protected $parentAssociationMapping = 'cle';
-
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
-            ->add('remis')
-            ->add('user','sonata_type_model_autocomplete', array(
-                'property' => array('firstname', 'lastname', 'username', 'service'),
-                'minimum_input_length' => 2
-            ))
-            ->add('date_remise', 'datetime')
+            ->add('photo_file', 'file')
+            ->add('user', 'sonata_type_model', array('btn_add'=>false,'query'=> $this->modelManager->getEntityManager('ApplicationSonataUserBundle:User')->createQueryBuilder()
+                ->select('u')
+                ->from('ApplicationSonataUserBundle:User','u')// Dans un repository, $this->_entityName est le namespace de l'entité gérée
+                ->Where('u.photo is null')
+        ))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('user')
-            ->add('date_remise', 'doctrine_orm_date_range')
-            ->add('date_rendu', 'doctrine_orm_date_range')
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
     {
-
         $listMapper
-            ->addIdentifier('remis')
-            ->add('user', null, array(
-                'route' => array(
-                    'name' => 'show'
-                )))
-            ->add('date_remise')
-            ->add('date_rendu')
+            ->addIdentifier('photo_file','image', array('template' => 'IuchBundle:Photo:photo.html.twig'))
+            ->add('user', null, array('label'=>'Utilisateur'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -55,14 +45,8 @@ class BadgeAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Général')
             ->add('user')
-            ->add('remis')
-            ->end()
-            ->with('Entrée/Sortie')
-            ->add('date_remise')
-            ->add('date_rendu')
-            ->end()
+            ->add('photo_file')
         ;
     }
 }

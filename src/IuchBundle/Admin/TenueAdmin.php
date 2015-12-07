@@ -15,7 +15,7 @@ class TenueAdmin extends Admin
         $formMapper
             ->add('nom')
             ->add('user','sonata_type_model_autocomplete', array(
-                'property' => array('firstname', 'lastname', 'username', 'service.nom'),
+                'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
             ))
             ->add('date_donnee', 'datetime')

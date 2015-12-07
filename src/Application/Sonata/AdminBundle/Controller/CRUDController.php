@@ -13,6 +13,7 @@ namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
 use IuchBundle\Entity\Charte;
+use IuchBundle\Entity\Photo;
 use IuchBundle\Entity\Service;
 use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -191,7 +192,15 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                     $object->addRole('ROLE_SERVICE_TECHNIC');
                 }
             }
-
+            /**
+             * IUCH
+             * Enregistrer photo dans user car user est le owner de la relation
+             */
+            if ($object instanceof Photo)
+            {
+                $user = $object->getUser();
+                $user->setPhoto($object);
+            }
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 if (false === $this->admin->isGranted('CREATE', $object)) {
@@ -280,5 +289,85 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 );
             $this->get('mailer')->send($sendMessage);
         }
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param int|string|null $id
+     *
+     * @return Response|RedirectResponse
+     *
+     * @throws NotFoundHttpException If the object does not exist
+     * @throws AccessDeniedException If access is not granted
+     */
+    public function deleteAction($id)
+    {
+        $id     = $this->get('request')->get($this->admin->getIdParameter());
+        $object = $this->admin->getObject($id);
+
+        if (!$object) {
+            throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        if (false === $this->admin->isGranted('DELETE', $object)) {
+            throw new AccessDeniedException();
+        }
+
+        if ($this->getRestMethod() == 'DELETE') {
+            // check the csrf token
+            $this->validateCsrfToken('sonata.delete');
+
+            /**
+             * IUCH
+             * Supp photo dans user pour pouvoir supprimer photo (car user est le owner de la relation)
+             */
+            if ($object instanceof Photo)
+            {
+                $user = $object->getUser();
+
+                $user->setPhoto(null);
+            }
+
+            try {
+                $this->admin->delete($object);
+
+                if ($this->isXmlHttpRequest()) {
+                    return $this->renderJson(array('result' => 'ok'));
+                }
+
+                $this->addFlash(
+                    'sonata_flash_success',
+                    $this->admin->trans(
+                        'flash_delete_success',
+                        array('%name%' => $this->escapeHtml($this->admin->toString($object))),
+                        'SonataAdminBundle'
+                    )
+                );
+            } catch (ModelManagerException $e) {
+                $this->logModelManagerException($e);
+
+                if ($this->isXmlHttpRequest()) {
+                    return $this->renderJson(array('result' => 'error'));
+                }
+
+                $this->addFlash(
+                    'sonata_flash_error',
+                    $this->admin->trans(
+                        'flash_delete_error',
+                        array('%name%' => $this->escapeHtml($this->admin->toString($object))),
+                        'SonataAdminBundle'
+                    )
+                );
+            }
+
+            return $this->redirectTo($object);
+        }
+
+        return $this->render($this->admin->getTemplate('delete'), array(
+            'object'     => $object,
+            'action'     => 'delete',
+            'csrf_token' => $this->getCsrfToken('sonata.delete'),
+        ));
     }
 }

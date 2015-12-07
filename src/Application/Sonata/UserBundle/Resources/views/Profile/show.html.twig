@@ -17,8 +17,16 @@ file that was distributed with this source code.
 
 {% block sonata_profile_content %}
 
-    <div class="row row-fluid">
-        <ul class="show_profile">
+    <div class="row row-fluid show_profile">
+        <div class="photo-profile col-sm-2">
+            {% if user.photo is not null %}
+                <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+            {% else %}
+                <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+            {% endif %}
+        </div>
+
+        <ul class="col-sm-10">
             <li>
                 <strong>Matricule :</strong>
                 {{ user.username }}

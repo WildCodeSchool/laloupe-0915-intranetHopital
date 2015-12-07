@@ -3,6 +3,15 @@ services:
 #        class: IuchBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
 
+    sonata.Photo:
+        class: IuchBundle\Admin\PhotoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Photos", label: "Photos" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Photo
+            - ~
+
     sonata.Service:
         class: IuchBundle\Admin\ServiceAdmin
         tags:
@@ -97,3 +106,4 @@ services:
             - @templating
         tags:
             - { name: "assetic.filter", alias: "twig"}
+
