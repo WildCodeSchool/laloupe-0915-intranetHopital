@@ -16,6 +16,14 @@
     line-height:50px;
 }
 
+.navbar .profile-link a {
+    padding-top: 11px;
+}
+
+.navbar .profile-link img {
+    margin-right:5px;
+}
+
 .navbar li:hover {
     background: #dddddd;
     -webkit-transition: 0.3s;
@@ -24,14 +32,34 @@
     transition: 0.3s;
 }
 
-.show_profile {
+.show_profile ul {
     max-width: 400px;
 }
-.show_profile li {
+.show_profile ul li {
     padding: 7px 0;
     list-style: none;
 }
 
-.show_profile li + li {
+.show_profile ul li + li {
     border-top: 1px solid #cccccc;
+}
+
+.show_profile .photo-profile {
+    margin-right: 30px;
+}
+
+.trombinoscope {
+    margin: 30px -20px;
+    padding: 0;
+    text-align: center;
+}
+
+.trombinoscope figure {
+    display: inline-block;
+    padding: 20px;
+}
+
+.trombinoscope figcaption {
+    text-align: center;
+    padding-top:5px;
 }

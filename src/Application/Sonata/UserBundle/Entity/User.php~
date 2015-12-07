@@ -26,23 +26,11 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 class User extends BaseUser
 {
-    protected $id;
-    private $adresse;
-    private $zip;
-    private $ville;
-    private $chef_service;
-    private $date_entree;
-    private $date_sortie;
-    private $raison_sortie;
-    private $fonction_id;
-    protected $service_id;
-    protected $enabled;
-
 
     public function __construct()
     {
         parent::__construct();
-        $this->enabled = 1;
+        $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
     }
 
@@ -51,6 +39,47 @@ class User extends BaseUser
         return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
     }
 
+    //GENERATED CODE
+
+    /**
+     * @var string
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     */
+    private $zip;
+
+    /**
+     * @var string
+     */
+    private $ville;
+
+    /**
+     * @var boolean
+     */
+    private $chef_service;
+
+    /**
+     * @var \DateTime
+     */
+    private $date_entree;
+
+    /**
+     * @var \DateTime
+     */
+    private $date_sortie;
+
+    /**
+     * @var string
+     */
+    private $raison_sortie;
+
+    /**
+     * @var \IuchBundle\Entity\Photo
+     */
+    private $photo;
 
     /**
      * @var \IuchBundle\Entity\Fonction
@@ -61,6 +90,11 @@ class User extends BaseUser
      * @var \IuchBundle\Entity\Service
      */
     private $service;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $services;
 
 
     /**
@@ -232,6 +266,30 @@ class User extends BaseUser
     }
 
     /**
+     * Set photo
+     *
+     * @param \IuchBundle\Entity\Photo $photo
+     *
+     * @return User
+     */
+    public function setPhoto(\IuchBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \IuchBundle\Entity\Photo
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
      * Set fonction
      *
      * @param \IuchBundle\Entity\Fonction $fonction
@@ -277,5 +335,39 @@ class User extends BaseUser
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * Add service
+     *
+     * @param \IuchBundle\Entity\Service $service
+     *
+     * @return User
+     */
+    public function addService(\IuchBundle\Entity\Service $service)
+    {
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \IuchBundle\Entity\Service $service
+     */
+    public function removeService(\IuchBundle\Entity\Service $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServices()
+    {
+        return $this->services;
     }
 }

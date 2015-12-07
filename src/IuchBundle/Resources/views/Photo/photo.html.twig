@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object.username is defined %}
+        {% if object.photo is not null %}
+            <img width="60" src="{{ path('iuch_get_photo', {'photo_id': object.photo.id}) }}" />
+        {% else %}
+            <img width="60" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+        {% endif %}
+    {% else %}
+        <img width="60" src="{{ path('iuch_get_photo', {'photo_id': object.id}) }}" />
+    {% endif %}
+{% endblock %}

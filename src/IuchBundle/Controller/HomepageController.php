@@ -54,7 +54,7 @@ class HomepageController extends Controller
             'cle'=> $cle,
             'badge'=> $badge,
             'chartes'=> $models,
-            'user'   => $user
+            'user'   => $user,
         ));
     }
 }
