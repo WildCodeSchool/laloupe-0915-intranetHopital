@@ -191,6 +191,9 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 elseif ($fonction == 'services techniques') {
                     $object->addRole('ROLE_SERVICE_TECHNIC');
                 }
+                elseif ($fonction == 'QGDR') {
+                    $object->addRole('ROLE_QGDR');
+                }
             }
             /**
              * IUCH
