@@ -30,6 +30,7 @@ class CharteUtilisateurAdmin extends Admin
                     'name' => 'show'
                 )))
             ->add('dateSignature')
+            ->add('charte.obligatoire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
