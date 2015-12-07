@@ -109,23 +109,15 @@ class StatBlockService extends BaseBlockService
             ->getRepository('IuchBundle:Charte_utilisateur')
             ->findAll();
 
-        $res = [];
-
-        foreach ($signatures as $signature)
-        {
-
-        }
-
-        $result = [];
-        $nbSignatures = 0;
+        $chartesSignees = [];
 
         foreach ($signatures as $signature) {
-            $charte = $signature->getCharte()->getNom();
-
-            $result[] = $charte;
+            $charte = $signature->getCharte();
+            $chartesSignees[] = $charte->getNom();
         }
 
-        $test = array_count_values($result);
+        $nbSignatureByCharte = array_count_values($chartesSignees);
+
 
 
 
@@ -142,7 +134,7 @@ class StatBlockService extends BaseBlockService
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'datas' => $test
+            'datas' => $nbSignatureByCharte
         ), $response);
     }
     /**
