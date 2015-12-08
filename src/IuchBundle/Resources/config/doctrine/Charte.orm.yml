@@ -1,6 +1,6 @@
 IuchBundle\Entity\Charte:
     type:   entity
-
+    repositoryClass: IuchBundle\Entity\CharteRepository
     fields:
 
         id:
