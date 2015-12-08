@@ -2,11 +2,11 @@
 
 {% block block %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Nombre de signatures par chartes non obligatoires</h3>
-            <canvas id="bar" width="500" height="300"></canvas>
-        </div>
+    <div id="dashboard" class="container">
+        <h2>Nombre de signatures par chartes non obligatoires :</h2>
+            <div>
+                <canvas id="bar"></canvas>
+            </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
@@ -22,10 +22,10 @@
                 datasets: [
                     {
                         label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
+                        fillColor: "rgba(207,231,221,0.5)",
+                        strokeColor: "rgba(207,231,221,0.8)",
+                        highlightFill: "rgba(207,231,221,0.75)",
+                        highlightStroke: "rgba(207,231,221,1)",
                         data: [
                             {% for data in bar %}
                                 {{ data }},
@@ -37,7 +37,10 @@
             // Get context with jQuery - using jQuery's .get() method.
             var ctx = $("#bar").get(0).getContext("2d");
             // For a pie chart
-            var myBarChart = new Chart(ctx).Bar(data);
+            var myBarChart = new Chart(ctx).Bar(data, {
+                responsive: true,
+                barValueSpacing: 2
+            });
         });
     </script>
 
