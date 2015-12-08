@@ -1,31 +1,47 @@
 .sonata-autocomplete-dropdown {
     min-width: 300px;
 }
-
+/* Dashboard */
+h1 {
+    color: #D5661D;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+#dashboard h2 {
+    color: #014C2D;
+    text-align: center;
+}
+#stats h2 {
+    color: #014C2D;
+}
+#stats-blocks h2 {
+    color: #FFF;
+}
 /* Statistiques */
 #block__badges{
     background-color: #2DAB62;
-    border-top-left-radius:1em;
-    border-top-right-radius:1em;
-    border-bottom-right-radius:1em;
-    border-bottom-left-radius:1em;
+    border-radius: 1em;
+    border: #FFF 1px solid;
 }
-#block__cles{
+#block__cles {
     background-color: #7266BA;
-    border-top-left-radius:1em;
-    border-top-right-radius:1em;
-    border-bottom-right-radius:1em;
-    border-bottom-left-radius:1em;
+    border-radius: 1em;
+    border: #FFF 1px solid;
 }
 #block__tenues{
     background-color: #6BAFBD;
-    border-top-left-radius:1em;
-    border-top-right-radius:1em;
-    border-bottom-right-radius:1em;
-    border-bottom-left-radius:1em;
+    border-radius: 1em;
+    border: #FFF 1px solid;
 }
 
-.blocks__statuser{
+.blocks__statuser h1, h2 {
     text-align: center;
     color:white;
+}
+/* Block */
+.container {
+    width: 80%;
+    margin: 20px auto;
 }

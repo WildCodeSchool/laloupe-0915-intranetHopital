@@ -134,15 +134,15 @@ sonata_admin:
             type: sonata.block.service.text
             settings:
                 content: >
-                  <h2>Bienvenue sur le tableau de bord</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel turpis at lacusvehicula fringilla at eu lectus.</p>
+                  <h1>Bienvenue sur le tableau de bord</h1>
+                  <p>Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.</p>
           -
-            position: left
-            class: col-md-6
+            position: top
+            class: col-md-12
             type: sonata.block.service.stat
           -
-            position: right
-            class: col-md-6
+            position: top
+            class: col-md-12
             type: sonata.block.service.statuser
 
 
