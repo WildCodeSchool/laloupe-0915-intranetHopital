@@ -10,7 +10,6 @@
             {{ flash_message }}
         </div>
     {% endfor %}
-
     <div class="row row-fluid">
         <h1>Bienvenue {{ app.user.firstname }}</h1>
     </div>
@@ -112,7 +111,13 @@
                 <tr>
                     <td scope="row">{{ charte.nom }}</td>
                     <td scope="row">{{ charte.description }}</td>
-                    <td scope="row">{{ charte.service }}</td>
+                    <td scope="row">
+                        {% if charte.service %}
+                            {{ charte.service }}
+                        {% else %}
+                            Tous services
+                        {% endif %}
+                    </td>
                     <td scope="row"><a href="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" target="_blank">{{ charte.fileName }}</a></td>
                     <td>
                         {% if charte.obligatoire == true %}

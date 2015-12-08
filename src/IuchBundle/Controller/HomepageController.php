@@ -25,7 +25,7 @@ class HomepageController extends Controller
 
         $chartes = $this->get('doctrine')
             ->getRepository('IuchBundle:Charte')
-            ->findByService($user->getService());
+            ->findByServices($user->getService(), $user->getServices());
 
         $models = array();
         foreach ($chartes as $charte)
@@ -54,7 +54,7 @@ class HomepageController extends Controller
             'cle'=> $cle,
             'badge'=> $badge,
             'chartes'=> $models,
-            'user'   => $user,
+            'user'   => $user
         ));
     }
 }
