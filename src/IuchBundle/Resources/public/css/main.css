@@ -1,3 +1,7 @@
+body {
+    font-family: "Roboto", sans-serif;
+}
+
 .navbar-brand {
     display: block;
     background: url('../img/ch-la-loupe.png') no-repeat center;
@@ -62,4 +66,40 @@
 .trombinoscope figcaption {
     text-align: center;
     padding-top:5px;
+}
+
+.secondary-services + .secondary-services {
+    margin-top:20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size:45px;
+    margin-bottom:30px;
+    padding-bottom:15px;
+    border-bottom:1px solid #cccccc;
+    color: rgb(213,102,29);
+}
+
+.chartes-list h3 {
+    margin-top:0;
+}
+
+.panel-info>.panel-heading {
+    color: rgb(7,76,45);
+    background-color: #cfe7dd;
+    border-color: #9ccdb9;
+}
+
+.panel-info {
+    border-color: #9ccdb9;
+}
+
+h4 {
+    color:#38785e;
+}
+
+#chartesTable{
+    margin-bottom: 30px;
+    border-bottom:1px solid #cccccc;
 }
