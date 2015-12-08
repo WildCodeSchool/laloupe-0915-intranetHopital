@@ -35,13 +35,16 @@ p {
     border-radius: 1em;
     border: #FFF 1px solid;
 }
-
 .blocks__statuser h1, h2 {
     text-align: center;
     color:white;
 }
+
 /* Block */
 .container {
     width: 80%;
     margin: 20px auto;
+}
+.navbar-static-top .navbar-right li:last-of-type a {
+    display: inline-block;
 }
