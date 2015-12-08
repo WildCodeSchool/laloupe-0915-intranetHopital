@@ -1,5 +1,5 @@
 .help a {
-    color:#337AB7;
+    color:#D5661D;
 }
 .help a:hover,a:focus {
     box-shadow:0 1px 0 rgba(255,255,255,.4);
@@ -8,12 +8,12 @@
     position:absolute;
     margin-top:23px;
     margin-left:-35px;
-    color:#337AB7;
+    color:#014C2D;
     text-align: center;
-    background:rgba(0,0,0,1);
+    background:rgba(207,231,221,1);
     padding:15px;
     border-radius:3px;
-    box-shadow:0 0 2px rgba(0,0,0,.5);
+    box-shadow:0 0 2px rgba(207,231,221,.5);
     transform:scale(0) rotate(-12deg);
     transition:all .25s;
     opacity:0;
@@ -24,5 +24,5 @@
     opacity:1;
 }
 p.help {
-       margin-top: 10px;
+       margin-top: 5px;
 }
