@@ -15,7 +15,7 @@ services:
     sonata.service:
         class: IuchBundle\Admin\ServiceAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.user", label: "Services", label_catalogue: "IuchBundle" }
+            - { name: sonata.admin, manager_type: orm, label: "Services", label_catalogue: "IuchBundle" }
         arguments:
             - ~
             - IuchBundle\Entity\Service
@@ -24,7 +24,7 @@ services:
     sonata.fonction:
         class: IuchBundle\Admin\FonctionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.user", label: "Fonctions", label_catalogue: "IuchBundle" }
+            - { name: sonata.admin, manager_type: orm, label: "Fonctions", label_catalogue: "IuchBundle" }
         arguments:
             - ~
             - IuchBundle\Entity\Fonction

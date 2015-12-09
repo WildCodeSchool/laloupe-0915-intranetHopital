@@ -131,6 +131,9 @@ sonata_admin:
             iuch.group.photo:
                 icon: '<i class="fa fa-camera"></i>'
                 label: "Photos"
+                roles:
+                    - ROLE_QGDR
+
             iuch.group.user:
                 icon: '<i class="fa fa-users"></i>'
                 label: "Utilisateurs"
@@ -138,15 +141,26 @@ sonata_admin:
                     - sonata.user.admin.user
                     - sonata.service
                     - sonata.fonction
+                roles:
+                    - ROLE_RH
+
             iuch.group.chartes:
                 icon: '<i class="fa fa-file"></i>'
                 label: "Chartes"
+                roles:
+                    - ROLE_ADMIN
+
             iuch.group.tenue:
                 icon: '<i class="fa fa-user-md"></i>'
                 label: "Tenues"
+                roles:
+                    - ROLE_BLANCHISSERIE
+
             iuch.group.keys:
                 icon: '<i class="fa fa-key"></i>'
                 label: "Clés/badges"
+                roles:
+                    - ROLES_SERVICE_TECHNIC
 
         blocks:
           -
