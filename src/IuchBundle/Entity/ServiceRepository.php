@@ -10,5 +10,8 @@ namespace IuchBundle\Entity;
  */
 class ServiceRepository extends \Doctrine\ORM\EntityRepository
 {
-
+    public function findAll()
+    {
+        return $this->findBy(array(), array('nom' => 'ASC'));
+    }
 }

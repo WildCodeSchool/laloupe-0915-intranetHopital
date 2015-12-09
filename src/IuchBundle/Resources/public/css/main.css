@@ -1,7 +1,29 @@
+/** GENERAL **/
 body {
     font-family: "Roboto", sans-serif;
 }
 
+.page-title {
+    text-align: center;
+    font-size:45px;
+    margin-bottom:30px;
+    padding-bottom:15px;
+    border-bottom:1px solid #cccccc;
+    color: rgb(213,102,29);
+}
+
+.btn-primary {
+    background-color: #1b7e5a;
+    border-color: rgb(7,76,45);
+    transition: 0.3s;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+    background-color: rgb(7,76,45);
+    border-color: #1b7e5a;
+}
+
+/** NAVBAR **/
 .navbar-brand {
     display: block;
     background: url('../img/ch-la-loupe.png') no-repeat center;
@@ -35,7 +57,9 @@ body {
     -o-transition: 0.3s;
     transition: 0.3s;
 }
+/** ENDNAVBAR **/
 
+/** PROFILE **/
 .show_profile ul {
     max-width: 400px;
 }
@@ -52,34 +76,10 @@ body {
     margin-right: 30px;
 }
 
-.trombinoscope {
-    margin: 30px -20px;
-    padding: 0;
-    text-align: center;
-}
-
-.trombinoscope figure {
-    display: inline-block;
-    padding: 20px;
-}
-
-.trombinoscope figcaption {
-    text-align: center;
-    padding-top:5px;
-}
-
 .secondary-services + .secondary-services {
     margin-top:20px;
 }
-
-.page-title {
-    text-align: center;
-    font-size:45px;
-    margin-bottom:30px;
-    padding-bottom:15px;
-    border-bottom:1px solid #cccccc;
-    color: rgb(213,102,29);
-}
+/** END PROFILE **/
 
 .chartes-list h3 {
     margin-top:0;
@@ -104,3 +104,85 @@ h4 {
     border-bottom:1px solid #cccccc;
 }
 
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    border: 1px solid #cccccc;
+    border-bottom-width: 2px;
+}
+
+/** TROMBINOSCOPE **/
+.trombinoscope {
+    margin: 30px -20px;
+    padding: 0;
+    text-align: center;
+    font-size: 0;
+}
+
+.trombinoscope figure {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #cccccc;
+    font-size:16px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.trombinoscope figure:hover figcaption {
+    bottom: 0;
+}
+
+.trombinoscope figcaption {
+    text-align: center;
+    padding-top:5px;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    font-size:14px;
+    font-weight:300;
+    line-height:1.6;
+    transition: 0.3s;
+}
+
+.trombinoscope-page h2 {
+    color: rgb(7,76,45);
+}
+
+.trombinoscope .section + .section {
+    padding-top:15px;
+    margin-bottom:30px;
+    border-top:1px solid #cccccc;
+}
+
+.trombinoscope .img {
+    position: relative;
+}
+
+.trombinoscope .chef {
+    position: absolute;
+    top:0;
+    left: 0;
+    background: rgb(7,76,45);
+    padding: 3px;
+    color: #cfe7dd;
+    font-weight:300;
+    font-size:12px;
+}
+
+.trombinoscope-page .list-group {
+    max-width: 240px;
+}
+.affix {
+    top:0;
+}
+
+.list-group-item {
+    background-color: rgba(207,231, 221, 0.3);
+    border: 1px solid #9ccdb9;
+}
+
+a.list-group-item:focus,
+a.list-group-item:hover {
+    color: rgb(7,76,45);
+    background-color: #cfe7dd;
+}
