@@ -193,6 +193,22 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user10->setFonction($this->getReference('17'));
         $user10->setService($this->getReference('8'));
 
+        $user11 = $userManager->createUser();
+        $user11->setUsername('qualité');
+        $user11->setPlainPassword('qualité');
+        $user11->setEmail('lea@email.com');
+        $user11->setRoles(array('ROLE_QGDR'));
+        $user11->setAdresse('18 Rue de la gare');
+        $user11->setZip('28400');
+        $user11->setVille('La Loupe');
+        $user11->setDateEntree(new \DateTime('now'));
+        $user11->setFirstname('Cristaline');
+        $user11->setLastname('Eleonore');
+        $user11->setPhone('0233258975');
+        $user11->setLastLogin(new \DateTime('now'));
+        $user11->setFonction($this->getReference('18'));
+        $user11->setService($this->getReference('9'));
+
         // Update the user
         $userManager->updateUser($user1, true);
         $userManager->updateUser($user2, true);
@@ -204,6 +220,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $userManager->updateUser($user8, true);
         $userManager->updateUser($user9, true);
         $userManager->updateUser($user10, true);
+        $userManager->updateUser($user11, true);
 
         // store reference to admin role for User relation to Role
         $this->addReference('201', $user1);
@@ -216,6 +233,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $this->addReference('208', $user8);
         $this->addReference('209', $user9);
         $this->addReference('210', $user10);
+        $this->addReference('211', $user11);
 
     }
     public function getOrder()
