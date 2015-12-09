@@ -12,11 +12,10 @@ file that was distributed with this source code.
 {% extends "ApplicationSonataUserBundle:Profile:action.html.twig" %}
 
 {% block sonata_profile_title %}
-    Mon profil
 {% endblock %}
 
 {% block sonata_profile_content %}
-
+    <h2 class="page-title">Mon profil</h2>
     <div class="row row-fluid show_profile">
         <div class="photo-profile col-sm-2">
             {% if user.photo is not null %}
@@ -89,10 +88,7 @@ file that was distributed with this source code.
             {% if user.services is not empty %}
                 <li>
                     <strong>Services secondaires :</strong>
-
-                    {% for service in user.services %}
-                        {{ service}}
-                    {% endfor %}
+                    {{ user.services|join(' - ') }}
                 </li>
             {% endif %}
         </ul>
