@@ -186,3 +186,8 @@ a.list-group-item:hover {
     color: rgb(7,76,45);
     background-color: #cfe7dd;
 }
+
+.change-password {
+    max-width: 900px;
+    margin: 50px auto;
+}
