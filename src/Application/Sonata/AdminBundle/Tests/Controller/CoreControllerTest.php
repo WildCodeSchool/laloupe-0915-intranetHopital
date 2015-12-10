@@ -29,15 +29,50 @@ class CoreControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $this->connection($client, 'admin', 'admin');
+        $crawler = $this->connection($client, 'testAdmin', 'testAdmin');
         $crawler = $client->request('GET', '/admin/dashboard');
         $this->assertTrue(200 === $client->getResponse()->getStatusCode());
         $this->assertEquals('Sonata\AdminBundle\Controller\CoreController::dashboardAction', $client->getRequest()->attributes->get('_controller'));
 
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('html:contains("Photos")')->count()
-        );
-
+        // Testing the aside's links
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Photos")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Utilisateurs")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Services")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Fonctions")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Chartes")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Chartes signées")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Tenues données/rendues")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Clés données/rendues")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Badge donnés/rendus")')->count());
     }
+
+    public function testShowRHDashboard()
+    {
+        $client = static::createClient();
+
+        $crawler = $this->connection($client, 'testRH', 'testRH');
+        $crawler = $client->request('GET', '/admin/dashboard');
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+        $this->assertEquals('Sonata\AdminBundle\Controller\CoreController::dashboardAction', $client->getRequest()->attributes->get('_controller'));
+
+        // Testing the aside's links
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Utilisateurs")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Services")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Fonctions")')->count());
+    }
+
+    public function testShowBlanchisserieDashboard()
+    {
+        $client = static::createClient();
+
+        $crawler = $this->connection($client, 'blanchisserie', 'blanchisserie');
+        $crawler = $client->request('GET', '/admin/dashboard');
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+        $this->assertEquals('Sonata\AdminBundle\Controller\CoreController::dashboardAction', $client->getRequest()->attributes->get('_controller'));
+
+        // Testing the aside's links
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Tenues données/rendues")')->count());
+    }
+
+
 }

@@ -130,7 +130,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user6->setFonction($this->getReference('15'));
 
 
-        // On fixe les credential sur Erwan pour passer les tests
+        // Fixing credentials for test environment
         $user7 = $userManager->createUser();
         $user7->setUsername('erwan');
         $user7->setPlainPassword('erwan');
@@ -209,6 +209,22 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user11->setFonction($this->getReference('18'));
         $user11->setService($this->getReference('9'));
 
+        $user12 = $userManager->createUser();
+        $user12->setUsername('testRH');
+        $user12->setPlainPassword('testRH');
+        $user12->setEmail('testRH@email.com');
+        $user12->setRoles(array('ROLE_RH'));
+        $user12->setAdresse('18 Rue de la gare');
+        $user12->setZip('28400');
+        $user12->setVille('La Loupe');
+        $user12->setDateEntree(new \DateTime('now'));
+        $user12->setFirstname('Martine');
+        $user12->setLastname('Durand');
+        $user12->setPhone('0233668548');
+        $user12->setLastLogin(new \DateTime('now'));
+        $user12->setFonction($this->getReference('10'));
+        $user12->setService($this->getReference('7'));
+
         // Update the user
         $userManager->updateUser($user1, true);
         $userManager->updateUser($user2, true);
@@ -221,6 +237,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $userManager->updateUser($user9, true);
         $userManager->updateUser($user10, true);
         $userManager->updateUser($user11, true);
+        $userManager->updateUser($user12, true);
 
         // store reference to admin role for User relation to Role
         $this->addReference('201', $user1);
@@ -234,6 +251,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $this->addReference('209', $user9);
         $this->addReference('210', $user10);
         $this->addReference('211', $user11);
+        $this->addReference('212', $user12);
 
     }
     public function getOrder()
