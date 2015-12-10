@@ -1,0 +1,47 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+
+    <div id="dashboard" class="container">
+        <h2>Nombre de signatures par chartes non obligatoires :</h2>
+            <div>
+                <canvas id="bar"></canvas>
+            </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+
+            var data = {
+                labels: [
+                    {% for key,data in bar %}
+                        "{{ key }}",
+                    {% endfor %}
+                ],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(207,231,221,0.5)",
+                        strokeColor: "rgba(207,231,221,0.8)",
+                        highlightFill: "rgba(207,231,221,0.75)",
+                        highlightStroke: "rgba(207,231,221,1)",
+                        data: [
+                            {% for data in bar %}
+                                {{ data }},
+                            {% endfor %}
+                        ]
+                    }]
+            };
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#bar").get(0).getContext("2d");
+            // For a pie chart
+            var myBarChart = new Chart(ctx).Bar(data, {
+                responsive: true,
+                barValueSpacing: 2
+            });
+        });
+    </script>
+
+{% endblock %}

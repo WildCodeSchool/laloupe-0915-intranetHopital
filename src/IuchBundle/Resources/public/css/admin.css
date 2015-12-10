@@ -1,0 +1,50 @@
+.sonata-autocomplete-dropdown {
+    min-width: 300px;
+}
+/* Dashboard */
+h1 {
+    color: #D5661D;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+#dashboard h2 {
+    color: #014C2D;
+    text-align: center;
+}
+#stats h2 {
+    color: #014C2D;
+}
+#stats-blocks h2 {
+    color: #FFF;
+}
+/* Statistiques */
+#block__badges{
+    background-color: #2DAB62;
+    border-radius: 1em;
+    border: #FFF 1px solid;
+}
+#block__cles {
+    background-color: #7266BA;
+    border-radius: 1em;
+    border: #FFF 1px solid;
+}
+#block__tenues{
+    background-color: #6BAFBD;
+    border-radius: 1em;
+    border: #FFF 1px solid;
+}
+.blocks__statuser h1, h2 {
+    text-align: center;
+    color:white;
+}
+
+/* Block */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+.navbar-static-top .navbar-right li:last-of-type a {
+    display: inline-block;
+}

@@ -1,0 +1,24 @@
+IuchBundle\Entity\Photo:
+    type: entity
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+            nullable: true
+    oneToOne:
+        user:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            mappedBy: photo
+
+    lifecycleCallbacks:
+        prePersist: [ preUpload ]
+        preUpdate: [ preUpload ]
+        postPersist: [ upload ]
+        postUpdate: [ upload ]
+        postRemove: [ removeUpload ]

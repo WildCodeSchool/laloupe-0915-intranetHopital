@@ -107,7 +107,5 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         // On kill le nouvel utilisateur
         $em->remove($user);
         $em->flush();
-
     }
-
 }

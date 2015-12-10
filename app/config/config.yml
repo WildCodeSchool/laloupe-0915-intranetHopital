@@ -8,6 +8,7 @@ imports:
 
 parameters:
     locale: fr
+    #sonata.user.profile.form.handler.class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
 
 framework:
     #esi:             ~
@@ -39,6 +40,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources: ['bootstrap_3_horizontal_layout.html.twig']
+    globals:
+        kernelRootDir: %kernel.root_dir%
 
 
 # Assetic Configuration
@@ -110,16 +113,73 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
-
-
 #### Sonata Configuration ####
-####### SonataAdmin #######
+    ####### SonataAdmin #######
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
 
     title:      'Administration IUCH'
     title_logo:  bundles/iuch/img/ch-la-loupe.png
+    templates:
+        layout:  'IuchBundle:Admin:standart_layout.html.twig'
+
+
+    ### config blocks dashboard admin ###
+    dashboard:
+        groups:
+            iuch.group.photo:
+                icon: '<i class="fa fa-camera"></i>'
+                label: "Photos"
+                roles:
+                    - ROLE_QGDR
+
+            iuch.group.user:
+                icon: '<i class="fa fa-users"></i>'
+                label: "Utilisateurs"
+                items:
+                    - sonata.user.admin.user
+                    - sonata.service
+                    - sonata.fonction
+                roles:
+                    - ROLE_RH
+
+            iuch.group.chartes:
+                icon: '<i class="fa fa-file"></i>'
+                label: "Chartes"
+                roles:
+                    - ROLE_ADMIN
+
+            iuch.group.tenue:
+                icon: '<i class="fa fa-user-md"></i>'
+                label: "Tenues"
+                roles:
+                    - ROLE_BLANCHISSERIE
+
+            iuch.group.keys:
+                icon: '<i class="fa fa-key"></i>'
+                label: "Clés/badges"
+                roles:
+                    - ROLES_SERVICE_TECHNIC
+
+        blocks:
+          -
+            position: top
+            class: col-md-12
+            type: sonata.block.service.text
+            settings:
+                content: >
+                  <h1>Bienvenue sur le tableau de bord</h1>
+                  <p>Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.</p>
+          -
+            position: top
+            class: col-md-12
+            type: sonata.block.service.stat
+          -
+            position: top
+            class: col-md-12
+            type: sonata.block.service.statuser
+
 
 sonata_doctrine_orm_admin:
     templates:
@@ -133,13 +193,19 @@ sonata_block:
             contexts: [admin]
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text:
         sonata.block.service.rss:
         sonata.admin.block.search_result:
             contexts: [admin]
 
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        # Block Stat créé pour le DashBoard
+        sonata.block.service.stat: ~
+        sonata.block.service.statuser: ~
 
 ####### SonataUser #######
 sonata_user:
@@ -148,7 +214,7 @@ sonata_user:
     profile:
         form:
             type:               application_sonata_user_profile
-            handler:            sonata.user.profile.form.handler.default
+            #handler:            application.sonata.user.profile.form.handler
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
 
@@ -157,4 +223,3 @@ sonata_user:
             class:          IuchBundle\Admin\UserAdmin           # Override User CRUD in SonataAdmin
             controller:     ApplicationSonataAdminBundle:CRUD    # Extend CRUDController of SonataAdmin
             translation:    SonataUserBundle
-

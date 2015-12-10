@@ -18,6 +18,7 @@ IuchBundle\Entity\Service:
             type: string
             length: 64
 
+# Relation for chefService
     oneToMany:
         users:
             targetEntity: Application\Sonata\UserBundle\Entity\User

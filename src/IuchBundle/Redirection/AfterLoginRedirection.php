@@ -1,6 +1,7 @@
 <?php
 
 namespace IuchBundle\Redirection;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -33,8 +34,8 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         $rolesTab = array_map(function($role){
             return $role->getRole();
         }, $roles);
-        // If is a RH, admin or super admin we redirect to the admin/dashboard area
-        if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_RH', $rolesTab, true))
+        // If is a qualité, blanchisserie, RH, admin or super admin we redirect to the admin/dashboard area
+        if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_RH', $rolesTab, true) || in_array('ROLE_BLANCHISSERIE', $rolesTab, true) || in_array('ROLE_SERVICE_TECHNIC', $rolesTab, true) || in_array('ROLE_QGDR', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
 
         // If is users we redirect to the profile area

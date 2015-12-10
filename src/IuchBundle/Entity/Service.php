@@ -125,9 +125,6 @@ class Service
     {
         return $this->telephone;
     }
-
-
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */

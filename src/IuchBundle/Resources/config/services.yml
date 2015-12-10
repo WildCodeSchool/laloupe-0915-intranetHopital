@@ -2,38 +2,107 @@ services:
 #    iuch.example:
 #        class: IuchBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    sonata.Charte:
-        class: IuchBundle\Admin\CharteAdmin
+
+    sonata.photo:
+        class: IuchBundle\Admin\PhotoAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Chartes", label: "Chartes" }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.photo", label: "Photos", label_catalogue: "IuchBundle" }
         arguments:
             - ~
-            - IuchBundle\Entity\Charte
+            - IuchBundle\Entity\Photo
             - ~
-    sonata.Service:
+
+    sonata.service:
         class: IuchBundle\Admin\ServiceAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Services", label: "Services" }
+            - { name: sonata.admin, manager_type: orm, label: "Services", label_catalogue: "IuchBundle" }
         arguments:
             - ~
             - IuchBundle\Entity\Service
             - ~
 
-    sonata.Fonction:
+    sonata.fonction:
         class: IuchBundle\Admin\FonctionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Fonctions", label: "Fonctions" }
+            - { name: sonata.admin, manager_type: orm, label: "Fonctions", label_catalogue: "IuchBundle" }
         arguments:
             - ~
             - IuchBundle\Entity\Fonction
             - ~
-
-    sonata.CharteUtilisateur:
+    sonata.charte:
+        class: IuchBundle\Admin\CharteAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.chartes", label: "Chartes" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Charte
+            - ~
+    sonata.charte_utilisateur:
         class: IuchBundle\Admin\CharteUtilisateurAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Chartes signées", label: "Charte signée" }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.chartes", label: "Chartes signée" }
         arguments:
             - ~
             - IuchBundle\Entity\Charte_utilisateur
             - ~
 
+    sonata.tenue:
+        class: IuchBundle\Admin\TenueAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.tenue", label: "Tenues données/rendues" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Tenue
+            - ~
+
+    iuch.tenue_listener:
+        class: IuchBundle\Listener\TenueListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    sonata.cle:
+        class: IuchBundle\Admin\CleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Clés données/rendues" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Cle
+            - ~
+
+    iuch.cle_listener:
+        class: IuchBundle\Listener\CleListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    sonata.badge:
+        class: IuchBundle\Admin\BadgeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Badge donnés/rendus" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Badge
+            -
+
+    iuch.badge_listener:
+        class: IuchBundle\Listener\BadgeListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    sonata.block.service.stat:
+        class: IuchBundle\Block\StatBlockService
+        arguments: [ "sonata.block.service.stat", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
+    sonata.block.service.statuser:
+        class: IuchBundle\Block\StatUserBlockService
+        arguments: [ "sonata.block.service.statuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
+    assetic.filter.twig:
+        class: IuchBundle\Filter\TwigFilter
+        arguments:
+            - @templating
+        tags:
+            - { name: "assetic.filter", alias: "twig"}

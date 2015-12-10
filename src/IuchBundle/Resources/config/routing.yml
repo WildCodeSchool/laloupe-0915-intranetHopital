@@ -1,6 +1,6 @@
 iuch_homepage:
     path: /
-    defaults: { _controller: "IuchBundle:Signature:Index" }
+    defaults: { _controller: "IuchBundle:Homepage:Index" }
 
 iuch_signature:
     path: /signature/{charte_id}
@@ -15,3 +15,17 @@ iuch_get_charte:
     path: /charte/{charte_file}
     defaults: { _controller: "IuchBundle:Signature:getCharte" }
     methods:  [GET]
+
+iuch_get_photo:
+    path: /photo/{photo_id}
+    defaults: { _controller: "IuchBundle:Photo:getPhoto" }
+    methods:  [GET]
+
+iuch_trombinoscope:
+    path: /trombinoscope
+    defaults: { _controller: "IuchBundle:Photo:trombinoscope" }
+    methods:  [GET]
+
+iuch_statistiques:
+    path: /statistiques
+    defaults:

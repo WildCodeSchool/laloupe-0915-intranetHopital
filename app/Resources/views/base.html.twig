@@ -4,11 +4,12 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Interface de gestion des utilisateurs du centre hospitalier de La Loupe{% endblock %}</title>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('bundles/iuch/css/main.css') }}">
-
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,300,300italic' rel='stylesheet' type='text/css'>
         {% block stylesheets %}
         {% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/iuch/css/main.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -30,10 +31,20 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             {% if app.user %}
-                                <li><a href="{{ path('sonata_user_profile_show') }}">{{ app.user.firstname }}</a></li>
+                                <li class="profile-link">
+                                    <a href="{{ path('sonata_user_profile_show') }}">
+                                        {% if app.user.photo is not null %}
+                                            <img height="60" src="{{ path('iuch_get_photo', {'photo_id': app.user.photo.id}) }}" alt="{{ app.user.username }}" />
+                                        {% else %}
+                                            <img height="60" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                        {% endif %}
+                                        {{ app.user.firstname }}
+                                    </a>
+                                </li>
                                 {% if ('ADMIN' or 'RH') in app.user.roles|keys %}
                                     <li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
                                 {% endif %}
+                                <li><a href="{{ path('iuch_trombinoscope') }}">Trombinoscope</a></li>
                                 <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
                             {% else %}
                                 <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>
@@ -53,6 +64,7 @@
         </div>
 
         <script src="{{ asset('bundles/iuch/js/jquery-1.11.3.min.js') }}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

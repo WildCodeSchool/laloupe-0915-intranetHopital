@@ -12,13 +12,20 @@ file that was distributed with this source code.
 {% extends "ApplicationSonataUserBundle:Profile:action.html.twig" %}
 
 {% block sonata_profile_title %}
-    Mon profile
 {% endblock %}
 
 {% block sonata_profile_content %}
+    <h2 class="page-title">Mon profil</h2>
+    <div class="row row-fluid show_profile">
+        <div class="photo-profile col-sm-2">
+            {% if user.photo is not null %}
+                <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+            {% else %}
+                <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+            {% endif %}
+        </div>
 
-    <div class="row row-fluid">
-        <ul class="show_profile">
+        <ul class="col-sm-10">
             <li>
                 <strong>Matricule :</strong>
                 {{ user.username }}
@@ -73,12 +80,19 @@ file that was distributed with this source code.
 
             {% if user.service %}
                 <li>
-                    <strong>Service :</strong>
+                    <strong>Service référent :</strong>
                     {{ user.service.nom }}
+                </li>
+            {% endif %}
+
+            {% if user.services is not empty %}
+                <li>
+                    <strong>Services secondaires :</strong>
+                    {{ user.services|join(' - ') }}
                 </li>
             {% endif %}
         </ul>
     </div>
 
-    <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier mon profile</a>
+    <a class="btn btn-primary" href="{{ path('sonata_user_profile_edit') }}">Modifier mon profil</a>
 {% endblock %}

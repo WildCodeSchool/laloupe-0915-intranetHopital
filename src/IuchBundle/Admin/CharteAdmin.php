@@ -15,7 +15,7 @@ class CharteAdmin extends Admin
             ->add('nom')
             ->add('description')
             ->add('file', 'file', array('label' => 'Charte', 'required' => false))
-            ->add('service')
+            ->add('service', null, array('placeholder'=> 'Tous services', 'required' => false))
             ->add('obligatoire')
         ;
     }

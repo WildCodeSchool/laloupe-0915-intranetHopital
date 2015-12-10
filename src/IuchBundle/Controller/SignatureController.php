@@ -14,39 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SignatureController extends Controller
 {
-    /**
-     * Retourne la liste des chartes correspondant à l'utilisateur loggé et si il les a signé ou pas.
-     * Il peut aussi les cocher pour signifier qu'il les signe
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     */
-    public function indexAction() {
-
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            return $this->redirect($this->generateUrl('sonata_user_security_login'));
-        }
-
-        $chartes = $this->get('doctrine')
-            ->getRepository('IuchBundle:Charte')
-            ->findByService($user->getService());
-
-        $models = array();
-        foreach ($chartes as $charte)
-        {
-            $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
-
-            $model = new \IuchBundle\Model\Signature($charte, $charte_utilisateur);
-
-            $models[] = $model;
-        }
-
-        return $this->render('IuchBundle:Signature:index.html.twig', array(
-            'chartes'=> $models,
-            'user'   => $user
-        ));
-    }
 
     /**
      * Affiche le pdf embedded et une checkbox de signature
