@@ -51,7 +51,7 @@ class SignatureControllerTest extends WebTestCase
 
         $link = $crawler->selectLink('Erwan')->link();
         $crawler = $client->click($link);
-        $link = $crawler->selectLink('Modifier mon profile')->link();
+        $link = $crawler->selectLink('Modifier mon profil')->link();
         $crawler = $client->click($link);
 
         $this->assertEquals('Sonata\UserBundle\Controller\ProfileFOSUser1Controller::editProfileAction', $client->getRequest()->attributes->get('_controller'));

@@ -26,6 +26,8 @@
             </constraint>
         </property>
 
+
+
     </class>
 
     <class name="FOS\UserBundle\Form\Model\ChangePassword">
