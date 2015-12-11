@@ -13,6 +13,6 @@ IuchBundle\Entity\Photo:
             - Image:
                 maxSize: 1024k
                 minWidth: 100
-                maxWidth: 300
+                maxWidth: 1000
                 minHeight: 100
-                maxHeight: 300
+                maxHeight: 1000
