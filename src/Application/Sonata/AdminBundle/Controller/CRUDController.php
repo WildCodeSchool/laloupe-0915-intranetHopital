@@ -14,8 +14,6 @@ namespace Application\Sonata\AdminBundle\Controller;
 use Application\Sonata\UserBundle\Entity\User;
 use IuchBundle\Entity\Charte;
 use IuchBundle\Entity\Photo;
-use IuchBundle\Entity\Service;
-use Psr\Log\NullLogger;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -78,7 +76,23 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 try {
 
                     // IUCH add preUpload manually to fix file edit
-                    if ($object instanceof Charte) {
+                    if ($object instanceof Charte || $object instanceof Photo) {
+                        $object->removeUpload();
+                    }
+
+                    /**
+                     * IUCH
+                     * Supp photo dans user pour pouvoir supprimer photo (car user est le owner de la relation)
+                     */
+                    if ($object instanceof Photo)
+                    {
+                        $user = $object->getUser();
+                        $object->setUser($user);
+                        $object->setNom($user->getUsername());
+                    }
+
+                    // IUCH add preUpload manually to fix file edit
+                    if ($object instanceof Charte || $object instanceof Photo) {
                         $object->preUpload();
                     }
 
