@@ -5,7 +5,8 @@ namespace Application\Sonata\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Sonata\UserBundle\Model\UserInterface;
 
@@ -29,6 +30,7 @@ class ProfileType extends \Sonata\UserBundle\Form\Type\ProfileType
         $builder
             ->add('phone', null, array(
                 'label'    => 'form.label_phone',
+                'attr' => array('maxlength' => '10'),
                 'required' => false
             ))
             ->add('email', null, array(
