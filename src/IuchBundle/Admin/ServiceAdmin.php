@@ -13,6 +13,7 @@ class ServiceAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('uf')
             ->add('nom')
             ->add('email')
             ->add('telephone', null, array(
@@ -31,7 +32,8 @@ class ServiceAdmin extends Admin
     {
 
         $listMapper
-            ->addIdentifier('nom')
+            ->addIdentifier('uf')
+            ->add('nom')
             ->add('email')
             ->add('telephone')
             ->add('chefService','entity', array(
@@ -51,6 +53,7 @@ class ServiceAdmin extends Admin
     {
         $showMapper
             ->with('General')
+            ->add('uf')
             ->add('nom')
             ->add('email')
             ->add('telephone')
