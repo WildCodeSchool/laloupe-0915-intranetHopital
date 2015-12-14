@@ -92,12 +92,12 @@ class CRUDControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un email valide.")')->count());
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un numéro de téléphone valide.")')->count());
     }
-/*
+
     public function testServiceEdit()
     {
         $id = $this->getId();
 
-        $client = $this->createService(array($id.'[nom]' => 'ploup'));
+        $client = $this->createService(array($id.'[uf]' => '1234', $id.'[nom]' => 'ploup'));
         $client->followRedirect();
 
         $crawler = $client->getCrawler();
@@ -105,7 +105,7 @@ class CRUDControllerTest extends WebTestCase
         $link = $crawler
             ->filter('td:contains("ploup")')
             ->siblings()
-            ->eq(4)
+            ->eq(5)
             ->children()
             ->children()
             ->eq(0)
@@ -119,9 +119,11 @@ class CRUDControllerTest extends WebTestCase
 
 
         $form = $crawler->selectButton('btn_update_and_list')->form(array(
-            '[email]'        => 'service@gmail.com',
-            '[telephone]'    => '0606060606'
+            'email'        => 'service@gmail.com',
+            'telephone'    => '0606060606'
         ));
+
+
 
         $client->submit($form);
 
@@ -136,11 +138,11 @@ class CRUDControllerTest extends WebTestCase
         $query->setParameter('email', 'service@gmail.com');
         $query->setParameter('telephone', '0606060606');
         $this->assertTrue(0 < $query->getSingleScalarResult());
-    }*/
+    }
 
     public function testDeleteService()
     {
-        $client = $this->createService(array($this->getId().'[nom]' => 'plop'));
+        $client = $this->createService(array($this->getId().'[uf]' => '4321', $this->getId().'[nom]' => 'plop'));
         $client->followRedirect();
 
         $crawler = $client->getCrawler();
