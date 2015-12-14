@@ -19,6 +19,10 @@ IuchBundle\Entity\Photo:
 
 IuchBundle\Entity\Service:
     properties:
+        uf:
+         - Regex :
+            pattern: '/\d{4}/'
+            message: Veuillez rentrer un uf valide (4 chiffres).
         email:
             - Email:
                 message: Veuillez rentrer un email valide.

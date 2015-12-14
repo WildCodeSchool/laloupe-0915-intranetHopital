@@ -48,6 +48,7 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals('Application\Sonata\AdminBundle\Controller\CRUDController::createAction', $client->getRequest()->attributes->get('_controller'));
 
         $form = $crawler->selectButton('btn_create_and_list')->form(array_merge(array(
+            $id.'[uf]'          =>  '0000',
             $id.'[nom]'          => 'Service',
             $id.'[email]'        => 'service@gmail.com',
             $id.'[telephone]'    => '0606060606'
@@ -69,7 +70,8 @@ class CRUDControllerTest extends WebTestCase
         $kernel->boot();
         $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $query = $em->createQuery('SELECT count(s.id) from IuchBundle:Service s WHERE s.nom = :nom AND s.email = :email AND s.telephone = :telephone');
+        $query = $em->createQuery('SELECT count(s.id) from IuchBundle:Service s WHERE s.uf = :uf AND s.nom = :nom AND s.email = :email AND s.telephone = :telephone');
+        $query->setParameter('uf', '0000');
         $query->setParameter('nom', 'Service');
         $query->setParameter('email', 'service@gmail.com');
         $query->setParameter('telephone', '0606060606');
@@ -80,12 +82,13 @@ class CRUDControllerTest extends WebTestCase
     {
         $id = $this->getId();
 
-        $client = $this->createService(array($id.'[email]' => 'service', $id.'[telephone]' => 'diojefoijo'));
+        $client = $this->createService(array($id.'[uf]' => 'plop', $id.'[email]' => 'service', $id.'[telephone]' => 'diojefoijo'));
         $crawler = $client->getCrawler();
 
         $this->assertEquals('Application\Sonata\AdminBundle\Controller\CRUDController::createAction',
             $client->getRequest()->attributes->get('_controller'));
 
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un uf valide (4 chiffres)")')->count());
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un email valide.")')->count());
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un numéro de téléphone valide.")')->count());
     }
