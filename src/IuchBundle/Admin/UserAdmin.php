@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 
@@ -140,7 +141,7 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Informations Obligatoires')
+            ->with('Informations obligatoires')
                 ->add('username', null, array(
                     'label' => 'Matricule',
                     'required' => true
@@ -150,37 +151,15 @@ class UserAdmin extends Admin
                 ->add('gender', 'sonata_user_gender', array(
                     'translation_domain' => $this->getTranslationDomain()
                 ))
-                ->add('dateOfBirth', 'birthday')
-            ->end()
-            ->with('Contact')
-                ->add('phone', null, array('required' => false))
-                ->add('email', null, array('required' => false))
-                ->add('adresse', null, array(
-                    'label' => 'Adresse',
-                    'required' => true
-                ))
-                ->add('zip', null, array(
-                    'label' => 'Code postal',
-                    'required' => true
-                ))
-                ->add('ville' , null, array(
-                    'label' => 'Ville',
-                    'required' => true
+                ->add('dateOfBirth', 'date', array(
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-MM-dd',
                 ))
                 ->add('enabled', null, array(
                     'required' => false
                 ))
             ->end()
-            ->with('Informations internes')
-                ->add('date_entree', null, array(
-                    'label' => 'Date d\'entrée'
-                ))
-                ->add('date_sortie', null, array(
-                    'label' => 'Date de sortie'
-                ))
-                ->add('raison_sortie', null, array(
-                    'label' => 'Raison de la sortie'
-                ))
+            ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
                     'label' => 'Fonction'
                 ))
@@ -195,6 +174,38 @@ class UserAdmin extends Admin
                 ))
                 ->add('chef_service', null, array(
                     'label' => 'Chef de service'
+                ))
+            ->end()
+            ->with('Dates arrivée & départ')
+                ->add('date_entree', 'date', array(
+                    'label' => 'Date d\'entrée',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-MM-dd',
+                    'required' => true
+                ))
+                ->add('date_sortie', 'date', array(
+                    'label' => 'Date de sortie',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-MM-dd',
+                    'required' => false
+                ))
+                ->add('raison_sortie', 'choice', array(
+                    'choices' => array('' => '', 'MATERNITE' => 'MATERNITE', 'RETRAITE' => 'RETRAITE', 'ARRET MALADIE' => 'ARRET MALADIE', 'FIN DE CONTRAT' => 'FIN DE CONTRAT'),
+                    'label' => 'Raison de sortie',
+                    'required' => false
+                ))
+            ->end()
+            ->with('Contact')
+                ->add('email', null, array('required' => false))
+                ->add('phone', null, array('required' => false))
+                ->add('adresse', null, array(
+                    'label' => 'Adresse'
+                ))
+                ->add('zip', null, array(
+                    'label' => 'Code postal'
+                ))
+                ->add('ville' , null, array(
+                    'label' => 'Ville'
                 ))
             ->end()
         ;

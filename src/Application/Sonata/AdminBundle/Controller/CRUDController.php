@@ -195,17 +195,17 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 $object->setPlainPassword($datePassword);
 
                 // IUCH Setting up the roles
-                $fonction = $object->getFonction();
-                if ($fonction == 'RH') {
+                $service = $object->getService();
+                if ($service == 'RESSOURCE HUMAINE') {
                     $object->addRole('ROLE_RH');
                 }
-                elseif ($fonction == 'blanchisserie') {
+                elseif ($service == 'BLANCHISSERIE LING') {
                     $object->addRole('ROLE_BLANCHISSERIE');
                 }
-                elseif ($fonction == 'services techniques') {
+                elseif ($service == 'SCE TECH') {
                     $object->addRole('ROLE_SERVICE_TECHNIC');
                 }
-                elseif ($fonction == 'QGDR') {
+                elseif ($service == 'SECMED-QUALITE') {
                     $object->addRole('ROLE_QGDR');
                 }
             }
