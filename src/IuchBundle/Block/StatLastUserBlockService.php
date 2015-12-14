@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class StatBlockService extends BaseBlockService
+class StatLastUserBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -53,7 +53,7 @@ class StatBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Statistiques';
+        return 'Utilisateurs';
     }
 
 
@@ -63,60 +63,18 @@ class StatBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id = $user_current->getId();
+        $user_id        = $user_current->getId();
 
-        $signatures = $this->em
-            ->getRepository('IuchBundle:Charte_utilisateur')
-            ->findAll();
-
-        $users = $this->em
+        $last_users = $this->em
             ->getRepository('ApplicationSonataUserBundle:User')
-            ->findAll();
+            ->lastUsersMonth();
 
-        $chartesSignees = [];
-
-        foreach ($signatures as $signature) {
-            $charte = $signature->getCharte();
-            $chartesSignees[] = $charte;
-        }
-
-        $map = function($charte) {
-            return $charte->getNom();
-        };
-
-        $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
-
-        $labels = [];
-        $datas = [];
-
-        foreach ($nbSignaturesByCharte as $charte => $nbSignature)
-        {
-            $labels[] = $charte;
-            $datas[] = $nbSignature;
-        }
-
-        $datasBar = array(
-            'labels' => array($labels),
-            'datasets' => array(
-                array(
-                    'label' => 'Signées',
-                    'fillColor'=> "rgba(220,220,220,0.5)",
-                    'strokeColor'=> "rgba(220,220,220,0.8)",
-                    'highlightFill'=> "rgba(220,220,220,0.75)",
-                    'highlightStroke'=> "rgba(220,220,220,1)",
-                    'data' => $datas
-                )
-            )
-        );
-
-        $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statlastuser.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'bar' => $nbSignaturesByCharte
-
+            'lastUsers'        => $last_users,
         ), $response);
     }
     /**
@@ -126,7 +84,7 @@ class StatBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:statistique.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:statlastuser.html.twig' // Le template à render dans execute()
         ));
     }
 
