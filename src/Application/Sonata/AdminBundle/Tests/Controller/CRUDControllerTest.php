@@ -114,10 +114,6 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals('Application\Sonata\AdminBundle\Controller\CRUDController::editAction',
             $client->getRequest()->attributes->get('_controller'));
 
-        /*$url = $client->getRequest()->getUri();
-        $parts = parse_url($url);
-        $idE = end(parse_str($parts['query']));*/
-
 
         $form = $crawler->selectButton('btn_update_and_list')->form(array(
             '[email]'        => 'service@gmail.com',
