@@ -81,7 +81,7 @@ class StatBlockService extends BaseBlockService
         }
 
         $map = function($charte) {
-            return $charte->getNom();
+            return substr($charte->getNom(), 6, 20).'...';
         };
 
         $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
