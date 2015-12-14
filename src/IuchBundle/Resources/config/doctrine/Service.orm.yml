@@ -14,6 +14,7 @@ IuchBundle\Entity\Service:
         uf:
             type: string
             length: 4
+            unique: true
         email:
             type: string
             length: 255
