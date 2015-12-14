@@ -11,6 +11,9 @@ IuchBundle\Entity\Service:
         nom:
             type: string
             length: 255
+        uf:
+            type: string
+            length: 4
         email:
             type: string
             length: 255

@@ -61,7 +61,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte5->setFileName('charte2.pdf');
         $Charte5->setCharteFile('charte2.pdf');
         $Charte5->setService(
-            $this->getReference('5')
+            $this->getReference('7')
         );
         $Charte5->setObligatoire(false);
 
@@ -71,7 +71,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte6->setFileName('charte2.pdf');
         $Charte6->setCharteFile('charte2.pdf');
         $Charte6->setService(
-            $this->getReference('6')
+            $this->getReference('7')
         );
         $Charte6->setObligatoire(false);
 

@@ -19,31 +19,31 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
     public function load(ObjectManager $manager)
     {
         $fonction1 = new Fonction();
-        $fonction1->setNom('RH');
+        $fonction1->setNom('A.M.P CL. NORM.');
 
         $fonction2 = new Fonction();
-        $fonction2->setNom('infirmière');
+        $fonction2->setNom('ADJOINT 1ERE CLASS');
 
         $fonction3 = new Fonction();
-        $fonction3->setNom('aide-soignante');
+        $fonction3->setNom('ADJOINT 2EM CL');
 
         $fonction4 = new Fonction();
-        $fonction4->setNom('brancardier');
+        $fonction4->setNom('CADRE DE SANTE');
 
         $fonction5 = new Fonction();
-        $fonction5->setNom('médecin');
+        $fonction5->setNom('IDE COORDINATRICE');
 
         $fonction6 = new Fonction();
-        $fonction6->setNom('RSI');
+        $fonction6->setNom('MAITRE OUVRIER');
 
         $fonction7 = new Fonction();
-        $fonction7->setNom('blanchisserie');
+        $fonction7->setNom('MASSEUR KINE CL. SUP');
 
         $fonction8 = new Fonction();
-        $fonction8->setNom('services techniques');
+        $fonction8->setNom('OUVRI PROF. QUALIFIE');
 
         $fonction9 = new Fonction();
-        $fonction9->setNom('QGDR');
+        $fonction9->setNom('P.H TEMPS PLEIN');
 
         $manager->persist($fonction1);
         $manager->persist($fonction2);

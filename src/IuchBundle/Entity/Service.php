@@ -171,4 +171,34 @@ class Service
     {
         return $this->users;
     }
+
+    /**
+     * @var string
+     */
+    private $uf;
+
+
+    /**
+     * Set uf
+     *
+     * @param string $uf
+     *
+     * @return Service
+     */
+    public function setUf($uf)
+    {
+        $this->uf = $uf;
+
+        return $this;
+    }
+
+    /**
+     * Get uf
+     *
+     * @return string
+     */
+    public function getUf()
+    {
+        return $this->uf;
+    }
 }
