@@ -12,7 +12,9 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
+use IuchBundle\Entity\Badge;
 use IuchBundle\Entity\Charte;
+use IuchBundle\Entity\Cle;
 use IuchBundle\Entity\Photo;
 use IuchBundle\Entity\Service;
 use Psr\Log\NullLogger;
@@ -80,6 +82,16 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                     // IUCH add preUpload manually to fix file edit
                     if ($object instanceof Charte) {
                         $object->preUpload();
+                    }
+
+                    /**
+                     * IUCH
+                     * Editer l'intervenant
+                     */
+                    if ($object instanceof Cle || $object instanceof Badge)
+                    {
+                        $user = $this->getUser();
+                        $object->setIntervenant($user);
                     }
 
                     $object = $this->admin->update($object);
@@ -203,6 +215,16 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             {
                 $user = $object->getUser();
                 $user->setPhoto($object);
+            }
+
+            /**
+             * IUCH
+             * Enregistrer l'intervenant
+             */
+            if ($object instanceof Cle || $object instanceof Badge)
+            {
+                $user = $this->getUser();
+                $object->setIntervenant($user);
             }
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
