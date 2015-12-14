@@ -14,8 +14,11 @@ class ServiceAdmin extends Admin
     {
         $formMapper
             ->add('nom')
-            ->add('email', 'email')
-            ->add('telephone')
+            ->add('email')
+            ->add('telephone', null, array(
+                'help' => 'Exemple : 0123456789 | 01 23 45 67 89 | 01-23-45-67-89 | 01.23.45.67.89'
+            ))
+
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

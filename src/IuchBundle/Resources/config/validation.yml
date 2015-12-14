@@ -16,3 +16,14 @@ IuchBundle\Entity\Photo:
                 maxWidth: 1000
                 minHeight: 100
                 maxHeight: 1000
+
+IuchBundle\Entity\Service:
+    properties:
+        email:
+            - Email:
+                message: Veuillez rentrer un email valide.
+                checkMX: true
+        telephone:
+            - Regex :
+                pattern: '/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/'
+                message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
