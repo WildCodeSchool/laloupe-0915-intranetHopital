@@ -30,6 +30,7 @@ class BadgeAdmin extends Admin
             ->add('user')
             ->add('date_remise', 'doctrine_orm_date_range')
             ->add('date_rendu', 'doctrine_orm_date_range')
+            ->add('intervenant')
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -43,6 +44,7 @@ class BadgeAdmin extends Admin
                 )))
             ->add('date_remise')
             ->add('date_rendu')
+            ->add('intervenant')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -58,6 +60,7 @@ class BadgeAdmin extends Admin
             ->with('Général')
             ->add('user')
             ->add('remis')
+            ->add('intervenant')
             ->end()
             ->with('Entrée/Sortie')
             ->add('date_remise')

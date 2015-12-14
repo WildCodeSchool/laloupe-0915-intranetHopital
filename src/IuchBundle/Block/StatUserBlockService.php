@@ -98,8 +98,6 @@ class StatUserBlockService extends BaseBlockService
         }
 
 
-
-
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
