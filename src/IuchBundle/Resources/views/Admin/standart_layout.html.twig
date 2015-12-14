@@ -10,6 +10,11 @@
 {% block side_bar_after_nav %}
 {% endblock %}
 
+{% block meta_tags %}
+    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/iuch/img/favicon.png') }}" />
+{% endblock %}
+
 {# LEFT SIDEBAR GROUP FUNCTION OF ROLES #}
 {% block side_bar_nav %}
     {% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}
