@@ -169,6 +169,10 @@ sonata_admin:
             position: top
             class: col-md-12
             type: sonata.block.service.statuser
+          -
+            position: top
+            class: col-md-12
+            type: sonata.block.service.statlastuser
 
 
 sonata_doctrine_orm_admin:
@@ -188,12 +192,8 @@ sonata_block:
         sonata.admin.block.search_result:
             contexts: [admin]
 
-        # Some specific block from the SonataMediaBundle
-        #sonata.media.block.media:
-        #sonata.media.block.gallery:
-        #sonata.media.block.feature_media:
-
         # Block Stat créé pour le DashBoard
+        sonata.block.service.statlastuser: ~
         sonata.block.service.stat: ~
         sonata.block.service.statuser: ~
 

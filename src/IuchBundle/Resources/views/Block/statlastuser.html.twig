@@ -1,0 +1,46 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Derniers utilisateurs activés du mois en cours :</h2>
+            <div class="row">
+                <table id="userTable" class="table table-hover tablesorter table-bordered">
+                    <thead>
+                    <tr class="success">
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date d'entrée</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for user in lastUsers %}
+                        <tr>
+                            <td>{{ user.username }} </td>
+                            <td>{{ user.lastname }} </td>
+                            <td>{{ user.firstname }} </td>
+                            <td>{{ user.dateEntree|date('d/m/Y') }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('admin_sonata_user_user_show', {'id': user.id}) }}">Afficher</a>
+                                <a class="btn btn-success" href="{{ path('admin_sonata_user_user_edit', {'id': user.id}) }}">Éditer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('bundles/iuch/js/jquery.tablesorter.min.js') }}"></script>
+    <script>
+        $(document).ready(function()
+                {
+                    $("#userTable").tablesorter( {sortList: [[3,0]]} );
+                }
+        );
+    </script>
+{% endblock %}

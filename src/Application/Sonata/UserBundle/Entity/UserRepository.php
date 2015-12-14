@@ -10,12 +10,16 @@ namespace Application\Sonata\UserBundle\Entity;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function hasNoPhoto()
+    public function lastUsersMonth()
     {
         $queryBuilder = $this->_em->createQueryBuilder()
             ->select('u')
             ->from($this->_entityName, 'u')// Dans un repository, $this->_entityName est le namespace de l'entité gérée
-            ->Where('u.photo is null');
+            ->Where('u.createdAt BETWEEN :month AND :now')
+            ->setParameter('month', 'convert(datetime,SUBSTRING(CONVERT(varchar(8), GETDATE(), 112), 1, 6) + \'01\')')
+            ->setParameter('now', new \DateTime('now'))
+            ->andWhere('u.enabled = true')
+            ->orderBy('u.createdAt', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }
 }
