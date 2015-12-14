@@ -143,4 +143,33 @@ class Badge
     {
         return $this->user;
     }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $intervenant;
+
+
+    /**
+     * Set intervenant
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $intervenant
+     *
+     * @return Badge
+     */
+    public function setIntervenant(\Application\Sonata\UserBundle\Entity\User $intervenant = null)
+    {
+        $this->intervenant = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
 }
