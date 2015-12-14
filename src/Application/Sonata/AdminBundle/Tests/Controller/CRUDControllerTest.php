@@ -145,7 +145,7 @@ class CRUDControllerTest extends WebTestCase
         $link = $crawler
             ->filter('td:contains("plop")')
             ->siblings()
-            ->eq(4)
+            ->eq(5)
             ->children()
             ->children()
             ->eq(2)
