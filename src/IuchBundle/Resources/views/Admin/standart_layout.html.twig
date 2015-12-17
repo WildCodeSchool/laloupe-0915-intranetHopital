@@ -117,23 +117,25 @@
     {% endif %}
 
     {# DISPLAY BLOCK ACCORDING TO ROLES #}
-    {% block block %}
-        <div>
-            <h1>Bienvenue sur le tableau de bord</h1>
-                <p>Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.</p>
-        </div>
-        {% if is_granted('ROLE_QGDR') %}
-            {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
-        {% endif %}
+    {% if app.request.attributes.get('_route') == 'sonata_admin_dashboard' %}
+        {% block block %}
+            <div>
+                <h1>Bienvenue sur le tableau de bord</h1>
+                    <p>Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.</p>
+            </div>
+            {% if is_granted('ROLE_QGDR') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
+            {% endif %}
 
-        {% if is_granted('ROLE_SERVICE_TECHNIC') %}
-            {{ sonata_block_render({ 'type': 'sonata.block.service.statuser' }) }}
-        {% endif %}
+            {% if is_granted('ROLE_SERVICE_TECHNIC') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.statuser' }) }}
+            {% endif %}
 
-        {% if is_granted('ROLE_RH') %}
-            {{ sonata_block_render({ 'type': 'sonata.block.service.statlastuser' }) }}
-        {% endif %}
-    {% endblock block %}
+            {% if is_granted('ROLE_RH') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.statlastuser' }) }}
+            {% endif %}
+        {% endblock block %}
+    {% endif %}
 
 {% endblock sonata_page_content_nav %}
 
