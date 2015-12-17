@@ -152,8 +152,7 @@ class UserAdmin extends Admin
                     'translation_domain' => $this->getTranslationDomain()
                 ))
                 ->add('dateOfBirth', 'date', array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd',
+                    'widget' => 'choice',
                 ))
                 ->add('enabled', null, array(
                     'required' => false
@@ -179,15 +178,11 @@ class UserAdmin extends Admin
             ->with('Dates arrivée & départ')
                 ->add('date_entree', 'date', array(
                     'label' => 'Date d\'entrée',
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd',
-                    'required' => true
-                ))
+                    'widget' => 'choice',
+                    ))
                 ->add('date_sortie', 'date', array(
                     'label' => 'Date de sortie',
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd',
-                    'required' => false
+                    'widget' => 'choice',
                 ))
                 ->add('raison_sortie', 'choice', array(
                     'choices' => array('' => '', 'MATERNITE' => 'MATERNITE', 'RETRAITE' => 'RETRAITE', 'ARRET MALADIE' => 'ARRET MALADIE', 'FIN DE CONTRAT' => 'FIN DE CONTRAT'),
