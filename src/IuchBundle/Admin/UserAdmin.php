@@ -152,8 +152,7 @@ class UserAdmin extends Admin
                     'translation_domain' => $this->getTranslationDomain()
                 ))
                 ->add('dateOfBirth', 'date', array(
-                    'widget' => 'single_text',
-                    'format' => 'dd/MM/yyyy',
+                    'widget' => 'choice',
                 ))
                 ->add('enabled', null, array(
                     'required' => false
