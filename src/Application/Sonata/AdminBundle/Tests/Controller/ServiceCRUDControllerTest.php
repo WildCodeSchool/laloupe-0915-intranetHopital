@@ -93,7 +93,7 @@ class CRUDControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Veuillez rentrer un numéro de téléphone valide.")')->count());
     }
 
-    public function testServiceEdit()
+    /*public function testServiceEdit()
     {
         $id = $this->getId();
 
@@ -138,7 +138,7 @@ class CRUDControllerTest extends WebTestCase
         $query->setParameter('email', 'service@gmail.com');
         $query->setParameter('telephone', '0606060606');
         $this->assertTrue(0 < $query->getSingleScalarResult());
-    }
+    }*/
 
     public function testDeleteService()
     {
