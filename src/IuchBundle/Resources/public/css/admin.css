@@ -54,3 +54,13 @@ p {
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
     background-color: #2DAB62;
 }
+.box {
+    width: 77%;
+    margin: 20px auto;
+}
+.box.box-success {
+    width: 100%;
+}
+.box.box-primary {
+    width: 100%;
+}
