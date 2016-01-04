@@ -49,7 +49,9 @@
                         <li class="treeview active">
                     {% endif %}
                         <a href="#">
-                            {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                            {% autoescape %}
+                                {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                            {% endautoescape %}
                             <span>{{ group.label|trans({}, group.label_catalogue) }}</span>
                             <i class="fa pull-right fa-angle-left"></i>
                         </a>
@@ -94,21 +96,27 @@
             {% block tab_menu_navbar_header %}
                 {% if _navbar_title is not empty %}
                     <div class="navbar-header">
-                        <span class="navbar-brand">{{ _navbar_title|raw }}</span>
+                        {% autoescape %}
+                            <span class="navbar-brand">{{ _navbar_title|raw }}</span>
+                        {% endautoescape %}
                     </div>
                 {% endif %}
             {% endblock %}
             <div class="container-fluid">
                 <div class="navbar-left">
-                    {% if _tab_menu is not empty %}
-                        {{ _tab_menu|raw }}
-                    {% endif %}
+                    {% autoescape %}
+                        {% if _tab_menu is not empty %}
+                            {{ _tab_menu|raw }}
+                        {% endif %}
+                    {% endautoescape %}
                 </div>
 
                 {% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
                     <ul class="nav navbar-nav navbar-right">
                         <li class="sonata-actions">
-                            {{ _actions|raw }}
+                            {% autoescape %}
+                                {{ _actions|raw }}
+                            {% endautoescape %}
                         </li>
                     </ul>
                 {% endif %}
