@@ -62,15 +62,8 @@ class StatBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id = $user_current->getId();
-
         $signatures = $this->em
             ->getRepository('IuchBundle:Charte_utilisateur')
-            ->findAll();
-
-        $users = $this->em
-            ->getRepository('ApplicationSonataUserBundle:User')
             ->findAll();
 
         $chartesSignees = [];
@@ -94,22 +87,6 @@ class StatBlockService extends BaseBlockService
             $labels[] = $charte;
             $datas[] = $nbSignature;
         }
-
-        $datasBar = array(
-            'labels' => array($labels),
-            'datasets' => array(
-                array(
-                    'label' => 'Signées',
-                    'fillColor'=> "rgba(220,220,220,0.5)",
-                    'strokeColor'=> "rgba(220,220,220,0.8)",
-                    'highlightFill'=> "rgba(220,220,220,0.75)",
-                    'highlightStroke'=> "rgba(220,220,220,1)",
-                    'data' => $datas
-                )
-            )
-        );
-
-        $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),

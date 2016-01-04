@@ -62,8 +62,6 @@ class StatLastUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
 
         $last_users = $this->em
             ->getRepository('ApplicationSonataUserBundle:User')

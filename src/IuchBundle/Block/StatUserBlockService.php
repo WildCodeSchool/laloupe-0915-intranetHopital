@@ -62,9 +62,6 @@ class StatUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
-
         // Tenues stats
         $tenues = $this->em
             ->getRepository('IuchBundle:Tenue')
