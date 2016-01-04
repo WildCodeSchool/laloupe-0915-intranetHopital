@@ -23,10 +23,6 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
 class StatLastUserBlockService extends BaseBlockService
 {
     /**
@@ -62,8 +58,6 @@ class StatLastUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
 
         $last_users = $this->em
             ->getRepository('ApplicationSonataUserBundle:User')
