@@ -9,6 +9,7 @@
 // src/IuchBundle/Block
 namespace IuchBundle\Block;
 
+use IuchBundle\Entity\Charte;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -69,7 +70,7 @@ class StatBlockService extends BaseBlockService
             $chartesSignees[] = $charte;
         }
 
-        $map = function($charte) {
+        $map = function(Charte $charte) {
             return substr($charte->getNom(), 6, 20).'...';
         };
 
