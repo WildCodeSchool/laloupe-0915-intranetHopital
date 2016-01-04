@@ -2,7 +2,17 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/admin.css') }}"/>
+{% endblock %}
+
+{# remove sonata-project link on nav #}
+{% block side_bar_after_nav %}
+{% endblock %}
+
+{% block meta_tags %}
+    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/iuch/img/favicon.png') }}" />
 {% endblock %}
 
 {# LEFT SIDEBAR GROUP FUNCTION OF ROLES #}
@@ -39,7 +49,9 @@
                         <li class="treeview active">
                     {% endif %}
                         <a href="#">
-                            {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                            {% autoescape %}
+                                {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                            {% endautoescape %}
                             <span>{{ group.label|trans({}, group.label_catalogue) }}</span>
                             <i class="fa pull-right fa-angle-left"></i>
                         </a>
@@ -68,6 +80,9 @@
                 </a>
                 {% include admin_pool.getTemplate('add_block') %}
             </li>
+            <li>
+                <a href="{{ path('iuch_homepage') }}">Page d'accueil</a>
+            </li>
             <li>{% include admin_pool.getTemplate('user_block') %}</li>
         </ul>
     </div>
@@ -81,32 +96,58 @@
             {% block tab_menu_navbar_header %}
                 {% if _navbar_title is not empty %}
                     <div class="navbar-header">
-                        <span class="navbar-brand">{{ _navbar_title|raw }}</span>
+                        {% autoescape %}
+                            <span class="navbar-brand">{{ _navbar_title|raw }}</span>
+                        {% endautoescape %}
                     </div>
                 {% endif %}
             {% endblock %}
             <div class="container-fluid">
                 <div class="navbar-left">
-                    {% if _tab_menu is not empty %}
-                        {{ _tab_menu|raw }}
-                    {% endif %}
+                    {% autoescape %}
+                        {% if _tab_menu is not empty %}
+                            {{ _tab_menu|raw }}
+                        {% endif %}
+                    {% endautoescape %}
                 </div>
 
                 {% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
                     <ul class="nav navbar-nav navbar-right">
                         <li class="sonata-actions">
-                            {{ _actions|raw }}
+                            {% autoescape %}
+                                {{ _actions|raw }}
+                            {% endautoescape %}
                         </li>
                     </ul>
                 {% endif %}
             </div>
         </nav>
     {% endif %}
+
+    {# DISPLAY BLOCK ACCORDING TO ROLES #}
+    {% if app.request.attributes.get('_route') == 'sonata_admin_dashboard' %}
+        {% block block %}
+            <div>
+                <h1>Bienvenue sur le tableau de bord</h1>
+                    <p>Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.</p>
+            </div>
+            {% if is_granted('ROLE_QGDR') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
+            {% endif %}
+
+            {% if is_granted('ROLE_SERVICE_TECHNIC') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.statuser' }) }}
+            {% endif %}
+
+            {% if is_granted('ROLE_RH') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.statlastuser' }) }}
+            {% endif %}
+        {% endblock block %}
+    {% endif %}
+
 {% endblock sonata_page_content_nav %}
-
-
-
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('bundles/iuch/js/test.js') }}"></script>
 {% endblock %}

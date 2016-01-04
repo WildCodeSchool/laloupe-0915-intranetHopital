@@ -5,7 +5,6 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class CleAdmin extends Admin
@@ -27,6 +26,7 @@ class CleAdmin extends Admin
             ->add('user')
             ->add('date_remise', 'doctrine_orm_date_range')
             ->add('date_rendu', 'doctrine_orm_date_range')
+            ->add('intervenant')
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -40,6 +40,7 @@ class CleAdmin extends Admin
                 )))
             ->add('date_remise')
             ->add('date_rendu')
+            ->add('intervenant')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -55,6 +56,7 @@ class CleAdmin extends Admin
             ->with('Général')
             ->add('user')
             ->add('remis')
+            ->add('intervenant')
             ->end()
             ->with('Entrée/Sortie')
             ->add('date_remise')

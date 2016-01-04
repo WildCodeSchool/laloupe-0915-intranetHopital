@@ -153,4 +153,33 @@ class Cle
     {
         return $this->date_rendu;
     }
+    /**
+     * @var string
+     */
+    private $intervenant;
+
+
+    /**
+     * Set intervenant
+     *
+     * @param string $intervenant
+     *
+     * @return Cle
+     */
+    public function setIntervenant($intervenant)
+    {
+        $this->intervenant = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return string
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
 }

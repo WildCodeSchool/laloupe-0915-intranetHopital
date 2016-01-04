@@ -21,8 +21,8 @@ services:
 
     ### Disabling SonataUser groups // Cause we dont need.. ###
     sonata.user.admin.group:
-          abstract: true
-          public: false
+        abstract: true
+        public: false
 
     ### To check if first connexion redirection ###
     login_listener:

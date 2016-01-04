@@ -12,16 +12,12 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
+use IuchBundle\Entity\Badge;
 use IuchBundle\Entity\Charte;
+use IuchBundle\Entity\Cle;
 use IuchBundle\Entity\Photo;
-use IuchBundle\Entity\Service;
-use Psr\Log\NullLogger;
-use Sonata\AdminBundle\Admin\AdminInterface;
-use Sonata\AdminBundle\Admin\BaseFieldDescription;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -78,8 +74,34 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 try {
 
                     // IUCH add preUpload manually to fix file edit
-                    if ($object instanceof Charte) {
+                    if ($object instanceof Charte || $object instanceof Photo) {
+                        $object->removeUpload();
+                    }
+
+                    /**
+                     * IUCH
+                     * Supp photo dans user pour pouvoir supprimer photo (car user est le owner de la relation)
+                     */
+                    if ($object instanceof Photo)
+                    {
+                        $user = $object->getUser();
+                        $object->setUser($user);
+                        $object->setNom($user->getUsername());
+                    }
+
+                    // IUCH add preUpload manually to fix file edit
+                    if ($object instanceof Charte || $object instanceof Photo) {
                         $object->preUpload();
+                    }
+
+                    /**
+                     * IUCH
+                     * Editer l'intervenant
+                     */
+                    if ($object instanceof Cle || $object instanceof Badge)
+                    {
+                        $user = $this->getUser();
+                        $object->setIntervenant($user);
                     }
 
                     $object = $this->admin->update($object);
@@ -181,17 +203,17 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 $object->setPlainPassword($datePassword);
 
                 // IUCH Setting up the roles
-                $fonction = $object->getFonction();
-                if ($fonction == 'RH') {
+                $service = $object->getService();
+                if ($service == 'RESSOURCE HUMAINE') {
                     $object->addRole('ROLE_RH');
                 }
-                elseif ($fonction == 'blanchisserie') {
+                elseif ($service == 'BLANCHISSERIE LING') {
                     $object->addRole('ROLE_BLANCHISSERIE');
                 }
-                elseif ($fonction == 'services techniques') {
+                elseif ($service == 'SCE TECH') {
                     $object->addRole('ROLE_SERVICE_TECHNIC');
                 }
-                elseif ($fonction == 'QGDR') {
+                elseif ($service == 'SECMED-QUALITE') {
                     $object->addRole('ROLE_QGDR');
                 }
             }
@@ -203,6 +225,16 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             {
                 $user = $object->getUser();
                 $user->setPhoto($object);
+            }
+
+            /**
+             * IUCH
+             * Enregistrer l'intervenant
+             */
+            if ($object instanceof Cle || $object instanceof Badge)
+            {
+                $user = $this->getUser();
+                $object->setIntervenant($user);
             }
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {

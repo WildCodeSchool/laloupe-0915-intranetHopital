@@ -12,7 +12,6 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\UserBundle\Model\UserInterface;
 
 /**

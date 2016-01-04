@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron">
+
+        <h1>Page non trouvée</h1>
+        <br/>
+        <p>Nous sommes désolés, la page que vous cherchez n'est pas trouvable.</p>
+        {# example security usage, see below #}
+        {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+            {# ... #}
+        {% endif %}
+        <br/>
+        <p>
+            <a class="btn btn-primary btn-lg" href="{{ path('iuch_homepage') }}">Retourner à la page d'accueil</a>
+        </p>
+    </div>
+{% endblock %}

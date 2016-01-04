@@ -40,7 +40,7 @@ services:
     sonata.charte_utilisateur:
         class: IuchBundle\Admin\CharteUtilisateurAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.chartes", label: "Chartes signée" }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.chartes", label: "Chartes signées" }
         arguments:
             - ~
             - IuchBundle\Entity\Charte_utilisateur
@@ -97,6 +97,12 @@ services:
     sonata.block.service.statuser:
         class: IuchBundle\Block\StatUserBlockService
         arguments: [ "sonata.block.service.statuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
+    sonata.block.service.statlastuser:
+        class: IuchBundle\Block\StatLastUserBlockService
+        arguments: [ "sonata.block.service.statlastuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
         tags:
             - { name: sonata.block }
 

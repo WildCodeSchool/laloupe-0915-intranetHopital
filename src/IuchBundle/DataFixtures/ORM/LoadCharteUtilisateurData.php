@@ -21,19 +21,19 @@ class LoadCharteUtilisateurData extends AbstractFixture implements FixtureInterf
         $charte_utilisateur1 = new Charte_utilisateur();
         $charte_utilisateur1->setSignature(true);
         $charte_utilisateur1->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur1->setCharte($this->getReference('105'));
+        $charte_utilisateur1->setCharte($this->getReference('103'));
         $charte_utilisateur1->setUser($this->getReference('202'));
 
         $charte_utilisateur2 = new Charte_utilisateur();
         $charte_utilisateur2->setSignature(true);
         $charte_utilisateur2->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur2->setCharte($this->getReference('106'));
+        $charte_utilisateur2->setCharte($this->getReference('104'));
         $charte_utilisateur2->setUser($this->getReference('205'));
 
         $charte_utilisateur3 = new Charte_utilisateur();
         $charte_utilisateur3->setSignature(true);
         $charte_utilisateur3->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur3->setCharte($this->getReference('105'));
+        $charte_utilisateur3->setCharte($this->getReference('103'));
         $charte_utilisateur3->setUser($this->getReference('205'));
 
         $charte_utilisateur4 = new Charte_utilisateur();
@@ -51,7 +51,7 @@ class LoadCharteUtilisateurData extends AbstractFixture implements FixtureInterf
         $charte_utilisateur6 = new Charte_utilisateur();
         $charte_utilisateur6->setSignature(true);
         $charte_utilisateur6->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur6->setCharte($this->getReference('103'));
+        $charte_utilisateur6->setCharte($this->getReference('104'));
         $charte_utilisateur6->setUser($this->getReference('209'));
 
         $charte_utilisateur7 = new Charte_utilisateur();
@@ -63,37 +63,37 @@ class LoadCharteUtilisateurData extends AbstractFixture implements FixtureInterf
         $charte_utilisateur8 = new Charte_utilisateur();
         $charte_utilisateur8->setSignature(true);
         $charte_utilisateur8->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur8->setCharte($this->getReference('108'));
+        $charte_utilisateur8->setCharte($this->getReference('104'));
         $charte_utilisateur8->setUser($this->getReference('204'));
 
         $charte_utilisateur9 = new Charte_utilisateur();
         $charte_utilisateur9->setSignature(true);
         $charte_utilisateur9->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur9->setCharte($this->getReference('106'));
+        $charte_utilisateur9->setCharte($this->getReference('104'));
         $charte_utilisateur9->setUser($this->getReference('206'));
 
         $charte_utilisateur10 = new Charte_utilisateur();
         $charte_utilisateur10->setSignature(true);
         $charte_utilisateur10->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur10->setCharte($this->getReference('107'));
+        $charte_utilisateur10->setCharte($this->getReference('103'));
         $charte_utilisateur10->setUser($this->getReference('206'));
 
         $charte_utilisateur11 = new Charte_utilisateur();
         $charte_utilisateur11->setSignature(true);
         $charte_utilisateur11->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur11->setCharte($this->getReference('109'));
+        $charte_utilisateur11->setCharte($this->getReference('103'));
         $charte_utilisateur11->setUser($this->getReference('203'));
 
         $charte_utilisateur12 = new Charte_utilisateur();
         $charte_utilisateur12->setSignature(true);
         $charte_utilisateur12->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur12->setCharte($this->getReference('106'));
+        $charte_utilisateur12->setCharte($this->getReference('104'));
         $charte_utilisateur12->setUser($this->getReference('210'));
 
         $charte_utilisateur13 = new Charte_utilisateur();
         $charte_utilisateur13->setSignature(true);
         $charte_utilisateur13->setDateSignature(new \DateTime('now'));
-        $charte_utilisateur13->setCharte($this->getReference('102'));
+        $charte_utilisateur13->setCharte($this->getReference('103'));
         $charte_utilisateur13->setUser($this->getReference('204'));
 
 

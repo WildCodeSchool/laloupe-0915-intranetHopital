@@ -36,22 +36,22 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte2->setObligatoire(false);
 
         $Charte3 = new Charte();
-        $Charte3->setNom('Charte 3');
-        $Charte3->setDescription('desc3');
-        $Charte3->setFileName('charte3.pdf');
-        $Charte3->setCharteFile('charte3.pdf');
+        $Charte3->setNom('CHARTE DE LA PERSONNE ACCUEILLI');
+        $Charte3->setDescription('Charte de la personnne accueilli');
+        $Charte3->setFileName('CHARTE_DE_LA_PERSONNE_ACCUILLIE.pdf');
+        $Charte3->setCharteFile('CHARTE_DE_LA_PERSONNE_ACCUILLIE.pdf');
         $Charte3->setService(
-            $this->getReference('3')
+            $this->getReference('7')
         );
         $Charte3->setObligatoire(true);
 
         $Charte4 = new Charte();
-        $Charte4->setNom('Charte 4');
-        $Charte4->setDescription('desc4');
-        $Charte4->setFileName('charte2.pdf');
-        $Charte4->setCharteFile('charte2.pdf');
+        $Charte4->setNom('CHARTE INFORMATIQUE');
+        $Charte4->setDescription('Charte Informatique');
+        $Charte4->setFileName('CHARTE_INFORMATIQUE.pdf');
+        $Charte4->setCharteFile('CHARTE_INFORMATIQUE.pdf');
         $Charte4->setService(
-            $this->getReference('4')
+            $this->getReference('7')
         );
         $Charte4->setObligatoire(false);
 
@@ -61,7 +61,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte5->setFileName('charte2.pdf');
         $Charte5->setCharteFile('charte2.pdf');
         $Charte5->setService(
-            $this->getReference('5')
+            $this->getReference('7')
         );
         $Charte5->setObligatoire(false);
 
@@ -71,7 +71,7 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
         $Charte6->setFileName('charte2.pdf');
         $Charte6->setCharteFile('charte2.pdf');
         $Charte6->setService(
-            $this->getReference('6')
+            $this->getReference('7')
         );
         $Charte6->setObligatoire(false);
 

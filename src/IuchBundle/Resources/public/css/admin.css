@@ -9,13 +9,11 @@ h1 {
 p {
     text-align: center;
 }
-#dashboard h2 {
+.sonata-bc h2 {
     color: #014C2D;
     text-align: center;
 }
-#stats h2 {
-    color: #014C2D;
-}
+
 #stats-blocks h2 {
     color: #FFF;
 }
@@ -47,4 +45,22 @@ p {
 }
 .navbar-static-top .navbar-right li:last-of-type a {
     display: inline-block;
+}
+
+.tablesorter {
+    background: #fff;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #2DAB62;
+}
+.box {
+    width: 77%;
+    margin: 20px auto;
+}
+.box.box-success {
+    width: 100%;
+}
+.box.box-primary {
+    width: 100%;
 }

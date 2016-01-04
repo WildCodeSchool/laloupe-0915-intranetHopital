@@ -5,7 +5,6 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class ServiceAdmin extends Admin
@@ -13,9 +12,13 @@ class ServiceAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('uf')
             ->add('nom')
-            ->add('email', 'email')
-            ->add('telephone')
+            ->add('email')
+            ->add('telephone', null, array(
+                'help' => 'Exemple : 0123456789 | 01 23 45 67 89 | 01-23-45-67-89 | 01.23.45.67.89'
+            ))
+
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -28,7 +31,8 @@ class ServiceAdmin extends Admin
     {
 
         $listMapper
-            ->addIdentifier('nom')
+            ->addIdentifier('uf')
+            ->add('nom')
             ->add('email')
             ->add('telephone')
             ->add('chefService','entity', array(
@@ -48,6 +52,7 @@ class ServiceAdmin extends Admin
     {
         $showMapper
             ->with('General')
+            ->add('uf')
             ->add('nom')
             ->add('email')
             ->add('telephone')

@@ -2,8 +2,6 @@
 
 namespace IuchBundle\Model;
 
-use Symfony\Component\HttpFoundation\File\File;
-
 class Signature extends \IuchBundle\Entity\Charte
 {
     private $signe = null;
@@ -105,7 +103,6 @@ class Signature extends \IuchBundle\Entity\Charte
         $this->setDescription($charte->getDescription());
         $this->setService($charte->getService());
         $this->setServices($charte->getServices());
-       // $this->setUser($signature->getUser());
 
 
         if (isset($signature)) {

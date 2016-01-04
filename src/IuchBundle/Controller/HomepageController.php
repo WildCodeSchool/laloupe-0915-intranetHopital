@@ -3,8 +3,6 @@
 namespace IuchBundle\Controller;
 
 use Sonata\UserBundle\Model\UserInterface;
-use IuchBundle\Entity\Charte_utilisateur;
-use IuchBundle\Entity\Charte;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 

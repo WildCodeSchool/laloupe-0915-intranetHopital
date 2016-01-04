@@ -155,14 +155,14 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td scope="row">
+                            <td>
                                 {% if cle.remis == true %}
                                     Oui
                                 {% else %}
                                     Non
                                 {% endif %}
                             </td>
-                            <td scope="row">{{ cle.dateRemise|date('d/m/Y') }}</td>
+                            <td>{{ cle.dateRemise|date('d/m/Y') }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -187,14 +187,14 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td scope="row">
+                            <td>
                                 {% if badge.remis == true %}
                                     Oui
                                 {% else %}
                                     Non
                                 {% endif %}
                             </td>
-                            <td scope="row">{{ badge.dateRemise|date('D m Y H:i') }}</td>
+                            <td>{{ badge.dateRemise|date('D m Y H:i') }}</td>
                         </tr>
                         </tbody>
                     </table>

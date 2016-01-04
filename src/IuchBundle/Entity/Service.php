@@ -1,8 +1,6 @@
 <?php
 
 namespace IuchBundle\Entity;
-use Application\Sonata\UserBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Service
@@ -170,5 +168,35 @@ class Service
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * @var string
+     */
+    private $uf;
+
+
+    /**
+     * Set uf
+     *
+     * @param string $uf
+     *
+     * @return Service
+     */
+    public function setUf($uf)
+    {
+        $this->uf = $uf;
+
+        return $this;
+    }
+
+    /**
+     * Get uf
+     *
+     * @return string
+     */
+    public function getUf()
+    {
+        return $this->uf;
     }
 }
