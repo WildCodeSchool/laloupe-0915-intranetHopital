@@ -1,5 +1,6 @@
 {
-    "name": "erwan/projet.intranet_hopital",
+    "name": "wcs/projet.intranet_hopital",
+    "description": "intranet hopital de La Loupe et Nogent Le Rotrou",
     "license": "proprietary",
     "type": "project",
     "autoload": {

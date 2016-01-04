@@ -3,8 +3,6 @@
 namespace IuchBundle\Controller;
 
 use IuchBundle\Form\Type\SignatureType;
-use Sonata\UserBundle\Model\UserInterface;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;
@@ -42,7 +40,7 @@ class SignatureController extends Controller
 
         $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
 
-        if ($charte_utilisateur == null) {
+        if ($charte_utilisateur === null) {
 
             $entity = new Charte_utilisateur();
             $form = $this->createCreateForm($entity, $charte_id);
