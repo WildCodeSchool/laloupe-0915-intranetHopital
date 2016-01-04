@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
+use Symfony\Component\Security\Core\Role\Role;
 
 class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 {
@@ -31,10 +32,10 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         // Get list of roles for current user
         $roles = $token->getRoles();
         // Tranform this list in array
-        $rolesTab = array_map(function($role){
+        $rolesTab = array_map(function(Role $role){
             return $role->getRole();
         }, $roles);
-        // If is a qualité, blanchisserie, RH, admin or super admin we redirect to the admin/dashboard area
+        // If is a QGDR, blanchisserie, RH, admin or super admin we redirect to the admin/dashboard area
         if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_RH', $rolesTab, true) || in_array('ROLE_BLANCHISSERIE', $rolesTab, true) || in_array('ROLE_SERVICE_TECHNIC', $rolesTab, true) || in_array('ROLE_QGDR', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
 
