@@ -2,8 +2,6 @@
 
 namespace IuchBundle\Model;
 
-use Symfony\Component\HttpFoundation\File\File;
-
 class Signature extends \IuchBundle\Entity\Charte
 {
     private $signe = null;

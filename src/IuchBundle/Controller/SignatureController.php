@@ -3,8 +3,6 @@
 namespace IuchBundle\Controller;
 
 use IuchBundle\Form\Type\SignatureType;
-use Sonata\UserBundle\Model\UserInterface;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use IuchBundle\Entity\Charte_utilisateur;

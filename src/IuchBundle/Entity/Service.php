@@ -1,8 +1,6 @@
 <?php
 
 namespace IuchBundle\Entity;
-use Application\Sonata\UserBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Service
