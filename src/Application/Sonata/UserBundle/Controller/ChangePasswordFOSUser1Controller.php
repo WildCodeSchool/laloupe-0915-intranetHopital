@@ -11,10 +11,8 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ChangePasswordFOSUser1Controller

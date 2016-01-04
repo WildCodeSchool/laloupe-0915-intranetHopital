@@ -1,10 +1,12 @@
 iuch_homepage:
     path: /
     defaults: { _controller: "IuchBundle:Homepage:Index" }
+    methods:  [GET]
 
 iuch_signature:
     path: /signature/{charte_id}
     defaults: { _controller: "IuchBundle:Signature:Signature" }
+    methods:  [GET]
 
 iuch_create_signature:
     path: /create_signature/{charte_id}
@@ -29,3 +31,4 @@ iuch_trombinoscope:
 iuch_statistiques:
     path: /statistiques
     defaults:
+    methods:  [GET]
