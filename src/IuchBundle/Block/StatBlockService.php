@@ -76,15 +76,6 @@ class StatBlockService extends BaseBlockService
 
         $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
 
-        $labels = [];
-        $datas = [];
-
-        foreach ($nbSignaturesByCharte as $charte => $nbSignature)
-        {
-            $labels[] = $charte;
-            $datas[] = $nbSignature;
-        }
-
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
