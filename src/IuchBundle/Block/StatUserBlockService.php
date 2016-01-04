@@ -76,7 +76,7 @@ class StatUserBlockService extends BaseBlockService
 
         $nbr_cles = 0;
         foreach ($cles as $cle) {
-            if ($cle->getRemis() == true) $nbr_cles ++;
+            if ($cle->getRemis() === true) $nbr_cles ++;
         }
 
 
@@ -87,7 +87,7 @@ class StatUserBlockService extends BaseBlockService
 
         $nbr_badges = 0;
         foreach ($badges as $badge) {
-            if ($badge->getRemis() == true) $nbr_badges ++;
+            if ($badge->getRemis() === true) $nbr_badges ++;
         }
 
 

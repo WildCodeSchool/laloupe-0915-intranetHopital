@@ -22,7 +22,7 @@ class editProfileListener
             {
                 $service = $eventArgs->getEntity()->getService();
 
-                if ($service != null) {
+                if ($service !== null) {
                     if ($service->getChefService())
                         $mail = $service->getChefService()->getEmail();
                     else {

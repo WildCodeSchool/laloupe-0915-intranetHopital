@@ -11,7 +11,7 @@ class CleListener
     public function preUpdate(PreUpdateEventArgs $eventArgs)
     {
         if ($eventArgs->getEntity() instanceof Cle) {
-            if ($eventArgs->hasChangedField('remis') && $eventArgs->getNewValue('remis') == false) {
+            if ($eventArgs->hasChangedField('remis') && $eventArgs->getNewValue('remis') === false) {
 
                 $date = new \DateTime('now');
 

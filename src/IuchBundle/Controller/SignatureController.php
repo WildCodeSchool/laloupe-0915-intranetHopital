@@ -40,7 +40,7 @@ class SignatureController extends Controller
 
         $charte_utilisateur = $em->getRepository('IuchBundle:Charte_utilisateur')->findOneBy(array('charte' => $charte, 'user' => $user));
 
-        if ($charte_utilisateur == null) {
+        if ($charte_utilisateur === null) {
 
             $entity = new Charte_utilisateur();
             $form = $this->createCreateForm($entity, $charte_id);
