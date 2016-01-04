@@ -9,6 +9,7 @@
 // src/IuchBundle/Block
 namespace IuchBundle\Block;
 
+use IuchBundle\Entity\Charte;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -22,10 +23,6 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
-
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class StatBlockService extends BaseBlockService
 {
@@ -62,15 +59,8 @@ class StatBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id = $user_current->getId();
-
         $signatures = $this->em
             ->getRepository('IuchBundle:Charte_utilisateur')
-            ->findAll();
-
-        $users = $this->em
-            ->getRepository('ApplicationSonataUserBundle:User')
             ->findAll();
 
         $chartesSignees = [];
@@ -80,36 +70,11 @@ class StatBlockService extends BaseBlockService
             $chartesSignees[] = $charte;
         }
 
-        $map = function($charte) {
+        $map = function(Charte $charte) {
             return substr($charte->getNom(), 6, 20).'...';
         };
 
         $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
-
-        $labels = [];
-        $datas = [];
-
-        foreach ($nbSignaturesByCharte as $charte => $nbSignature)
-        {
-            $labels[] = $charte;
-            $datas[] = $nbSignature;
-        }
-
-        $datasBar = array(
-            'labels' => array($labels),
-            'datasets' => array(
-                array(
-                    'label' => 'Signées',
-                    'fillColor'=> "rgba(220,220,220,0.5)",
-                    'strokeColor'=> "rgba(220,220,220,0.8)",
-                    'highlightFill'=> "rgba(220,220,220,0.75)",
-                    'highlightStroke'=> "rgba(220,220,220,1)",
-                    'data' => $datas
-                )
-            )
-        );
-
-        $settings = array_merge($this->getDefaultSettings(), $blockContext->getSettings());
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),

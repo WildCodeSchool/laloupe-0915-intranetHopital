@@ -23,10 +23,6 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
 class StatUserBlockService extends BaseBlockService
 {
     /**
@@ -62,9 +58,6 @@ class StatUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user_current   = $this->securityContext->getToken()->getUser();
-        $user_id        = $user_current->getId();
-
         // Tenues stats
         $tenues = $this->em
             ->getRepository('IuchBundle:Tenue')
@@ -83,7 +76,7 @@ class StatUserBlockService extends BaseBlockService
 
         $nbr_cles = 0;
         foreach ($cles as $cle) {
-            if ($cle->getRemis() == true) $nbr_cles ++;
+            if ($cle->getRemis() === true) $nbr_cles ++;
         }
 
 
@@ -94,7 +87,7 @@ class StatUserBlockService extends BaseBlockService
 
         $nbr_badges = 0;
         foreach ($badges as $badge) {
-            if ($badge->getRemis() == true) $nbr_badges ++;
+            if ($badge->getRemis() === true) $nbr_badges ++;
         }
 
 

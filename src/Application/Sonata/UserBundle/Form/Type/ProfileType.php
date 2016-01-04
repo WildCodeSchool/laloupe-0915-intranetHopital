@@ -3,23 +3,17 @@
 
 namespace Application\Sonata\UserBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Sonata\UserBundle\Model\UserInterface;
 
 class ProfileType extends \Sonata\UserBundle\Form\Type\ProfileType
 {
-    private $class;
-
     /**
      * @param string $class The User class name
      */
-    public function __construct($class)
+    public function __construct()
     {
-        $this->class = $class;
+        parent::__construct('Application\Sonata\UserBundle\Entity\User');
     }
 
     /**
@@ -48,16 +42,6 @@ class ProfileType extends \Sonata\UserBundle\Form\Type\ProfileType
                 'required' => false
             ))
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => $this->class
-        ));
     }
 
     /**
