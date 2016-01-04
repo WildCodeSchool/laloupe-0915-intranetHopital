@@ -4,7 +4,6 @@
 namespace Application\Sonata\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class ProfileType extends \Sonata\UserBundle\Form\Type\ProfileType
 {
