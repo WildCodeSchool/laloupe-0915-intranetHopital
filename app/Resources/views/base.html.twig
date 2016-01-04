@@ -4,8 +4,8 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Interface de gestion des utilisateurs du centre hospitalier de La Loupe{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('bundles/iuch/img/favicon.png') }}" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/iuch/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/iuch/bootstrap/css/bootstrap.min.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,300,300italic' rel='stylesheet' type='text/css'>
         {% block stylesheets %}
         {% endblock %}
@@ -64,7 +64,7 @@
         </div>
 
         <script src="{{ asset('bundles/iuch/js/jquery-1.11.3.min.js') }}"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="{{ asset('bundles/iuch/bootstrap/js/bootstrap.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
