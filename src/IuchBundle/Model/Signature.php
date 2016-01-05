@@ -104,7 +104,7 @@ class Signature extends \IuchBundle\Entity\Charte
         $this->setService($charte->getService());
         $this->setServices($charte->getServices());
         $this->setObligatoire($charte->getObligatoire());
-        
+
         if (isset($signature)) {
             $this->signe = true;
         } else {
