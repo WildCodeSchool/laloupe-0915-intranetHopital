@@ -143,6 +143,7 @@ class UserAdmin extends Admin
             ->with('Informations obligatoires')
                 ->add('username', null, array(
                     'label' => 'Matricule',
+                    'attr' => array('maxlength' => '6'),
                     'required' => true
                 ))
                 ->add('lastname', null, array('required' => true))
@@ -202,7 +203,8 @@ class UserAdmin extends Admin
                     'label' => 'Adresse'
                 ))
                 ->add('zip', null, array(
-                    'label' => 'Code postal'
+                    'label' => 'Code postal',
+                    'attr' => array('maxlength' => '5')
                 ))
                 ->add('ville' , null, array(
                     'label' => 'Ville'

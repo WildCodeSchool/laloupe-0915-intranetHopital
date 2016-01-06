@@ -17,7 +17,10 @@
             <attribute-override name="emailCanonical">
                 <field column="emailCanonical" nullable="true"/>
             </attribute-override>
-        </attribute-overrides>
+           <attribute-override name="username">
+               <field column="username" type="string" length="6"/>
+           </attribute-override>
+       </attribute-overrides>
 
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
         <field name="zip" column="zip" type="string" length="5" nullable="true" />

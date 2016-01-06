@@ -53,7 +53,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user1->setLastLogin(new \DateTime('now'));
 
         $user2 = $userManager->createUser();
-        $user2->setUsername('ressources-humaines');
+        $user2->setUsername('rh');
         $user2->setPlainPassword('ressources-humaines');
         $user2->setEmail('RH@email.com');
         $user2->setRoles(array('ROLE_RH'));
@@ -68,7 +68,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user2->setService($this->getReference('3'));
 
         $user3 = $userManager->createUser();
-        $user3->setUsername('medecin');
+        $user3->setUsername('medic');
         $user3->setPlainPassword('medecin');
         $user3->setEmail('medecin@email.com');
         $user3->setRoles(array('ROLE_USER'));
@@ -84,7 +84,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user3->setChefService(true);
 
         $user4 = $userManager->createUser();
-        $user4->setUsername('brancardier');
+        $user4->setUsername('bran');
         $user4->setPlainPassword('brancardier');
         $user4->setEmail('brancardier@email.com');
         $user4->setRoles(array('ROLE_USER'));
@@ -116,7 +116,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user5->setService($this->getReference('7'));
 
         $user6 = $userManager->createUser();
-        $user6->setUsername('thierry');
+        $user6->setUsername('dty');
         $user6->setPlainPassword('thierry');
         $user6->setEmail('thierry@email.com');
         $user6->setRoles(array('ROLE_USER'));
@@ -149,7 +149,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user7->setService($this->getReference('7'));
 
         $user8 = $userManager->createUser();
-        $user8->setUsername('testAdmin');
+        $user8->setUsername('testAd');
         $user8->setPlainPassword('testAdmin');
         $user8->setEmail('testAdmin@email.com');
         $user8->setRoles(array('ROLE_SUPER_ADMIN'));
@@ -165,7 +165,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user8->setService($this->getReference('1'));
 
         $user9 = $userManager->createUser();
-        $user9->setUsername('blanchisserie');
+        $user9->setUsername('linge');
         $user9->setPlainPassword('blanchisserie');
         $user9->setEmail('henri@email.com');
         $user9->setRoles(array('ROLE_BLANCHISSERIE'));
@@ -181,7 +181,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user9->setService($this->getReference('8'));
 
         $user10 = $userManager->createUser();
-        $user10->setUsername('services-techniques');
+        $user10->setUsername('tech');
         $user10->setPlainPassword('services-techniques');
         $user10->setEmail('maurice@email.com');
         $user10->setRoles(array('ROLE_SERVICE_TECHNIC'));
@@ -197,7 +197,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user10->setService($this->getReference('9'));
 
         $user11 = $userManager->createUser();
-        $user11->setUsername('qualité');
+        $user11->setUsername('qgdr');
         $user11->setPlainPassword('qualité');
         $user11->setEmail('lea@email.com');
         $user11->setRoles(array('ROLE_QGDR'));
