@@ -6,13 +6,8 @@ namespace IuchBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Application\Sonata\UserBundle\Entity\User;
-use IuchBundle\Entity\Fonction;
-use IuchBundle\Entity\Service;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
@@ -51,6 +46,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user1->setLastname('Admin');
         $user1->setPhone('0233258975');
         $user1->setLastLogin(new \DateTime('now'));
+        $user1->setFonction($this->getReference('10'));
+        $user1->setService($this->getReference('3'));
 
         $user2 = $userManager->createUser();
         $user2->setUsername('rh');

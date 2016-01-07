@@ -19,10 +19,14 @@ IuchBundle\Entity\Charte_utilisateur:
             joinColumn:
                 name: charte_id
                 referencedColumnName: id
+            cascade: ["remove"]
+
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
+            orphanRemoval: true
             joinColumn:
                 name: utilisateur_id
                 referencedColumnName: id
+                onDelete: SET NULL
 
     lifecycleCallbacks: {  }

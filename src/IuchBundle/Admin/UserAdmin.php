@@ -176,10 +176,12 @@ class UserAdmin extends Admin
             ->end()
             ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
-                    'label' => 'Fonction'
+                    'label' => 'Fonction',
+                    'required' => true
                 ))
                 ->add('service', 'sonata_type_model_list', array(
-                    'label' => 'Service référent'
+                    'label' => 'Service référent',
+                    'required' => true
                 ))
                 ->add('services', null, array(
                     'required' => false,
@@ -197,6 +199,7 @@ class UserAdmin extends Admin
                     'placeholder' => '',
                     'widget' => 'single_text',
                     'format' => 'dd-MM-yyyy',
+                    'required' => true,
                     'attr' => array(
                         'class' => 'form-control input-inline datepicker',
                         'data-provide' => 'datepicker',

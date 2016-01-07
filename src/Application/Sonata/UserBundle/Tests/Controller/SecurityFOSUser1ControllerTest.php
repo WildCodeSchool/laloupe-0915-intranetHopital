@@ -26,8 +26,8 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $form = $crawler->selectButton('_submit')->form();
 
         // set some values
-        $form['_username'] = 'testAdmin';
-        $form['_password'] = 'testAdmin';
+        $form['_username'] = 'admin';
+        $form['_password'] = 'admin';
 
         // submit the form
         $crawler = $client->submit($form);
@@ -84,10 +84,15 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $kernel->boot();
         $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
+        $fonction = $em->getRepository('IuchBundle:Fonction')->findOneByNom('testFonction');
+        $service = $em->getRepository('IuchBundle:Service')->findOneByNom('testService');
+
         // On Créé un nouvel utilisateur
         $user = new User();
         $user->setUsername('TestUser');
         $user->setPlainPassword('081187');
+        $user->setFonction($fonction);
+        $user->setService($service);
         $em->persist($user);
         $em->flush();
 
