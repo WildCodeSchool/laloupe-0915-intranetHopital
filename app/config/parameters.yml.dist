@@ -20,4 +20,3 @@ parameters:
 
     # enabled trombinoscope link // true or false
     trombinoscope.enabled: true
-
