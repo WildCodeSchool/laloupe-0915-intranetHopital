@@ -4,6 +4,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/admin.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}"/>
 {% endblock %}
 
 {# remove sonata-project link on nav #}
@@ -148,4 +149,9 @@
 
 {% block javascripts %}
     {{ parent() }}
+<<<<<<< HEAD
+=======
+    <script src="{{ asset('bundles/iuch/js/test.js') }}"></script>
+    <script src="{{ asset('bundles/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+>>>>>>> dev
 {% endblock %}
