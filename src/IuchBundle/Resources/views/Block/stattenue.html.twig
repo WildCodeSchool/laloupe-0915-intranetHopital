@@ -1,0 +1,19 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div id="stats" class="container">
+        <div class="col-md-12">
+            <h2>Tenues remises :</h2>
+            <div id="stats-blocks" class="row">
+
+                <div id="block__tenues" class="col-md-12 blocks__statuser">
+                    <h2><i class="fa fa-male"></i> Tenues</h2>
+                    <h1>{{ tenues }}</h1>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

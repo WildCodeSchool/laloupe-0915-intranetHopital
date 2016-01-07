@@ -179,6 +179,7 @@ sonata_block:
         sonata.block.service.stat: ~
         sonata.block.service.statuser: ~
         sonata.block.service.statlastuser: ~
+        sonata.block.service.stattenue: ~
 
 ####### SonataUser #######
 sonata_user:
