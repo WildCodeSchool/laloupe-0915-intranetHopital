@@ -7,8 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CoreControllerTest extends WebTestCase
 {
-
-    private function connection($client, $username, $password)
+   private function connection($client, $username, $password)
     {
         $crawler = $client->request('GET', '/login');
         $form = $crawler->selectButton('_submit')->form();
@@ -29,7 +28,7 @@ class CoreControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $this->connection($client, 'testAdmin', 'testAdmin');
+        $crawler = $this->connection($client, 'admin', 'admin');
         $crawler = $client->request('GET', '/admin/dashboard');
         $this->assertTrue(200 === $client->getResponse()->getStatusCode());
         $this->assertEquals('Sonata\AdminBundle\Controller\CoreController::dashboardAction', $client->getRequest()->attributes->get('_controller'));
@@ -46,7 +45,7 @@ class CoreControllerTest extends WebTestCase
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Badge donnés/rendus")')->count());
     }
 
-    public function testShowRHDashboard()
+    /*public function testShowRHDashboard()
     {
         $client = static::createClient();
 
@@ -99,5 +98,5 @@ class CoreControllerTest extends WebTestCase
 
         // Testing the aside's links
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Photos")')->count());
-    }
+    }*/
 }

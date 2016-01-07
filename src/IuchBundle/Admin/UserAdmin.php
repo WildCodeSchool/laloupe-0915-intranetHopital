@@ -161,12 +161,10 @@ class UserAdmin extends Admin
             ->end()
             ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
-                    'label' => 'Fonction',
-                    'required' => false
+                    'label' => 'Fonction'
                 ))
                 ->add('service', 'sonata_type_model_list', array(
-                    'label' => 'Service référent',
-                    'required' => false
+                    'label' => 'Service référent'
                 ))
                 ->add('services', null, array(
                     'required' => false,
@@ -183,8 +181,7 @@ class UserAdmin extends Admin
                     'label' => 'Date d\'entrée',
                     'placeholder' => '',
                     'years' => range(date('Y') - 50, date('Y')),
-                    'widget' => 'choice',
-                    'required' => false
+                    'widget' => 'choice'
                     ))
                 ->add('date_sortie', 'date', array(
                     'label' => 'Date de sortie',

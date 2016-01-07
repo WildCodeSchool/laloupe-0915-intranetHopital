@@ -26,8 +26,8 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $form = $crawler->selectButton('_submit')->form();
 
         // set some values
-        $form['_username'] = 'testAdmin';
-        $form['_password'] = 'testAdmin';
+        $form['_username'] = 'admin';
+        $form['_password'] = 'admin';
 
         // submit the form
         $crawler = $client->submit($form);
