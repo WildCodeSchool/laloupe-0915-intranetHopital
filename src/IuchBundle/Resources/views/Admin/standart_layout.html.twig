@@ -139,9 +139,14 @@
                 {{ sonata_block_render({ 'type': 'sonata.block.service.statuser' }) }}
             {% endif %}
 
+            {% if is_granted('ROLE_BLANCHISSERIE') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.stattenue' }) }}
+            {% endif %}
+
             {% if is_granted('ROLE_RH') %}
                 {{ sonata_block_render({ 'type': 'sonata.block.service.statlastuser' }) }}
             {% endif %}
+
         {% endblock block %}
     {% endif %}
 

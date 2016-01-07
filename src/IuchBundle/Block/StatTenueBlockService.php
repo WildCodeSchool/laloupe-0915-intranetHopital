@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-class StatUserBlockService extends BaseBlockService
+class StatTenueBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -58,34 +58,22 @@ class StatUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        // Cles stats
-        $cles = $this->em
-            ->getRepository('IuchBundle:Cle')
+        // Tenues stats
+        $tenues = $this->em
+            ->getRepository('IuchBundle:Tenue')
             ->findAll();
 
-        $nbr_cles = 0;
-        foreach ($cles as $cle) {
-            if ($cle->getRemis() === true) $nbr_cles ++;
+        $nbr_tenues = 0;
+        foreach ($tenues as $tenue) {
+            $nbr_tenues += $tenue->getNombreDonne();
         }
-
-
-        // Badges stats
-        $badges = $this->em
-            ->getRepository('IuchBundle:Badge')
-            ->findAll();
-
-        $nbr_badges = 0;
-        foreach ($badges as $badge) {
-            if ($badge->getRemis() === true) $nbr_badges ++;
-        }
-
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:stattenue.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'cles'          => $nbr_cles,
-            'badges'        => $nbr_badges
+            'tenues'        => $nbr_tenues
+
         ), $response);
     }
     /**
@@ -95,7 +83,7 @@ class StatUserBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:statuser.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:stattenue.html.twig' // Le template à render dans execute()
         ));
     }
 

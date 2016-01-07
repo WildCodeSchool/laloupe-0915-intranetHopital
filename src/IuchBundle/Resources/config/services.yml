@@ -106,6 +106,12 @@ services:
         tags:
             - { name: sonata.block }
 
+    sonata.block.service.stattenue:
+        class: IuchBundle\Block\StatTenueBlockService
+        arguments: [ "sonata.block.service.stattenue", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
     assetic.filter.twig:
         class: IuchBundle\Filter\TwigFilter
         arguments:
