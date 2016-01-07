@@ -27,6 +27,7 @@ class TenueAdmin extends Admin
         $datagridMapper
             ->add('nom')
             ->add('user')
+            ->add('intervenant')
             ->add('date_donnee', 'doctrine_orm_date_range')
             ->add('nombre_donne')
             ->add('date_rendu', 'doctrine_orm_date_range')
@@ -46,6 +47,7 @@ class TenueAdmin extends Admin
             ->add('nombre_donne')
             ->add('date_rendu')
             ->add('nombre_rendu')
+            ->add('intervenant')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -60,6 +62,7 @@ class TenueAdmin extends Admin
         $showMapper
             ->with('Général')
             ->add('user')
+            ->add('intervenant')
             ->add('nom')
             ->end()
             ->with('Entrée')
