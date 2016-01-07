@@ -16,6 +16,7 @@ use IuchBundle\Entity\Badge;
 use IuchBundle\Entity\Charte;
 use IuchBundle\Entity\Cle;
 use IuchBundle\Entity\Photo;
+use IuchBundle\Entity\Tenue;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -98,7 +99,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                      * IUCH
                      * Editer l'intervenant
                      */
-                    if ($object instanceof Cle || $object instanceof Badge)
+                    if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
                     {
                         $user = $this->getUser();
                         $object->setIntervenant($user);
@@ -231,7 +232,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
              * IUCH
              * Enregistrer l'intervenant
              */
-            if ($object instanceof Cle || $object instanceof Badge)
+            if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
             {
                 $user = $this->getUser();
                 $object->setIntervenant($user);

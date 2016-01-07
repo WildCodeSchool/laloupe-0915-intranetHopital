@@ -32,4 +32,9 @@ IuchBundle\Entity\Tenue:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
+        intervenant:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            joinColumn:
+                name: intervenant_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

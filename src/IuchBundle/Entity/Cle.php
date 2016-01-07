@@ -12,6 +12,8 @@ class Cle
         $this->date_remise = new \DateTime('now');
     }
 
+    //GENERATED CODE
+
     /**
      * @var integer
      */
