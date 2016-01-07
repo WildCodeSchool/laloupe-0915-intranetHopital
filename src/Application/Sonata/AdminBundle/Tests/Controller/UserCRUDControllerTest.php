@@ -129,7 +129,7 @@ class UserCRUDTest extends WebTestCase
     {
         $id = $this->getId();
 
-        $client = $this->createService(array($id.'[uf]' => 'plop', $id.'[email]' => 'service', $id.'[telephone]' => 'diojefoijo'));
+        $client = $this->createService(array($id.'[username]' => '111111', $id.'[firstname]' => 'service', $id.'[telephone]' => 'diojefoijo'));
         $crawler = $client->getCrawler();
 
         $this->assertEquals('Application\Sonata\AdminBundle\Controller\CRUDController::createAction',

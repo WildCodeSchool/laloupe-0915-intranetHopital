@@ -161,10 +161,12 @@ class UserAdmin extends Admin
             ->end()
             ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
-                    'label' => 'Fonction'
+                    'label' => 'Fonction',
+                    'required' => true
                 ))
                 ->add('service', 'sonata_type_model_list', array(
-                    'label' => 'Service référent'
+                    'label' => 'Service référent',
+                    'required' => true
                 ))
                 ->add('services', null, array(
                     'required' => false,

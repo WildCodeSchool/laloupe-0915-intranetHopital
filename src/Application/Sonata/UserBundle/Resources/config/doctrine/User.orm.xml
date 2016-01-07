@@ -31,11 +31,11 @@
         <field name="raison_sortie" column="raison_sortie" type="string" length="255" nullable="true" />
 
         <many-to-one field="fonction" target-entity="IuchBundle\Entity\Fonction">
-            <join-column name="fonction_id" referenced-column-name="id"/>
+            <join-column name="fonction_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
 
         <many-to-one field="service" target-entity="IuchBundle\Entity\Service" inversed-by="users" orphan-removal="true">
-            <join-column name="service_id" referenced-column-name="id" on-delete="SET NULL" />
+            <join-column name="service_id" referenced-column-name="id" on-delete="SET NULL" nullable="false" />
         </many-to-one>
 
         <many-to-many field="services" target-entity="IuchBundle\Entity\Service">
