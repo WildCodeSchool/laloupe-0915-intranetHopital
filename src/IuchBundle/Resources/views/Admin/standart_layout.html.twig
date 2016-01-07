@@ -131,6 +131,9 @@
             <div>
                 <h1>Bienvenue sur le tableau de bord</h1>
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="bg-info"><p class="text-info" style="padding:10px;">Pour désactiver/activer le trombinoscope, veuillez vous rendre dans le fichier parameters.yml du dossier app de l'application et changer le parametre trombinoscope.enabled à true ou false</p></div>
+            {% endif %}
             {% if is_granted('ROLE_QGDR') %}
                 {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
             {% endif %}
@@ -154,9 +157,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-<<<<<<< HEAD
-=======
-    <script src="{{ asset('bundles/iuch/js/test.js') }}"></script>
     <script src="{{ asset('bundles/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
->>>>>>> dev
 {% endblock %}
