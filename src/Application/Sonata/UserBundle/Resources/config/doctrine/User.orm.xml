@@ -35,7 +35,7 @@
         </many-to-one>
 
         <many-to-one field="service" target-entity="IuchBundle\Entity\Service" inversed-by="users" orphan-removal="true">
-            <join-column name="service_id" referenced-column-name="id" on-delete="SET NULL" nullable="false" />
+            <join-column name="service_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />
         </many-to-one>
 
         <many-to-many field="services" target-entity="IuchBundle\Entity\Service">
