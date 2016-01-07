@@ -26,7 +26,7 @@ file that was distributed with this source code.
                 <div class="panel-body">
 
                     {% if error %}
-                        <div class="alert alert-danger alert-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                        <div class="alert alert-danger alert-error">{{ error|trans({"Bad credentials": "Nom d'utilisateur ou mot de passe incorrect"}) }}</div>
                     {% endif %}
 
                     <form action="{{ path("fos_user_security_check") }}" method="post" role="form"
