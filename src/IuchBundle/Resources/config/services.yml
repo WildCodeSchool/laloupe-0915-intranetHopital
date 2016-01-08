@@ -74,20 +74,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.badge:
-        class: IuchBundle\Admin\BadgeAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Badge donnés/rendus" }
-        arguments:
-            - ~
-            - IuchBundle\Entity\Badge
-            -
-
-    iuch.badge_listener:
-        class: IuchBundle\Listener\BadgeListener
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-
     sonata.block.service.stat:
         class: IuchBundle\Block\StatBlockService
         arguments: [ "sonata.block.service.stat", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]

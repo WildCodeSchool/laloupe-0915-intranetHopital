@@ -68,24 +68,11 @@ class StatUserBlockService extends BaseBlockService
             if ($cle->getRemis() === true) $nbr_cles ++;
         }
 
-
-        // Badges stats
-        $badges = $this->em
-            ->getRepository('IuchBundle:Badge')
-            ->findAll();
-
-        $nbr_badges = 0;
-        foreach ($badges as $badge) {
-            if ($badge->getRemis() === true) $nbr_badges ++;
-        }
-
-
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'cles'          => $nbr_cles,
-            'badges'        => $nbr_badges
+            'cles'          => $nbr_cles
         ), $response);
     }
     /**

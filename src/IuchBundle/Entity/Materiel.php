@@ -110,4 +110,3 @@ class Materiel
         return $this->dateRendu;
     }
 }
-

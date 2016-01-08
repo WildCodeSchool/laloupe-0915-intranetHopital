@@ -99,7 +99,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                      * IUCH
                      * Editer l'intervenant
                      */
-                    if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
+                    if ($object instanceof Cle || $object instanceof Tenue)
                     {
                         $user = $this->getUser();
                         $object->setIntervenant($user);
@@ -232,7 +232,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
              * IUCH
              * Enregistrer l'intervenant
              */
-            if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
+            if ($object instanceof Cle || $object instanceof Tenue)
             {
                 $user = $this->getUser();
                 $object->setIntervenant($user);
