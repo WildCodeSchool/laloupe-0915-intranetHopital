@@ -8,15 +8,17 @@ IuchBundle\Entity\Materiel:
             generator:
                 strategy: AUTO
     fields:
-        remis:
-            type: boolean
         date_remise:
             type: date
             column: date_remise
+        rendu:
+            type: boolean
         date_rendu:
             type: date
             column: date_rendu
             nullable: true
+        perdu_vol:
+            type: boolean
         commentaire:
             type: text
             nullable: true

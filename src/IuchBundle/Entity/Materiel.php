@@ -13,15 +13,11 @@ class Materiel
     }
 
     //GENERATED CODE
+
     /**
      * @var integer
      */
     private $id;
-
-    /**
-     * @var boolean
-     */
-    private $remis;
 
     /**
      * @var \DateTime
@@ -29,9 +25,19 @@ class Materiel
     private $date_remise;
 
     /**
+     * @var boolean
+     */
+    private $rendu;
+
+    /**
      * @var \DateTime
      */
     private $date_rendu;
+
+    /**
+     * @var boolean
+     */
+    private $perdu_vol;
 
     /**
      * @var string
@@ -49,9 +55,9 @@ class Materiel
     private $user;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \IuchBundle\Entity\TypeMateriel
      */
-    private $types;
+    private $type;
 
 
     /**
@@ -62,30 +68,6 @@ class Materiel
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set remis
-     *
-     * @param boolean $remis
-     *
-     * @return Materiel
-     */
-    public function setRemis($remis)
-    {
-        $this->remis = $remis;
-
-        return $this;
-    }
-
-    /**
-     * Get remis
-     *
-     * @return boolean
-     */
-    public function getRemis()
-    {
-        return $this->remis;
     }
 
     /**
@@ -113,6 +95,30 @@ class Materiel
     }
 
     /**
+     * Set rendu
+     *
+     * @param boolean $rendu
+     *
+     * @return Materiel
+     */
+    public function setRendu($rendu)
+    {
+        $this->rendu = $rendu;
+
+        return $this;
+    }
+
+    /**
+     * Get rendu
+     *
+     * @return boolean
+     */
+    public function getRendu()
+    {
+        return $this->rendu;
+    }
+
+    /**
      * Set dateRendu
      *
      * @param \DateTime $dateRendu
@@ -134,6 +140,30 @@ class Materiel
     public function getDateRendu()
     {
         return $this->date_rendu;
+    }
+
+    /**
+     * Set perduVol
+     *
+     * @param boolean $perduVol
+     *
+     * @return Materiel
+     */
+    public function setPerduVol($perduVol)
+    {
+        $this->perdu_vol = $perduVol;
+
+        return $this;
+    }
+
+    /**
+     * Get perduVol
+     *
+     * @return boolean
+     */
+    public function getPerduVol()
+    {
+        return $this->perdu_vol;
     }
 
     /**
@@ -207,45 +237,6 @@ class Materiel
     {
         return $this->user;
     }
-
-    /**
-     * Add type
-     *
-     * @param \IuchBundle\Entity\TypeMateriel $type
-     *
-     * @return Materiel
-     */
-    public function addType(\IuchBundle\Entity\TypeMateriel $type)
-    {
-        $this->types[] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Remove type
-     *
-     * @param \IuchBundle\Entity\TypeMateriel $type
-     */
-    public function removeType(\IuchBundle\Entity\TypeMateriel $type)
-    {
-        $this->types->removeElement($type);
-    }
-
-    /**
-     * Get types
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTypes()
-    {
-        return $this->types;
-    }
-    /**
-     * @var \IuchBundle\Entity\TypeMateriel
-     */
-    private $type;
-
 
     /**
      * Set type

@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-class StatUserBlockService extends BaseBlockService
+class StatMaterielBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -64,15 +64,26 @@ class StatUserBlockService extends BaseBlockService
             ->findAll();
 
         $nbr_materiels = 0;
+        $nbr_materiels_perdus = 0;
+        $nbr_materiels_rendus = 0;
+        $nbr_materiel_rendu_vol = 0;
         foreach ($materiels as $materiel) {
-            if ($materiel->getRemis() === true) $nbr_materiels ++;
+            if ($materiel->getRendu() === false) $nbr_materiels ++;
+            else $nbr_materiels_rendus ++;
+
+            if ($materiel->getPerduVol() === true) $nbr_materiels_perdus ++;
+
+            if ($materiel->getRendu() === true && $materiel->getPerduVol() === true) $nbr_materiel_rendu_vol ++;
         }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statMateriel.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'materiels'          => $nbr_materiels
+            'materiels'          => $nbr_materiels,
+            'materiels_perdus' => $nbr_materiels_perdus,
+            'materiels_rendus' => $nbr_materiels_rendus,
+            'materiels_rendus_vols' => $nbr_materiel_rendu_vol
         ), $response);
     }
     /**
@@ -82,7 +93,7 @@ class StatUserBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:statuser.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:statMateriel.html.twig' // Le template à render dans execute()
         ));
     }
 

@@ -12,7 +12,6 @@ class MaterielAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('remis')
             ->add('type', null, array('required' => true))
             ->add('user','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
@@ -27,6 +26,8 @@ class MaterielAdmin extends Admin
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-mm-yyyy'
                 )))
+            ->add('rendu')
+            ->add('perdu_vol', null, array('label'=>'Perdu/volé'))
             ->add('commentaire', null, array('required' => false))
         ;
     }
@@ -34,9 +35,10 @@ class MaterielAdmin extends Admin
     {
         $datagridMapper
             ->add('user')
-            ->add('remis')
             ->add('type')
             ->add('date_remise', 'doctrine_orm_date_range')
+            ->add('rendu')
+            ->add('perdu_vol', null, array('label'=>'perdu/volé'))
             ->add('date_rendu', 'doctrine_orm_date_range')
             ->add('intervenant')
         ;
@@ -45,7 +47,8 @@ class MaterielAdmin extends Admin
     {
 
         $listMapper
-            ->addIdentifier('remis')
+            ->add('rendu')
+            ->add('perdu_vol', null, array('label' => 'Perdu/Volé'))
             ->add('type')
             ->add('user', null, array(
                 'route' => array(
@@ -68,9 +71,10 @@ class MaterielAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Remise')
+            ->with('Général')
             ->add('user')
-            ->add('remis')
+            ->add('rendu')
+            ->add('perdu_vol', null, array('label'=>'Perdu/volé'))
             ->add('type')
             ->end()
             ->with('Entrée/Sortie')

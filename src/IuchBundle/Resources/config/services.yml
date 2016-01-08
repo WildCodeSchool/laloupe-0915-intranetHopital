@@ -98,9 +98,9 @@ services:
         tags:
             - { name: sonata.block }
 
-    sonata.block.service.statuser:
-        class: IuchBundle\Block\StatUserBlockService
-        arguments: [ "sonata.block.service.statuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+    sonata.block.service.statmateriel:
+        class: IuchBundle\Block\StatMaterielBlockService
+        arguments: [ "sonata.block.service.statmateriel", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
         tags:
             - { name: sonata.block }
 
