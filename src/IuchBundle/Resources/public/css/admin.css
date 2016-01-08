@@ -29,7 +29,8 @@ p {
     border: #FFF 1px solid;
 }
 
-#block__materiel h3 {
+#block__materiel h3,
+#block__tenues h3 {
     color: #fff;
     text-align: center;
 }
