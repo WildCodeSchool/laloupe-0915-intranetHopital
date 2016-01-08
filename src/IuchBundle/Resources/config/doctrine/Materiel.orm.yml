@@ -1,0 +1,19 @@
+IuchBundle\Entity\Materiel:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        remis:
+            type: boolean
+        dateRemise:
+            type: datetime
+            column: date_remise
+        dateRendu:
+            type: datetime
+            column: date_rendu
+    lifecycleCallbacks: {  }
