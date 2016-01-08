@@ -26,12 +26,12 @@ class Materiel
     /**
      * @var \DateTime
      */
-    private $dateRemise;
+    private $date_remise;
 
     /**
      * @var \DateTime
      */
-    private $dateRendu;
+    private $date_rendu;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
@@ -79,51 +79,51 @@ class Materiel
     }
 
     /**
-     * Set dateRemise
+     * Set date_remise
      *
-     * @param \DateTime $dateRemise
+     * @param \DateTime $date_remise
      *
      * @return Materiel
      */
-    public function setDateRemise($dateRemise)
+    public function setDateRemise($date_remise)
     {
-        $this->dateRemise = $dateRemise;
+        $this->date_remise = $date_remise;
 
         return $this;
     }
 
     /**
-     * Get dateRemise
+     * Get date_remise
      *
      * @return \DateTime
      */
     public function getDateRemise()
     {
-        return $this->dateRemise;
+        return $this->date_remise;
     }
 
     /**
-     * Set dateRendu
+     * Set date_rendu
      *
-     * @param \DateTime $dateRendu
+     * @param \DateTime $date_rendu
      *
      * @return Materiel
      */
-    public function setDateRendu($dateRendu)
+    public function setDateRendu($date_rendu)
     {
-        $this->dateRendu = $dateRendu;
+        $this->date_rendu = $date_rendu;
 
         return $this;
     }
 
     /**
-     * Get dateRendu
+     * Get date_rendu
      *
      * @return \DateTime
      */
     public function getDateRendu()
     {
-        return $this->dateRendu;
+        return $this->date_rendu;
     }
 
     /**
@@ -172,5 +172,34 @@ class Materiel
     public function getIntervenant()
     {
         return $this->intervenant;
+    }
+    /**
+     * @var \IuchBundle\Entity\TypeMateriel
+     */
+    private $type;
+
+
+    /**
+     * Set type
+     *
+     * @param \IuchBundle\Entity\TypeMateriel $type
+     *
+     * @return Materiel
+     */
+    public function setType(\IuchBundle\Entity\TypeMateriel $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \IuchBundle\Entity\TypeMateriel
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

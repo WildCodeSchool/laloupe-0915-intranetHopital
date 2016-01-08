@@ -10,24 +10,32 @@ IuchBundle\Entity\Materiel:
     fields:
         remis:
             type: boolean
-        dateRemise:
+        date_remise:
             type: date
             column: date_remise
-        dateRendu:
+        date_rendu:
             type: date
             column: date_rendu
             nullable: true
 
-    oneToOne:
+    manyToOne:
+        intervenant:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            inversedBy: materiel
+            joinColumn:
+                name: intervenant_id
+                referencedColumnName: id
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
+            inversedBy: materiel
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-        intervenant:
-            targetEntity: Application\Sonata\UserBundle\Entity\User
+        type:
+            targetEntity: IuchBundle\Entity\TypeMateriel
+            inversedBy: materiel
             joinColumn:
-                name: intervenant_id
+                name: type_id
                 referencedColumnName: id
 
     lifecycleCallbacks: {  }

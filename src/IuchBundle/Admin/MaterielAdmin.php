@@ -13,6 +13,7 @@ class MaterielAdmin extends Admin
     {
         $formMapper
             ->add('remis')
+            ->add('type', null, array('required' => true))
             ->add('user','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
@@ -20,6 +21,7 @@ class MaterielAdmin extends Admin
             ->add('date_remise', 'date', array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control input-inline datepicker',
                     'data-provide' => 'datepicker',
@@ -31,6 +33,8 @@ class MaterielAdmin extends Admin
     {
         $datagridMapper
             ->add('user')
+            ->add('remis')
+            ->add('type')
             ->add('date_remise', 'doctrine_orm_date_range')
             ->add('date_rendu', 'doctrine_orm_date_range')
             ->add('intervenant')
@@ -41,6 +45,7 @@ class MaterielAdmin extends Admin
 
         $listMapper
             ->addIdentifier('remis')
+            ->add('type')
             ->add('user', null, array(
                 'route' => array(
                     'name' => 'show'
@@ -64,6 +69,7 @@ class MaterielAdmin extends Admin
             ->with('Général')
             ->add('user')
             ->add('remis')
+            ->add('type')
             ->add('intervenant')
             ->end()
             ->with('Entrée/Sortie')
