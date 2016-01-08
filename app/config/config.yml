@@ -150,7 +150,7 @@ sonata_admin:
 
             iuch.group.keys:
                 icon: '<i class="fa fa-key"></i>'
-                label: "Clés/badges"
+                label: "Matériel"
 
         blocks:
           -

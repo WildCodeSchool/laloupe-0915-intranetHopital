@@ -60,20 +60,6 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.cle:
-        class: IuchBundle\Admin\CleAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Clés données/rendues" }
-        arguments:
-            - ~
-            - IuchBundle\Entity\Cle
-            - ~
-
-    iuch.cle_listener:
-        class: IuchBundle\Listener\CleListener
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-
     sonata.materiel:
         class: IuchBundle\Admin\MaterielAdmin
         tags:

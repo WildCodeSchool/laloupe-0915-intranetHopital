@@ -110,7 +110,7 @@
                 </tbody>
             </table>
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h3>Remise des tenues</h3>
                 {% if tenue is not null %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
@@ -139,9 +139,9 @@
                     Vous n'avez pas encore eu vos tenues.
                 {% endif %}
             </div>
-            <div class="col-sm-4">
-                <h3>Remise des clés</h3>
-                {% if cle is not null %}
+            <div class="col-sm-6">
+                <h3>Remise du matériel</h3>
+                {% if materiel is not null %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
                         <thead>
                         <tr>
@@ -156,13 +156,13 @@
                         <tbody>
                         <tr>
                             <td>
-                                {% if cle.remis == true %}
+                                {% if materiel.remis == true %}
                                     Oui
                                 {% else %}
                                     Non
                                 {% endif %}
                             </td>
-                            <td>{{ cle.dateRemise|date('d/m/Y') }}</td>
+                            <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
                         </tr>
                         </tbody>
                     </table>

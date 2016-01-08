@@ -39,13 +39,13 @@ class HomepageController extends Controller
             ->getRepository('IuchBundle:Tenue')
             ->findOneByUser($user);
 
-        $cle = $this->get('doctrine')
-            ->getRepository('IuchBundle:Cle')
+        $materiel = $this->get('doctrine')
+            ->getRepository('IuchBundle:Materiel')
             ->findOneByUser($user);
 
         return $this->render('IuchBundle::index.html.twig', array(
             'tenue'=> $tenue,
-            'cle'=> $cle,
+            'materiel'=> $materiel,
             'chartes'=> $models,
             'user'   => $user
         ));

@@ -58,21 +58,21 @@ class StatUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        // Cles stats
-        $cles = $this->em
-            ->getRepository('IuchBundle:Cle')
+        // Materiels stats
+        $materiels = $this->em
+            ->getRepository('IuchBundle:Materiel')
             ->findAll();
 
-        $nbr_cles = 0;
-        foreach ($cles as $cle) {
-            if ($cle->getRemis() === true) $nbr_cles ++;
+        $nbr_materiels = 0;
+        foreach ($materiels as $materiel) {
+            if ($materiel->getRemis() === true) $nbr_materiels ++;
         }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'cles'          => $nbr_cles
+            'materiels'          => $nbr_materiels
         ), $response);
     }
     /**
