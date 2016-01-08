@@ -74,6 +74,20 @@ services:
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
+    sonata.materiel:
+        class: IuchBundle\Admin\MaterielAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Matériels donnés/rendus" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\Materiel
+            - ~
+
+    iuch.materiel_listener:
+        class: IuchBundle\Listener\MaterielListener
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
     sonata.block.service.stat:
         class: IuchBundle\Block\StatBlockService
         arguments: [ "sonata.block.service.stat", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
