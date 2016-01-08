@@ -35,17 +35,17 @@ class HomepageController extends Controller
             $models[] = $model;
         }
 
-        $tenue = $this->get('doctrine')
+        $tenues = $this->get('doctrine')
             ->getRepository('IuchBundle:Tenue')
-            ->findOneByUser($user);
+            ->findByUser($user);
 
-        $materiel = $this->get('doctrine')
+        $materiels = $this->get('doctrine')
             ->getRepository('IuchBundle:Materiel')
-            ->findOneByUser($user);
+            ->findByUser($user);
 
         return $this->render('IuchBundle::index.html.twig', array(
-            'tenue'=> $tenue,
-            'materiel'=> $materiel,
+            'tenues'=> $tenues,
+            'materiels'=> $materiels,
             'chartes'=> $models,
             'user'   => $user
         ));

@@ -112,12 +112,12 @@
 
             <div class="col-sm-6">
                 <h3>Remise des tenues</h3>
-                {% if tenue is not null %}
+                {% if tenues is not empty %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
                         <thead>
                         <tr>
                             <th>
-                                Nom
+                                Type
                             </th>
                             <th>
                                 Nb donné
@@ -128,25 +128,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td scope="row">{{ tenue.nom }}</td>
-                            <td scope="row">{{ tenue.nombreDonne }}</td>
-                            <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
-                        </tr>
+                        {% for tenue in tenues %}
+                            <tr>
+                                <td scope="row">{{ tenue.type }}</td>
+                                <td scope="row">{{ tenue.nombreDonne }}</td>
+                                <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
-                    Vous n'avez pas encore eu vos tenues.
+                    Vous n'avez pas de tenues.
                 {% endif %}
             </div>
             <div class="col-sm-6">
                 <h3>Remise du matériel</h3>
-                {% if materiel is not null %}
+                {% if materiels is not empty %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
                         <thead>
                         <tr>
                             <th>
-                                Remis
+                                Type
                             </th>
                             <th>
                                 Date remise
@@ -154,20 +156,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                {% if materiel.remis == true %}
-                                    Oui
-                                {% else %}
-                                    Non
-                                {% endif %}
-                            </td>
-                            <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
-                        </tr>
+                        {% for materiel in materiels %}
+                            <tr>
+                                <td>
+                                    {{ materiel.type }}
+                                </td>
+                                <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
-                    Vous n'avez pas encore eu vos clés ou vous n'en avez pas.
+                    Vous n'avez pas encore eu de matériel.
                 {% endif %}
             </div>
         </div>
