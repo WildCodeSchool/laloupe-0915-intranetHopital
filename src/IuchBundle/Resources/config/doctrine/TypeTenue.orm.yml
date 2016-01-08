@@ -1,6 +1,5 @@
-IuchBundle\Entity\TypeMateriel:
+IuchBundle\Entity\TypeTenue:
     type: entity
-    table: null
     id:
         id:
             type: integer

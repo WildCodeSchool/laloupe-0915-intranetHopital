@@ -27,6 +27,7 @@ class MaterielAdmin extends Admin
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-mm-yyyy'
                 )))
+            ->add('commentaire', null, array('required' => false))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -53,6 +54,7 @@ class MaterielAdmin extends Admin
             ->add('date_remise', 'date', array('format'=>'d/m/Y'))
             ->add('date_rendu', 'date', array('format'=>'d/m/Y'))
             ->add('intervenant')
+            ->add('commentaire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -66,15 +68,18 @@ class MaterielAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Général')
+            ->with('Remise')
             ->add('user')
             ->add('remis')
             ->add('type')
-            ->add('intervenant')
             ->end()
             ->with('Entrée/Sortie')
             ->add('date_remise')
             ->add('date_rendu')
+            ->end()
+            ->with('Informations complémentaires')
+            ->add('intervenant')
+            ->add('commentaire')
             ->end()
         ;
     }

@@ -17,6 +17,9 @@ IuchBundle\Entity\Materiel:
             type: date
             column: date_rendu
             nullable: true
+        commentaire:
+            type: text
+            nullable: true
 
     manyToOne:
         intervenant:

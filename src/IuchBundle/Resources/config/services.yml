@@ -55,6 +55,15 @@ services:
             - IuchBundle\Entity\Tenue
             - ~
 
+    sonata.type_tenue:
+        class: IuchBundle\Admin\TypeTenueAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.tenue", label: "Type de tenue" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\TypeTenue
+            - ~
+
     iuch.tenue_listener:
         class: IuchBundle\Listener\TenueListener
         tags:
@@ -75,13 +84,13 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
 
     sonata.type_materiel:
-            class: IuchBundle\Admin\TypeMaterielAdmin
-            tags:
-                - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Type de matériel" }
-            arguments:
-                - ~
-                - IuchBundle\Entity\TypeMateriel
-                - ~
+        class: IuchBundle\Admin\TypeMaterielAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Type de matériel" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\TypeMateriel
+            - ~
 
     sonata.block.service.stat:
         class: IuchBundle\Block\StatBlockService

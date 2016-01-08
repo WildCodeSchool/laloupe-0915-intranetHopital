@@ -12,7 +12,7 @@ class TenueAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('nom')
+            ->add('type')
             ->add('user','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
@@ -20,12 +20,13 @@ class TenueAdmin extends Admin
             ->add('date_donnee', 'datetime')
             ->add('nombre_donne', 'number')
             ->add('nombre_rendu', 'number', array('required' => false))
+            ->add('commentaire', null, array('required' => false))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
+            ->add('type')
             ->add('user')
             ->add('intervenant')
             ->add('date_donnee', 'doctrine_orm_date_range')
@@ -38,7 +39,7 @@ class TenueAdmin extends Admin
     {
 
         $listMapper
-            ->addIdentifier('nom')
+            ->add('type')
             ->add('user', null, array(
                 'route' => array(
                     'name' => 'show'
@@ -48,6 +49,7 @@ class TenueAdmin extends Admin
             ->add('date_rendu')
             ->add('nombre_rendu')
             ->add('intervenant')
+            ->add('commentaire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -60,10 +62,9 @@ class TenueAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Général')
+            ->with('Remise')
             ->add('user')
-            ->add('intervenant')
-            ->add('nom')
+            ->add('type')
             ->end()
             ->with('Entrée')
             ->add('date_donnee')
@@ -72,6 +73,10 @@ class TenueAdmin extends Admin
             ->with('Sortie')
             ->add('date_rendu')
             ->add('nombre_rendu')
+            ->end()
+            ->with('Informations complémentaires')
+            ->add('intervenant')
+            ->add('commentaires')
             ->end()
         ;
     }

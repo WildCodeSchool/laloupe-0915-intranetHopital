@@ -8,9 +8,6 @@ IuchBundle\Entity\Tenue:
             generator:
                 strategy: AUTO
     fields:
-        nom:
-            type: string
-            length: 255
         date_donnee:
             type: datetime
             column: date_donnee
@@ -25,6 +22,9 @@ IuchBundle\Entity\Tenue:
             type: integer
             column: nombre_rendu
             nullable: true
+        commentaire:
+            type: text
+            nullable: true
 
     manyToOne:
         intervenant:
@@ -38,6 +38,12 @@ IuchBundle\Entity\Tenue:
             inversedBy: tenue
             joinColumn:
                 name: user_id
+                referencedColumnName: id
+        type:
+            targetEntity: IuchBundle\Entity\TypeTenue
+            inversedBy: materiel
+            joinColumn:
+                name: type_id
                 referencedColumnName: id
 
     lifecycleCallbacks: {  }

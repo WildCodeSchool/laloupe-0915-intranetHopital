@@ -34,14 +34,24 @@ class Materiel
     private $date_rendu;
 
     /**
-     * @var \Application\Sonata\UserBundle\Entity\User
+     * @var string
      */
-    private $user;
+    private $commentaire;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
     private $intervenant;
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $types;
 
 
     /**
@@ -79,21 +89,21 @@ class Materiel
     }
 
     /**
-     * Set date_remise
+     * Set dateRemise
      *
-     * @param \DateTime $date_remise
+     * @param \DateTime $dateRemise
      *
      * @return Materiel
      */
-    public function setDateRemise($date_remise)
+    public function setDateRemise($dateRemise)
     {
-        $this->date_remise = $date_remise;
+        $this->date_remise = $dateRemise;
 
         return $this;
     }
 
     /**
-     * Get date_remise
+     * Get dateRemise
      *
      * @return \DateTime
      */
@@ -103,27 +113,75 @@ class Materiel
     }
 
     /**
-     * Set date_rendu
+     * Set dateRendu
      *
-     * @param \DateTime $date_rendu
+     * @param \DateTime $dateRendu
      *
      * @return Materiel
      */
-    public function setDateRendu($date_rendu)
+    public function setDateRendu($dateRendu)
     {
-        $this->date_rendu = $date_rendu;
+        $this->date_rendu = $dateRendu;
 
         return $this;
     }
 
     /**
-     * Get date_rendu
+     * Get dateRendu
      *
      * @return \DateTime
      */
     public function getDateRendu()
     {
         return $this->date_rendu;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Materiel
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set intervenant
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $intervenant
+     *
+     * @return Materiel
+     */
+    public function setIntervenant(\Application\Sonata\UserBundle\Entity\User $intervenant = null)
+    {
+        $this->intervenant = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
     }
 
     /**
@@ -151,27 +209,37 @@ class Materiel
     }
 
     /**
-     * Set intervenant
+     * Add type
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $intervenant
+     * @param \IuchBundle\Entity\TypeMateriel $type
      *
      * @return Materiel
      */
-    public function setIntervenant(\Application\Sonata\UserBundle\Entity\User $intervenant = null)
+    public function addType(\IuchBundle\Entity\TypeMateriel $type)
     {
-        $this->intervenant = $intervenant;
+        $this->types[] = $type;
 
         return $this;
     }
 
     /**
-     * Get intervenant
+     * Remove type
      *
-     * @return \Application\Sonata\UserBundle\Entity\User
+     * @param \IuchBundle\Entity\TypeMateriel $type
      */
-    public function getIntervenant()
+    public function removeType(\IuchBundle\Entity\TypeMateriel $type)
     {
-        return $this->intervenant;
+        $this->types->removeElement($type);
+    }
+
+    /**
+     * Get types
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTypes()
+    {
+        return $this->types;
     }
     /**
      * @var \IuchBundle\Entity\TypeMateriel
