@@ -1,11 +1,24 @@
 {% extends '::base.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('bundles/iuch/js/jquery.shuffle.modernizr.min.js') }}"></script>
+    <script src="{{ asset('bundles/iuch/js/filter.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            SEARCH.init();
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <div class="trombinoscope-page">
         <h1 class="page-title">Trombinoscope</h1>
         <div class="row">
             <div class="col-sm-3">
-                <div class="list-services" data-spy="affix" data-offset-top="220">
+                <div class="list-services form-group" data-spy="affix" data-offset-top="220">
+                    <div class="row-fluid">
+                        <input class="filter__search js-shuffle-search form-control" type="search" placeholder="Chercher..." />
+                    </div>
                     <h2>Liste des services</h2>
                     <div class="list-group">
                         {% for service in services %}
@@ -21,39 +34,38 @@
                 <div class="trombinoscope">
                     {% for service in services %}
                         {% if service.users is not empty %}
-                            <div id="{{ service.nom | sonata_slugify }}" class="section {{ service.nom }}">
-                                <h2>{{ service.nom }}</h2>
+                            <h2>{{ service.nom }}</h2>
+                            <div id="{{ service.nom | sonata_slugify }}" class="section {{ service.nom | sonata_slugify }}">
+                                    {% for user in service.users %}
+                                        {% if user.chefService %}
+                                            <figure>
+                                                <div class="img">
+                                                    <div class="chef">Référent</div>
+                                                    {% if user.photo is not null %}
+                                                        <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+                                                    {% else %}
+                                                        <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                                    {% endif %}
+                                                    <figcaption>{{ user.username }}<br/>{{ user.firstname }} {{ user.lastname }} <br/>{{ user.fonction.nom }}</figcaption>
+                                                </div>
+                                            </figure>
+                                        {% endif %}
+                                    {% endfor %}
 
-                                {% for user in service.users %}
-                                    {% if user.chefService %}
-                                        <figure>
-                                            <div class="img">
-                                                <div class="chef">Référent</div>
-                                                {% if user.photo is not null %}
-                                                    <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
-                                                {% else %}
-                                                    <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
-                                                {% endif %}
-                                                <figcaption>{{ user.username }}<br/>{{ user.firstname }} {{ user.lastname }} <br/>{{ user.fonction.nom }}</figcaption>
-                                            </div>
-                                        </figure>
-                                    {% endif %}
-                                {% endfor %}
-
-                                {% for user in service.users %}
-                                    {% if user.chefService  == false %}
-                                        <figure>
-                                            <div class="img">
-                                                {% if user.photo is not null %}
-                                                    <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
-                                                {% else %}
-                                                    <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
-                                                {% endif %}
-                                                <figcaption>{{ user.username }}<br/>{{ user.firstname }} {{ user.lastname }} <br/>{{ user.fonction.nom }}</figcaption>
-                                            </div>
-                                        </figure>
-                                    {% endif %}
-                                {% endfor %}
+                                    {% for user in service.users %}
+                                        {% if user.chefService  == false %}
+                                            <figure>
+                                                <div class="img">
+                                                    {% if user.photo is not null %}
+                                                        <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
+                                                    {% else %}
+                                                        <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                                    {% endif %}
+                                                    <figcaption>{{ user.username }}<br/>{{ user.firstname }} {{ user.lastname }} <br/>{{ user.fonction.nom }}</figcaption>
+                                                </div>
+                                            </figure>
+                                        {% endif %}
+                                    {% endfor %}
                             </div>
 
                         {% endif %}
