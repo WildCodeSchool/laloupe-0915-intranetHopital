@@ -22,4 +22,17 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('u.createdAt', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function desactivateOutUser()
+    {
+        $query = $this->_em->createQueryBuilder()
+            ->update('Application\Sonata\UserBundle\Entity\User', 'u')
+            ->set('u.enabled', ':boolean')
+            ->where('u.date_sortie < :now')
+            ->setParameter('boolean', false)
+            ->setParameter('now', new \DateTime('now'))
+            ->getQuery();
+
+        return $query->execute();
+    }
 }
