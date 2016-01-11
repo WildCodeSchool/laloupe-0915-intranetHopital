@@ -370,4 +370,43 @@ class User extends BaseUser
     {
         return $this->services;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $materiels;
+
+
+    /**
+     * Add materiel
+     *
+     * @param \IuchBundle\Entity\Materiel $materiel
+     *
+     * @return User
+     */
+    public function addMateriel(\IuchBundle\Entity\Materiel $materiel)
+    {
+        $this->materiels[] = $materiel;
+
+        return $this;
+    }
+
+    /**
+     * Remove materiel
+     *
+     * @param \IuchBundle\Entity\Materiel $materiel
+     */
+    public function removeMateriel(\IuchBundle\Entity\Materiel $materiel)
+    {
+        $this->materiels->removeElement($materiel);
+    }
+
+    /**
+     * Get materiels
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMateriels()
+    {
+        return $this->materiels;
+    }
 }

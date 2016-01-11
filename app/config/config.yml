@@ -150,7 +150,7 @@ sonata_admin:
 
             iuch.group.keys:
                 icon: '<i class="fa fa-key"></i>'
-                label: "Clés/badges"
+                label: "Matériel"
 
         blocks:
           -
@@ -177,7 +177,7 @@ sonata_block:
 
         # Block Stat créé pour le DashBoard
         sonata.block.service.stat: ~
-        sonata.block.service.statuser: ~
+        sonata.block.service.statmateriel: ~
         sonata.block.service.statlastuser: ~
         sonata.block.service.stattenue: ~
 

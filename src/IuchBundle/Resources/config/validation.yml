@@ -52,3 +52,14 @@ Application\Sonata\UserBundle\Entity\User:
                 pattern: '/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/'
                 message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
 
+IuchBundle\Entity\TypeMateriel:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: type
+            message: Le type existe déjà
+
+IuchBundle\Entity\TypeTenue:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: type
+            message: Le type existe déjà

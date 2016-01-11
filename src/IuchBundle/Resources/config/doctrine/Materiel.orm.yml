@@ -1,4 +1,4 @@
-IuchBundle\Entity\Tenue:
+IuchBundle\Entity\Materiel:
     type: entity
     table: null
     id:
@@ -8,20 +8,17 @@ IuchBundle\Entity\Tenue:
             generator:
                 strategy: AUTO
     fields:
-        date_donnee:
-            type: datetime
-            column: date_donnee
-        nombre_donne:
-            type: integer
-            column: nombre_donne
+        date_remise:
+            type: date
+            column: date_remise
+        rendu:
+            type: boolean
         date_rendu:
-            type: datetime
+            type: date
             column: date_rendu
             nullable: true
-        nombre_rendu:
-            type: integer
-            column: nombre_rendu
-            nullable: true
+        perdu_vol:
+            type: boolean
         commentaire:
             type: text
             nullable: true
@@ -29,18 +26,18 @@ IuchBundle\Entity\Tenue:
     manyToOne:
         intervenant:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: tenue
+            inversedBy: materiel
             joinColumn:
                 name: intervenant_id
                 referencedColumnName: id
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: tenue
+            inversedBy: materiel
             joinColumn:
                 name: user_id
                 referencedColumnName: id
         type:
-            targetEntity: IuchBundle\Entity\TypeTenue
+            targetEntity: IuchBundle\Entity\TypeMateriel
             inversedBy: materiel
             joinColumn:
                 name: type_id

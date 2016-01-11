@@ -3,14 +3,21 @@
 {% block block %}
     <div id="stats" class="container">
         <div class="col-md-12">
-            <h2>Tenues remises :</h2>
+            <h2><i class="fa fa-male"></i>Tenues</h2>
             <div id="stats-blocks" class="row">
 
-                <div id="block__tenues" class="col-md-12 blocks__statuser">
-                    <h2><i class="fa fa-male"></i> Tenues</h2>
+                <div id="block__tenues" class="col-md-4 blocks__statuser">
+                    <h3>En circulation</h3>
                     <h1>{{ tenues }}</h1>
                 </div>
-
+                <div id="block__tenues" class="col-md-4 blocks__statuser">
+                    <h3>Perdues/Volées</h3>
+                    <h1>{{ tenues_perdues }}</h1>
+                </div>
+                <div id="block__tenues" class="col-md-4 blocks__statuser">
+                    <h3>Rendues</h3>
+                    <h1>{{ tenues_rendues }}</h1>
+                </div>
             </div>
 
         </div>

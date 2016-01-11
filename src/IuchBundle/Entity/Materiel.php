@@ -3,16 +3,17 @@
 namespace IuchBundle\Entity;
 
 /**
- * Admin
+ * Materiel
  */
-class Tenue
+class Materiel
 {
-
-    public function __construct() {
-        $this->date_donnee = new \DateTime('now');
+    public function __construct()
+    {
+        $this->date_remise = new \DateTime('now');
     }
 
     //GENERATED CODE
+
     /**
      * @var integer
      */
@@ -21,12 +22,12 @@ class Tenue
     /**
      * @var \DateTime
      */
-    private $date_donnee;
+    private $date_remise;
 
     /**
-     * @var integer
+     * @var boolean
      */
-    private $nombre_donne;
+    private $rendu;
 
     /**
      * @var \DateTime
@@ -34,9 +35,9 @@ class Tenue
     private $date_rendu;
 
     /**
-     * @var integer
+     * @var boolean
      */
-    private $nombre_rendu;
+    private $perdu_vol;
 
     /**
      * @var string
@@ -54,9 +55,9 @@ class Tenue
     private $user;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \IuchBundle\Entity\TypeMateriel
      */
-    private $types;
+    private $type;
 
 
     /**
@@ -70,51 +71,51 @@ class Tenue
     }
 
     /**
-     * Set dateDonnee
+     * Set dateRemise
      *
-     * @param \DateTime $dateDonnee
+     * @param \DateTime $dateRemise
      *
-     * @return Tenue
+     * @return Materiel
      */
-    public function setDateDonnee($dateDonnee)
+    public function setDateRemise($dateRemise)
     {
-        $this->date_donnee = $dateDonnee;
+        $this->date_remise = $dateRemise;
 
         return $this;
     }
 
     /**
-     * Get dateDonnee
+     * Get dateRemise
      *
      * @return \DateTime
      */
-    public function getDateDonnee()
+    public function getDateRemise()
     {
-        return $this->date_donnee;
+        return $this->date_remise;
     }
 
     /**
-     * Set nombreDonne
+     * Set rendu
      *
-     * @param integer $nombreDonne
+     * @param boolean $rendu
      *
-     * @return Tenue
+     * @return Materiel
      */
-    public function setNombreDonne($nombreDonne)
+    public function setRendu($rendu)
     {
-        $this->nombre_donne = $nombreDonne;
+        $this->rendu = $rendu;
 
         return $this;
     }
 
     /**
-     * Get nombreDonne
+     * Get rendu
      *
-     * @return integer
+     * @return boolean
      */
-    public function getNombreDonne()
+    public function getRendu()
     {
-        return $this->nombre_donne;
+        return $this->rendu;
     }
 
     /**
@@ -122,7 +123,7 @@ class Tenue
      *
      * @param \DateTime $dateRendu
      *
-     * @return Tenue
+     * @return Materiel
      */
     public function setDateRendu($dateRendu)
     {
@@ -142,27 +143,27 @@ class Tenue
     }
 
     /**
-     * Set nombreRendu
+     * Set perduVol
      *
-     * @param integer $nombreRendu
+     * @param boolean $perduVol
      *
-     * @return Tenue
+     * @return Materiel
      */
-    public function setNombreRendu($nombreRendu)
+    public function setPerduVol($perduVol)
     {
-        $this->nombre_rendu = $nombreRendu;
+        $this->perdu_vol = $perduVol;
 
         return $this;
     }
 
     /**
-     * Get nombreRendu
+     * Get perduVol
      *
-     * @return integer
+     * @return boolean
      */
-    public function getNombreRendu()
+    public function getPerduVol()
     {
-        return $this->nombre_rendu;
+        return $this->perdu_vol;
     }
 
     /**
@@ -170,7 +171,7 @@ class Tenue
      *
      * @param string $commentaire
      *
-     * @return Tenue
+     * @return Materiel
      */
     public function setCommentaire($commentaire)
     {
@@ -194,7 +195,7 @@ class Tenue
      *
      * @param \Application\Sonata\UserBundle\Entity\User $intervenant
      *
-     * @return Tenue
+     * @return Materiel
      */
     public function setIntervenant(\Application\Sonata\UserBundle\Entity\User $intervenant = null)
     {
@@ -218,7 +219,7 @@ class Tenue
      *
      * @param \Application\Sonata\UserBundle\Entity\User $user
      *
-     * @return Tenue
+     * @return Materiel
      */
     public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
     {
@@ -238,52 +239,13 @@ class Tenue
     }
 
     /**
-     * Add type
-     *
-     * @param \IuchBundle\Entity\TypeTenue $type
-     *
-     * @return Tenue
-     */
-    public function addType(\IuchBundle\Entity\TypeTenue $type)
-    {
-        $this->types[] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Remove type
-     *
-     * @param \IuchBundle\Entity\TypeTenue $type
-     */
-    public function removeType(\IuchBundle\Entity\TypeTenue $type)
-    {
-        $this->types->removeElement($type);
-    }
-
-    /**
-     * Get types
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTypes()
-    {
-        return $this->types;
-    }
-    /**
-     * @var \IuchBundle\Entity\TypeTenue
-     */
-    private $type;
-
-
-    /**
      * Set type
      *
-     * @param \IuchBundle\Entity\TypeTenue $type
+     * @param \IuchBundle\Entity\TypeMateriel $type
      *
-     * @return Tenue
+     * @return Materiel
      */
-    public function setType(\IuchBundle\Entity\TypeTenue $type = null)
+    public function setType(\IuchBundle\Entity\TypeMateriel $type = null)
     {
         $this->type = $type;
 
@@ -293,7 +255,7 @@ class Tenue
     /**
      * Get type
      *
-     * @return \IuchBundle\Entity\TypeTenue
+     * @return \IuchBundle\Entity\TypeMateriel
      */
     public function getType()
     {

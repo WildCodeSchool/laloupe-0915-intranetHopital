@@ -12,9 +12,8 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
-use IuchBundle\Entity\Badge;
 use IuchBundle\Entity\Charte;
-use IuchBundle\Entity\Cle;
+use IuchBundle\Entity\Materiel;
 use IuchBundle\Entity\Photo;
 use IuchBundle\Entity\Tenue;
 use Sonata\AdminBundle\Exception\ModelManagerException;
@@ -99,7 +98,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                      * IUCH
                      * Editer l'intervenant
                      */
-                    if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
+                    if ($object instanceof Materiel || $object instanceof Tenue)
                     {
                         $user = $this->getUser();
                         $object->setIntervenant($user);
@@ -232,7 +231,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
              * IUCH
              * Enregistrer l'intervenant
              */
-            if ($object instanceof Cle || $object instanceof Badge || $object instanceof Tenue)
+            if ($object instanceof Materiel || $object instanceof Tenue)
             {
                 $user = $this->getUser();
                 $object->setIntervenant($user);

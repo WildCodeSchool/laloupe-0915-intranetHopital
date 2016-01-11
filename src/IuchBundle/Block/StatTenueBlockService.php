@@ -64,15 +64,27 @@ class StatTenueBlockService extends BaseBlockService
             ->findAll();
 
         $nbr_tenues = 0;
+        $nbr_perdues = 0;
+        $nbr_rendues = 0;
         foreach ($tenues as $tenue) {
             $nbr_tenues += $tenue->getNombreDonne();
+
+            $nbr_rendues += $tenue->getNombreRendu();
+
+            if ($tenue->getDateRendu() != null) {
+                if ($tenue->getNombreDonne() != $tenue->getNombreRendu()) {
+                    $nbr_perdues += $tenue->getNombreDonne() - $tenue->getNombreRendu();
+                }
+            }
         }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:stattenue.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'tenues'        => $nbr_tenues
+            'tenues'        => $nbr_tenues,
+            'tenues_perdues' => $nbr_perdues,
+            'tenues_rendues' => $nbr_rendues
 
         ), $response);
     }

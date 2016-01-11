@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-class StatUserBlockService extends BaseBlockService
+class StatMaterielBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -58,34 +58,32 @@ class StatUserBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        // Cles stats
-        $cles = $this->em
-            ->getRepository('IuchBundle:Cle')
+        // Materiels stats
+        $materiels = $this->em
+            ->getRepository('IuchBundle:Materiel')
             ->findAll();
 
-        $nbr_cles = 0;
-        foreach ($cles as $cle) {
-            if ($cle->getRemis() === true) $nbr_cles ++;
+        $nbr_materiels = 0;
+        $nbr_materiels_perdus = 0;
+        $nbr_materiels_rendus = 0;
+        $nbr_materiel_rendu_vol = 0;
+        foreach ($materiels as $materiel) {
+            if ($materiel->getRendu() === false) $nbr_materiels ++;
+            else $nbr_materiels_rendus ++;
+
+            if ($materiel->getPerduVol() === true) $nbr_materiels_perdus ++;
+
+            if ($materiel->getRendu() === true && $materiel->getPerduVol() === true) $nbr_materiel_rendu_vol ++;
         }
-
-
-        // Badges stats
-        $badges = $this->em
-            ->getRepository('IuchBundle:Badge')
-            ->findAll();
-
-        $nbr_badges = 0;
-        foreach ($badges as $badge) {
-            if ($badge->getRemis() === true) $nbr_badges ++;
-        }
-
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statMateriel.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'cles'          => $nbr_cles,
-            'badges'        => $nbr_badges
+            'materiels'          => $nbr_materiels,
+            'materiels_perdus' => $nbr_materiels_perdus,
+            'materiels_rendus' => $nbr_materiels_rendus,
+            'materiels_rendus_vols' => $nbr_materiel_rendu_vol
         ), $response);
     }
     /**
@@ -95,7 +93,7 @@ class StatUserBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:statuser.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:statMateriel.html.twig' // Le template à render dans execute()
         ));
     }
 
