@@ -156,6 +156,8 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 
 .trombinoscope .img {
     position: relative;
+    max-height:200px;
+    min-height:180px;
 }
 
 .trombinoscope .chef {
@@ -169,7 +171,8 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
     font-size:12px;
 }
 
-.trombinoscope-page .list-group {
+.trombinoscope-page .list-group,
+.trombinoscope-page .form-control{
     max-width: 240px;
 }
 .affix {
