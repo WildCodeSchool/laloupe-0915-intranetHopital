@@ -3,33 +3,7 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
-
-    <class name="FOS\UserBundle\Model\User">
-
-        <property name="username">
-            <constraint name="NotBlank">
-                <option name="message">fos_user.username.blank</option>
-                <option name="groups">
-                    <value>Own</value>
-                    <value>UserValidation</value>
-                </option>
-            </constraint>
-            <constraint name="Length">
-                <option name="min">2</option>
-                <option name="minMessage">fos_user.username.short</option>
-                <option name="max">255</option>
-                <option name="maxMessage">fos_user.username.long</option>
-                <option name="groups">
-                    <value>Own</value>
-                    <value>UserValidation</value>
-                </option>
-            </constraint>
-        </property>
-
-
-
-    </class>
-
+    <!-- CHANGE VALIDATION PLAINPASSWORD -->
     <class name="FOS\UserBundle\Form\Model\ChangePassword">
         <property name="new">
             <constraint name="NotBlank">
@@ -90,7 +64,6 @@
                 </option>
             </constraint>
         </property>
-
 
         <property name="plainPassword">
             <constraint name="NotBlank">

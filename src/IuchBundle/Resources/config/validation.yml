@@ -63,3 +63,11 @@ IuchBundle\Entity\TypeTenue:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: type
             message: Le type existe déjà
+
+FOS\UserBundle\Form\Model\ChangePassword:
+    properties:
+        new:
+            - Regex:
+                pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,16}$/"
+                message: "Le mot de passe doit être compris entre 6 et 16 caractères avec au minimum 1 minuscule, 1 majuscule et 1 chiffre."
+                groups: [ChangePassword, ResetPassword]
