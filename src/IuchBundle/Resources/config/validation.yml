@@ -64,6 +64,18 @@ IuchBundle\Entity\TypeTenue:
             fields: type
             message: Le type existe déjà
 
+IuchBundle\Entity\Materiel:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH
+
+IuchBundle\Entity\Tenue:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH
+
 FOS\UserBundle\Form\Model\ChangePassword:
     properties:
         new:
