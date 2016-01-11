@@ -38,7 +38,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
-        resources: ['bootstrap_3_horizontal_layout.html.twig']
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
     globals:
         kernelRootDir: %kernel.root_dir%
         trombinoscopeEnabled: %trombinoscope.enabled%

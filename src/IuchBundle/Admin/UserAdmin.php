@@ -114,10 +114,7 @@ class UserAdmin extends Admin
                 ->add('gender')
                 ->add('firstname')
                 ->add('lastname')
-                ->add('dateOfBirth', 'date', array(
-                    'widget' => 'single_text',
-                    'format' => 'd/m/Y'
-                ))
+                ->add('dateOfBirth', 'sonata_type_date_picker')
             ->end()
             ->with('Contact')
                 ->add('phone')
@@ -130,16 +127,8 @@ class UserAdmin extends Admin
                 ->add('fonction', null, array('label' => 'Fonction'))
                 ->add('service', null, array('label' => 'Service référent'))
                 ->add('services', null, array('label' => 'Services secondaire'))
-                ->add('date_entree', 'date', array(
-                    'label' => 'Date d\'entrée',
-                    'widget' => 'single_text',
-                    'format' => 'd/m/Y'
-                ))
-                ->add('date_sortie', 'date', array(
-                    'label' => 'Date de sortie',
-                    'widget' => 'single_text',
-                    'format' => 'd/m/Y'
-                ))
+                ->add('date_entree', 'sonata_type_date_picker')
+                ->add('date_sortie', 'sonata_type_date_picker')
                 ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
             ->end()
         ;
@@ -162,14 +151,10 @@ class UserAdmin extends Admin
                 ->add('gender', 'sonata_user_gender', array(
                     'translation_domain' => $this->getTranslationDomain()
                 ))
-                ->add('dateOfBirth', 'date', array(
+                ->add('dateOfBirth', 'sonata_type_date_picker', array(
                     'widget' => 'single_text',
                     'format' => 'dd-MM-yyyy',
-                    'attr' => array(
-                        'class' => 'form-control input-inline datepicker',
-                        'data-provide' => 'datepicker',
-                        'data-date-format' => 'dd-mm-yyyy'
-                )))
+                    ))
                 ->add('enabled', null, array(
                     'required' => false
                 ))
@@ -194,27 +179,18 @@ class UserAdmin extends Admin
                 ))
             ->end()
             ->with('Dates arrivée & départ')
-                ->add('date_entree', 'date', array(
+                ->add('date_entree', 'sonata_type_date_picker', array(
                     'label' => 'Date d\'entrée',
                     'placeholder' => '',
                     'widget' => 'single_text',
                     'format' => 'dd-MM-yyyy',
                     'required' => true,
-                    'attr' => array(
-                        'class' => 'form-control input-inline datepicker',
-                        'data-provide' => 'datepicker',
-                        'data-date-format' => 'dd-mm-yyyy'
-                    )))
-                ->add('date_sortie', 'date', array(
+                   ))
+                ->add('date_sortie', 'sonata_type_date_picker', array(
                     'label' => 'Date de sortie',
                     'placeholder' => '',
                     'widget' => 'single_text',
                     'format' => 'dd-MM-yyyy',
-                    'attr' => array(
-                        'class' => 'form-control input-inline datepicker',
-                        'data-provide' => 'datepicker',
-                        'data-date-format' => 'dd-mm-yyyy'
-                    ),
                     'required' => false
                 ))
                 ->add('raison_sortie', 'choice', array(
