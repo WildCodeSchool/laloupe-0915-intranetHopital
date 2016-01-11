@@ -12,6 +12,11 @@ class Tenue
         $this->date_donnee = new \DateTime('now');
     }
 
+    public function isUserEnabled()
+    {
+        return $this->user->isEnabled();
+    }
+
     //GENERATED CODE
     /**
      * @var integer
