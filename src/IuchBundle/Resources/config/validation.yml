@@ -63,3 +63,15 @@ IuchBundle\Entity\TypeTenue:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: type
             message: Le type existe déjà
+
+IuchBundle\Entity\Materiel:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH
+
+IuchBundle\Entity\Tenue:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH

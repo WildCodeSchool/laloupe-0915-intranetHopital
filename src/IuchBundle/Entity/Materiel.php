@@ -12,6 +12,10 @@ class Materiel
         $this->date_remise = new \DateTime('now');
     }
 
+    public function isUserEnabled()
+    {
+        return $this->user->isEnabled();
+    }
     //GENERATED CODE
 
     /**
