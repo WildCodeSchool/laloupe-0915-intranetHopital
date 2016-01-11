@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DesactivateUserCommand extends ContainerAwareCommand {
 
+    /**
+     * TODO Set cron task on server : do php app/console user:out:desactivate
+     */
     protected function configure()
     {
         $this
