@@ -116,7 +116,7 @@ class UserAdmin extends Admin
                 ->add('lastname')
                 ->add('dateOfBirth', 'date', array(
                     'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy'
+                    'format' => 'd/m/Y'
                 ))
             ->end()
             ->with('Contact')
@@ -133,12 +133,12 @@ class UserAdmin extends Admin
                 ->add('date_entree', 'date', array(
                     'label' => 'Date d\'entrée',
                     'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy'
+                    'format' => 'd/m/Y'
                 ))
                 ->add('date_sortie', 'date', array(
                     'label' => 'Date de sortie',
                     'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy'
+                    'format' => 'd/m/Y'
                 ))
                 ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
             ->end()
