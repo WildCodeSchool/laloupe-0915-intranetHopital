@@ -3,7 +3,7 @@
 {% block block %}
 
     <div id="dashboard" class="container">
-        <h2>Nombre de signatures par chartes non obligatoires :</h2>
+        <h2>Pourcentage de signatures par chartes non obligatoires :</h2>
             <div>
                 <canvas id="bar"></canvas>
             </div>
@@ -28,7 +28,7 @@
                         highlightStroke: "rgba(207,231,221,1)",
                         data: [
                             {% for data in bar %}
-                                {{ data }},
+                                "{{ data }}",
                             {% endfor %}
                         ]
                     }]
