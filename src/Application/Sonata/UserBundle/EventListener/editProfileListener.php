@@ -13,7 +13,18 @@ class editProfileListener
     public function preUpdate(\Doctrine\ORM\Event\PreUpdateEventArgs $eventArgs)
     {
         if ($eventArgs->getEntity() instanceof User) {
+            /**
+             * SET DATE_SORTIE ON NULL IF USER IS REACTIVATE AFTER DESACTIVATION (because date_sortie < now)
+             */
+            if ($eventArgs->hasChangedField('enabled') && $eventArgs->getNewValue('enabled') == true && $eventArgs->getEntity()->getDateSortie() < new \DateTime('now')) {
+                $eventArgs->getEntity()->setDateSortie(null);
+                $eventArgs->getEntity()->setRaisonSortie(null);
+            }
 
+
+            /**
+             * SEND MAIL ON PROFILE CHANGES
+             */
             if ( $eventArgs->hasChangedField('email') ||
                  $eventArgs->hasChangedField('phone') ||
                  $eventArgs->hasChangedField('adresse') ||
