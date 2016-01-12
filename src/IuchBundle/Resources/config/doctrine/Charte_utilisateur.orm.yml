@@ -27,6 +27,6 @@ IuchBundle\Entity\Charte_utilisateur:
             joinColumn:
                 name: utilisateur_id
                 referencedColumnName: id
-                onDelete: SET NULL
+                onDelete: cascade
 
     lifecycleCallbacks: {  }
