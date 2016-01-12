@@ -29,7 +29,7 @@ IuchBundle\Entity\Service:
                 checkMX: true
         telephone:
             - Regex :
-                pattern: '/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/'
+                pattern: '/^0[1-9]([-\/. ]?[0-9]{2}){4}$/'
                 message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
 
 Application\Sonata\UserBundle\Entity\User:
@@ -49,7 +49,7 @@ Application\Sonata\UserBundle\Entity\User:
                 checkMX: true
         phone:
             - Regex :
-                pattern: '/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/'
+                pattern: '/^0[1-9]([-\/. ]?[0-9]{2}){4}$/'
                 message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
 
 IuchBundle\Entity\TypeMateriel:

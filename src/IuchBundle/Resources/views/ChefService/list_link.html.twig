@@ -1,7 +1,11 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field%}
-    {% if value.id is defined %}
-        <a href="{{ path('admin_sonata_user_user_edit', {'id': value.id }) }}"><strong style="display:block">{{ value.username }}</strong> {{ value.firstname }} {{ value.lastname }}</a>
-    {% endif %}
+    <a href="{{ path('admin_iuch_service_edit', {'id': object.service.id }) }}">
+        {% if object.chefService is not null %}
+            <span class="label label-success">oui</span>
+        {% else %}
+            <span class="label label-danger">non</span>
+        {% endif %}
+    </a>
 {% endblock %}
