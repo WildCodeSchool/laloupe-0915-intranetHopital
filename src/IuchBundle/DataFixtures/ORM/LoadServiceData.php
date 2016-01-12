@@ -14,76 +14,65 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
 {
     public function load(ObjectManager $manager)
     {
-        
         $service1 = new Service();
         $service1->setNom('ADMINISTRATION');
         $service1->setEmail('admin@email.com');
         $service1->setTelephone('02.01.02.03.04');
         $service1->setUF('0100');
-        $service1->setChefService($this->getReference('201'));
 
         $service2 = new Service();
         $service2->setNom('ANIMATION');
         $service2->setEmail('anim@email.com');
         $service2->setTelephone('02.11.12.13.14');
         $service2->setUF('0110');
-        $service1->setChefService($this->getReference('202'));
 
         $service3 = new Service();
         $service3->setNom('RESSOURCE HUMAINE');
         $service3->setEmail('rh@email.com');
         $service3->setTelephone('02.21.22.23.24');
         $service3->setUF('0120');
-        $service1->setChefService($this->getReference('203'));
 
         $service4 = new Service();
         $service4->setNom('ECONOMAT-FINANCES');
         $service4->setEmail('eco-finances@email.com');
         $service4->setTelephone('02.31.32.33.34');
         $service4->setUF('0130');
-        $service1->setChefService($this->getReference('204'));
 
         $service5 = new Service();
         $service5->setNom('ADMISSION-RECETTES');
         $service5->setEmail('admission-recettes@email.com');
         $service5->setTelephone('02.41.42.43.44');
         $service5->setUF('0140');
-        $service1->setChefService($this->getReference('205'));
 
         $service6 = new Service();
         $service6->setNom('SECMED-QUALITE');
         $service6->setEmail('qgdr@email.com');
         $service6->setTelephone('02.51.52.53.54');
         $service6->setUF('0150');
-        $service1->setChefService($this->getReference('206'));
 
         $service7 = new Service();
         $service7->setNom('MEDECINE/USLD');
         $service7->setEmail('medecine@email.com');
         $service7->setTelephone('02.61.62.63.64');
         $service7->setUF('0200');
-        $service1->setChefService($this->getReference('207'));
 
         $service8 = new Service();
         $service8->setNom('BLANCHISSERIE LING');
         $service8->setEmail('blanchisserie@email.com');
         $service8->setTelephone('02.71.72.73.74');
         $service8->setUF('0400');
-        $service1->setChefService($this->getReference('208'));
 
         $service9 = new Service();
         $service9->setNom('SCE TECH');
         $service9->setEmail('sce-tech@email.com');
         $service9->setTelephone('02.81.82.83.84');
         $service9->setUF('0600');
-        $service1->setChefService($this->getReference('209'));
 
         $service10 = new Service();
         $service10->setNom('testService');
         $service10->setEmail('sce-tech@email.com');
         $service10->setTelephone('02.81.82.83.84');
         $service10->setUF('9999');
-        $service1->setChefService($this->getReference('211'));
 
         $manager->persist($service1);
         $manager->persist($service2);
@@ -112,6 +101,6 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
 
     public function getOrder()
     {
-        return 1; // ordre d'appel
+        return 2; // ordre d'appel
     }
 }

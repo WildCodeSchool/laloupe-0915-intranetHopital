@@ -73,6 +73,6 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
     }
     public function getOrder()
     {
-        return 3; // ordre d'appel
+        return 1; // ordre d'appel
     }
 }
