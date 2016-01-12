@@ -29,19 +29,16 @@ IuchBundle\Entity\Tenue:
     manyToOne:
         intervenant:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: tenue
             joinColumn:
                 name: intervenant_id
                 referencedColumnName: id
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: tenue
             joinColumn:
                 name: user_id
                 referencedColumnName: id
         type:
             targetEntity: IuchBundle\Entity\TypeTenue
-            inversedBy: materiel
             joinColumn:
                 name: type_id
                 referencedColumnName: id

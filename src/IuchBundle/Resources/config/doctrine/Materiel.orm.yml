@@ -26,19 +26,16 @@ IuchBundle\Entity\Materiel:
     manyToOne:
         intervenant:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: materiel
             joinColumn:
                 name: intervenant_id
                 referencedColumnName: id
         user:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: materiel
             joinColumn:
                 name: user_id
                 referencedColumnName: id
         type:
             targetEntity: IuchBundle\Entity\TypeMateriel
-            inversedBy: materiel
             joinColumn:
                 name: type_id
                 referencedColumnName: id
