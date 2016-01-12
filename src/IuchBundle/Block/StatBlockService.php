@@ -123,6 +123,7 @@ class StatBlockService extends BaseBlockService
                     $signaturee = $signaturesByChartesNO[$charteNO->getId()];
                     $maxPopulation = $sortedUserByServices[$charteNO->getService()->getId()];
                     $percentage[$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $percentage[$charteNO->getNom()] = number_format($percentage[$charteNO->getNom()], 2, '.', '');
                 }
             }
             else {
