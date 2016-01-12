@@ -69,7 +69,7 @@ class SecurityFOSUser1ControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         $this->assertContains(
-            'class="alert alert-drvfrvrvert-error"',
+            'class="alert alert-danger alert-error"',
             $client->getResponse()->getContent()
         );
 
