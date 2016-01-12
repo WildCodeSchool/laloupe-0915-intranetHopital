@@ -78,7 +78,6 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user3->setPhone('0235214872');
         $user3->setFonction($this->getReference('14'));
         $user3->setService($this->getReference('7'));
-        $user3->setChefService(true);
 
         $user4 = $userManager->createUser();
         $user4->setUsername('bran');
@@ -94,7 +93,6 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, F
         $user4->setPhone('0235587596');
         $user4->setFonction($this->getReference('11'));
         $user4->setService($this->getReference('2'));
-        $user4->setChefService(true);
 
         $user5 = $userManager->createUser();
         $user5->setUsername('lucie');
