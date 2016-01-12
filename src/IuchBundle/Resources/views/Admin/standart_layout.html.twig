@@ -2,9 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/admin.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
+
 {% endblock %}
 
 {# remove sonata-project link on nav #}
@@ -157,6 +158,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/sonatacore/vendor/moment/locale/fr.js') }}"></script>
     <script src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/moment/locale/fr.js') }}"></script>
 {% endblock %}

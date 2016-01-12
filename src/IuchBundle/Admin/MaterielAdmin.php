@@ -17,15 +17,11 @@ class MaterielAdmin extends Admin
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
             ))
-            ->add('date_remise', 'date', array(
+            ->add('date_remise', 'sonata_type_date_picker', array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'form-control input-inline datepicker',
-                    'data-provide' => 'datepicker',
-                    'data-date-format' => 'dd-mm-yyyy'
-                )))
+                ))
             ->add('rendu')
             ->add('perdu_vol', null, array('label'=>'Perdu/volé'))
             ->add('commentaire', null, array('required' => false))
@@ -36,10 +32,14 @@ class MaterielAdmin extends Admin
         $datagridMapper
             ->add('user')
             ->add('type')
-            ->add('date_remise', 'doctrine_orm_date_range')
+            ->add('date_remise', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
             ->add('rendu')
             ->add('perdu_vol', null, array('label'=>'perdu/volé'))
-            ->add('date_rendu', 'doctrine_orm_date_range')
+            ->add('date_rendu', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
             ->add('intervenant')
         ;
     }
@@ -54,8 +54,14 @@ class MaterielAdmin extends Admin
                 'route' => array(
                     'name' => 'show'
                 )))
-            ->add('date_remise', 'date', array('format'=>'d/m/Y'))
-            ->add('date_rendu', 'date', array('format'=>'d/m/Y'))
+            ->add('date_remise', 'date', array(
+                'label' => 'Date de remise',
+                'format'=>'d/m/Y'
+            ))
+            ->add('date_rendu', 'date', array(
+                'label' => 'Date de rendu',
+                'format'=>'d/m/Y'
+            ))
             ->add('intervenant')
             ->add('commentaire')
             ->add('_action', 'actions', array(
@@ -78,8 +84,14 @@ class MaterielAdmin extends Admin
             ->add('type')
             ->end()
             ->with('Entrée/Sortie')
-            ->add('date_remise')
-            ->add('date_rendu')
+            ->add('date_remise', 'date', array(
+                'label' => 'Date de remise',
+                'format'=>'d/m/Y'
+            ))
+            ->add('date_rendu', 'date', array(
+                'label' => 'Date de rendu',
+                'format'=>'d/m/Y'
+            ))
             ->end()
             ->with('Informations complémentaires')
             ->add('intervenant')

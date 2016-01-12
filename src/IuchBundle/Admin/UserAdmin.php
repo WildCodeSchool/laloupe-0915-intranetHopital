@@ -114,7 +114,7 @@ class UserAdmin extends Admin
                 ->add('gender')
                 ->add('firstname')
                 ->add('lastname')
-                ->add('dateOfBirth', 'sonata_type_date_picker')
+                ->add('dateOfBirth', 'date', array('format'=>'d/m/Y'))
             ->end()
             ->with('Contact')
                 ->add('phone')
@@ -127,8 +127,12 @@ class UserAdmin extends Admin
                 ->add('fonction', null, array('label' => 'Fonction'))
                 ->add('service', null, array('label' => 'Service référent'))
                 ->add('services', null, array('label' => 'Services secondaire'))
-                ->add('date_entree', 'sonata_type_date_picker')
-                ->add('date_sortie', 'sonata_type_date_picker')
+                ->add('date_entree', 'date', array(
+                    'label' => 'Date entrée',
+                    'format'=>'d/m/Y'))
+                ->add('date_sortie', 'date', array(
+                    'label' => 'Date sortie',
+                    'format'=>'d/m/Y'))
                 ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
             ->end()
         ;
