@@ -25,6 +25,7 @@ class PhotoAdmin extends Admin
                     ->select('u')
                     ->from('ApplicationSonataUserBundle:User','u')// Dans un repository, $this->_entityName est le namespace de l'entité gérée
                     ->Where('u.photo is null')
+                    ->andWhere('u.enabled = true')
                 ))
             ;
         }

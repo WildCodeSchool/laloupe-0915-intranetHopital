@@ -63,24 +63,83 @@ class StatBlockService extends BaseBlockService
             ->getRepository('IuchBundle:Charte_utilisateur')
             ->findAll();
 
-        $chartesSignees = [];
+        $chartesNO = $this->em
+            ->getRepository('IuchBundle:Charte')
+            ->findBy(array('obligatoire' => false));
 
-        foreach ($signatures as $signature) {
-            $charte = $signature->getCharte();
-            $chartesSignees[] = $charte;
+        $users = $this->em
+            ->getRepository('ApplicationSonataUserBundle:User')
+            ->findAll();
+
+
+        $userByServices = [];
+        foreach ($users as $user){
+            // On recupere le service principal de chaques utilisateurs
+            $userByServices[] = $user->getService()->getId();
+
+            // Ainsi que les services secondaires
+            $userServices = $user->getServices();
+            foreach ($userServices as $userService){
+                if (null !==($userService->getId())){
+                    $userByServices[] = $userService->getId();
+                };
+            }
         }
 
-        $map = function(Charte $charte) {
-            return substr($charte->getNom(), 6, 20).'...';
-        };
+        // On fait la somme des utilisateurs par service
+        // Ici $sortedUserByServices = [ id_service, nb_utilisateurs ]
+        // On rajoute également une entrée NULL, avec comme valeur tous les utilisateurs dans le but de calculer les stats des chartes non rattachées au services.
+        $sortedUserByServices = array_count_values($userByServices);
+        $sortedUserByServices[null] = count($users);
 
-        $nbSignaturesByCharte = array_count_values(array_map($map, $chartesSignees));
+        $signaturesByChartesNO = [];
+        $percentage = [];
+
+        foreach ($chartesNO as $charteNO) {
+
+            // On initialise la valeur de $signaturesByChartesNO
+            $signaturesByChartesNO[$charteNO->getId()] = 0;
+
+            // Si la charte est rattaché à un service, alors on va cherché l'ID du service.
+            if (null !== $charteNO->getService()) {
+                $servicesChartesNO[$charteNO->getId()] = $charteNO->getService()->getId();
+            }
+            // Sinon on met la valeur à NULL pour 'tous les services'
+            else {
+                $servicesChartesNO[$charteNO->getId()] = null;
+            }
+
+            foreach ($signatures as $signature) {
+
+                // Pour chaques signatures par chartes on incremente $signaturesByChartesNO
+                if ($charteNO == $signature->getCharte()){
+                    $signaturesByChartesNO[$charteNO->getId()]++;
+                }
+            }
+
+            if (null !== $charteNO->getService()) {
+                if (isset($sortedUserByServices[$charteNO->getService()->getId()])) {
+                    // Si la charte est associé à un service, alors on calcule le pourcentage de signature
+                    $signaturee = $signaturesByChartesNO[$charteNO->getId()];
+                    $maxPopulation = $sortedUserByServices[$charteNO->getService()->getId()];
+                    $percentage[$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                }
+            }
+            else {
+
+                // Si la charte est liée à tous les services, alors on calcule sur la base de tous les utilisateurs
+                $signaturee = $signaturesByChartesNO[$charteNO->getId()];
+                $maxPopulation = $sortedUserByServices[null];
+                $percentage[$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                $percentage[$charteNO->getNom()] = number_format($percentage[$charteNO->getNom()], 2, '.', '');
+            }
+        }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'bar' => $nbSignaturesByCharte
+            'bar' => $percentage
 
         ), $response);
     }
