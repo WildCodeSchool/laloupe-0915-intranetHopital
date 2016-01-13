@@ -22,6 +22,7 @@
             </attribute-override>
        </attribute-overrides>
 
+        <field name="pointeur" column="pointeur" type="boolean" />
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
         <field name="zip" column="zip" type="string" length="5" nullable="true" />
         <field name="ville" column="ville" type="string" length="255" nullable="true" />

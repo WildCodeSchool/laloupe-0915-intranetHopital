@@ -94,6 +94,11 @@ class User extends BaseUser
      */
     private $services;
 
+    /**
+     * @var boolean
+     */
+    private $pointeur = false;
+
 
     /**
      * Set adresse
@@ -366,5 +371,30 @@ class User extends BaseUser
     public function getServices()
     {
         return $this->services;
+    }
+
+
+    /**
+     * Set pointeur
+     *
+     * @param boolean $pointeur
+     *
+     * @return User
+     */
+    public function setPointeur($pointeur)
+    {
+        $this->pointeur = $pointeur;
+
+        return $this;
+    }
+
+    /**
+     * Get pointeur
+     *
+     * @return boolean
+     */
+    public function getPointeur()
+    {
+        return $this->pointeur;
     }
 }
