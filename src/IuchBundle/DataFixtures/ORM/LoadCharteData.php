@@ -131,6 +131,6 @@ class LoadCharteData extends AbstractFixture implements FixtureInterface, Ordere
 
     public function getOrder()
     {
-        return 2; // ordre d'appel
+        return 4; // ordre d'appel
     }
 }

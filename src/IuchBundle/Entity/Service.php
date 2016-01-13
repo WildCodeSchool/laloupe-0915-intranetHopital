@@ -13,11 +13,18 @@ class Service
         return (string) $this->nom;
     }
 
-    public function getChefService()
+    /**
+     * Set chefService
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $chefService
+     *
+     * @return Service
+     */
+    public function setChefService(\Application\Sonata\UserBundle\Entity\User $chef_service = null)
     {
-        foreach ($this->getUsers() as $user)
-            if ($user->getChefService())
-                return $user;
+        $this->chef_service = $chef_service;
+
+        return $this;
     }
 
     // GENERATED CODE
@@ -198,5 +205,19 @@ class Service
     public function getUf()
     {
         return $this->uf;
+    }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $chef_service;
+
+    /**
+     * Get chefService
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getChefService()
+    {
+        return $this->chef_service;
     }
 }

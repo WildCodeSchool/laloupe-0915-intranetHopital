@@ -65,8 +65,9 @@ class UserAdmin extends Admin
             ->add('service.nom', null, array(
                 'label' => 'Service référent',
             ))
-            ->add('chef_service', null, array(
-                'label' => 'Chef de service'
+            ->add('chef_service', 'boolean', array(
+                'label' => 'Chef de service',
+                'template' => 'IuchBundle:ChefService:list_link.html.twig'
             ))
             ->add('fonction.nom', null, array(
                 'label' => 'Fonction',
@@ -177,9 +178,6 @@ class UserAdmin extends Admin
                     'expanded' => true,
                     'multiple' => true,
                     'label' => 'Services secondaires'
-                ))
-                ->add('chef_service', null, array(
-                    'label' => 'Chef de service'
                 ))
             ->end()
             ->with('Dates arrivée & départ')

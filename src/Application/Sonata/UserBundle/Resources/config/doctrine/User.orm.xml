@@ -17,15 +17,14 @@
             <attribute-override name="emailCanonical">
                 <field column="emailCanonical" nullable="true"/>
             </attribute-override>
-           <attribute-override name="username">
+            <attribute-override name="username">
                <field column="username" type="string" length="6"/>
-           </attribute-override>
+            </attribute-override>
        </attribute-overrides>
 
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
         <field name="zip" column="zip" type="string" length="5" nullable="true" />
         <field name="ville" column="ville" type="string" length="255" nullable="true" />
-        <field name="chef_service" column="chef_service" type="boolean" nullable="true" />
         <field name="date_entree" column="date_entree" type="date" nullable="true" />
         <field name="date_sortie" column="date_sortie" type="date" nullable="true" />
         <field name="raison_sortie" column="raison_sortie" type="string" length="255" nullable="true" />
@@ -34,10 +33,15 @@
             <join-column name="fonction_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
 
+        <!-- chef service -->
+        <one-to-one field="chef_service" target-entity="IuchBundle\Entity\Service" mapped-by="chef_service"/>
+
+        <!-- Service Référent -->
         <many-to-one field="service" target-entity="IuchBundle\Entity\Service" inversed-by="users" orphan-removal="true">
             <join-column name="service_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />
         </many-to-one>
 
+        <!-- Services secondaires -->
         <many-to-many field="services" target-entity="IuchBundle\Entity\Service">
             <join-table name="users_services">
                 <join-columns>

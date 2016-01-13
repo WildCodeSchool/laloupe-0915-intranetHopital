@@ -22,10 +22,21 @@ IuchBundle\Entity\Service:
             type: string
             length: 64
 
-# Relation for chefService
+# Service Référend
     oneToMany:
         users:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: service
+# Chef service
+    oneToOne:
+        chef_service:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            inversedBy: chef_service
+            orphanRemoval: true
+            joinColumn:
+                name: chef_service
+                referencedColumnName: id
+                unique: true
+                onDelete: CASCADE
 
     lifecycleCallbacks: {  }

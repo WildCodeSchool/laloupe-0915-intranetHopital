@@ -101,6 +101,6 @@ class LoadServiceData extends AbstractFixture implements FixtureInterface, Order
 
     public function getOrder()
     {
-        return 1; // ordre d'appel
+        return 2; // ordre d'appel
     }
 }
