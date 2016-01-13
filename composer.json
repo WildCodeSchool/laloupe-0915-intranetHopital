@@ -25,7 +25,8 @@
         "sonata-project/user-bundle": "^2.2",
         "knplabs/knp-menu-bundle": "~1.1",
         "symfony/serializer": "^2.7",
-        "friendsofsymfony/jsrouting-bundle": "^1.5"
+        "friendsofsymfony/jsrouting-bundle": "^1.5",
+        "egeloen/ckeditor-bundle": "^4.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
