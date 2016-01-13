@@ -46,8 +46,8 @@ Application\Sonata\UserBundle\Entity\User:
         zip:
             - Length:
                 max: 5
-            - Type:
-                type: numeric
+            - Regex:
+                pattern: '/^[0-9]{5}$/'
                 message: Veuillez rentrer un code postal valide.
         email:
             - Email:

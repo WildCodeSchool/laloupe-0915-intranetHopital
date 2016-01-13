@@ -54,16 +54,12 @@ class editProfileListener
                  $eventArgs->hasChangedField('ville') ||
                  $eventArgs->hasChangedField('zip')  )
             {
-                $service = $eventArgs->getEntity()->getService();
+                $em = $eventArgs->getObjectManager();
+                $rhs = $em->getRepository('Application\Sonata\UserBundle\Entity\User')->findByRole('ROLE_RH');
 
-                if ($service !== null) {
-                    if ($service->getChefService())
-                        $mail = $service->getChefService()->getEmail();
-                    else {
-                        $mail = $service->getEmail();
-                    }
-                } else {
-                    $mail = 'luciem92@gmail.com';
+                $mailsArray = [];
+                foreach ($rhs as $rh) {
+                    $mailsArray[] = $rh->getEmail();
                 }
 
                 /**
@@ -72,8 +68,8 @@ class editProfileListener
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Changements dans le profil de ' . $eventArgs->getEntity())
                     ->setFrom('send@example.com')
-                    ->setTo('wcs.hopital@gmail.com')
-                    ->addCc($mail)
+                    ->setTo(array('wcs.hopital@gmail.com'))
+                    ->setCc($mailsArray)
                     ->setBody(
                         $this->getMailBody($eventArgs->getEntityChangeSet(), $eventArgs->getEntity()),
                         'text/html'
@@ -93,11 +89,11 @@ class editProfileListener
         $result = '<h1>Changements dans le profile de '. $user .'</h1>';
 
         foreach ($changes as $property=>$change) {
-            if ( $property == "email" ||
-                 $property == "phone" ||
-                 $property == "ville" ||
-                 $property == "adresse" ||
-                 $property == "zip" )
+            if ( $property === "email" ||
+                 $property === "phone" ||
+                 $property === "ville" ||
+                 $property === "adresse" ||
+                 $property === "zip" )
             {
                 $result .= "<strong>".$property." :</strong> ".$change[0]." -> ".$change[1]. '<br/><br/>';
             }
