@@ -95,9 +95,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-
-
-
                              ##### OWN CONFIGURATION #####
 
 
@@ -139,6 +136,10 @@ sonata_admin:
             iuch.group.keys:
                 icon: '<i class="fa fa-key"></i>'
                 label: "Matériel"
+
+            iuch.group.mails:
+                icon: '<i class="fa fa-envelope"></i>'
+                label: "Mails"
 
         blocks:
           -
@@ -204,3 +205,8 @@ sonata_user:
             class:          IuchBundle\Admin\UserAdmin           # Override User CRUD in SonataAdmin
             controller:     ApplicationSonataAdminBundle:CRUD    # Extend CRUDController of SonataAdmin
             translation:    SonataUserBundle
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: [  [ 'Image', '-', 'Link','Unlink' ], "/", [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat', '-', 'NumberedList','BulletedList', '-', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], "/", [ 'Styles','Format','FontSize', 'TextColor' ] ]

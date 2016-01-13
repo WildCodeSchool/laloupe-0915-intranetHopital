@@ -307,9 +307,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
         }
         else {
+            $mail = $this->get('doctrine')->getRepository('IuchBundle:WelcomeMail')->findOneById(1);
+
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
-                ->setSubject('Bienvenue à l\'hôpital de La Loupe')
+                ->setSubject($mail->getSujet())
                 // TODO Modify the setFrom with CHLaLoupe mailserver informations
                 ->setFrom('CHLaLoupe@gmail.com')
                 ->setTo($destinataire)
@@ -318,6 +320,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                         'Emails/welcome_mail.html.twig',
                         array(
                             'user' => $object,
+                            'mail' => $mail
                         )
                     ),
                     'text/html'
