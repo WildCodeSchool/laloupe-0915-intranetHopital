@@ -31,6 +31,7 @@ class User extends BaseUser
         parent::__construct();
         $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
+        $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
     }
 
     public function __toString()
@@ -396,5 +397,34 @@ class User extends BaseUser
     public function getPointeur()
     {
         return $this->pointeur;
+    }
+    /**
+     * @var string
+     */
+    private $code_copieur;
+
+
+    /**
+     * Set codeCopieur
+     *
+     * @param string $codeCopieur
+     *
+     * @return User
+     */
+    public function setCodeCopieur($codeCopieur)
+    {
+        $this->code_copieur = $codeCopieur;
+
+        return $this;
+    }
+
+    /**
+     * Get codeCopieur
+     *
+     * @return string
+     */
+    public function getCodeCopieur()
+    {
+        return $this->code_copieur;
     }
 }
