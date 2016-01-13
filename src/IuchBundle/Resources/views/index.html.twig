@@ -64,6 +64,17 @@
                     </div>
                 </div>
             {% endif %}
+
+            {% if user.codeCopieur is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Votre code copieur</h3>
+                    </div>
+                    <div class="panel-body-copieur">
+                        <h4>{{ user.codeCopieur }}</h4>
+                    </div>
+                </div>
+            {% endif %}
         </div>
 
         <div class="chartes-list col-sm-9">

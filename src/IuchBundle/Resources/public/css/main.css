@@ -99,6 +99,12 @@ h4 {
     color:#38785e;
 }
 
+.panel-body-copieur h4 {
+    text-align: center;
+    color: #D5661D;
+    font-size: 30px;
+}
+
 #chartesTable{
     margin-bottom: 30px;
     border-bottom:1px solid #cccccc;
