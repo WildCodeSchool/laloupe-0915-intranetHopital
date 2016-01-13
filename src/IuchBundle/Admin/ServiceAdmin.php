@@ -18,7 +18,7 @@ class ServiceAdmin extends Admin
             ->add('telephone', null, array(
                 'help' => 'Exemple : 0123456789 | 01 23 45 67 89 | 01-23-45-67-89 | 01.23.45.67.89'
             ))
-            ->add('chef_service')
+            ->add('chef_service', null, array('placeholder'=>'Choisissez un chef de service', 'label'=>'Chef de service'))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
