@@ -97,33 +97,57 @@ class StatBlockService extends BaseBlockService
 
         foreach ($chartesNO as $charteNO) {
 
-            // On initialise la valeur de $signaturesByChartesNO
-            $signaturesByChartesNO[$charteNO->getId()] = 0;
+            // On initialise la valeur de $signaturesByChartesNO pour All
+            $signaturesByChartesNO['all'][$charteNO->getId()] = 0;
 
             // Si la charte est rattaché à un service, alors on va cherché l'ID du service.
             if (null !== $charteNO->getService()) {
-                $servicesChartesNO[$charteNO->getId()] = $charteNO->getService()->getId();
+                $servicesChartesNO['all'][$charteNO->getId()] = $charteNO->getService()->getId();
             }
             // Sinon on met la valeur à NULL pour 'tous les services'
             else {
-                $servicesChartesNO[$charteNO->getId()] = null;
+                $servicesChartesNO['all'][$charteNO->getId()] = null;
+            }
+
+            // On initialise notre tableau pour pouvoir récuperer les signatures sur n-5 à n années
+            // On ajoute également les signatures sur toutes les années
+
+            for ($i=date('Y'); $i > (date('Y') - 5); $i--) {
+                // On initialise la valeur de $signaturesByChartesNO pour chaque années
+                $signaturesByChartesNO[$i][$charteNO->getId()] = 0;
+
+                // Si la charte est rattaché à un service, alors on va cherché l'ID du service.
+                if (null !== $charteNO->getService()) {
+                    $servicesChartesNO[$i][$charteNO->getId()] = $charteNO->getService()->getId();
+                }
+                // Sinon on met la valeur à NULL pour 'tous les services'
+                else {
+                    $servicesChartesNO[$i][$charteNO->getId()] = null;
+                }
             }
 
             foreach ($signatures as $signature) {
 
+                $signatureYear = $signature->getDateSignature()->format('Y');
                 // Pour chaques signatures par chartes on incremente $signaturesByChartesNO
                 if ($charteNO == $signature->getCharte()){
-                    $signaturesByChartesNO[$charteNO->getId()]++;
+                    $signaturesByChartesNO[$signatureYear][$charteNO->getId()]++;
+                    $signaturesByChartesNO['all'][$charteNO->getId()]++;
                 }
             }
 
             if (null !== $charteNO->getService()) {
                 if (isset($sortedUserByServices[$charteNO->getService()->getId()])) {
                     // Si la charte est associé à un service, alors on calcule le pourcentage de signature
-                    $signaturee = $signaturesByChartesNO[$charteNO->getId()];
+                    $signaturee = $signaturesByChartesNO['all'][$charteNO->getId()];
                     $maxPopulation = $sortedUserByServices[$charteNO->getService()->getId()];
-                    $percentage[$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
-                    $percentage[$charteNO->getNom()] = number_format($percentage[$charteNO->getNom()], 2, '.', '');
+                    $percentage['all'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $percentage['all'][$charteNO->getNom()] = number_format($percentage['all'][$charteNO->getNom()], 0, '.', '');
+                    for ($i=date('Y'); $i > (date('Y') - 5); $i--){
+                        $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
+                        $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                        $percentage[$i][$charteNO->getNom()] = number_format($percentage[$i][$charteNO->getNom()], 0, '.', '');
+                    }
                 }
             }
             else {
@@ -131,8 +155,13 @@ class StatBlockService extends BaseBlockService
                 // Si la charte est liée à tous les services, alors on calcule sur la base de tous les utilisateurs
                 $signaturee = $signaturesByChartesNO[$charteNO->getId()];
                 $maxPopulation = $sortedUserByServices[null];
-                $percentage[$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
-                $percentage[$charteNO->getNom()] = number_format($percentage[$charteNO->getNom()], 2, '.', '');
+                $percentage['all'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                $percentage['all'][$charteNO->getNom()] = number_format($percentage['all'][$charteNO->getNom()], 0, '.', '');
+                for ($i=date('Y'); $i > (date('Y') - 5); $i--){
+                    $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
+                    $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $percentage[$i][$charteNO->getNom()] = number_format($percentage[$i][$charteNO->getNom()], 0, '.', '');
+                }
             }
         }
 
@@ -140,8 +169,7 @@ class StatBlockService extends BaseBlockService
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),
             'settings'      => $blockContext->getSettings(),
-            'bar' => $percentage
-
+            'bar' => $percentage,
         ), $response);
     }
     /**
