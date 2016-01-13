@@ -21,6 +21,29 @@ class editProfileListener
                 $eventArgs->getEntity()->setRaisonSortie(null);
             }
 
+            /**
+             * Change in profile => pointeur field to 1 (back to 0 by the admin in the BDD directly)
+             */
+            if ( $eventArgs->hasChangedField('email') ||
+                 $eventArgs->hasChangedField('phone') ||
+                 $eventArgs->hasChangedField('adresse') ||
+                 $eventArgs->hasChangedField('ville') ||
+                 $eventArgs->hasChangedField('zip') ||
+                 $eventArgs->hasChangedField('photo_id') ||
+                 $eventArgs->hasChangedField('service_id') ||
+                 $eventArgs->hasChangedField('enabled') ||
+                 $eventArgs->hasChangedField('password') ||
+                 $eventArgs->hasChangedField('date_of_birth') ||
+                 $eventArgs->hasChangedField('firstname') ||
+                 $eventArgs->hasChangedField('lastname') ||
+                 $eventArgs->hasChangedField('date_entree') ||
+                 $eventArgs->hasChangedField('date_sortie') ||
+                 $eventArgs->hasChangedField('raison_sortie') ||
+                 $eventArgs->hasChangedField('username') )
+            {
+                 $eventArgs->getEntity()->setPointeur(true);
+            }
+
 
             /**
              * SEND MAIL ON PROFILE CHANGES
