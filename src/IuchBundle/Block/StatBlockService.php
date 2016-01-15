@@ -165,6 +165,8 @@ class StatBlockService extends BaseBlockService
             }
         }
 
+        true == false;
+
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'base_template' => $this->pool->getTemplate('IuchBundle:Block:statistique.html.twig'),

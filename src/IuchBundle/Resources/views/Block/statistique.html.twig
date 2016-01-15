@@ -28,7 +28,6 @@
         </tbody>
     </table>
 
-
     <script>
 
         $('#chart-example').dynatable();
@@ -109,7 +108,7 @@
                 features: {
                     paginate: false,
                     recordCount: false,
-                    sorting: false
+                    sorting: true
                 }
             }).data('dynatable');
 
@@ -123,6 +122,12 @@
                 dynatable.process(true);
             });
         })();
+
+        $.dynatableSetup({
+            inputs: {
+                queryEvent: 'blur change'
+            }
+        });
     </script>
 
 {% endblock %}
