@@ -26,16 +26,16 @@ body {
 /** NAVBAR **/
 .navbar-brand {
     display: block;
-    background: url('../img/ch-la-loupe.png') no-repeat center;
-    width: 112px;
-    height:82px;
+    background: url('../img/logoIntranet.png') no-repeat center;
+    width: 138px;
+    height:85px;
     text-indent: 200%;
     white-space: nowrap;
     overflow: hidden;
 }
 
 .navbar li {
-    height:82px;
+    height:85px;
 }
 
 .navbar li a {
