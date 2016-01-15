@@ -9,7 +9,7 @@
     <select id="search-year" name="year">
         <option></option>
         {% for year, datas in bar %}
-            <option value="{{ year }}">{{ year }}</option>
+            <option value="{{ year }}" {% if ( year == 'all' ) %} selected="selected" {% endif %}>{{ year }}</option>
         {% endfor %}
     </select>
 
@@ -100,10 +100,7 @@
             // Run our updateChart function for the first time.
             updateChart();
         })();
-    </script>
 
-    <script>
-        (function() {
             var dynatable = $('#chart-example').dynatable({
                 features: {
                     paginate: false,
@@ -121,13 +118,9 @@
                 }
                 dynatable.process(true);
             });
-        })();
 
-        $.dynatableSetup({
-            inputs: {
-                queryEvent: 'blur change'
-            }
-        });
+        dynatable.queries.add("year","all");
+        dynatable.process(true);
     </script>
 
 {% endblock %}
