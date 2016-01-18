@@ -74,3 +74,9 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 .input-group.date {
     max-width: 132px;
 }
+.dynatable-per-page-select {
+    width: 15% !important;
+}
+#chart-example-chart {
+    margin-top: 10px;
+}
