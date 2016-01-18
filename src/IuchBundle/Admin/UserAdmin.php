@@ -135,6 +135,7 @@ class UserAdmin extends Admin
                     'label' => 'Date sortie',
                     'format'=>'d/m/Y'))
                 ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
+                ->add('code_copieur', null, array('label' => 'Code copieur'))
             ->end()
         ;
     }
