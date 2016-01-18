@@ -5,7 +5,7 @@ namespace Application\Sonata\AdminBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class CRUDControllerTest extends WebTestCase
+class ServiceCRUDControllerTest extends WebTestCase
 {
     protected $id;
 
@@ -40,7 +40,7 @@ class CRUDControllerTest extends WebTestCase
         $id = $this->getId();
 
         $client = static::createClient();
-        $crawler = $this->connection($client, 'testAdmin', 'testAdmin');
+        $crawler = $this->connection($client, 'admin', 'admin');
         $crawler = $client->request('GET', '/admin/iuch/service/create?uniqid='.$id);
         $this->assertTrue(200 === $client->getResponse()->getStatusCode());
 

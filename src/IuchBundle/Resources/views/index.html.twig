@@ -64,6 +64,17 @@
                     </div>
                 </div>
             {% endif %}
+
+            {% if user.codeCopieur is not empty %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Votre code copieur</h3>
+                    </div>
+                    <div class="panel-body-copieur">
+                        <h4>{{ user.codeCopieur }}</h4>
+                    </div>
+                </div>
+            {% endif %}
         </div>
 
         <div class="chartes-list col-sm-9">
@@ -110,14 +121,14 @@
                 </tbody>
             </table>
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h3>Remise des tenues</h3>
-                {% if tenue is not null %}
+                {% if tenues is not empty %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
                         <thead>
                         <tr>
                             <th>
-                                Nom
+                                Type
                             </th>
                             <th>
                                 Nb donné
@@ -128,25 +139,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td scope="row">{{ tenue.nom }}</td>
-                            <td scope="row">{{ tenue.nombreDonne }}</td>
-                            <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
-                        </tr>
+                        {% for tenue in tenues %}
+                            <tr>
+                                <td scope="row">{{ tenue.type }}</td>
+                                <td scope="row">{{ tenue.nombreDonne }}</td>
+                                <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
-                    Vous n'avez pas encore eu vos tenues.
+                    Vous n'avez pas de tenues.
                 {% endif %}
             </div>
-            <div class="col-sm-4">
-                <h3>Remise des clés</h3>
-                {% if cle is not null %}
+            <div class="col-sm-6">
+                <h3>Remise du matériel</h3>
+                {% if materiels is not empty %}
                     <table id="tenueTable" class="table table-hover tablesorter table-bordered">
                         <thead>
                         <tr>
                             <th>
-                                Remis
+                                Type
                             </th>
                             <th>
                                 Date remise
@@ -154,52 +167,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                {% if cle.remis == true %}
-                                    Oui
-                                {% else %}
-                                    Non
-                                {% endif %}
-                            </td>
-                            <td>{{ cle.dateRemise|date('d/m/Y') }}</td>
-                        </tr>
+                        {% for materiel in materiels %}
+                            <tr>
+                                <td>
+                                    {{ materiel.type }}
+                                </td>
+                                <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
-                    Vous n'avez pas encore eu vos clés ou vous n'en avez pas.
-                {% endif %}
-            </div>
-
-            <div class="col-sm-4">
-                <h3>Remise des Badges</h3>
-                {% if badge is not null %}
-                    <table id="tenueTable" class="table table-hover tablesorter table-bordered">
-                        <thead>
-                        <tr>
-                            <th>
-                                Remis
-                            </th>
-                            <th>
-                                Date remise
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                {% if badge.remis == true %}
-                                    Oui
-                                {% else %}
-                                    Non
-                                {% endif %}
-                            </td>
-                            <td>{{ badge.dateRemise|date('D m Y H:i') }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                {% else %}
-                    Vous n'avez pas encore eu vos badges ou vous n'en avez pas.
+                    Vous n'avez pas encore eu de matériel.
                 {% endif %}
             </div>
         </div>

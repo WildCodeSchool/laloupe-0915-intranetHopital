@@ -5,7 +5,6 @@ imports:
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-
 parameters:
     locale: fr
     #sonata.user.profile.form.handler.class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
@@ -39,9 +38,12 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
-        resources: ['bootstrap_3_horizontal_layout.html.twig']
+        resources:
+            - 'bootstrap_3_horizontal_layout.html.twig'
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
     globals:
         kernelRootDir: %kernel.root_dir%
+        trombinoscopeEnabled: %trombinoscope.enabled%
 
 
 # Assetic Configuration
@@ -93,25 +95,8 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-
-
-
                              ##### OWN CONFIGURATION #####
 
-
-
-#### FOSUser Bundle Configuration ####
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: Application\Sonata\UserBundle\Entity\User
-
-    group:
-        group_class:   Application\Sonata\UserBundle\Entity\Group
-        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
-
-    service:
-        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
 #### Sonata Configuration ####
     ####### SonataAdmin #######
@@ -120,7 +105,7 @@ sonata_admin:
         handler: sonata.admin.security.handler.role
 
     title:      'Administration IUCH'
-    title_logo:  bundles/iuch/img/ch-la-loupe.png
+    title_logo:  bundles/iuch/img/logoIntranet.png
     templates:
         layout:  'IuchBundle:Admin:standart_layout.html.twig'
 
@@ -150,7 +135,11 @@ sonata_admin:
 
             iuch.group.keys:
                 icon: '<i class="fa fa-key"></i>'
-                label: "Clés/badges"
+                label: "Matériel"
+
+            iuch.group.mails:
+                icon: '<i class="fa fa-envelope"></i>'
+                label: "Mails"
 
         blocks:
           -
@@ -177,9 +166,29 @@ sonata_block:
 
         # Block Stat créé pour le DashBoard
         sonata.block.service.stat: ~
-        sonata.block.service.statuser: ~
+        sonata.block.service.statmateriel: ~
         sonata.block.service.statlastuser: ~
+        sonata.block.service.stattenue: ~
 
+#### FOSUser Bundle Configuration ####
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    profile:  # Authentication Form
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication] # Please note : this is not the default value
 ####### SonataUser #######
 sonata_user:
     security_acl: false
@@ -196,3 +205,8 @@ sonata_user:
             class:          IuchBundle\Admin\UserAdmin           # Override User CRUD in SonataAdmin
             controller:     ApplicationSonataAdminBundle:CRUD    # Extend CRUDController of SonataAdmin
             translation:    SonataUserBundle
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: [  [ 'Image', '-', 'Link','Unlink' ], "/", [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat', '-', 'NumberedList','BulletedList', '-', 'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], "/", [ 'Styles','Format','FontSize', 'TextColor' ] ]

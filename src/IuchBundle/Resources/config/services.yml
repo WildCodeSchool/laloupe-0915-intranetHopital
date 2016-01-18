@@ -55,38 +55,51 @@ services:
             - IuchBundle\Entity\Tenue
             - ~
 
+    sonata.type_tenue:
+        class: IuchBundle\Admin\TypeTenueAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.tenue", label: "Type de tenue" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\TypeTenue
+            - ~
+
     iuch.tenue_listener:
         class: IuchBundle\Listener\TenueListener
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.cle:
-        class: IuchBundle\Admin\CleAdmin
+    sonata.materiel:
+        class: IuchBundle\Admin\MaterielAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Clés données/rendues" }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Matériels donnés/rendus" }
         arguments:
             - ~
-            - IuchBundle\Entity\Cle
+            - IuchBundle\Entity\Materiel
             - ~
 
-    iuch.cle_listener:
-        class: IuchBundle\Listener\CleListener
+    iuch.materiel_listener:
+        class: IuchBundle\Listener\MaterielListener
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 
-    sonata.badge:
-        class: IuchBundle\Admin\BadgeAdmin
+    sonata.type_materiel:
+        class: IuchBundle\Admin\TypeMaterielAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Badge donnés/rendus" }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.keys", label: "Type de matériel" }
         arguments:
             - ~
-            - IuchBundle\Entity\Badge
-            -
+            - IuchBundle\Entity\TypeMateriel
+            - ~
 
-    iuch.badge_listener:
-        class: IuchBundle\Listener\BadgeListener
+    sonata.welcome_mail:
+        class: IuchBundle\Admin\WelcomeMailAdmin
         tags:
-            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.mails", label: "Mail de bienvenue" }
+        arguments:
+            - ~
+            - IuchBundle\Entity\WelcomeMail
+            - ~
 
     sonata.block.service.stat:
         class: IuchBundle\Block\StatBlockService
@@ -94,15 +107,21 @@ services:
         tags:
             - { name: sonata.block }
 
-    sonata.block.service.statuser:
-        class: IuchBundle\Block\StatUserBlockService
-        arguments: [ "sonata.block.service.statuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+    sonata.block.service.statmateriel:
+        class: IuchBundle\Block\StatMaterielBlockService
+        arguments: [ "sonata.block.service.statmateriel", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
         tags:
             - { name: sonata.block }
 
     sonata.block.service.statlastuser:
         class: IuchBundle\Block\StatLastUserBlockService
         arguments: [ "sonata.block.service.statlastuser", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
+        tags:
+            - { name: sonata.block }
+
+    sonata.block.service.stattenue:
+        class: IuchBundle\Block\StatTenueBlockService
+        arguments: [ "sonata.block.service.stattenue", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
         tags:
             - { name: sonata.block }
 

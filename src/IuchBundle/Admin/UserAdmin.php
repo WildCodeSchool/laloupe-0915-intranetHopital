@@ -65,8 +65,9 @@ class UserAdmin extends Admin
             ->add('service.nom', null, array(
                 'label' => 'Service référent',
             ))
-            ->add('chef_service', null, array(
-                'label' => 'Chef de service'
+            ->add('chef_service', 'boolean', array(
+                'label' => 'Chef de service',
+                'template' => 'IuchBundle:ChefService:list_link.html.twig'
             ))
             ->add('fonction.nom', null, array(
                 'label' => 'Fonction',
@@ -114,7 +115,7 @@ class UserAdmin extends Admin
                 ->add('gender')
                 ->add('firstname')
                 ->add('lastname')
-                ->add('dateOfBirth', 'date', array('format' => 'd/m/Y',))
+                ->add('dateOfBirth', 'date', array('format'=>'d/m/Y'))
             ->end()
             ->with('Contact')
                 ->add('phone')
@@ -127,9 +128,14 @@ class UserAdmin extends Admin
                 ->add('fonction', null, array('label' => 'Fonction'))
                 ->add('service', null, array('label' => 'Service référent'))
                 ->add('services', null, array('label' => 'Services secondaire'))
-                ->add('date_entree', 'date', array('label' => 'Date d\'entrée', 'format' => 'd/m/Y'))
-                ->add('date_sortie', 'date', array('label' => 'Date de sortie', 'format' => 'd/m/Y'))
+                ->add('date_entree', 'date', array(
+                    'label' => 'Date entrée',
+                    'format'=>'d/m/Y'))
+                ->add('date_sortie', 'date', array(
+                    'label' => 'Date sortie',
+                    'format'=>'d/m/Y'))
                 ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
+                ->add('code_copieur', null, array('label' => 'Code copieur'))
             ->end()
         ;
     }
@@ -143,6 +149,7 @@ class UserAdmin extends Admin
             ->with('Informations obligatoires')
                 ->add('username', null, array(
                     'label' => 'Matricule',
+                    'attr' => array('maxlength' => '6'),
                     'required' => true
                 ))
                 ->add('lastname', null, array('required' => true))
@@ -150,20 +157,22 @@ class UserAdmin extends Admin
                 ->add('gender', 'sonata_user_gender', array(
                     'translation_domain' => $this->getTranslationDomain()
                 ))
-                ->add('dateOfBirth', 'date', array(
-                    'widget' => 'choice',
-                    'years' => range(date('Y') - 66, date('Y')),
-                ))
+                ->add('dateOfBirth', 'sonata_type_date_picker', array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+                    ))
                 ->add('enabled', null, array(
                     'required' => false
                 ))
             ->end()
             ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
-                    'label' => 'Fonction'
+                    'label' => 'Fonction',
+                    'required' => true
                 ))
                 ->add('service', 'sonata_type_model_list', array(
-                    'label' => 'Service référent'
+                    'label' => 'Service référent',
+                    'required' => true
                 ))
                 ->add('services', null, array(
                     'required' => false,
@@ -171,22 +180,20 @@ class UserAdmin extends Admin
                     'multiple' => true,
                     'label' => 'Services secondaires'
                 ))
-                ->add('chef_service', null, array(
-                    'label' => 'Chef de service'
-                ))
             ->end()
             ->with('Dates arrivée & départ')
-                ->add('date_entree', 'date', array(
+                ->add('date_entree', 'sonata_type_date_picker', array(
                     'label' => 'Date d\'entrée',
                     'placeholder' => '',
-                    'years' => range(date('Y') - 50, date('Y')),
-                    'widget' => 'choice',
-                    ))
-                ->add('date_sortie', 'date', array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+                    'required' => true,
+                   ))
+                ->add('date_sortie', 'sonata_type_date_picker', array(
                     'label' => 'Date de sortie',
                     'placeholder' => '',
-                    'years' => range(date('Y') - 50, date('Y')),
-                    'widget' => 'choice',
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
                     'required' => false
                 ))
                 ->add('raison_sortie', 'choice', array(
@@ -202,7 +209,8 @@ class UserAdmin extends Admin
                     'label' => 'Adresse'
                 ))
                 ->add('zip', null, array(
-                    'label' => 'Code postal'
+                    'label' => 'Code postal',
+                    'attr' => array('maxlength' => '5')
                 ))
                 ->add('ville' , null, array(
                     'label' => 'Ville'

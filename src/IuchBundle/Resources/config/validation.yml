@@ -5,7 +5,7 @@ IuchBundle\Entity\Charte:
             - File:
                 maxSize: 1024k
                 mimeTypes: [application/pdf, application/x-pdf]
-                mimeTypesMessage: Please upload a valid PDF
+                mimeTypesMessage: Veuillez télécharger un fichier PDF valide.
 
 IuchBundle\Entity\Photo:
     properties:
@@ -29,5 +29,67 @@ IuchBundle\Entity\Service:
                 checkMX: true
         telephone:
             - Regex :
-                pattern: '/^0[1-9]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/'
+                pattern: '/^0[1-9]([-\/. ]?[0-9]{2}){4}$/'
                 message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
+        chef_service:
+            - NotNull: ~
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [chef_service]
+            message: "L'utilisateur est déjà chef de service"
+
+Application\Sonata\UserBundle\Entity\User:
+    properties:
+        username:
+            - Length:
+                max: 6
+            - Regex:
+                pattern: '/[0-9]{6}/'
+                message: Matricule doit contenir exactement 6 chiffres.
+                groups: [Own, UserValidation]
+        zip:
+            - Length:
+                max: 5
+            - Regex:
+                pattern: '/^[0-9]{5}$/'
+                message: Veuillez rentrer un code postal valide.
+        email:
+            - Email:
+                message: Veuillez rentrer un email valide.
+                checkMX: true
+        phone:
+            - Regex :
+                pattern: '/^0[1-9]([-\/. ]?[0-9]{2}){4}$/'
+                message: Veuillez rentrer un numéro de téléphone valide. Ex : 0145678950 | 01 45 67 89 50 | 01-45-67-89-50 | 01.45.67.89.50
+
+IuchBundle\Entity\TypeMateriel:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: type
+            message: Le type existe déjà
+
+IuchBundle\Entity\TypeTenue:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: type
+            message: Le type existe déjà
+
+IuchBundle\Entity\Materiel:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH
+
+IuchBundle\Entity\Tenue:
+    getters:
+        userEnabled:
+            - 'IsTrue':
+                message: L'utilisateur n'est pas activé, veuillez contactez le service RH
+
+FOS\UserBundle\Form\Model\ChangePassword:
+    properties:
+        new:
+            - Regex:
+                pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,16}$/"
+                message: "Le mot de passe doit être compris entre 6 et 16 caractères avec au minimum 1 minuscule, 1 majuscule et 1 chiffre."
+                groups: [ChangePassword, ResetPassword]

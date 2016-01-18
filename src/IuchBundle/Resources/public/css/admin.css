@@ -23,11 +23,18 @@ p {
     border-radius: 1em;
     border: #FFF 1px solid;
 }
-#block__cles {
+#block__materiel {
     background-color: #7266BA;
     border-radius: 1em;
     border: #FFF 1px solid;
 }
+
+#block__materiel h3,
+#block__tenues h3 {
+    color: #fff;
+    text-align: center;
+}
+
 #block__tenues{
     background-color: #6BAFBD;
     border-radius: 1em;
@@ -63,4 +70,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 .box.box-primary {
     width: 100%;
+}
+.input-group.date {
+    max-width: 132px;
 }

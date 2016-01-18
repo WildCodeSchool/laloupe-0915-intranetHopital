@@ -10,43 +10,52 @@
             <generator strategy="AUTO" />
         </id>
 
-       <attribute-overrides>
+      <attribute-overrides>
             <attribute-override name="email">
                 <field column="email" nullable="true"/>
             </attribute-override>
             <attribute-override name="emailCanonical">
                 <field column="emailCanonical" nullable="true"/>
             </attribute-override>
-        </attribute-overrides>
+            <attribute-override name="username">
+               <field column="username" type="string" length="6"/>
+            </attribute-override>
+       </attribute-overrides>
 
+        <field name="code_copieur" column="code_copieur" type="string" length="4" />
+        <field name="pointeur" column="pointeur" type="boolean" />
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
         <field name="zip" column="zip" type="string" length="5" nullable="true" />
         <field name="ville" column="ville" type="string" length="255" nullable="true" />
-        <field name="chef_service" column="chef_service" type="boolean" nullable="true" />
         <field name="date_entree" column="date_entree" type="date" nullable="true" />
         <field name="date_sortie" column="date_sortie" type="date" nullable="true" />
         <field name="raison_sortie" column="raison_sortie" type="string" length="255" nullable="true" />
 
         <many-to-one field="fonction" target-entity="IuchBundle\Entity\Fonction">
-            <join-column name="fonction_id" referenced-column-name="id" />
+            <join-column name="fonction_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
 
-        <many-to-one field="service" target-entity="IuchBundle\Entity\Service" inversed-by="users">
-            <join-column name="service_id" referenced-column-name="id" />
+        <!-- chef service -->
+        <one-to-one field="chef_service" target-entity="IuchBundle\Entity\Service" mapped-by="chef_service"/>
+
+        <!-- Service Référent -->
+        <many-to-one field="service" target-entity="IuchBundle\Entity\Service" inversed-by="users" orphan-removal="true">
+            <join-column name="service_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />
         </many-to-one>
 
+        <!-- Services secondaires -->
         <many-to-many field="services" target-entity="IuchBundle\Entity\Service">
             <join-table name="users_services">
                 <join-columns>
-                    <join-column name="user_id" referenced-column-name="id" />
+                    <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="service_id" referenced-column-name="id" />
+                    <join-column name="service_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
 
-        <one-to-one field="photo" target-entity="IuchBundle\Entity\Photo" inversed-by="user">
+        <one-to-one field="photo" target-entity="IuchBundle\Entity\Photo" inversed-by="user" orphan-removal="true">
             <join-column name="photo_id" referenced-column-name="id" />
         </one-to-one>
 

@@ -26,16 +26,16 @@ body {
 /** NAVBAR **/
 .navbar-brand {
     display: block;
-    background: url('../img/ch-la-loupe.png') no-repeat center;
-    width: 112px;
-    height:82px;
+    background: url('../img/logoIntranet.png') no-repeat center;
+    width: 138px;
+    height:85px;
     text-indent: 200%;
     white-space: nowrap;
     overflow: hidden;
 }
 
 .navbar li {
-    height:82px;
+    height:85px;
 }
 
 .navbar li a {
@@ -99,6 +99,12 @@ h4 {
     color:#38785e;
 }
 
+.panel-body-copieur h4 {
+    text-align: center;
+    color: #D5661D;
+    font-size: 30px;
+}
+
 #chartesTable{
     margin-bottom: 30px;
     border-bottom:1px solid #cccccc;
@@ -156,6 +162,8 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 
 .trombinoscope .img {
     position: relative;
+    max-height:200px;
+    min-height:180px;
 }
 
 .trombinoscope .chef {
@@ -169,7 +177,8 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
     font-size:12px;
 }
 
-.trombinoscope-page .list-group {
+.trombinoscope-page .list-group,
+.trombinoscope-page .form-control{
     max-width: 240px;
 }
 .affix {

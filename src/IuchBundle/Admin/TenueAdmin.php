@@ -12,24 +12,33 @@ class TenueAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('nom')
+            ->add('type')
             ->add('user','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
             ))
-            ->add('date_donnee', 'datetime')
+            ->add('date_donnee', 'sonata_type_date_picker', array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+            ))
             ->add('nombre_donne', 'number')
             ->add('nombre_rendu', 'number', array('required' => false))
+            ->add('commentaire', null, array('required' => false))
         ;
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
+            ->add('type')
             ->add('user')
-            ->add('date_donnee', 'doctrine_orm_date_range')
+            ->add('intervenant')
+            ->add('date_donnee', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
             ->add('nombre_donne')
-            ->add('date_rendu', 'doctrine_orm_date_range')
+            ->add('date_rendu', 'doctrine_orm_date_range', array(
+                'field_type' => 'sonata_type_date_range_picker',
+            ))
             ->add('nombre_rendu')
         ;
     }
@@ -37,15 +46,23 @@ class TenueAdmin extends Admin
     {
 
         $listMapper
-            ->addIdentifier('nom')
+            ->add('type')
             ->add('user', null, array(
                 'route' => array(
                     'name' => 'show'
                 )))
-            ->add('date_donnee')
+            ->add('date_donnee', 'date', array(
+                'label' => 'Date de remise',
+                'format'=>'d/m/Y
+                '))
             ->add('nombre_donne')
-            ->add('date_rendu')
+            ->add('date_rendu', 'date', array(
+                'label' => 'Date de rendu',
+                'format'=>'d/m/Y'
+            ))
             ->add('nombre_rendu')
+            ->add('intervenant')
+            ->add('commentaire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -58,17 +75,27 @@ class TenueAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Général')
+            ->with('Remise')
             ->add('user')
-            ->add('nom')
+            ->add('type')
             ->end()
             ->with('Entrée')
-            ->add('date_donnee')
+            ->add('date_donnee', 'date', array(
+                'label' => 'Date de remise',
+                'format'=>'d/m/Y'
+            ))
             ->add('nombre_donne')
             ->end()
             ->with('Sortie')
-            ->add('date_rendu')
+            ->add('date_rendu', 'date', array(
+                'label' => 'Date de rendu',
+                'format'=>'d/m/Y'
+            ))
             ->add('nombre_rendu')
+            ->end()
+            ->with('Informations complémentaires')
+            ->add('intervenant')
+            ->add('commentaires')
             ->end()
         ;
     }

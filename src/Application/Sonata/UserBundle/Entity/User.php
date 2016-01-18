@@ -26,12 +26,12 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 class User extends BaseUser
 {
-
     public function __construct()
     {
         parent::__construct();
         $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
+        $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
     }
 
     public function __toString()
@@ -40,7 +40,6 @@ class User extends BaseUser
     }
 
     //GENERATED CODE
-
     /**
      * @var string
      */
@@ -57,11 +56,6 @@ class User extends BaseUser
     private $ville;
 
     /**
-     * @var boolean
-     */
-    private $chef_service;
-
-    /**
      * @var \DateTime
      */
     private $date_entree;
@@ -75,6 +69,11 @@ class User extends BaseUser
      * @var string
      */
     private $raison_sortie;
+
+    /**
+     * @var \IuchBundle\Entity\Service
+     */
+    private $chef_service;
 
     /**
      * @var \IuchBundle\Entity\Photo
@@ -95,6 +94,11 @@ class User extends BaseUser
      * @var \Doctrine\Common\Collections\Collection
      */
     private $services;
+
+    /**
+     * @var boolean
+     */
+    private $pointeur = false;
 
 
     /**
@@ -170,45 +174,21 @@ class User extends BaseUser
     }
 
     /**
-     * Set chefService
+     * Set date_Entree
      *
-     * @param boolean $chefService
+     * @param \DateTime $date_entree
      *
      * @return User
      */
-    public function setChefService($chefService)
+    public function setDateEntree($date_entree)
     {
-        $this->chef_service = $chefService;
+        $this->date_entree = $date_entree;
 
         return $this;
     }
 
     /**
-     * Get chefService
-     *
-     * @return boolean
-     */
-    public function getChefService()
-    {
-        return $this->chef_service;
-    }
-
-    /**
-     * Set dateEntree
-     *
-     * @param \DateTime $dateEntree
-     *
-     * @return User
-     */
-    public function setDateEntree($dateEntree)
-    {
-        $this->date_entree = $dateEntree;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEntree
+     * Get date_entree
      *
      * @return \DateTime
      */
@@ -218,21 +198,21 @@ class User extends BaseUser
     }
 
     /**
-     * Set dateSortie
+     * Set date_sortie
      *
-     * @param \DateTime $dateSortie
+     * @param \DateTime $date_sortie
      *
      * @return User
      */
-    public function setDateSortie($dateSortie)
+    public function setDateSortie($date_sortie)
     {
-        $this->date_sortie = $dateSortie;
+        $this->date_sortie = $date_sortie;
 
         return $this;
     }
 
     /**
-     * Get dateSortie
+     * Get date_sortie
      *
      * @return \DateTime
      */
@@ -242,27 +222,50 @@ class User extends BaseUser
     }
 
     /**
-     * Set raisonSortie
+     * Set raison_sortie
      *
-     * @param string $raisonSortie
+     * @param string $raison_sortie
      *
      * @return User
      */
-    public function setRaisonSortie($raisonSortie)
+    public function setRaisonSortie($raison_sortie)
     {
-        $this->raison_sortie = $raisonSortie;
+        $this->raison_sortie = $raison_sortie;
 
         return $this;
     }
 
     /**
-     * Get raisonSortie
+     * Get raison_sortie
      *
      * @return string
      */
     public function getRaisonSortie()
     {
         return $this->raison_sortie;
+    }
+
+    /**
+     * Set chef_service
+     *
+     * @param \IuchBundle\Entity\Service $chef_service
+     *
+     * @return User
+     */
+    public function setChefService(\IuchBundle\Entity\Service $chef_service = null)
+    {
+        $this->chef_service = $chef_service;
+        return $this;
+    }
+
+    /**
+     * Get chefService
+     *
+     * @return \IuchBundle\Entity\Service
+     */
+    public function getChefService()
+    {
+        return $this->chef_service;
     }
 
     /**
@@ -296,7 +299,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setFonction(\IuchBundle\Entity\Fonction $fonction = null)
+    public function setFonction(\IuchBundle\Entity\Fonction $fonction)
     {
         $this->fonction = $fonction;
 
@@ -320,7 +323,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setService(\IuchBundle\Entity\Service $service = null)
+    public function setService(\IuchBundle\Entity\Service $service)
     {
         $this->service = $service;
 
@@ -369,5 +372,59 @@ class User extends BaseUser
     public function getServices()
     {
         return $this->services;
+    }
+
+
+    /**
+     * Set pointeur
+     *
+     * @param boolean $pointeur
+     *
+     * @return User
+     */
+    public function setPointeur($pointeur)
+    {
+        $this->pointeur = $pointeur;
+
+        return $this;
+    }
+
+    /**
+     * Get pointeur
+     *
+     * @return boolean
+     */
+    public function getPointeur()
+    {
+        return $this->pointeur;
+    }
+    /**
+     * @var string
+     */
+    private $code_copieur;
+
+
+    /**
+     * Set codeCopieur
+     *
+     * @param string $codeCopieur
+     *
+     * @return User
+     */
+    public function setCodeCopieur($codeCopieur)
+    {
+        $this->code_copieur = $codeCopieur;
+
+        return $this;
+    }
+
+    /**
+     * Get codeCopieur
+     *
+     * @return string
+     */
+    public function getCodeCopieur()
+    {
+        return $this->code_copieur;
     }
 }

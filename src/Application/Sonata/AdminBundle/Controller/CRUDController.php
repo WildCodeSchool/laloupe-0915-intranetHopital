@@ -12,10 +12,10 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
-use IuchBundle\Entity\Badge;
 use IuchBundle\Entity\Charte;
-use IuchBundle\Entity\Cle;
+use IuchBundle\Entity\Materiel;
 use IuchBundle\Entity\Photo;
+use IuchBundle\Entity\Tenue;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -98,7 +98,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                      * IUCH
                      * Editer l'intervenant
                      */
-                    if ($object instanceof Cle || $object instanceof Badge)
+                    if ($object instanceof Materiel || $object instanceof Tenue)
                     {
                         $user = $this->getUser();
                         $object->setIntervenant($user);
@@ -231,7 +231,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
              * IUCH
              * Enregistrer l'intervenant
              */
-            if ($object instanceof Cle || $object instanceof Badge)
+            if ($object instanceof Materiel || $object instanceof Tenue)
             {
                 $user = $this->getUser();
                 $object->setIntervenant($user);
@@ -307,9 +307,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
         }
         else {
+            $mail = $this->get('doctrine')->getRepository('IuchBundle:WelcomeMail')->findOneById(1);
+
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
-                ->setSubject('Bienvenue à l\'hôpital de La Loupe')
+                ->setSubject($mail->getSujet())
                 // TODO Modify the setFrom with CHLaLoupe mailserver informations
                 ->setFrom('CHLaLoupe@gmail.com')
                 ->setTo($destinataire)
@@ -318,6 +320,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                         'Emails/welcome_mail.html.twig',
                         array(
                             'user' => $object,
+                            'mail' => $mail
                         )
                     ),
                     'text/html'

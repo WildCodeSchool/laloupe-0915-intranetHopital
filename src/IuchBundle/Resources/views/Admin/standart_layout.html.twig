@@ -2,8 +2,11 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/tables.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/iuch/css/admin.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/iuch/css/jquery.dynatable.css') }}">
+
 {% endblock %}
 
 {# remove sonata-project link on nav #}
@@ -130,17 +133,25 @@
             <div>
                 <h1>Bienvenue sur le tableau de bord</h1>
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="bg-info"><p class="text-info" style="padding:10px;">Pour désactiver/activer le trombinoscope, veuillez vous rendre dans le fichier parameters.yml du dossier app de l'application et changer le parametre trombinoscope.enabled à true ou false</p></div>
+            {% endif %}
             {% if is_granted('ROLE_QGDR') %}
                 {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
             {% endif %}
 
             {% if is_granted('ROLE_SERVICE_TECHNIC') %}
-                {{ sonata_block_render({ 'type': 'sonata.block.service.statuser' }) }}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.statmateriel' }) }}
+            {% endif %}
+
+            {% if is_granted('ROLE_BLANCHISSERIE') %}
+                {{ sonata_block_render({ 'type': 'sonata.block.service.stattenue' }) }}
             {% endif %}
 
             {% if is_granted('ROLE_RH') %}
                 {{ sonata_block_render({ 'type': 'sonata.block.service.statlastuser' }) }}
             {% endif %}
+
         {% endblock block %}
     {% endif %}
 
@@ -148,5 +159,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/iuch/js/test.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/moment/locale/fr.js') }}"></script>
 {% endblock %}

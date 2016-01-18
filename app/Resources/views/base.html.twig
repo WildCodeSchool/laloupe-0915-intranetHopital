@@ -11,6 +11,7 @@
         {% endblock %}
         <link rel="stylesheet" href="{{ asset('bundles/iuch/css/main.css') }}">
 
+
     </head>
 
     <body>
@@ -44,7 +45,9 @@
                                 {% if ('ADMIN' or 'RH') in app.user.roles|keys %}
                                     <li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
                                 {% endif %}
-                                <li><a href="{{ path('iuch_trombinoscope') }}">Trombinoscope</a></li>
+                                {% if trombinoscopeEnabled == true %}
+                                    <li><a href="{{ path('iuch_trombinoscope') }}">Trombinoscope</a></li>
+                                {% endif %}
                                 <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
                             {% else %}
                                 <li><a href="{{ path('sonata_user_security_login') }}">Connexion</a></li>

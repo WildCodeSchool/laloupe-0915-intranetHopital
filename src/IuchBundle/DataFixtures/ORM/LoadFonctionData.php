@@ -45,6 +45,9 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $fonction9 = new Fonction();
         $fonction9->setNom('P.H TEMPS PLEIN');
 
+        $fonction10 = new Fonction();
+        $fonction10->setNom('testFonction');
+
         $manager->persist($fonction1);
         $manager->persist($fonction2);
         $manager->persist($fonction3);
@@ -54,6 +57,7 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $manager->persist($fonction7);
         $manager->persist($fonction8);
         $manager->persist($fonction9);
+        $manager->persist($fonction10);
         $manager->flush();
 
         $this->addReference('10', $fonction1);
@@ -65,9 +69,10 @@ class LoadFonctionData extends AbstractFixture implements FixtureInterface, Orde
         $this->addReference('16', $fonction7);
         $this->addReference('17', $fonction8);
         $this->addReference('18', $fonction9);
+        $this->addReference('19', $fonction10);
     }
     public function getOrder()
     {
-        return 3; // ordre d'appel
+        return 1; // ordre d'appel
     }
 }

@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityManager;
 
-class StatUserBlockService extends BaseBlockService
+class StatTenueBlockService extends BaseBlockService
 {
     /**
      * @var SecurityContextInterface
@@ -64,40 +64,28 @@ class StatUserBlockService extends BaseBlockService
             ->findAll();
 
         $nbr_tenues = 0;
+        $nbr_perdues = 0;
+        $nbr_rendues = 0;
         foreach ($tenues as $tenue) {
             $nbr_tenues += $tenue->getNombreDonne();
+
+            $nbr_rendues += $tenue->getNombreRendu();
+
+            if ($tenue->getDateRendu() != null) {
+                if ($tenue->getNombreDonne() != $tenue->getNombreRendu()) {
+                    $nbr_perdues += $tenue->getNombreDonne() - $tenue->getNombreRendu();
+                }
+            }
         }
-
-
-        // Cles stats
-        $cles = $this->em
-            ->getRepository('IuchBundle:Cle')
-            ->findAll();
-
-        $nbr_cles = 0;
-        foreach ($cles as $cle) {
-            if ($cle->getRemis() === true) $nbr_cles ++;
-        }
-
-
-        // Badges stats
-        $badges = $this->em
-            ->getRepository('IuchBundle:Badge')
-            ->findAll();
-
-        $nbr_badges = 0;
-        foreach ($badges as $badge) {
-            if ($badge->getRemis() === true) $nbr_badges ++;
-        }
-
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
-            'base_template' => $this->pool->getTemplate('IuchBundle:Block:statuser.html.twig'),
+            'base_template' => $this->pool->getTemplate('IuchBundle:Block:stattenue.html.twig'),
             'settings'      => $blockContext->getSettings(),
             'tenues'        => $nbr_tenues,
-            'cles'          => $nbr_cles,
-            'badges'        => $nbr_badges
+            'tenues_perdues' => $nbr_perdues,
+            'tenues_rendues' => $nbr_rendues
+
         ), $response);
     }
     /**
@@ -107,7 +95,7 @@ class StatUserBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'title'    => 'Mes informations',
-            'template' => 'IuchBundle:Block:statuser.html.twig' // Le template à render dans execute()
+            'template' => 'IuchBundle:Block:stattenue.html.twig' // Le template à render dans execute()
         ));
     }
 
