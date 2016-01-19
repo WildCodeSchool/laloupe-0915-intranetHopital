@@ -6,7 +6,7 @@
     <script src="{{ asset('bundles/iuch/js/highcharts.js') }}"></script>
     <script src="{{ asset('bundles/iuch/js/jquery.dynatable.js') }}"></script>
 
-    <select id="search-year" name="year">
+   <select id="search-year" name="year">
         <option></option>
         {% for year, datas in bar %}
             <option value="{{ year }}" {% if ( year == 'all' ) %} selected="selected" {% endif %}>{{ year }}</option>
@@ -30,7 +30,7 @@
 
     <script>
 
-        $('#chart-example').dynatable();
+//        $('#chart-example').dynatable();
 
         (function() {
             var $table = $('#chart-example'), $chart = $('#chart-example-chart'), chart;
@@ -85,7 +85,11 @@
                             recordCountTarget: $chart,
                             paginationLinkTarget: $chart,
                             searchTarget: $chart,
-                            perPageTarget: $chart
+                            perPageTarget: $chart,
+                            perPageText: 'Voir: ',
+                            paginationPrev: 'Précédent',
+                            paginationNext: 'Suvant',
+                            recordCountText: 'Affichage de '
                         },
                         dataset: {
                             perPageOptions: [5, 10, 20],

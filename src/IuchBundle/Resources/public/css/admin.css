@@ -79,4 +79,12 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 #chart-example-chart {
     margin-top: 10px;
+    height: 400px;
+}
+
+.btn.primary {
+    color: #ffffff;
+    background-color: #1b7e5a;
+    margin-top: 10px;
+    border-radius: 0.5em;
 }
