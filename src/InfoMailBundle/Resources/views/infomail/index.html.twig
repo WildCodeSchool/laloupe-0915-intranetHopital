@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>InfoMail list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Subject</th>
+                <th>TypeMail</th>
+                <th>Documents</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for infoMail in infoMails %}
+            <tr>
+                <td><a href="{{ path('infomail_show', { 'id': infoMail.id }) }}">{{ infoMail.id }}</a></td>
+                <td>{{ infoMail.subject }}</td>
+                <td>{{ infoMail.typeMail }}</td>
+                <td>
+                    {% for file in infoMail.files %}
+                        {{ file.name }}
+                    {% endfor %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('infomail_show', { 'id': infoMail.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('infomail_edit', { 'id': infoMail.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('infomail_delete', { 'id': infoMail.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('infomail_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Document Edit</h1>
+
+    {{ form(edit_form) }}
+
+    <p>Number of Uploaded Files : {{ entity.files|length }}</p>
+
+    {{ form(delete_form) }}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+services:
+    sonata.infomail:
+        class: InfoMailBundle\Admin\InfoMailAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "groups.mails", label_catalogue: "Mail d'information" }
+        arguments:
+            - ~
+            - InfoMailBundle\Entity\InfoMail
+            - ~

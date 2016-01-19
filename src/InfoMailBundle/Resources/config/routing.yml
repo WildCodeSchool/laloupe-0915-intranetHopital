@@ -1,0 +1,7 @@
+wcs_info_mail_infomail:
+    resource: "@InfoMailBundle/Resources/config/routing/infomail.yml"
+    prefix:   /infomail
+
+wcs_info_mail_homepage:
+    path:     /
+    defaults: { _controller: InfoMailBundle:InfoMail:index }

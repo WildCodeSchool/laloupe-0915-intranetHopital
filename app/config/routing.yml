@@ -3,6 +3,10 @@ iuch:
     resource: "@IuchBundle/Resources/config/routing.yml"
     prefix:   /
 
+wcs_info_mail:
+    resource: "@InfoMailBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # Sonata User Routes
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
