@@ -307,7 +307,9 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
         }
         else {
-            $mail = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findOneByType('mail de bienvenue');
+            $mails = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findByType('mail de bienvenue');
+
+            $mail = end($mails);
 
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()

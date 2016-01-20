@@ -5,7 +5,3 @@ wcs_info_mail_infomail:
 wcs_info_mail_homepage:
     path:     /
     defaults: { _controller: InfoMailBundle:InfoMail:index }
-
-wcs_info_mail_file:
-    path: /{file_id}/documents
-    defaults: { _controller: InfoMailBundle:File:getFile }
