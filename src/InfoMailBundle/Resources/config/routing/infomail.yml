@@ -1,0 +1,34 @@
+infomail_index:
+    path:     /
+    defaults: { _controller: "InfoMailBundle:InfoMail:index" }
+    methods:  GET
+
+infomail_show:
+    path:     /{id}/show
+    defaults: { _controller: "InfoMailBundle:InfoMail:show" }
+    methods:  GET
+
+infomail_new:
+    path:     /new
+    defaults: { _controller: "InfoMailBundle:InfoMail:new" }
+    methods:  [GET, POST]
+
+infomail_edit:
+    path: /{id}/edit
+    defaults: { _controller: "InfoMailBundle:InfoMail:edit" }
+    methods:  [GET, POST]
+
+infomail_update:
+    path: /{id}/update
+    defaults: { _controller: "InfoMailBundle:InfoMail:update" }
+    methods:  PUT
+
+infomail_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "InfoMailBundle:InfoMail:delete" }
+    methods:  [GET, DELETE]
+
+infomail_send:
+    path:     /{id}/send
+    defaults: { _controller: "InfoMailBundle:InfoMail:send" }
+    methods:  GET

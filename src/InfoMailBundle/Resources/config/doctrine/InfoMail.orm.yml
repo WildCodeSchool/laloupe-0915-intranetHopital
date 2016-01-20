@@ -1,0 +1,29 @@
+InfoMailBundle\Entity\InfoMail:
+    type: entity
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        subject:
+            type: string
+            length: 255
+        type:
+            type: string
+            length: 255
+        body:
+            type: text
+        date_last_send:
+            type: datetime
+            nullable: true
+
+    oneToMany:
+        files:
+            targetEntity: InfoMailBundle\Entity\File
+            mappedBy: infoMail
+            cascade: [ persist, remove ]
+
+    lifecycleCallbacks:
+        preFlush: [ isUpload ]

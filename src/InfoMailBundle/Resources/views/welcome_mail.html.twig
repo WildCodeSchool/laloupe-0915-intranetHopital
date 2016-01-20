@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+
+    <!-- For development, pass document through inliner -->
+    <style>
+        * {
+            font-size: 100%;
+            font-family: "Helvetica", Helvetica, Arial, sans-serif;
+            line-height: 1.2; }
+    </style>
+
+    <style type="text/css">
+        /* Your custom styles go here */
+    </style>
+</head>
+<body  style="width:100%; height:100%; font-size:16px;">
+<table width="600" style="width:100%; height:100%; margin: 0 auto; max-width: 700px; background:#f9f9f9; padding: 0 30px;">
+    <tr>
+        <td style="width:100%; border-collapse: collapse;">
+
+            <!-- Message start -->
+            <table style="border-collapse: collapse;">
+                <tr>
+                    <td align="center">
+
+                        <h1 style="color: #D5661D; font-size:35px">Bienvenue {{ user.firstname }} {{ user.lastname }} ! </h1>
+                        <p>Félicitation, vous venez d'être embauché en tant que {{ user.fonction.nom }} dès le {{ user.dateEntree|date('d/m/Y') }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <h2 style="color: #D5661D; font-size:30px;">Informations utiles</h2>
+
+                        <p><strong>Votre matricule : </strong>{{ user.username }}</p>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h3 style="color: #074C2D; font-size:25px; text-align: center;">Service {{ user.service.nom }} </h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if user.service.chefService is defined %}
+                            <p> <strong>Votre chef de service :</strong> {{ user.service.chefService }}</p>
+                        {% endif %}
+                        {% if user.service.chefService.email is defined %}
+                            <p> <strong>Email du chef de service :</strong> {{ user.service.chefService.email }}</p>
+                        {% endif %}
+                        {% if user.service.telephone is defined %}
+                            <p> <strong>Numéro du service :</strong> {{ user.service.telephone }}</p>
+                        {% endif %}
+                        {% if user.service.email is defined %}
+                            <p> <strong>Email du service :</strong> {{ user.service.email }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if user.services is not empty %}
+                            <h3 style="color: #074C2D; font-size:20px;">Vos services secondaires :</h3>
+                            <p>
+                                {% for service in user.services %}
+                                    {{ service.nom }} -
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td><div>{{ mail.body|raw }}</div></td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

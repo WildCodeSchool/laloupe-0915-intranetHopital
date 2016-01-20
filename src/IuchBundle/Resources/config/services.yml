@@ -92,15 +92,6 @@ services:
             - IuchBundle\Entity\TypeMateriel
             - ~
 
-    sonata.welcome_mail:
-        class: IuchBundle\Admin\WelcomeMailAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "iuch.group.mails", label: "Mail de bienvenue" }
-        arguments:
-            - ~
-            - IuchBundle\Entity\WelcomeMail
-            - ~
-
     sonata.block.service.stat:
         class: IuchBundle\Block\StatBlockService
         arguments: [ "sonata.block.service.stat", @templating, @sonata.admin.pool, @doctrine.orm.entity_manager, @security.context]
