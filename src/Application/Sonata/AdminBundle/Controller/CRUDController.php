@@ -307,17 +307,17 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
         }
         else {
-            $mail = $this->get('doctrine')->getRepository('IuchBundle:WelcomeMail')->findOneById(1);
+            $mail = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findOneByType('welcome_mail');
 
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
-                ->setSubject($mail->getSujet())
+                ->setSubject($mail->getSubject())
                 // TODO Modify the setFrom with CHLaLoupe mailserver informations
                 ->setFrom('CHLaLoupe@gmail.com')
                 ->setTo($destinataire)
                 ->setBody(
                     $this->renderView(
-                        'Emails/welcome_mail.html.twig',
+                        'InfoMailBundle::welcome_mail.html.twig',
                         array(
                             'user' => $object,
                             'mail' => $mail
@@ -325,6 +325,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                     ),
                     'text/html'
                 );
+            if ($mail->getFiles() != null) {
+                foreach ($mail->getFiles() as $file) {
+                    $sendMessage->attach(\Swift_Attachment::fromPath($file->getUploadRootDir() . '/' . $file->getPath())->setFilename($file->getName()));
+                }
+            }
             $this->get('mailer')->send($sendMessage);
         }
     }
