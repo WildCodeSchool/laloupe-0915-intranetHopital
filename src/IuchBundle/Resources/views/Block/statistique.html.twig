@@ -5,7 +5,7 @@
     <hr>
     <script src="{{ asset('bundles/iuch/js/highcharts.js') }}"></script>
     <script src="{{ asset('bundles/iuch/js/jquery.dynatable.js') }}"></script>
-
+  <div class="container">
     <label class="select-label">Années :</label>
    <select id="search-year" class="select-all" name="year">
         <option></option>
@@ -57,7 +57,7 @@
                 },
                 series: [{
                     name: 'Signatures',
-                    color: '#006A72'
+                    color: '#2DAB62'
                 }]
             });
 
@@ -124,5 +124,6 @@
         dynatable.queries.add("années","toutes");
         dynatable.process(true);
     </script>
+  </div>
     <hr>
 {% endblock %}
