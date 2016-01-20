@@ -48,7 +48,7 @@ class InfoMailAdmin extends Admin
         $listMapper
             ->addIdentifier('subject', null, array('label' => 'Sujet'))
             ->add('type')
-            ->add('files', null, array('label' => 'Pièces jointes'))
+            ->add('files', null, array('label' => 'Pièces jointes','template' => 'InfoMailBundle:infoMail:list_files.html.twig'))
             ->add('date_last_send', 'datetime', array('label'=>'Date de dernier envoi','format' => 'd/m/Y H:i'))
             ->add('_action', 'actions', array(
                 'actions' => array(
