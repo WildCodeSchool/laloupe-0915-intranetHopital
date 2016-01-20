@@ -4,6 +4,8 @@ namespace InfoMailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -33,7 +35,7 @@ class InfoMail
                 }
             }
 
-            if ($total >= 20480) {
+            if ($total >= 20971520) {
                 $context->buildViolation('Les pièces jointes sont trop lourdes.')
                     ->atPath('uploadedFiles')
                     ->addViolation();

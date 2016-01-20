@@ -3,7 +3,6 @@
 namespace InfoMailBundle\Controller;
 
 use Sonata\AdminBundle\Exception\ModelManagerException;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 

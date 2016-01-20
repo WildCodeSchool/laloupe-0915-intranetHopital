@@ -20,8 +20,8 @@ class InfoMailAdmin extends Admin
                 'label'    => 'Type d\'email',
                 'required' => true,
                 'choices' => array(
-                    'welcome_mail' => 'mail de bienvenue',
-                    'info_mail' => 'mail d\'information'
+                    'mail de bienvenue' => 'mail de bienvenue',
+                    'mail d\'information' => 'mail d\'information'
                 )
             ))
             ->add('subject', null, array('label' => 'Sujet'))

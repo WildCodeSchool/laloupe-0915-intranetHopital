@@ -307,7 +307,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
         }
         else {
-            $mail = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findOneByType('welcome_mail');
+            $mail = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findOneByType('mail de bienvenue');
 
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
@@ -331,6 +331,8 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                 }
             }
             $this->get('mailer')->send($sendMessage);
+
+            $mail->setDateLastSend(new \DateTime('now'));
         }
     }
 

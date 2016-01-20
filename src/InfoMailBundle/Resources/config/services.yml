@@ -7,3 +7,5 @@ services:
             - ~
             - InfoMailBundle\Entity\InfoMail
             - InfoMailBundle:InfoMail
+        calls:
+            - [ setTemplate, [ show, InfoMailBundle:infoMail:show.html.twig ]]
