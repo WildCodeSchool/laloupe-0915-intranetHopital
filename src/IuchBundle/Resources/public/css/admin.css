@@ -11,9 +11,19 @@ h1 {
 p {
     text-align: center;
 }
+a {
+    color: #D5661D;
+}
+.text-info  {
+    background-color: #DFF0D8;
+    color: #1B7E5A;
+}
 .sonata-bc h2 {
     color: #014C2D;
     text-align: center;
+}
+.sonata-ba-view-title {
+    color: #D5661D;
 }
 #stats-blocks h2 {
     color: #FFF;
