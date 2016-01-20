@@ -115,5 +115,8 @@ th.dynatable-head {
     line-height: 1.1;
     fill: #014C2D !important;
 }
+.select-label {
+    font-weight: 400;
+}
 
 
