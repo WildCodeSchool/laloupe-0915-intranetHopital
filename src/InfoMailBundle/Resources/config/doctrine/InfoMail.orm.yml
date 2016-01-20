@@ -15,6 +15,9 @@ InfoMailBundle\Entity\InfoMail:
             length: 255
         body:
             type: text
+        date_last_send:
+            type: datetime
+            nullable: true
 
     oneToMany:
         files:
@@ -23,4 +26,4 @@ InfoMailBundle\Entity\InfoMail:
             cascade: [ persist, remove ]
 
     lifecycleCallbacks:
-        preFlush: [ upload ]
+        preFlush: [ isUpload ]

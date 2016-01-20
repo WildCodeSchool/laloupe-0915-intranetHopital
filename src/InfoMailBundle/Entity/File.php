@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class File
 {
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @param UploadedFile $uploadedFile
      */
@@ -26,7 +31,7 @@ class File
     /**
      * @return string
      */
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
@@ -184,7 +189,7 @@ class File
      *
      * @return File
      */
-    public function setInfoMail(\Wcs\InfoMailBundle\Entity\InfoMail $infoMail = null)
+    public function setInfoMail(\InfoMailBundle\Entity\InfoMail $infoMail = null)
     {
         $this->infoMail = $infoMail;
 

@@ -4,6 +4,7 @@ namespace InfoMailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * InfoMail
@@ -17,18 +18,44 @@ class InfoMail
     }
 
     /**
+     * Check if the size of the documents are not to big for a mail
+     *
+     * @param ExecutionContextInterface $context
+     *
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ( $this->uploadedFiles != null ) {
+            $total = 0;
+            foreach ($this->uploadedFiles as $uploadedFile) {
+                if ($uploadedFile) {
+                    $total += $uploadedFile->getSize();
+                }
+            }
+
+            if ($total >= 20480) {
+                $context->buildViolation('Les pièces jointes sont trop lourdes.')
+                    ->atPath('uploadedFiles')
+                    ->addViolation();
+            }
+        }
+    }
+
+    /**
      * @ORM\PreFlush()
      */
-    public function upload()
+    public function isUpload()
     {
+        if ( $this->uploadedFiles != null ) {
 
-        foreach($this->uploadedFiles as $uploadedFile)
-        {
-            if ($uploadedFile) {
-                $file = new File($uploadedFile);
-                $this->getFiles()->add($file);
-                $file->setInfoMail($this);
-                unset($uploadedFile);
+            foreach ($this->uploadedFiles as $uploadedFile) {
+                if ($uploadedFile) {
+
+                    $file = new File($uploadedFile);
+                    $this->getFiles()->add($file);
+                    $file->setInfoMail($this);
+                    unset($uploadedFile);
+                }
             }
         }
     }
@@ -78,6 +105,11 @@ class InfoMail
      * @var string
      */
     private $type;
+
+    /**
+     * @var \DateTime
+     */
+    private $date_last_send;
 
     /**
      * Get id
@@ -193,5 +225,29 @@ class InfoMail
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set date_last_send
+     *
+     * @param \DateTime $date_last_send
+     *
+     * @return InfoMail
+     */
+    public function setDateLastSend($date_last_send)
+    {
+        $this->date_last_send = $date_last_send;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLastSend
+     *
+     * @return \DateTime
+     */
+    public function getDateLastSend()
+    {
+        return $this->date_last_send;
     }
 }
