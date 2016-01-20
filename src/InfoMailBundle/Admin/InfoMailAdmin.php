@@ -15,6 +15,8 @@ class InfoMailAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $subject = $this->getSubject();
+
         $formMapper
             ->add('type', 'choice', array(
                 'label'    => 'Type d\'email',
@@ -32,10 +34,13 @@ class InfoMailAdmin extends Admin
                     'label' => 'pièces jointes',
                     'required' => false,
                     'multiple' => true,
-                    'data_class' => null,)
-            )
-        ;
+                    'data_class' => null
+                ));
+            if ($subject->getType()) {
+                $formMapper->add('files', null, array('label' => 'Pièces jointes déjà présentes'));
+            }
     }
+
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -43,6 +48,7 @@ class InfoMailAdmin extends Admin
             ->add('subject', null, array('label' => 'Sujet'))
         ;
     }
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -62,6 +68,7 @@ class InfoMailAdmin extends Admin
             ))
         ;
     }
+
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
