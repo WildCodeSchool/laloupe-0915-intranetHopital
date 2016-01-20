@@ -114,9 +114,9 @@
             $('#search-year').change( function() {
                 var value = $(this).val();
                 if (value === "") {
-                    dynatable.queries.remove("year");
+                    dynatable.queries.remove("années");
                 } else {
-                    dynatable.queries.add("year",value);
+                    dynatable.queries.add("années",value);
                 }
                 dynatable.process(true);
             });
