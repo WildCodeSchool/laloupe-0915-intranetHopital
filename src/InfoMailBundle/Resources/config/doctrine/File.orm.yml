@@ -24,6 +24,6 @@ InfoMailBundle\Entity\File:
             joinColumn:
                 name: infoMail_id
                 referencedColumnName: id
-
+                onDelete: "cascade"
     lifecycleCallbacks:
         postRemove: [ removeFile ]

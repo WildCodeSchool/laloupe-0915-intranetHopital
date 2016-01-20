@@ -46,7 +46,7 @@ class InfoMail
     /**
      * @ORM\PreFlush()
      */
-    public function isUpload()
+    public function upload()
     {
         if ( $this->uploadedFiles != null ) {
 
@@ -61,6 +61,18 @@ class InfoMail
             }
         }
     }
+
+    /**
+     * Remove file
+     *
+     * @param \InfoMailBundle\Entity\File $file
+     */
+    public function removeFile(\InfoMailBundle\Entity\File $file)
+    {
+        $this->files->removeElement($file);
+        $file->setInfoMail(null);
+    }
+
 
     /**
      * @var ArrayCollection
@@ -183,16 +195,6 @@ class InfoMail
         $this->files[] = $file;
 
         return $this;
-    }
-
-    /**
-     * Remove file
-     *
-     * @param \InfoMailBundle\Entity\File $file
-     */
-    public function removeFile(\InfoMailBundle\Entity\File $file)
-    {
-        $this->files->removeElement($file);
     }
 
     /**

@@ -21,9 +21,10 @@ InfoMailBundle\Entity\InfoMail:
 
     oneToMany:
         files:
+            orphanRemoval: true
             targetEntity: InfoMailBundle\Entity\File
             mappedBy: infoMail
             cascade: [ persist, remove ]
 
     lifecycleCallbacks:
-        preFlush: [ isUpload ]
+        preFlush: [ upload ]
