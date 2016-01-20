@@ -13,10 +13,10 @@ p {
     color: #014C2D;
     text-align: center;
 }
-
 #stats-blocks h2 {
     color: #FFF;
 }
+
 /* Statistiques */
 #block__badges{
     background-color: #2DAB62;
@@ -28,13 +28,11 @@ p {
     border-radius: 1em;
     border: #FFF 1px solid;
 }
-
 #block__materiel h3,
 #block__tenues h3 {
     color: #fff;
     text-align: center;
 }
-
 #block__tenues{
     background-color: #6BAFBD;
     border-radius: 1em;
@@ -53,11 +51,9 @@ p {
 .navbar-static-top .navbar-right li:last-of-type a {
     display: inline-block;
 }
-
 .tablesorter {
     background: #fff;
 }
-
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
     background-color: #2DAB62;
 }
@@ -74,17 +70,50 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 .input-group.date {
     max-width: 132px;
 }
-.dynatable-per-page-select {
-    width: 15% !important;
+
+/* Chart */
+.dynatable-per-page-label {
+    margin-left: 10px;
 }
 #chart-example-chart {
     margin-top: 10px;
     height: 400px;
 }
-
 .btn.primary {
     color: #ffffff;
-    background-color: #1b7e5a;
-    margin-top: 10px;
+    background-color: #006A72;
     border-radius: 0.5em;
 }
+.dynatable-pagination-links {
+    margin-top: 10px;
+}
+.dynatable-record-count {
+    margin-top: 10px;
+}
+p.select-chart {
+    margin-top: 10px;
+}
+.dynatable-active-page {
+    background-color: #006A72 !important;
+}
+th.dynatable-head {
+    background-color: #006A72 !important;
+    text-align: center;
+}
+.dynatable-per-page-select {
+    width: 10% !important;
+    margin-bottom: 10px;
+}
+.select-all {
+    width: 10% !important;
+    margin-bottom: 10px;
+}
+.highcharts-title tspan {
+    font-size: 30px !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-weight: 500;
+    line-height: 1.1;
+    fill: #014C2D !important;
+}
+
+

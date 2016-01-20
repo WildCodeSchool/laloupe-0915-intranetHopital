@@ -3,27 +3,22 @@
 {% block block %}
     <div id="stats" class="container">
         <div class="col-md-12">
-            <h2><i class="fa fa-key"></i>Matériel</h2>
+            <h2><i class="fa fa-key"></i> Matériel</h2>
             <div id="stats-blocks" class="row">
-
                 <div id="block__materiel" class="col-md-4 blocks__statuser">
                     <h3>En circulation</h3>
                     <h1>{{ materiels }}</h1>
                 </div>
-
                 <div id="block__materiel" class="col-md-4 blocks__statuser">
                     <h3>Perdus/volés</h3>
                     <h1>{{ materiels_perdus }}</h1>
                 </div>
-
                 <div id="block__materiel" class="col-md-4 blocks__statuser">
                     <h3>Rendus</h3>
                     <h1>{{ materiels_rendus }}</h1>
                 </div>
-
             </div>
-
         </div>
     </div>
-
+    <hr>
 {% endblock %}
