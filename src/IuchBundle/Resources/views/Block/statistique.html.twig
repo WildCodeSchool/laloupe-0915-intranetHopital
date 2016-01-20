@@ -19,7 +19,7 @@
     <p class="select-chart"><a class="btn primary" id="toggle-chart-table">Cliquez pour voir sous forme de tableau</a></p>
 
     <table id="chart-example" class="table table-bordered">
-        <thead><tr><th>Year</th><th>Chartes</th><th>Pourcentages</th></tr></thead>
+        <thead><tr><th>Années</th><th>Chartes</th><th>Pourcentages</th></tr></thead>
         <tbody>
         {% for year, datas in bar %}
             {% for charte, pourcentage in datas %}
@@ -121,7 +121,7 @@
                 dynatable.process(true);
             });
 
-        dynatable.queries.add("year","toutes");
+        dynatable.queries.add("années","toutes");
         dynatable.process(true);
     </script>
     <hr>
