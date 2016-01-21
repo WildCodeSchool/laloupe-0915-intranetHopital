@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Validator\ErrorElement;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 
@@ -125,7 +126,7 @@ class UserAdmin extends Admin
                 ->add('ville', null, array('label' => 'Ville'))
             ->end()
             ->with('Informations internes')
-                ->add('fonction', null, array('label' => 'Fonction', 'data_class' => null))
+                ->add('fonction', null, array('label' => 'Fonction'))
                 ->add('service', null, array('label' => 'Service référent'))
                 ->add('services', null, array('label' => 'Services secondaire'))
                 ->add('date_entree', 'date', array(
@@ -150,7 +151,8 @@ class UserAdmin extends Admin
                 ->add('username', null, array(
                     'label' => 'Matricule',
                     'attr' => array('maxlength' => '6'),
-                    'required' => true
+                    'required' => true,
+                    'error_bubbling' => true
                 ))
                 ->add('lastname', null, array('required' => true))
                 ->add('firstname', null, array('required' => true))
@@ -164,15 +166,20 @@ class UserAdmin extends Admin
                 ->add('enabled', null, array(
                     'required' => false
                 ))
+                ->add('roles', 'choice'
+                )
+
             ->end()
             ->with('Fonction & service')
                 ->add('fonction', 'sonata_type_model_list', array(
                     'label' => 'Fonction',
-                    'required' => true
+                    'required' => true,
+                    'error_bubbling' => true
                 ))
                 ->add('service', 'sonata_type_model_list', array(
                     'label' => 'Service référent',
-                    'required' => true
+                    'required' => true,
+                    'error_bubbling' => true
                 ))
                 ->add('services', null, array(
                     'required' => false,

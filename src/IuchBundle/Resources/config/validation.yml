@@ -38,6 +38,10 @@ IuchBundle\Entity\Service:
             message: "L'utilisateur est déjà chef de service"
 
 Application\Sonata\UserBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: username
+            message: 'Il y a déjà un utilisateur avec ce matricule'
     properties:
         username:
             - Length:

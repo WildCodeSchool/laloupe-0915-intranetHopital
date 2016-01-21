@@ -34,7 +34,8 @@ class InfoMailAdmin extends Admin
                     'label' => 'pièces jointes',
                     'required' => false,
                     'multiple' => true,
-                    'data_class' => null
+                    'data_class' => null,
+                    'error_bubbling' => true
                 ));
             if ($subject->getType()) {
                 $formMapper->add('files', null, array('label' => 'Pièces jointes déjà présentes'));
