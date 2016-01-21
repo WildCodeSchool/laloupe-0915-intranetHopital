@@ -1,9 +1,11 @@
 {% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
 
 {% block show %}
-    {% if object.type == 'mail de bienvenue' %}
-        {{ include('@InfoMail/welcome_mail.html.twig', { 'mail': object, 'user': app.user }) }}
-    {% else %}
-        {{ include('@InfoMail/index.html.twig', { 'mail': object }) }}
-    {% endif %}
+    <body style="width:100%">
+        {% if object.type == 'mail de bienvenue' %}
+            {{ include('@InfoMail/welcome_mail.html.twig', { 'mail': object, 'user': app.user }) }}
+        {% else %}
+            {{ include('@InfoMail/index.html.twig', { 'mail': object }) }}
+        {% endif %}
+    </body>
 {% endblock %}
