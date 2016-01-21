@@ -2,23 +2,24 @@
 
 
 {% block block %}
-
+    <hr>
     <script src="{{ asset('bundles/iuch/js/highcharts.js') }}"></script>
     <script src="{{ asset('bundles/iuch/js/jquery.dynatable.js') }}"></script>
-
-    <select id="search-year" name="year">
+  <div class="container">
+    <label class="select-label">Années :</label>
+   <select id="search-year" class="select-all" name="year">
         <option></option>
         {% for year, datas in bar %}
-            <option value="{{ year }}" {% if ( year == 'all' ) %} selected="selected" {% endif %}>{{ year }}</option>
+            <option value="{{ year }}" {% if ( year == 'toutes' ) %} selected="selected" {% endif %}>{{ year }}</option>
         {% endfor %}
     </select>
 
     <div id="chart-example-chart"></div>
 
-    <p><a class="btn primary" id="toggle-chart-table">Cliquez pour voir en tableau</a></p>
+    <p class="select-chart"><a class="btn primary" id="toggle-chart-table">Cliquez pour voir sous forme de tableau</a></p>
 
     <table id="chart-example" class="table table-bordered">
-        <thead><tr><th>Year</th><th>City</th><th>Population</th></tr></thead>
+        <thead><tr><th>Années</th><th>Chartes</th><th>Pourcentages</th></tr></thead>
         <tbody>
         {% for year, datas in bar %}
             {% for charte, pourcentage in datas %}
@@ -29,9 +30,6 @@
     </table>
 
     <script>
-
-        $('#chart-example').dynatable();
-
         (function() {
             var $table = $('#chart-example'), $chart = $('#chart-example-chart'), chart;
 
@@ -49,7 +47,7 @@
                     renderTo: 'chart-example-chart'
                 },
                 title: {
-                    text: 'Signatures de chartes non obligatoire'
+                    text: 'Signatures de chartes non obligatoires :'
                 },
                 yAxis: {
                     min: 0,
@@ -59,7 +57,7 @@
                 },
                 series: [{
                     name: 'Signatures',
-                    color: '#006A72'
+                    color: '#2DAB62'
                 }]
             });
 
@@ -68,8 +66,8 @@
             function updateChart() {
                 var dynatable = $table.data('dynatable'), categories = [], values = [];
                 $.each(dynatable.settings.dataset.records, function() {
-                    categories.push(this.city);
-                    values.push(parseFloat(this.population));
+                    categories.push(this.chartes);
+                    values.push(parseFloat(this.pourcentages));
                 });
 
                 chart.xAxis[0].setCategories(categories);
@@ -85,7 +83,11 @@
                             recordCountTarget: $chart,
                             paginationLinkTarget: $chart,
                             searchTarget: $chart,
-                            perPageTarget: $chart
+                            perPageTarget: $chart,
+                            perPageText: 'Voir : ',
+                            paginationPrev: 'Précédent',
+                            paginationNext: 'Suivant',
+                            recordCountText: 'Affichage de '
                         },
                         dataset: {
                             perPageOptions: [5, 10, 20],
@@ -112,15 +114,16 @@
             $('#search-year').change( function() {
                 var value = $(this).val();
                 if (value === "") {
-                    dynatable.queries.remove("year");
+                    dynatable.queries.remove("années");
                 } else {
-                    dynatable.queries.add("year",value);
+                    dynatable.queries.add("années",value);
                 }
                 dynatable.process(true);
             });
 
-        dynatable.queries.add("year","all");
+        dynatable.queries.add("années","toutes");
         dynatable.process(true);
     </script>
-
+  </div>
+    <hr>
 {% endblock %}

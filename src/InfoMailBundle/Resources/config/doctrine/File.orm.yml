@@ -1,0 +1,29 @@
+InfoMailBundle\Entity\File:
+    type: entity
+
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        path:
+            type: string
+            length: 255
+        name:
+            type: string
+            length: 255
+        size:
+            type: integer
+
+    manyToOne:
+        infoMail:
+            targetEntity: InfoMailBundle\Entity\InfoMail
+            inversedBy: files
+            joinColumn:
+                name: infoMail_id
+                referencedColumnName: id
+                onDelete: "cascade"
+    lifecycleCallbacks:
+        postRemove: [ removeFile ]

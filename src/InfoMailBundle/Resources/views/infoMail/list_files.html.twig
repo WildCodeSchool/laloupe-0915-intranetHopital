@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% for file in object.files %}
+        <a href="{{ asset('uploads/infoMails/' ~ file.path) }}" target="_blank">{{ file.name }}</a>
+    {% endfor %}
+{% endblock %}

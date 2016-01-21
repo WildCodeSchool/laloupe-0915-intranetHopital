@@ -88,7 +88,7 @@ class StatBlockService extends BaseBlockService
 
         // On fait la somme des utilisateurs par service
         // Ici $sortedUserByServices = [ id_service, nb_utilisateurs ]
-        // On rajoute également une entrée NULL, avec comme valeur tous les utilisateurs dans le but de calculer les stats des chartes non rattachées au services.
+        // On rajoute également une entrée NULL, avec comme valeur toutes les utilisateurs dans le but de calculer les stats des chartes non rattachées au services.
         $sortedUserByServices = array_count_values($userByServices);
         $sortedUserByServices[null] = count($users);
 
@@ -97,16 +97,16 @@ class StatBlockService extends BaseBlockService
 
         foreach ($chartesNO as $charteNO) {
 
-            // On initialise la valeur de $signaturesByChartesNO pour All
-            $signaturesByChartesNO['all'][$charteNO->getId()] = 0;
+            // On initialise la valeur de $signaturesByChartesNO pour Toutes
+            $signaturesByChartesNO['toutes'][$charteNO->getId()] = 0;
 
             // Si la charte est rattaché à un service, alors on va cherché l'ID du service.
             if (null !== $charteNO->getService()) {
-                $servicesChartesNO['all'][$charteNO->getId()] = $charteNO->getService()->getId();
+                $servicesChartesNO['toutes'][$charteNO->getId()] = $charteNO->getService()->getId();
             }
-            // Sinon on met la valeur à NULL pour 'tous les services'
+            // Sinon on met la valeur à NULL pour 'toutes les services'
             else {
-                $servicesChartesNO['all'][$charteNO->getId()] = null;
+                $servicesChartesNO['toutes'][$charteNO->getId()] = null;
             }
 
             // On initialise notre tableau pour pouvoir récuperer les signatures sur n-5 à n années
@@ -120,7 +120,7 @@ class StatBlockService extends BaseBlockService
                 if (null !== $charteNO->getService()) {
                     $servicesChartesNO[$i][$charteNO->getId()] = $charteNO->getService()->getId();
                 }
-                // Sinon on met la valeur à NULL pour 'tous les services'
+                // Sinon on met la valeur à NULL pour 'toutes les services'
                 else {
                     $servicesChartesNO[$i][$charteNO->getId()] = null;
                 }
@@ -132,17 +132,17 @@ class StatBlockService extends BaseBlockService
                 // Pour chaques signatures par chartes on incremente $signaturesByChartesNO
                 if ($charteNO == $signature->getCharte()){
                     $signaturesByChartesNO[$signatureYear][$charteNO->getId()]++;
-                    $signaturesByChartesNO['all'][$charteNO->getId()]++;
+                    $signaturesByChartesNO['toutes'][$charteNO->getId()]++;
                 }
             }
 
             if (null !== $charteNO->getService()) {
                 if (isset($sortedUserByServices[$charteNO->getService()->getId()])) {
                     // Si la charte est associé à un service, alors on calcule le pourcentage de signature
-                    $signaturee = $signaturesByChartesNO['all'][$charteNO->getId()];
+                    $signaturee = $signaturesByChartesNO['toutes'][$charteNO->getId()];
                     $maxPopulation = $sortedUserByServices[$charteNO->getService()->getId()];
-                    $percentage['all'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
-                    $percentage['all'][$charteNO->getNom()] = number_format($percentage['all'][$charteNO->getNom()], 0, '.', '');
+                    $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $percentage['toutes'][$charteNO->getNom()] = number_format($percentage['toutes'][$charteNO->getNom()], 0, '.', '');
                     for ($i=date('Y'); $i > (date('Y') - 5); $i--){
                         $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
                         $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
@@ -152,11 +152,11 @@ class StatBlockService extends BaseBlockService
             }
             else {
 
-                // Si la charte est liée à tous les services, alors on calcule sur la base de tous les utilisateurs
+                // Si la charte est liée à toutes les services, alors on calcule sur la base de toutes les utilisateurs
                 $signaturee = $signaturesByChartesNO[$charteNO->getId()];
                 $maxPopulation = $sortedUserByServices[null];
-                $percentage['all'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
-                $percentage['all'][$charteNO->getNom()] = number_format($percentage['all'][$charteNO->getNom()], 0, '.', '');
+                $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                $percentage['toutes'][$charteNO->getNom()] = number_format($percentage['toutes'][$charteNO->getNom()], 0, '.', '');
                 for ($i=date('Y'); $i > (date('Y') - 5); $i--){
                     $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
                     $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
@@ -164,8 +164,6 @@ class StatBlockService extends BaseBlockService
                 }
             }
         }
-
-        true == false;
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),

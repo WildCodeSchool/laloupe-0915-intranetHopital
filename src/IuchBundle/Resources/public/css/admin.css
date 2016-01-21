@@ -1,7 +1,9 @@
 .sonata-autocomplete-dropdown {
     min-width: 300px;
 }
-/* Dashboard */
+/**************************/
+/******* DASHBOARD ********/
+/**************************/
 h1 {
     color: #D5661D;
     text-align: center;
@@ -9,34 +11,48 @@ h1 {
 p {
     text-align: center;
 }
+a {
+    color: #D5661D;
+}
+.text-info  {
+    background-color: #DFF0D8;
+    color: #1B7E5A;
+}
 .sonata-bc h2 {
     color: #014C2D;
     text-align: center;
 }
-
+.sonata-ba-view-title {
+    color: #D5661D;
+}
 #stats-blocks h2 {
     color: #FFF;
 }
-/* Statistiques */
+.sonata-ba-view-container:nth-child(2n) td,
+.sonata-ba-view-container:nth-child(2n) th {
+    background: #DFF0D8;
+}
+
+/**************************/
+/****** STATISTIQUES ******/
+/**************************/
 #block__badges{
     background-color: #2DAB62;
     border-radius: 1em;
     border: #FFF 1px solid;
 }
 #block__materiel {
-    background-color: #7266BA;
+    background-color: #D5661D;
     border-radius: 1em;
     border: #FFF 1px solid;
 }
-
 #block__materiel h3,
 #block__tenues h3 {
     color: #fff;
     text-align: center;
 }
-
 #block__tenues{
-    background-color: #6BAFBD;
+    background-color: #C56FFF;
     border-radius: 1em;
     border: #FFF 1px solid;
 }
@@ -45,7 +61,9 @@ p {
     color:white;
 }
 
-/* Block */
+/**************************/
+/********* BLOCKS *********/
+/**************************/
 .container {
     width: 80%;
     margin: 20px auto;
@@ -53,17 +71,33 @@ p {
 .navbar-static-top .navbar-right li:last-of-type a {
     display: inline-block;
 }
-
 .tablesorter {
     background: #fff;
 }
-
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
     background-color: #2DAB62;
+}
+th a {
+    color: #333 !important;
+}
+table {
+    background: #FFF;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td {
+    background-color: #DFF0D8;
+}
+.sonata-ba-list td.sonata-ba-list-field a.sonata-link-identifier {
+    color: #D5661D;
+}
+.sonata-ba-list-field a {
+    color: #D5661D;
 }
 .box {
     width: 77%;
     margin: 20px auto;
+}
+.box-title {
+    color: #D5661D;
 }
 .box.box-success {
     width: 100%;
@@ -71,6 +105,81 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 .box.box-primary {
     width: 100%;
 }
+.box.box-primary {
+    border-top-color: #1B7E5A;
+}
 .input-group.date {
     max-width: 132px;
 }
+.btn-link {
+    color: #1B7E5A;
+}
+.btn-link:hover {
+    color: #2DAB62;
+}
+
+/**************************/
+/********* CHART **********/
+/**************************/
+.dynatable-per-page-label {
+    margin-left: 10px;
+}
+#chart-example-chart {
+    margin-top: 10px;
+    height: 400px;
+}
+.btn.primary {
+    color: #ffffff;
+    background-color: #2DAB62;
+    border-radius: 0.5em;
+}
+.btn.btn-primary {
+    background-color: #2DAB62;
+}
+.btn.btn-primary:hover {
+    background-color: #1B7E5A;
+}
+.dynatable-pagination-links {
+    margin-top: 10px;
+}
+.dynatable-record-count {
+    margin-top: 10px;
+    display: none !important;
+}
+p.select-chart {
+    margin-top: 10px;
+    float: left;
+}
+.dynatable-active-page {
+    background-color: #2DAB62 !important;
+}
+th.dynatable-head {
+    background-color: #2DAB62 !important;
+    text-align: center;
+}
+.dynatable-per-page-select {
+    width: 13% !important;
+    margin-bottom: 10px;
+}
+.dynatable-head a {
+    color: #FFF !important;
+}
+.select-all {
+    width: 13% !important;
+    margin-bottom: 10px;
+}
+.highcharts-title tspan {
+    font-size: 30px !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-weight: 500;
+    line-height: 1.1;
+    fill: #014C2D !important;
+}
+tspan {
+    fill: #1B7E5A;
+}
+.select-label {
+    font-weight: 400;
+}
+
+

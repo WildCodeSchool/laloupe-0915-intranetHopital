@@ -1,0 +1,12 @@
+services:
+    sonata.infomail:
+        class: InfoMailBundle\Admin\InfoMailAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "iuch.group.mails", label: "Mail d'information"}
+        arguments:
+            - ~
+            - InfoMailBundle\Entity\InfoMail
+            - InfoMailBundle:InfoMail
+        calls:
+            - [ setTemplate, [ show, InfoMailBundle:infoMail:show.html.twig ]]
+            - [ setTemplate, [ list, InfoMailBundle:infoMail:list.html.twig ]]
