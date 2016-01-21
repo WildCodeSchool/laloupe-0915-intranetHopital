@@ -1,7 +1,19 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field %}
-    {% for file in object.files %}
-        <a href="{{ asset('uploads/infoMails/' ~ file.path) }}" target="_blank">{{ file.name }}</a>
-    {% endfor %}
+    {% if object.files|length > 1 %}
+        <ul>
+    {% endif %}
+        {% for file in object.files %}
+            {% if object.files|length > 1 %}
+                <li>
+            {% endif %}
+                    <a href="{{ asset('uploads/infoMails/' ~ file.path) }}" target="_blank">{{ file.name }}</a>
+            {% if object.files|length > 1 %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% if object.files|length > 1 %}
+        </ul>
+    {% endif %}
 {% endblock %}
