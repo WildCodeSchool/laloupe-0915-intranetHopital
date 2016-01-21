@@ -14,11 +14,11 @@
         {% endfor %}
     </select>
 
-    <div id="chart-example-chart"></div>
+    <div id="chart-stats"></div>
 
     <p class="select-chart"><a class="btn primary" id="toggle-chart-table">Cliquez pour voir sous forme de tableau</a></p>
 
-    <table id="chart-example" class="table table-bordered">
+    <table id="chart-table" class="table table-bordered">
         <thead><tr><th>Années</th><th>Chartes</th><th>Pourcentages</th></tr></thead>
         <tbody>
         {% for year, datas in bar %}
@@ -31,7 +31,9 @@
 
     <script>
         (function() {
-            var $table = $('#chart-example'), $chart = $('#chart-example-chart'), chart;
+            var $table = $('#chart-table'),
+                $chart = $('#chart-stats'),
+                chart;
 
             // Create a button to toggle our table's visibility.
             // We could just hide it completely if we don't need it.
@@ -44,7 +46,7 @@
             chart = new Highcharts.Chart({
                 chart: {
                     type: 'column',
-                    renderTo: 'chart-example-chart'
+                    renderTo: 'chart-stats'
                 },
                 title: {
                     text: 'Signatures de chartes non obligatoires :'
@@ -77,52 +79,60 @@
             // Attach dynatable to our table,
             // and trigger our update function whenever we interact with it.
             $table
-                    .dynatable({
-                        inputs: {
-                            queryEvent: 'blur change keyup',
-                            recordCountTarget: $chart,
-                            paginationLinkTarget: $chart,
-                            searchTarget: $chart,
-                            perPageTarget: $chart,
-                            perPageText: 'Voir : ',
-                            paginationPrev: 'Précédent',
-                            paginationNext: 'Suivant',
-                            recordCountText: 'Affichage de '
-                        },
-                        dataset: {
-                            perPageOptions: [5, 10, 20],
-                            sortTypes: {
-                                'charte': 'pourcentage'
-                            }
+                .dynatable({
+                    inputs: {
+                        queryEvent: 'blur change keyup',
+                        recordCountTarget: $chart,
+                        paginationLinkTarget: $chart,
+                        searchTarget: $chart,
+                        perPageTarget: $chart,
+                        perPageText: 'Voir : ',
+                        paginationPrev: 'Précédent',
+                        paginationNext: 'Suivant',
+                        recordCountText: 'Affichage de '
+                    },
+                    dataset: {
+                        perPageOptions: [5, 10, 20],
+                        sortTypes: {
+                            'charte': 'pourcentage'
                         }
-                    })
-                    .hide()
-                    .bind('dynatable:afterProcess', updateChart);
+                    },
+                    features: {
+                        paginate: true,
+                        sort: true,
+                        pushState: false,
+                        search: true,
+                        recordCount: true,
+                        perPageSelect: true
+                    }
+                })
+                .hide()
+                .bind('dynatable:afterProcess', updateChart);
 
-            // Run our updateChart function for the first time.
-            updateChart();
-        })();
+                var dynatable = $table.dynatable({
+                    features: {
+                        paginate: false,
+                        recordCount: false,
+                        sorting: true
+                    }
+                }).data('dynatable');
 
-            var dynatable = $('#chart-example').dynatable({
-                features: {
-                    paginate: false,
-                    recordCount: false,
-                    sorting: true
-                }
-            }).data('dynatable');
+                $('#search-year').change( function() {
+                    var value = $(this).val();
+                    if (value === "") {
+                        dynatable.queries.remove("années");
+                    } else {
+                        dynatable.queries.add("années",value);
+                    }
+                    dynatable.process(true);
+                });
 
-            $('#search-year').change( function() {
-                var value = $(this).val();
-                if (value === "") {
-                    dynatable.queries.remove("années");
-                } else {
-                    dynatable.queries.add("années",value);
-                }
+                dynatable.queries.add("années","toutes");
                 dynatable.process(true);
-            });
 
-        dynatable.queries.add("années","toutes");
-        dynatable.process(true);
+                // Run our updateChart function for the first time.
+                updateChart();
+        })();
     </script>
   </div>
     <hr>
