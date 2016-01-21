@@ -63,7 +63,7 @@ class InfoMailAdmin extends Admin
                     'show' => array(),
                     'delete' => array(),
                     'send' => array(
-                        'template' => 'InfoMailBundle:InfoMail:list__action_send.html.twig'
+                        'template' => 'InfoMailBundle:infoMail:list__action_send.html.twig'
                     )
                 )
             ))
