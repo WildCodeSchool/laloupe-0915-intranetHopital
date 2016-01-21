@@ -140,12 +140,12 @@ class StatBlockService extends BaseBlockService
                 if (isset($sortedUserByServices[$charteNO->getService()->getId()])) {
                     // Si la charte est associé à un service, alors on calcule le pourcentage de signature
                     $signaturee = $signaturesByChartesNO['toutes'][$charteNO->getId()];
-                    $maxPopulation = $sortedUserByServices[$charteNO->getService()->getId()];
-                    $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $maxPercentage = $sortedUserByServices[$charteNO->getService()->getId()];
+                    $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPercentage * 100;
                     $percentage['toutes'][$charteNO->getNom()] = number_format($percentage['toutes'][$charteNO->getNom()], 0, '.', '');
                     for ($i=date('Y'); $i > (date('Y') - 5); $i--){
                         $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
-                        $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                        $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPercentage * 100;
                         $percentage[$i][$charteNO->getNom()] = number_format($percentage[$i][$charteNO->getNom()], 0, '.', '');
                     }
                 }
@@ -154,12 +154,12 @@ class StatBlockService extends BaseBlockService
 
                 // Si la charte est liée à toutes les services, alors on calcule sur la base de toutes les utilisateurs
                 $signaturee = $signaturesByChartesNO[$charteNO->getId()];
-                $maxPopulation = $sortedUserByServices[null];
-                $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                $maxPercentage = $sortedUserByServices[null];
+                $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPercentage * 100;
                 $percentage['toutes'][$charteNO->getNom()] = number_format($percentage['toutes'][$charteNO->getNom()], 0, '.', '');
                 for ($i=date('Y'); $i > (date('Y') - 5); $i--){
                     $signaturee = $signaturesByChartesNO[$i][$charteNO->getId()];
-                    $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPopulation * 100;
+                    $percentage[$i][$charteNO->getNom()] = $signaturee / $maxPercentage * 100;
                     $percentage[$i][$charteNO->getNom()] = number_format($percentage[$i][$charteNO->getNom()], 0, '.', '');
                 }
             }

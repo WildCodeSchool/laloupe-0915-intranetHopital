@@ -14,8 +14,14 @@ p {
 a {
     color: #D5661D;
 }
+a:hover {
+    color: #FFB53B;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
 .text-info  {
-    background-color: #DFF0D8;
+    background-color: #EEF9EA;
     color: #1B7E5A;
 }
 .sonata-bc h2 {
@@ -27,10 +33,6 @@ a {
 }
 #stats-blocks h2 {
     color: #FFF;
-}
-.sonata-ba-view-container:nth-child(2n) td,
-.sonata-ba-view-container:nth-child(2n) th {
-    background: #DFF0D8;
 }
 
 /**************************/
@@ -52,7 +54,7 @@ a {
     text-align: center;
 }
 #block__tenues{
-    background-color: #C56FFF;
+    background-color: #712D82;
     border-radius: 1em;
     border: #FFF 1px solid;
 }
@@ -83,11 +85,26 @@ th a {
 table {
     background: #FFF;
 }
-.table-striped > tbody > tr:nth-child(2n+1) > td {
-    background-color: #DFF0D8;
+.table-hover > tbody > tr:hover > td {
+    background-color: #EEF9EA;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.table table-hover {
+    background-color: #EEF9EA;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 .sonata-ba-list td.sonata-ba-list-field a.sonata-link-identifier {
     color: #D5661D;
+}
+.sonata-ba-list td.sonata-ba-list-field a.sonata-link-identifier:hover {
+    color: #FFB53B;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 .sonata-ba-list-field a {
     color: #D5661D;
@@ -116,8 +133,56 @@ table {
 }
 .btn-link:hover {
     color: #2DAB62;
+    text-decoration: none;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
-
+.btn.btn-success:hover {
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.btn.btn-info {
+    border-color: #712D82;
+}
+.btn.btn-info:hover {
+    background-color: #712D82;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.label-danger:hover {
+     background-color: #A81410;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.label-success:hover {
+    background-color: #1B7E5A;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.callout.callout-info {
+    background-color: #EEF9EA;
+    border-color: #DFF0D8;
+}
+.btn-group > .btn:hover {
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
+.input-group-addon {
+     background-color: #EEF9EA !important;
+}
+.input-group-addon:hover {
+    background-color: #BDD4B1 !important;
+    cursor: pointer;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+}
 /**************************/
 /********* CHART **********/
 /**************************/
@@ -133,11 +198,21 @@ table {
     background-color: #2DAB62;
     border-radius: 0.5em;
 }
+.btn.primary:hover {
+    background-color: #46C47B;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
+
+}
 .btn.btn-primary {
     background-color: #2DAB62;
 }
 .btn.btn-primary:hover {
     background-color: #1B7E5A;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 .dynatable-pagination-links {
     margin-top: 10px;
@@ -181,5 +256,13 @@ tspan {
 .select-label {
     font-weight: 400;
 }
+.select2-results .select2-highlighted {
+    background-color: #2DAB62;
+}
+
+.datepicker table tr td.active.active {
+    background-color: #2DAB62;
+}
+
 
 
