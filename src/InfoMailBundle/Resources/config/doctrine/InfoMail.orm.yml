@@ -15,6 +15,7 @@ InfoMailBundle\Entity\InfoMail:
             length: 255
         body:
             type: text
+            nullable: true
         date_last_send:
             type: datetime
             nullable: true
