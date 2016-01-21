@@ -266,5 +266,11 @@ tspan {
     background-color: #2DAB62;
 }
 
+.logo img {
+    max-width: 90px;
+}
 
+.logo img + span {
+    width:100px;
+}
 
