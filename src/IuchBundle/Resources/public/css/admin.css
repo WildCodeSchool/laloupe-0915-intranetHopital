@@ -24,6 +24,9 @@ a:hover {
     background-color: #EEF9EA;
     color: #1B7E5A;
 }
+.btn-group > .btn:last-child:not(:first-child) {
+    color: #FFF;
+}
 .sonata-bc h2 {
     color: #014C2D;
     text-align: center;
@@ -260,10 +263,6 @@ tspan {
     font-weight: 400;
 }
 .select2-results .select2-highlighted {
-    background-color: #2DAB62;
-}
-
-.datepicker table tr td.active.active {
     background-color: #2DAB62;
 }
 
