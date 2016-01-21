@@ -166,8 +166,6 @@ class UserAdmin extends Admin
                 ->add('enabled', null, array(
                     'required' => false
                 ))
-                ->add('roles', 'choice'
-                )
 
             ->end()
             ->with('Fonction & service')
