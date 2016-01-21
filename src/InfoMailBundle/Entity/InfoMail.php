@@ -28,14 +28,21 @@ class InfoMail
     public function validate(ExecutionContextInterface $context)
     {
         if ( $this->uploadedFiles != null ) {
-            $total = 0;
+            $totalUploadedFiles = 0;
+            $totalFiles = 0;
             foreach ($this->uploadedFiles as $uploadedFile) {
                 if ($uploadedFile) {
-                    $total += $uploadedFile->getSize();
+                    $totalUploadedFiles += $uploadedFile->getSize();
                 }
             }
 
-            if ($total >= 20971520) {
+            foreach($this->files as $file) {
+                if ($file) {
+                    $totalFiles += $file->getSize();
+                }
+            }
+
+            if ( ($totalUploadedFiles + $totalFiles) >= 20971520 ) {
                 $context->buildViolation('Les pièces jointes sont trop lourdes.')
                     ->atPath('uploadedFiles')
                     ->addViolation();

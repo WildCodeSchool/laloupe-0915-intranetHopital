@@ -125,7 +125,7 @@ class UserAdmin extends Admin
                 ->add('ville', null, array('label' => 'Ville'))
             ->end()
             ->with('Informations internes')
-                ->add('fonction', null, array('label' => 'Fonction'))
+                ->add('fonction', null, array('label' => 'Fonction', 'data_class' => null))
                 ->add('service', null, array('label' => 'Service référent'))
                 ->add('services', null, array('label' => 'Services secondaire'))
                 ->add('date_entree', 'date', array(
