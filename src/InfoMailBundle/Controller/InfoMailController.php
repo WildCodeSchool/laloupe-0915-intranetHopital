@@ -2,7 +2,6 @@
 
 namespace InfoMailBundle\Controller;
 
-use InfoMailBundle\Entity\File;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
