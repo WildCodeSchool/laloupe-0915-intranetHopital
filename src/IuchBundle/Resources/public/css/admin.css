@@ -15,7 +15,7 @@ a {
     color: #D5661D;
 }
 a:hover {
-    color: #FFB53B;
+    color: #903A00;
     -webkit-transition: 0.4s;
     -moz-transition:0.4s;
     transition: 0.4s;
@@ -23,6 +23,10 @@ a:hover {
 .text-info  {
     background-color: #EEF9EA;
     color: #1B7E5A;
+}
+
+#send-email {
+    color: #FFF;
 }
 .sonata-bc h2 {
     color: #014C2D;
@@ -101,7 +105,7 @@ table {
     color: #D5661D;
 }
 .sonata-ba-list td.sonata-ba-list-field a.sonata-link-identifier:hover {
-    color: #FFB53B;
+    color: #903A00;
     -webkit-transition: 0.4s;
     -moz-transition:0.4s;
     transition: 0.4s;
@@ -132,7 +136,7 @@ table {
     color: #1B7E5A;
 }
 .btn-link:hover {
-    color: #2DAB62;
+    color: #0D4430;
     text-decoration: none;
     -webkit-transition: 0.4s;
     -moz-transition:0.4s;
@@ -164,9 +168,12 @@ table {
     -moz-transition:0.4s;
     transition: 0.4s;
 }
+.bg-info {
+    background-color: #EEF9EA !important;
+}
 .callout.callout-info {
     background-color: #EEF9EA;
-    border-color: #DFF0D8;
+    border-color: #EEF9EA;
 }
 .btn-group > .btn:hover {
     -webkit-transition: 0.4s;
@@ -203,8 +210,7 @@ table {
     -webkit-transition: 0.4s;
     -moz-transition:0.4s;
     transition: 0.4s;
-
-}
+ }
 .btn.btn-primary {
     background-color: #2DAB62;
 }
@@ -257,10 +263,6 @@ tspan {
     font-weight: 400;
 }
 .select2-results .select2-highlighted {
-    background-color: #2DAB62;
-}
-
-.datepicker table tr td.active.active {
     background-color: #2DAB62;
 }
 
