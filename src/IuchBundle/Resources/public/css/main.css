@@ -166,6 +166,10 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
     min-height:180px;
 }
 
+.trombinoscope img {
+    max-height: 190px;
+}
+
 .trombinoscope .chef {
     position: absolute;
     top:0;

@@ -36,21 +36,19 @@
                         {% if service.users is not empty %}
                             <h2>{{ service.nom }}</h2>
                             <div id="{{ service.nom | sonata_slugify }}" class="section {{ service.nom | sonata_slugify }}">
-                                {% for user in service.users %}
-                                    {% if user.chefService %}
-                                        <figure>
-                                            <div class="img">
-                                                <div class="chef">Référent</div>
-                                                {% if user.photo is not null %}
-                                                    <img width="150" src="{{ path('iuch_get_photo', {'photo_id': user.photo.id}) }}" />
-                                                {% else %}
-                                                    <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
-                                                {% endif %}
-                                                <figcaption>{{ user.username }}<br/>{{ user.firstname }} {{ user.lastname }} <br/>{{ user.fonction.nom }}</figcaption>
-                                            </div>
-                                        </figure>
-                                    {% endif %}
-                                {% endfor %}
+                                {% if service.chefService %}
+                                    <figure>
+                                        <div class="img">
+                                            <div class="chef">Référent</div>
+                                            {% if service.chefService.photo is not null %}
+                                                <img width="150" src="{{ path('iuch_get_photo', {'photo_id': service.chefService.photo.id}) }}" />
+                                            {% else %}
+                                                <img width="150" src="{{ asset('bundles/iuch/img/user.jpg') }}" />
+                                            {% endif %}
+                                            <figcaption>{{ service.chefService.username }}<br/>{{ service.chefService.firstname }} {{ service.chefService.lastname }} <br/>{{ service.chefService.fonction.nom }}</figcaption>
+                                        </div>
+                                    </figure>
+                                {% endif %}
 
                                 {% for user in service.users %}
                                     {% if user.chefService  == false %}
