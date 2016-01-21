@@ -113,7 +113,7 @@ a {
 }
 
 a:hover {
-    color: ##903A00;
+    color: #903A00;
     text-decoration: none;
     -webkit-transition: 0.4s;
     -moz-transition:0.4s;
