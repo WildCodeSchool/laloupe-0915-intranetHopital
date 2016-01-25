@@ -114,7 +114,7 @@
                         {% if charte.signe == false %}
                             <td><a href="{{ path('iuch_signature', {'charte_id':charte.idCharte }) }}">Signer la charte</a></td>
                         {% else %}
-                            <td>Signé le {{ charte.dateSignature|date('d/m/Y') }}</td>
+                            <td>Signée le {{ charte.dateSignature|date('d/m/Y') }}</td>
                         {% endif %}
                     </tr>
                 {% endfor %}

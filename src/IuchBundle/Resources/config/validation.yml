@@ -46,10 +46,10 @@ Application\Sonata\UserBundle\Entity\User:
         username:
             - Length:
                 max: 6
-            - Regex:
-                pattern: '/[0-9]{6}/'
-                message: Matricule doit contenir exactement 6 chiffres.
-                groups: [Own, UserValidation]
+                maxMessage: Le matricule doit contenir au maximum 6 charatères.
+            - Type:
+                type: integer
+                message: Le matricule doit être un nombre.
         zip:
             - Length:
                 max: 5
