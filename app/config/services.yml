@@ -17,7 +17,7 @@ services:
     ### Login Listener for after login redirection ###
     redirect.after.login:
         class: IuchBundle\Redirection\AfterLoginRedirection
-        arguments: [@router]
+        arguments: [@router, @security.context]
 
     ### Disabling SonataUser groups // Cause we dont need.. ###
     sonata.user.admin.group:
