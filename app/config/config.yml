@@ -104,7 +104,7 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
 
-    title:      'Administration IUCH'
+    title:      'SACH@'
     title_logo:  bundles/iuch/img/logoIntranet.png
     templates:
         layout:  'IuchBundle:Admin:standart_layout.html.twig'

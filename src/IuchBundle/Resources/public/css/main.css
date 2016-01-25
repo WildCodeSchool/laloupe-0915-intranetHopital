@@ -21,6 +21,9 @@ body {
 .btn-primary:focus, .btn-primary:hover {
     background-color: rgb(7,76,45);
     border-color: #1b7e5a;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 
 /** NAVBAR **/
@@ -87,7 +90,7 @@ body {
 
 .panel-info>.panel-heading {
     color: rgb(7,76,45);
-    background-color: #cfe7dd;
+    background-color: #EEF9EA;
     border-color: #9ccdb9;
 }
 
@@ -103,6 +106,18 @@ h4 {
     text-align: center;
     color: #D5661D;
     font-size: 30px;
+}
+
+a {
+    color: #D5661D;
+}
+
+a:hover {
+    color: #903A00;
+    text-decoration: none;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 
 #chartesTable{
@@ -134,6 +149,9 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 
 .trombinoscope figure:hover figcaption {
     bottom: 0;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 
 .trombinoscope figcaption {
@@ -166,6 +184,10 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
     min-height:180px;
 }
 
+.trombinoscope img {
+    max-height: 190px;
+}
+
 .trombinoscope .chef {
     position: absolute;
     top:0;
@@ -194,6 +216,9 @@ a.list-group-item:focus,
 a.list-group-item:hover {
     color: rgb(7,76,45);
     background-color: #cfe7dd;
+    -webkit-transition: 0.4s;
+    -moz-transition:0.4s;
+    transition: 0.4s;
 }
 
 .change-password {

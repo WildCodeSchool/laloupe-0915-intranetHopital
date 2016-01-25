@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class InfoMailController extends Controller
 {
-    public function sendAction()
+    public function sendAction($id)
     {
         $object = $this->admin->getSubject();
 

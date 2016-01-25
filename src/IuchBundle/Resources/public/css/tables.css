@@ -1,6 +1,6 @@
 /* tables */
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
+	background-color: #EEF9EA;
 	border: 1px solid #FFF;
 }
 table.tablesorter thead tr .header {
@@ -17,5 +17,6 @@ table.tablesorter thead tr .headerSortDown {
 	background-image: url(imgs/desc.gif);
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-	background-color: #B1CCD6;
+	background-color: #BDD4B1;
 }
+
