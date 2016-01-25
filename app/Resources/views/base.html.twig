@@ -42,7 +42,7 @@
                                         {{ app.user.firstname }}
                                     </a>
                                 </li>
-                                {% if ('ADMIN' or 'RH') in app.user.roles|keys %}
+                                {% if is_granted('ROLE_DASHBOARD') %}
                                     <li><a href="{{ path('sonata_admin_dashboard') }}">Administration</a></li>
                                 {% endif %}
                                 {% if trombinoscopeEnabled == true %}
