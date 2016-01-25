@@ -44,12 +44,10 @@ Application\Sonata\UserBundle\Entity\User:
             message: 'Il y a déjà un utilisateur avec ce matricule'
     properties:
         username:
-            - Length:
-                max: 6
-                maxMessage: Le matricule doit contenir au maximum 6 charatères.
-            - Type:
-                type: integer
-                message: Le matricule doit être un nombre.
+            - Regex:
+                pattern : '/^[0-9]{0,6}$/'
+                message: Le matricule doit être composé de maximum 6 chiffres.
+
         zip:
             - Length:
                 max: 5
