@@ -39,6 +39,11 @@ class User extends BaseUser
         return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
     }
 
+    public function setCreatedAtValue()
+    {
+        $this->plaintext_password = $this->getPlainPassword();
+    }
+
     //GENERATED CODE
     /**
      * @var string
@@ -426,5 +431,34 @@ class User extends BaseUser
     public function getCodeCopieur()
     {
         return $this->code_copieur;
+    }
+    /**
+     * @var string
+     */
+    private $plaintext_password;
+
+
+    /**
+     * Set plaintextPassword
+     *
+     * @param string $plaintextPassword
+     *
+     * @return User
+     */
+    public function setPlaintextPassword($plaintextPassword)
+    {
+        $this->plaintext_password = $plaintextPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get plaintextPassword
+     *
+     * @return string
+     */
+    public function getPlaintextPassword()
+    {
+        return $this->plaintext_password;
     }
 }
