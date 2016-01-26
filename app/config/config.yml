@@ -113,10 +113,6 @@ sonata_admin:
     ### config blocks dashboard admin ###
     dashboard:
         groups:
-            iuch.group.photo:
-                icon: '<i class="fa fa-camera"></i>'
-                label: "Photos"
-
             iuch.group.user:
                 icon: '<i class="fa fa-users"></i>'
                 label: "Utilisateurs"
@@ -124,6 +120,9 @@ sonata_admin:
                     - sonata.user.admin.user
                     - sonata.service
                     - sonata.fonction
+            iuch.group.photo:
+                icon: '<i class="fa fa-camera"></i>'
+                label: "Photos"
 
             iuch.group.chartes:
                 icon: '<i class="fa fa-file"></i>'

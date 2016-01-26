@@ -45,13 +45,16 @@ class User extends BaseUser
         $this->plaintextPassword = $this->getPlainPassword();
     }
 
-
     public function setPlainPassword($password)
     {
         parent::setPlainPassword($password);
         $this->plaintextPassword = $password;
     }
 
+    public function setLastLoginNull()
+    {
+        return $this->lastLogin = null;
+    }
 
     //GENERATED CODE
     /**
@@ -444,9 +447,8 @@ class User extends BaseUser
     /**
      * @var string
      */
+
     protected  $plaintextPassword;
-
-
     /**
      * Set plaintextPassword
      *

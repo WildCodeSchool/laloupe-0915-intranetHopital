@@ -15,11 +15,11 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
 use FOS\UserBundle\Model\UserManagerInterface;
-use Symfony\Component\Validator\Constraints\Required;
 
 class UserAdmin extends Admin
 {
@@ -80,7 +80,10 @@ class UserAdmin extends Admin
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                    'delete' => array()
+                    'delete' => array(),
+                    'reset' => array(
+                        'template' => 'ApplicationSonataUserBundle::list__action_reset.html.twig'
+                    )
                 )
             ))
         ;
@@ -275,4 +278,26 @@ class UserAdmin extends Admin
     {
         return $this->userManager;
     }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('reset', $this->getRouterIdParameter() . '/reset');
     }
+
+    # Override to add actions like delete, etc...
+    public function getBatchActions()
+    {
+        // retrieve the default (currently only the delete action) actions
+        $actions = parent::getBatchActions();
+
+        // check user permissions
+        if($this->hasRoute('edit') && $this->isGranted('EDIT') && $this->hasRoute('delete') && $this->isGranted('DELETE'))
+        {
+            // define calculate action
+            $actions['reset']= array ('label' => 'Réinitialiser mdp', 'ask_confirmation'  => true );
+
+        }
+
+        return $actions;
+    }
+}
