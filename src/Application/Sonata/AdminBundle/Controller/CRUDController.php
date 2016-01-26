@@ -16,7 +16,9 @@ use IuchBundle\Entity\Charte;
 use IuchBundle\Entity\Materiel;
 use IuchBundle\Entity\Photo;
 use IuchBundle\Entity\Tenue;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -402,5 +404,74 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             'action'     => 'delete',
             'csrf_token' => $this->getCsrfToken('sonata.delete'),
         ));
+    }
+
+    /**
+     *
+     * Custom action to reset the password at the date of birth
+     * Set the last login to null to simulate first connexion (change password at connexion though)
+     *
+     * @return RedirectResponse
+     */
+    public function resetAction()
+    {
+        $id     = $this->get('request')->get($this->admin->getIdParameter());
+        $object = $this->admin->getObject($id);
+
+        if (!$object) {
+            throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        if (false === $this->admin->isGranted('DELETE', $object)) {
+            throw new AccessDeniedException();
+        }
+
+        if ($this->getRestMethod() == 'DELETE') {
+            // check the csrf token
+            $this->validateCsrfToken('sonata.reset');
+
+        if ($this->admin->isGranted('DELETE') === false)
+        {
+            throw new AccessDeniedException();
+        }
+
+        try {
+            $birthDate = $object->getDateOfBirth();
+            $datePassword = $birthDate->format('dmy');
+
+            $object->setLastLoginNull();
+
+            $object->setPlainPassword($datePassword);
+
+            $this->admin->update($object);
+
+            $this->addFlash('sonata_flash_success', 'mot de passe réinitialisé');
+
+        } catch (ModelManagerException $e) {
+            $this->logModelManagerException($e);
+
+            if ($this->isXmlHttpRequest()) {
+                return $this->renderJson(array('result' => 'error'));
+            }
+
+            $this->addFlash(
+                'sonata_flash_error',
+                $this->admin->trans(
+                    'Erreur : le mot de passe n\'a pas été réinitialisé',
+                    array('%name%' => $this->escapeHtml($this->admin->toString($object))),
+                    'SonataAdminBundle'
+                )
+            );
+        }
+
+            return $this->redirectTo($object);
+        }
+
+        return $this->render('@ApplicationSonataUser/reset.html.twig', array(
+            'object'     => $object,
+            'action'     => 'reset',
+            'csrf_token' => $this->getCsrfToken('sonata.reset'),
+        ));
+
     }
 }
