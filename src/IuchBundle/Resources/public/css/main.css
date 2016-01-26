@@ -82,6 +82,34 @@ body {
 .secondary-services + .secondary-services {
     margin-top:20px;
 }
+
+.chart_pdf {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.signature_chart {
+    text-align: center;
+}
+
+.signature_chart .checkbox,
+.signature_chart .submit {
+    display: inline-block;
+    margin: 20px;
+    vertical-align: middle;
+}
+
+.signature_chart .checkbox {
+    font-size:20px;
+}
+
+.signature_chart .checkbox input {
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    margin-top:8px;
+    margin-left:-25px;
+}
 /** END PROFILE **/
 
 .chartes-list h3 {
