@@ -32,6 +32,7 @@ class User extends BaseUser
         $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
         $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
+        $password = $this->getPassword();
     }
 
     public function __toString()
@@ -41,8 +42,16 @@ class User extends BaseUser
 
     public function setCreatedAtValue()
     {
-        $this->plaintext_password = $this->getPlainPassword();
+        $this->plaintextPassword = $this->getPlainPassword();
     }
+
+
+    public function setPlainPassword($password)
+    {
+        parent::setPlainPassword($password);
+        $this->plaintextPassword = $password;
+    }
+
 
     //GENERATED CODE
     /**
@@ -435,7 +444,7 @@ class User extends BaseUser
     /**
      * @var string
      */
-    private $plaintext_password;
+    protected  $plaintextPassword;
 
 
     /**
@@ -447,7 +456,7 @@ class User extends BaseUser
      */
     public function setPlaintextPassword($plaintextPassword)
     {
-        $this->plaintext_password = $plaintextPassword;
+        $this->plaintextPassword = $plaintextPassword;
 
         return $this;
     }
@@ -459,6 +468,6 @@ class User extends BaseUser
      */
     public function getPlaintextPassword()
     {
-        return $this->plaintext_password;
+        return $this->plaintextPassword;
     }
 }

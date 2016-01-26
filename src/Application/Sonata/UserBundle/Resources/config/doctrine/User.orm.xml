@@ -22,7 +22,7 @@
             </attribute-override>
        </attribute-overrides>
 
-        <field name="plaintext_password" column="plaintext_password" type="string" />
+        <field name="plaintextPassword" column="plaintextPassword" type="string"/>
         <field name="code_copieur" column="code_copieur" type="string" length="4" />
         <field name="pointeur" column="pointeur" type="boolean" />
         <field name="adresse" column="adresse" type="string" length="255" nullable="true" />
@@ -59,11 +59,6 @@
         <one-to-one field="photo" target-entity="IuchBundle\Entity\Photo" inversed-by="user" orphan-removal="true">
             <join-column name="photo_id" referenced-column-name="id" />
         </one-to-one>
-
-        <!-- Mot de passe en clair -->
-        <lifecycle-callbacks>
-            <lifecycle-callback type="prePersist" method="setCreatedAtValue" />
-        </lifecycle-callbacks>
 
     </entity>
 
