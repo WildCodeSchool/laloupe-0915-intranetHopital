@@ -7,7 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
-use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Routing\Router;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 {
@@ -18,9 +19,13 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
     /**
      * @param RouterInterface $router
      */
-    public function __construct(RouterInterface $router)
+
+    protected $security;
+
+    public function __construct(RouterInterface $router, SecurityContext $security)
     {
         $this->router = $router;
+        $this->security = $security;
     }
     /**
      * @param Request $request
@@ -29,19 +34,12 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        // Get list of roles for current user
-        $roles = $token->getRoles();
-        // Tranform this list in array
-        $rolesTab = array_map(function(Role $role){
-            return $role->getRole();
-        }, $roles);
-        // If is a QGDR, blanchisserie, RH, admin or super admin we redirect to the admin/dashboard area
-        if (in_array('ROLE_ADMIN', $rolesTab, true) || in_array('ROLE_SUPER_ADMIN', $rolesTab, true) || in_array('ROLE_RH', $rolesTab, true) || in_array('ROLE_BLANCHISSERIE', $rolesTab, true) || in_array('ROLE_SERVICE_TECHNIC', $rolesTab, true) || in_array('ROLE_QGDR', $rolesTab, true))
+        if ($this->security->isGranted('ROLE_DASHBOARD')){
             $redirection = new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
-
-        // If is users we redirect to the profile area
-        else
+        }
+        else {
             $redirection = new RedirectResponse($this->router->generate('iuch_homepage'));
+        }
 
         return $redirection;
     }

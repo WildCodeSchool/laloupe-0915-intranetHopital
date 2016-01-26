@@ -116,31 +116,31 @@ class UserAdmin extends Admin
     {
         $showMapper
             ->with('General')
-                ->add('username')
-                ->add('gender')
-                ->add('firstname')
-                ->add('lastname')
-                ->add('dateOfBirth', 'date', array('format'=>'d/m/Y'))
+            ->add('username')
+            ->add('gender')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('dateOfBirth', 'date', array('format'=>'d/m/Y'))
             ->end()
             ->with('Contact')
-                ->add('phone')
-                ->add('email', 'email')
-                ->add('adresse', null, array('label' => 'Adresse'))
-                ->add('zip', null, array('label' => 'Code postal'))
-                ->add('ville', null, array('label' => 'Ville'))
+            ->add('phone')
+            ->add('email', 'email')
+            ->add('adresse', null, array('label' => 'Adresse'))
+            ->add('zip', null, array('label' => 'Code postal'))
+            ->add('ville', null, array('label' => 'Ville'))
             ->end()
             ->with('Informations internes')
-                ->add('fonction', null, array('label' => 'Fonction'))
-                ->add('service', null, array('label' => 'Service référent'))
-                ->add('services', null, array('label' => 'Services secondaire'))
-                ->add('date_entree', 'date', array(
-                    'label' => 'Date entrée',
-                    'format'=>'d/m/Y'))
-                ->add('date_sortie', 'date', array(
-                    'label' => 'Date sortie',
-                    'format'=>'d/m/Y'))
-                ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
-                ->add('code_copieur', null, array('label' => 'Code copieur'))
+            ->add('fonction', null, array('label' => 'Fonction'))
+            ->add('service', null, array('label' => 'Service référent'))
+            ->add('services', null, array('label' => 'Services secondaire'))
+            ->add('date_entree', 'date', array(
+                'label' => 'Date entrée',
+                'format'=>'d/m/Y'))
+            ->add('date_sortie', 'date', array(
+                'label' => 'Date sortie',
+                'format'=>'d/m/Y'))
+            ->add('raison_sortie', null, array('label' => 'Raison de sortie'))
+            ->add('code_copieur', null, array('label' => 'Code copieur'))
             ->end()
         ;
     }
@@ -152,104 +152,129 @@ class UserAdmin extends Admin
     {
         $formMapper
             ->with('Informations obligatoires')
-                ->add('username', null, array(
-                    'label' => 'Matricule',
-                    'attr' => array('maxlength' => '6'),
-                    'required' => true,
-                    'error_bubbling' => true
-                ))
-                ->add('lastname', null, array('required' => true))
-                ->add('firstname', null, array('required' => true))
-                ->add('gender', 'sonata_user_gender', array(
-                    'translation_domain' => $this->getTranslationDomain()
-                ))
-                ->add('dateOfBirth', 'sonata_type_date_picker', array(
-                    'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy',
-                    ))
-                ->add('enabled', null, array(
-                    'required' => false
-                ))
-
+            ->add('username', null, array(
+                'label' => 'Matricule',
+                'attr' => array('maxlength' => '6'),
+                'required' => true,
+                'error_bubbling' => true
+            ))
+            ->add('lastname', null, array('required' => true))
+            ->add('firstname', null, array('required' => true))
+            ->add('gender', 'sonata_user_gender', array(
+                'translation_domain' => $this->getTranslationDomain()
+            ))
+            ->add('dateOfBirth', 'sonata_type_date_picker', array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+            ))
+            ->add('enabled', null, array(
+                'required' => false
+            ))
             ->end()
             ->with('Fonction & service')
-                ->add('fonction', 'sonata_type_model_list', array(
-                    'label' => 'Fonction',
-                    'required' => true,
-                    'error_bubbling' => true
-                ))
-                ->add('service', 'sonata_type_model_list', array(
-                    'label' => 'Service référent',
-                    'required' => true,
-                    'error_bubbling' => true
-                ))
-                ->add('services', null, array(
-                    'required' => false,
-                    'expanded' => true,
-                    'multiple' => true,
-                    'label' => 'Services secondaires'
-                ))
+            ->add('fonction', 'sonata_type_model_list', array(
+                'label' => 'Fonction',
+                'required' => true,
+                'error_bubbling' => true
+            ))
+            ->add('service', 'sonata_type_model_list', array(
+                'label' => 'Service référent',
+                'required' => true,
+                'error_bubbling' => true
+            ))
+            ->add('services', null, array(
+                'required' => false,
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Services secondaires'
+            ))
             ->end()
             ->with('Dates arrivée & départ')
-                ->add('date_entree', 'sonata_type_date_picker', array(
-                    'label' => 'Date d\'entrée',
-                    'placeholder' => '',
-                    'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy',
-                    'required' => true,
-                   ))
-                ->add('date_sortie', 'sonata_type_date_picker', array(
-                    'label' => 'Date de sortie',
-                    'placeholder' => '',
-                    'widget' => 'single_text',
-                    'format' => 'dd-MM-yyyy',
-                    'required' => false
-                ))
-                ->add('raison_sortie', 'choice', array(
-                    'choices' => array('' => '', 'MATERNITE' => 'MATERNITE', 'RETRAITE' => 'RETRAITE', 'ARRET MALADIE' => 'ARRET MALADIE', 'FIN DE CONTRAT' => 'FIN DE CONTRAT'),
-                    'label' => 'Raison de sortie',
-                    'required' => false
-                ))
+            ->add('date_entree', 'sonata_type_date_picker', array(
+                'label' => 'Date d\'entrée',
+                'placeholder' => '',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'required' => true,
+            ))
+            ->add('date_sortie', 'sonata_type_date_picker', array(
+                'label' => 'Date de sortie',
+                'placeholder' => '',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'required' => false
+            ))
+            ->add('raison_sortie', 'choice', array(
+                'choices' => array('' => '', 'MATERNITE' => 'MATERNITE', 'RETRAITE' => 'RETRAITE', 'ARRET MALADIE' => 'ARRET MALADIE', 'FIN DE CONTRAT' => 'FIN DE CONTRAT'),
+                'label' => 'Raison de sortie',
+                'required' => false
+            ))
             ->end()
             ->with('Contact')
-                ->add('email', null, array('required' => false))
-                ->add('phone', null, array('required' => false))
-                ->add('adresse', null, array(
-                    'label' => 'Adresse'
-                ))
-                ->add('zip', null, array(
-                    'label' => 'Code postal',
-                    'attr' => array('maxlength' => '5')
-                ))
-                ->add('ville' , null, array(
-                    'label' => 'Ville'
-                ))
+            ->add('email', null, array('required' => false))
+            ->add('phone', null, array('required' => false))
+            ->add('adresse', null, array(
+                'label' => 'Adresse'
+            ))
+            ->add('zip', null, array(
+                'label' => 'Code postal',
+                'attr' => array('maxlength' => '5')
+            ))
+            ->add('ville', null, array(
+                'label' => 'Ville'
+            ))
             ->end()
-        ;
+            ->end();
 
+        $roles = array(
+            'ROLE_SONATA_CHARTE_ADMIN' => 'Chartes',
+            'ROLE_SONATA_USER_ADMIN_USER_ADMIN' => 'Utilisateurs',
+            'ROLE_SONATA_SERVICE_ADMIN' => 'Services',
+            'ROLE_SONATA_FONCTION_ADMIN' => 'Fonctions',
+            'ROLE_SONATA_TENUE_ADMIN' => 'Tenues',
+            'ROLE_SONATA_MATERIEL_ADMIN' => 'Materiel',
+            'ROLE_SONATA_PHOTO_ADMIN' => 'Photos',
+            'ROLE_SONATA_INFOMAIL_ADMIN' => 'Infomails'
+        );
+
+        // ['Utilisateurs', 'Fonctions', 'Services', 'Chartes', 'Tenues', 'Matériels', 'Infomails', 'Photos'];
+
+        if ($this->getSubject() && !$this->getSubject()->hasRole('ROLE_ADMIN') || !$this->getSubject()->hasRole('ROLE_RH')) {
+            $formMapper
+                ->with('Permissions')
+                ->add('Roles', 'choice', [
+                    'label' => 'Accès à la gestion de :',
+                    'choices' => $roles,
+                    'multiple' => true,
+                    'expanded' => true,
+                    'required' => false
+                ])
+                ->end();
+
+        }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate($user)
+        /**
+         * {@inheritdoc}
+         */
+        public function preUpdate($user)
     {
         $this->getUserManager()->updateCanonicalFields($user);
         $this->getUserManager()->updatePassword($user);
     }
 
-    /**
-     * @param UserManagerInterface $userManager
-     */
-    public function setUserManager(UserManagerInterface $userManager)
+        /**
+         * @param UserManagerInterface $userManager
+         */
+        public function setUserManager(UserManagerInterface $userManager)
     {
         $this->userManager = $userManager;
     }
 
-    /**
-     * @return UserManagerInterface
-     */
-    public function getUserManager()
+        /**
+         * @return UserManagerInterface
+         */
+        public function getUserManager()
     {
         return $this->userManager;
     }
