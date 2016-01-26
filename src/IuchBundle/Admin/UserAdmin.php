@@ -282,5 +282,26 @@ class UserAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('reset', $this->getRouterIdParameter().'/reset');
+
+        if (!$this->isGranted('DELETE')) {
+            $collection->remove('reset');
+        }
+    }
+
+    public function getBatchActions()
+    {
+        // retrieve the default (currently only the delete action) actions
+        $actions = parent::getBatchActions();
+
+        // check user permissions
+        if($this->hasRoute('reset') && $this->hasRoute('delete') && $this->isGranted('DELETE')){
+            $actions['reset']=[
+                'label'            => $this->trans('action_reset', array(), 'SonataAdminBundle'),
+                'ask_confirmation' => true // If true, a confirmation will be asked before performing the action
+            ];
+
+        }
+
+        return $actions;
     }
 }

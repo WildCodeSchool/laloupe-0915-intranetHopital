@@ -415,6 +415,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
      */
     public function resetAction($id)
     {
+        if ($this->admin->isGranted('DELETE') === false)
+        {
+            throw new AccessDeniedException();
+        }
+
         $object = $this->admin->getSubject();
 
         if (!$object) {
