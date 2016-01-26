@@ -32,11 +32,23 @@ class User extends BaseUser
         $this->enabled = true;
         $this->dateOfBirth = new \DateTime('1950-01-01');
         $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
+        $password = $this->getPassword();
     }
 
     public function __toString()
     {
         return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
+    }
+
+    public function setCreatedAtValue()
+    {
+        $this->plaintextPassword = $this->getPlainPassword();
+    }
+
+    public function setPlainPassword($password)
+    {
+        parent::setPlainPassword($password);
+        $this->plaintextPassword = $password;
     }
 
     public function setLastLoginNull()
@@ -431,5 +443,33 @@ class User extends BaseUser
     public function getCodeCopieur()
     {
         return $this->code_copieur;
+    }
+    /**
+     * @var string
+     */
+
+    protected  $plaintextPassword;
+    /**
+     * Set plaintextPassword
+     *
+     * @param string $plaintextPassword
+     *
+     * @return User
+     */
+    public function setPlaintextPassword($plaintextPassword)
+    {
+        $this->plaintextPassword = $plaintextPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get plaintextPassword
+     *
+     * @return string
+     */
+    public function getPlaintextPassword()
+    {
+        return $this->plaintextPassword;
     }
 }
