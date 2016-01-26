@@ -39,6 +39,11 @@ class User extends BaseUser
         return (string) $this->username.' - '.$this->firstname.' '.$this->lastname;
     }
 
+    public function setLastLoginNull()
+    {
+        return $this->lastLogin = null;
+    }
+
     //GENERATED CODE
     /**
      * @var string

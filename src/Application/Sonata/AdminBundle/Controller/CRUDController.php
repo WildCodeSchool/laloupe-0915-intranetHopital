@@ -17,6 +17,7 @@ use IuchBundle\Entity\Materiel;
 use IuchBundle\Entity\Photo;
 use IuchBundle\Entity\Tenue;
 use Sonata\AdminBundle\Exception\ModelManagerException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -416,5 +417,35 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             'action'     => 'delete',
             'csrf_token' => $this->getCsrfToken('sonata.delete'),
         ));
+    }
+
+    /**
+     *
+     * Custom action to reset the password at the date of birth
+     * Set the last login to null to simulate first connexion (change password at connexion though)
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function resetAction($id)
+    {
+        $object = $this->admin->getSubject();
+
+        if (!$object) {
+            throw new NotFoundHttpException(sprintf('Utilisateur non trouvé : id : %s', $id));
+        }
+
+        $birthDate = $object->getDateOfBirth();
+        $datePassword = $birthDate->format('dmy');
+
+        $object->setLastLoginNull();
+
+        $object->setPlainPassword($datePassword);
+
+        $this->admin->update($object);
+
+        $this->addFlash('sonata_flash_success', 'mot de passe réinitialisé');
+
+        return new RedirectResponse($this->admin->generateUrl('list'));
     }
 }

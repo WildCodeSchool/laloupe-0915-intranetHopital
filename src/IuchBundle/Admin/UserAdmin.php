@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
@@ -79,7 +80,10 @@ class UserAdmin extends Admin
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                    'delete' => array()
+                    'delete' => array(),
+                    'reset' => array(
+                        'template' => 'ApplicationSonataUserBundle::list__action_reset.html.twig'
+                    )
                 )
             ))
         ;
@@ -248,5 +252,10 @@ class UserAdmin extends Admin
     public function getUserManager()
     {
         return $this->userManager;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('reset', $this->getRouterIdParameter().'/reset');
     }
 }
