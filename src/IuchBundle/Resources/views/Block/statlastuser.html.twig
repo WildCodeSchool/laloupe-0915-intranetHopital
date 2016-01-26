@@ -11,7 +11,7 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Date d'entrée</th>
+                        <th data-sorter="shortDate">Date d'entrée</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -37,7 +37,11 @@
     <script>
         $(document).ready(function()
                 {
-                    $("#userTable").tablesorter( {sortList: [[3,0]]} );
+                    $("#userTable").tablesorter({
+                                sortList: [[3,1]],
+                                dateFormat: 'uk',
+                                headers: {0: {sorter: "shortDate"}, 2:{sorter: false}}
+                    } );
                 }
         );
     </script>
