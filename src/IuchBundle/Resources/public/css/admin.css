@@ -285,3 +285,7 @@ tspan {
 .footer-admin a {
     color: darkgray;
 }
+
+input[type="file"] {
+    padding:0;
+}
