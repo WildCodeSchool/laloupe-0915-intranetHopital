@@ -3,7 +3,11 @@
 {% block body %}
     <object class="chart_pdf" width="900" height="600" data="{{ path('iuch_get_charte', {'charte_file': charte.charteFile}) }}" type="application/pdf"></object>
     <div class="form-group signature_chart">
+        {{ form_start(form) }}
         {{ form_widget(form.signature, { 'attr': {'class': 'signature_form'} }) }}
         {{ form_widget(form.submit, { 'attr': {'class': 'submit btn btn-primary btn-lg'} }) }}
+        {{ form_end(form) }}
+
     </div>
+
 {% endblock %}
