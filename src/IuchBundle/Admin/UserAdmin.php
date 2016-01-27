@@ -228,6 +228,7 @@ class UserAdmin extends Admin
 
         $roles = array(
             'ROLE_SONATA_CHARTE_ADMIN' => 'Chartes',
+            'ROLE_STATS_CHARTES' => 'Statistiques chartes',
             'ROLE_SONATA_USER_ADMIN_USER_ADMIN' => 'Utilisateurs',
             'ROLE_SONATA_SERVICE_ADMIN' => 'Services',
             'ROLE_SONATA_FONCTION_ADMIN' => 'Fonctions',
