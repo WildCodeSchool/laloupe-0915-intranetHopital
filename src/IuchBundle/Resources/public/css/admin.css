@@ -289,3 +289,11 @@ tspan {
 input[type="file"] {
     padding:0;
 }
+
+img {
+    max-width: 100% !important;
+}
+
+.equipe {
+    text-align: center;
+}
