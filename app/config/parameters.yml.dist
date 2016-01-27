@@ -20,3 +20,9 @@ parameters:
 
     # enabled trombinoscope link // true or false
     trombinoscope.enabled: true
+
+    #activer ou non le mail pour le changements dans les profils utilisateurs
+    mail.edit_profil.enabled: true
+
+    # mail on change profil
+    mail.edit_profil:
