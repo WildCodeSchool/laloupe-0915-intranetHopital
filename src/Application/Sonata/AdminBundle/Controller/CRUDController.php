@@ -15,6 +15,7 @@ use Application\Sonata\UserBundle\Entity\User;
 use IuchBundle\Entity\Charte;
 use IuchBundle\Entity\Materiel;
 use IuchBundle\Entity\Photo;
+use IuchBundle\Entity\Service;
 use IuchBundle\Entity\Tenue;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;

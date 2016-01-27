@@ -95,7 +95,13 @@
                 {% for charte in chartes %}
                     <tr>
                         <td>{{ charte.nom }}</td>
-                        <td>{{ charte.description }}</td>
+                        <td>
+                            {% if charte.description is defined %}
+                                {{ charte.description }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
                         <td>
                             {% if charte.service %}
                                 {{ charte.service }}
@@ -136,6 +142,9 @@
                             <th>
                                 Date donnée
                             </th>
+                            <th>
+                                Date rendue
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -144,6 +153,7 @@
                                 <td scope="row">{{ tenue.type }}</td>
                                 <td scope="row">{{ tenue.nombreDonne }}</td>
                                 <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
+                                <td scope="row">{{ tenue.dateRendu|date('d/m/Y') }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -164,6 +174,9 @@
                             <th>
                                 Date remise
                             </th>
+                            <th>
+                                Date rendue
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -173,6 +186,7 @@
                                     {{ materiel.type }}
                                 </td>
                                 <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
+                                <td>{{ materiel.dateRendu|date('d/m/Y') }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

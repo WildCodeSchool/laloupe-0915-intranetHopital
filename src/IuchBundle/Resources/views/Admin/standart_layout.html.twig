@@ -18,6 +18,36 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/iuch/img/favicon.png') }}" />
 {% endblock %}
 
+{% block sonata_breadcrumb %}
+    {% if _breadcrumb is not empty or action is defined %}
+        <ol class="nav navbar-top-links breadcrumb">
+            {% if _breadcrumb is empty %}
+                {% if action is defined %}
+                    {% for menu in admin.breadcrumbs(action) %}
+                        {% if not loop.last  %}
+                            <li>
+                                {% if menu.uri is not empty %}
+                                    {% if menu.label == 'Dashboard' %}
+                                        <a href="{{ menu.uri }}">Tableau de bord</a>
+                                    {% else %}
+                                        <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                    {% endif %}
+                                {% else %}
+                                    {{ menu.label }}
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="active"><span>{{ menu.label }}</span></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                {{ _breadcrumb|raw }}
+            {% endif %}
+        </ol>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+
 {# LEFT SIDEBAR GROUP FUNCTION OF ROLES #}
 {% block side_bar_nav %}
     {% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}
@@ -68,10 +98,12 @@
                     </li>
                 {% endif %}
             {% endfor %}
+            <li class="active"><a href="#" data-toggle="modal" data-target="#about"><i class="fa fa-info-circle"></i>A Propos</a></li>
         </ul>
+
+        <
     {% endif %}
 {% endblock side_bar_nav %}
-
 
 {# REMOVE DROPDOWN FOR DECONNEXION #}
 {% block sonata_top_nav_menu %}
@@ -91,6 +123,49 @@
     </div>
 {% endblock %}
 
+{% block sonata_wrapper %}
+    {{ parent() }}
+
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal-title" id="myModalLabel">À propos de Sach@</h1>
+                </div>
+                <div class="modal-body">
+
+                    <h2>Hopital de la loupe</h2>
+                    <ul>
+                        <li>ROUSEAU Laetitia</li>
+                        <li>LEMONNIER Raphael</li>
+                    </ul>
+
+                    <h2>Hopital de Nogent le Rotrou</h2>
+                    <ul>
+                        <li>POIRIER Marie</li>
+                        <li>VERMEULEN Aurelien</li>
+                    </ul>
+
+                    <h2>Développeurs</h2>
+                    <ul>
+                        <li>Thierry Damey</li>
+                        <li>Erwan Haquet</li>
+                        <li>Lucie Mannechez</li>
+                    </ul>
+                    <p>Élèves de la <a href="http://www.wildcodeschool.fr">Wild Code School</a></p>
+                    <figure class="equipe">
+                        <img src="{{ asset('equipe-sacha.jpg') }}" alt="équipe de dev">
+                        <figcaption>Erwan - Thierry - Raphaël - Lucie</figcaption>
+                    </figure>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 {# REMOVE DROPDOWN FOR ACTIONS ON ENTITIES #}
 {% block sonata_page_content_nav %}
@@ -137,7 +212,7 @@
                 <div class="bg-info"><p class="text-info" style="padding:10px;">Pour désactiver/activer le trombinoscope, veuillez-vous rendre dans le fichier <strong>"parameters.yml"</strong> du dossier <strong>"app"</strong> de l'application et changer le paramètre <strong>"trombinoscope.enabled"</strong> à <em>true</em> ou <em>false</em></p></div>
             {% endif %}
             {% if is_granted('ROLE_SONATA_CHARTE_ADMIN') or is_granted('ROLE_STATS_CHARTES')%}
-                {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
+               {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
             {% endif %}
 
             {% if is_granted('ROLE_SONATA_MATERIEL_ADMIN') %}
