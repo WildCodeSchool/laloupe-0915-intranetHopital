@@ -18,6 +18,36 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/iuch/img/favicon.png') }}" />
 {% endblock %}
 
+{% block sonata_breadcrumb %}
+    {% if _breadcrumb is not empty or action is defined %}
+        <ol class="nav navbar-top-links breadcrumb">
+            {% if _breadcrumb is empty %}
+                {% if action is defined %}
+                    {% for menu in admin.breadcrumbs(action) %}
+                        {% if not loop.last  %}
+                            <li>
+                                {% if menu.uri is not empty %}
+                                    {% if menu.label == 'Dashboard' %}
+                                        <a href="{{ menu.uri }}">Tableau de bord</a>
+                                    {% else %}
+                                        <a href="{{ menu.uri }}">{{ menu.label|raw }}</a>
+                                    {% endif %}
+                                {% else %}
+                                    {{ menu.label }}
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="active"><span>{{ menu.label }}</span></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% else %}
+                {{ _breadcrumb|raw }}
+            {% endif %}
+        </ol>
+    {% endif %}
+{% endblock sonata_breadcrumb %}
+
 {# LEFT SIDEBAR GROUP FUNCTION OF ROLES #}
 {% block side_bar_nav %}
     {% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}

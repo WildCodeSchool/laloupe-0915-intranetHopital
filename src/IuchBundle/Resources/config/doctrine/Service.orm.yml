@@ -36,5 +36,4 @@ IuchBundle\Entity\Service:
                 name: chef_service
                 referencedColumnName: id
 
-
     lifecycleCallbacks: { }
