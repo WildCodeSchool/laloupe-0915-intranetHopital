@@ -11,7 +11,14 @@ security:
 
     ### Here we define all the CRUD Permissions as roles for SonataAdmin ###
     role_hierarchy:
+
         ROLE_SONATA_CHARTE_ADMIN:
+            - ROLE_SONATA_CHARTE_UTILISATEUR_LIST
+            - ROLE_SONATA_CHARTE_UTILISATEUR_VIEW
+            - ROLE_SONATA_CHARTE_UTILISATEUR_CREATE
+            - ROLE_SONATA_CHARTE_UTILISATEUR_EDIT
+            - ROLE_SONATA_CHARTE_UTILISATEUR_DELETE
+            - ROLE_SONATA_CHARTE_UTILISATEUR_EXPORT
             - ROLE_SONATA_CHARTE_LIST
             - ROLE_SONATA_CHARTE_VIEW
             - ROLE_SONATA_CHARTE_CREATE
