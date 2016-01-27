@@ -65,7 +65,7 @@ class UserAdmin extends Admin
             ->add('lastname')
             ->add('firstname')
             ->add('service.nom', null, array(
-                'label' => 'Service référent',
+                'label' => 'Service référent'
             ))
             ->add('chef_service', 'boolean', array(
                 'label' => 'Chef de service',
@@ -132,6 +132,7 @@ class UserAdmin extends Admin
             ->with('Informations internes')
             ->add('fonction', null, array('label' => 'Fonction'))
             ->add('service', null, array('label' => 'Service référent'))
+            ->add('chef_service', 'boolean', array('label' => 'Chef de service'))
             ->add('services', null, array('label' => 'Services secondaire'))
             ->add('date_entree', 'date', array(
                 'label' => 'Date entrée',

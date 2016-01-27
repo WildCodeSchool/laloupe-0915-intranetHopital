@@ -13,8 +13,11 @@ class CharteUtilisateurAdmin extends Admin
     {
         $datagridMapper
             ->add('charte')
-            ->add('user')
-            ->add('dateSignature')
+            ->add('user', null, array(
+                'label' => 'Utilisateur'))
+            ->add('dateSignature', null, array(
+                'label' => 'Date de signature'
+            ))
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -25,10 +28,13 @@ class CharteUtilisateurAdmin extends Admin
                     'name' => 'show'
                 )))
             ->addIdentifier('user', null, array(
+                'label' => 'Utilisateur',
                 'route' => array(
                     'name' => 'show'
                 )))
-            ->add('dateSignature')
+            ->add('dateSignature', null, array(
+                'label' => 'Date de signature'
+            ))
             ->add('charte.obligatoire')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -46,8 +52,12 @@ class CharteUtilisateurAdmin extends Admin
         $showMapper
             ->with('General')
             ->add('charte')
-            ->add('user')
-            ->add('dateSignature')
+            ->add('user', null, array(
+                'label' => 'Utilisateur'
+            ))
+            ->add('dateSignature', null, array(
+                'label' => 'Date de signature'
+            ))
             ->end()
         ;
     }

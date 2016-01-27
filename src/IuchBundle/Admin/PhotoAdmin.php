@@ -33,14 +33,20 @@ class PhotoAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('user')
+            ->add('user', null, array(
+                'label' => 'Utilisateur'
+            ))
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('photo_file','image', array('template' => 'IuchBundle:Photo:photo.html.twig'))
-            ->add('user', null, array('label'=>'Utilisateur'))
+            ->addIdentifier('photo_file','image', array(
+                'template' => 'IuchBundle:Photo:photo.html.twig'
+            ))
+            ->add('user', null, array(
+                'label'=>'Utilisateur'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -53,7 +59,9 @@ class PhotoAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('user')
+            ->add('user', null, array(
+                'label'=>'Utilisateur'
+            ))
             ->add('photo_file')
         ;
     }

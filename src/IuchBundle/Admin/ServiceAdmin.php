@@ -25,7 +25,9 @@ class ServiceAdmin extends Admin
     {
         $datagridMapper
             ->add('nom')
-            ->add('chef_service')
+            ->add('chef_service', null, array(
+                'label' => 'Chef de service'
+            ))
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
@@ -56,7 +58,9 @@ class ServiceAdmin extends Admin
             ->add('nom')
             ->add('email')
             ->add('telephone')
-            ->add('chef_service')
+            ->add('chef_service', null, array(
+                'label' => 'Chef de service'
+            ))
             ->end()
         ;
     }

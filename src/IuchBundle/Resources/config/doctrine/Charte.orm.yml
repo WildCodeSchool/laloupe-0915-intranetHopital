@@ -24,6 +24,7 @@ IuchBundle\Entity\Charte:
         description:
             type: string
             length: 255
+            nullable: true
 
         obligatoire:
             type: boolean
