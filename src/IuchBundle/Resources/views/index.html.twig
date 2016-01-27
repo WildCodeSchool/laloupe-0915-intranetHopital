@@ -95,7 +95,13 @@
                 {% for charte in chartes %}
                     <tr>
                         <td>{{ charte.nom }}</td>
-                        <td>{{ charte.description }}</td>
+                        <td>
+                            {% if charte.description is defined %}
+                                {{ charte.description }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
                         <td>
                             {% if charte.service %}
                                 {{ charte.service }}
