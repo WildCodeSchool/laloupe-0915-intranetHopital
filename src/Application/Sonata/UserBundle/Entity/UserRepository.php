@@ -15,9 +15,10 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $queryBuilder = $this->_em->createQueryBuilder()
             ->select('u')
             ->from($this->_entityName, 'u')// Dans un repository, $this->_entityName est le namespace de l'entité gérée
-            ->Where('u.createdAt BETWEEN :month AND :now')
-            ->setParameter('month', 'convert(datetime,SUBSTRING(CONVERT(varchar(8), GETDATE(), 112), 1, 6) + \'01\')')
+            ->Where('u.createdAt <= :now')
+            ->andWhere('u.createdAt >= :delay')
             ->setParameter('now', new \DateTime('now'))
+            ->setParameter('delay', new \DateTime('last month'))
             ->andWhere('u.enabled = true')
             ->orderBy('u.createdAt', 'DESC');
         return $queryBuilder->getQuery()->getResult();

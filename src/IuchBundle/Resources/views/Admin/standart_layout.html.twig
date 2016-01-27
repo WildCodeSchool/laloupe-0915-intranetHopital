@@ -136,7 +136,7 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="bg-info"><p class="text-info" style="padding:10px;">Pour désactiver/activer le trombinoscope, veuillez-vous rendre dans le fichier <strong>"parameters.yml"</strong> du dossier <strong>"app"</strong> de l'application et changer le paramètre <strong>"trombinoscope.enabled"</strong> à <em>true</em> ou <em>false</em></p></div>
             {% endif %}
-            {% if is_granted('ROLE_SONATA_CHARTE_ADMIN') %}
+            {% if is_granted('ROLE_SONATA_CHARTE_ADMIN') or is_granted('ROLE_STATS_CHARTES')%}
                 {{ sonata_block_render({ 'type': 'sonata.block.service.stat' }) }}
             {% endif %}
 
