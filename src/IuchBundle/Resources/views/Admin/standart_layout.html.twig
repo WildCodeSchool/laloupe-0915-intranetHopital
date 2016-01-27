@@ -68,10 +68,12 @@
                     </li>
                 {% endif %}
             {% endfor %}
+            <li class="active"><a href="#" data-toggle="modal" data-target="#about"><i class="fa fa-info-circle"></i>A Propos</a></li>
         </ul>
+
+        <
     {% endif %}
 {% endblock side_bar_nav %}
-
 
 {# REMOVE DROPDOWN FOR DECONNEXION #}
 {% block sonata_top_nav_menu %}
@@ -90,7 +92,6 @@
         </ul>
     </div>
 {% endblock %}
-
 
 {# REMOVE DROPDOWN FOR ACTIONS ON ENTITIES #}
 {% block sonata_page_content_nav %}
@@ -125,6 +126,43 @@
                 {% endif %}
             </div>
         </nav>
+
+        !-- Modal -->
+        <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h1 class="modal-title" id="myModalLabel">A propos de Sach@</h1>
+                    </div>
+                    <div class="modal-body">
+
+                        <h2>Hopital de la loupe</h2>
+                        <ul>
+                            <li>ROUSEAU Laetitia</li>
+                            <li>LEMONNIER Raphael</li>
+                        </ul>
+
+                        <h2>Hopital de Nogent le Rotrou</h2>
+                        <ul>
+                            <li>POIRIER Marie</li>
+                            <li>VERMEULEN Aurelien</li>
+                        </ul>
+
+                        <h2>Développeurs</h2>
+                        <ul>
+                            <li>Thierry Damey</li>
+                            <li>Erwan Haquet</li>
+                            <li>Lucie Mannechez</li>
+                        </ul>
+                        <p>Élèves de la <a href="http://www.wildcodeschool.fr">Wild Code School</a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
 
     {# DISPLAY BLOCK ACCORDING TO ROLES #}
