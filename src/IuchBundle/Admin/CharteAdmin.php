@@ -13,7 +13,7 @@ class CharteAdmin extends Admin
     {
         $formMapper
             ->add('nom')
-            ->add('description')
+            ->add('description', 'textarea', array('required' => false))
             ->add('file', 'file', array('label' => 'Charte', 'required' => false))
             ->add('service', null, array('placeholder'=> 'Tous services', 'required' => false))
             ->add('obligatoire')

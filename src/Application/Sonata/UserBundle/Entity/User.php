@@ -12,6 +12,7 @@
 namespace Application\Sonata\UserBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use Sonata\UserBundle\Model\UserInterface;
 
 
 /**
@@ -56,6 +57,19 @@ class User extends BaseUser
         return $this->lastLogin = null;
     }
 
+    /**
+     * Returns the gender list
+     *
+     * @return array
+     */
+    public static function getGenderList()
+    {
+        return array(
+            UserInterface::GENDER_UNKNOWN => 'gender_unknown',
+            UserInterface::GENDER_FEMALE  => 'Madame',
+            UserInterface::GENDER_MALE    => 'Monsieur',
+        );
+    }
     //GENERATED CODE
     /**
      * @var string
