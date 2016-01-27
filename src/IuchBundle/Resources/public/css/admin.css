@@ -274,3 +274,14 @@ tspan {
     width:100px;
 }
 
+.footer-admin {
+    left: 0;
+    padding: 10px;
+    background: #eee;
+    min-height:50px;
+    bottom: auto;
+}
+
+.footer-admin a {
+    color: darkgray;
+}

@@ -146,6 +146,15 @@ sonata_admin:
             class: col-md-12
             type: sonata.admin.block.admin_list
 
+          - position: bottom
+            class: col-md-12
+            type: sonata.block.service.text
+            settings:
+                content: >
+                    <footer class="footer-admin">
+                      <p>Développé par les élèves de la <a href="http://www.wildcodeschool.fr">Wild Code School</a> - Erwan Haquet - Thierry Damey - Lucie Mannechez</p>
+                    </footer>
+
 sonata_doctrine_orm_admin:
     templates:
         form:

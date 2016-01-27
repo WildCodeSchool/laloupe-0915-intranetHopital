@@ -37,3 +37,4 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
         arguments:
             - @mailer
+            - @service_container

@@ -302,8 +302,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
                 ->setSubject($mail->getSubject())
-                // TODO Modify the setFrom with CHLaLoupe mailserver informations
-                ->setFrom('CHLaLoupe@gmail.com')
+                ->setFrom('no-reply@gmail.com')
                 ->setTo($destinataire)
                 ->setBody(
                     $this->renderView(
@@ -315,6 +314,11 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
                     ),
                     'text/html'
                 );
+            if ($this->container->hasParameter('mail.copy_chef_service.enabled') && $this->container->getParameter('mail.copy_chef_service.enabled') == true) {
+                if ($object->getService()->getChefService()->getEmail())
+                    $mail_chef_service = $object->getService()->getChefService()->getEmail();
+                $sendMessage->setCc($mail_chef_service);
+            }
             if ($mail->getFiles() != null) {
                 foreach ($mail->getFiles() as $file) {
                     $sendMessage->attach(\Swift_Attachment::fromPath($file->getUploadRootDir() . '/' . $file->getPath())->setFilename($file->getName()));

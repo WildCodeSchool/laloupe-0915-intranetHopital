@@ -10,6 +10,14 @@ class editProfileListener
 {
     private $mailer;
 
+    private $container;
+
+    public function __construct($mailer, $container)
+    {
+        $this->mailer = $mailer;
+        $this->container = $container;
+    }
+
     public function preUpdate(\Doctrine\ORM\Event\PreUpdateEventArgs $eventArgs)
     {
         if ($eventArgs->getEntity() instanceof User) {
@@ -48,40 +56,32 @@ class editProfileListener
             /**
              * SEND MAIL ON PROFILE CHANGES
              */
-            if ( $eventArgs->hasChangedField('email') ||
-                 $eventArgs->hasChangedField('phone') ||
-                 $eventArgs->hasChangedField('adresse') ||
-                 $eventArgs->hasChangedField('ville') ||
-                 $eventArgs->hasChangedField('zip')  )
-            {
-                $em = $eventArgs->getObjectManager();
-                $rhs = $em->getRepository('Application\Sonata\UserBundle\Entity\User')->findByRole('ROLE_RH');
+            if ( $this->container->getParameter('mail.edit_profil.enabled') == true) {
+                if ($eventArgs->hasChangedField('email') ||
+                    $eventArgs->hasChangedField('phone') ||
+                    $eventArgs->hasChangedField('adresse') ||
+                    $eventArgs->hasChangedField('ville') ||
+                    $eventArgs->hasChangedField('zip')
+                ) {
 
-                $mailsArray = [];
-                foreach ($rhs as $rh) {
-                    $mailsArray[] = $rh->getEmail();
+                    if ($this->container->hasParameter('mail.edit_profil'))
+                        $mail = $this->container->getParameter('mail.edit_profil');
+                    else {
+                        $this->container->setParameter('mail.edit_profil.enabled', false);
+                    }
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Changements dans le profil de ' . $eventArgs->getEntity())
+                        ->setFrom('send@example.com')
+                        ->setTo($mail)
+                        ->setBody(
+                            $this->getMailBody($eventArgs->getEntityChangeSet(), $eventArgs->getEntity()),
+                            'text/html'
+                        );
+                    $this->mailer->send($message);
                 }
-
-                /**
-                 * TODO setFrom
-                 */
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Changements dans le profil de ' . $eventArgs->getEntity())
-                    ->setFrom('send@example.com')
-                    ->setTo(array('wcs.hopital@gmail.com'))
-                    ->setCc($mailsArray)
-                    ->setBody(
-                        $this->getMailBody($eventArgs->getEntityChangeSet(), $eventArgs->getEntity()),
-                        'text/html'
-                    );
-                $this->mailer->send($message);
             }
         }
-    }
-
-    public function __construct($mailer)
-    {
-        $this->mailer = $mailer;
     }
 
     private function getMailBody($changes, $user)
