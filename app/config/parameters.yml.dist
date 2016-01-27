@@ -21,8 +21,11 @@ parameters:
     # enabled trombinoscope link // true or false
     trombinoscope.enabled: true
 
-    #activer ou non le mail pour le changements dans les profils utilisateurs
+    # enabled mail on edit profil
     mail.edit_profil.enabled: true
 
     # mail on change profil
     mail.edit_profil:
+
+    # enabled copy to chef service for welcome mail
+    mail.copy_chef_service.enabled: true
