@@ -13,7 +13,7 @@ class TenueAdmin extends Admin
     {
         $formMapper
             ->add('type')
-            ->add('user','sonata_type_model_autocomplete', array(
+            ->add('utilisateur','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
             ))
@@ -30,7 +30,7 @@ class TenueAdmin extends Admin
     {
         $datagridMapper
             ->add('type')
-            ->add('user')
+            ->add('utilisateur')
             ->add('intervenant')
             ->add('date_donnee', 'doctrine_orm_date_range', array(
                 'field_type' => 'sonata_type_date_range_picker',
@@ -47,7 +47,7 @@ class TenueAdmin extends Admin
 
         $listMapper
             ->add('type')
-            ->add('user', null, array(
+            ->add('utilisateur', null, array(
                 'route' => array(
                     'name' => 'show'
                 )))
@@ -76,7 +76,7 @@ class TenueAdmin extends Admin
     {
         $showMapper
             ->with('Remise')
-            ->add('user')
+            ->add('utilisateur')
             ->add('type')
             ->end()
             ->with('Entrée')

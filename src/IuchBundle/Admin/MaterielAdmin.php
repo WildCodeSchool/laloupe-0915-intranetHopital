@@ -13,7 +13,7 @@ class MaterielAdmin extends Admin
     {
         $formMapper
             ->add('type', null, array('required' => true))
-            ->add('user','sonata_type_model_autocomplete', array(
+            ->add('utilisateur','sonata_type_model_autocomplete', array(
                 'property' => array('firstname', 'lastname', 'username', 'service'),
                 'minimum_input_length' => 2
             ))
@@ -30,7 +30,7 @@ class MaterielAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('user')
+            ->add('utilisateur')
             ->add('type')
             ->add('date_remise', 'doctrine_orm_date_range', array(
                 'field_type' => 'sonata_type_date_range_picker',
@@ -50,7 +50,7 @@ class MaterielAdmin extends Admin
             ->add('rendu')
             ->add('perdu_vol', null, array('label' => 'Perdu/Volé'))
             ->add('type')
-            ->add('user', null, array(
+            ->add('utilisateur', null, array(
                 'route' => array(
                     'name' => 'show'
                 )))
@@ -78,7 +78,7 @@ class MaterielAdmin extends Admin
     {
         $showMapper
             ->with('Général')
-            ->add('user')
+            ->add('utilisateur')
             ->add('rendu')
             ->add('perdu_vol', null, array('label'=>'Perdu/volé'))
             ->add('type')
