@@ -34,6 +34,10 @@ class User extends BaseUser
         $this->dateOfBirth = new \DateTime('1950-01-01');
         $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
         $password = $this->getPassword();
+        $chef = $this->getService()->getChefService();
+        if ($chef == $this) {
+            return $this->chef_service = $this->getService();
+        }
     }
 
     public function __toString()
@@ -70,6 +74,17 @@ class User extends BaseUser
             UserInterface::GENDER_MALE    => 'Monsieur',
         );
     }
+
+    public function isChefService()
+    {
+        if ($this->getService()->getChefService() != null) {
+            $chef = $this->getService()->getChefService();
+            return ($chef->getId() == $this->getId());
+        }
+        else {
+            return false;
+        }
+    }
     //GENERATED CODE
     /**
      * @var string
@@ -100,11 +115,6 @@ class User extends BaseUser
      * @var string
      */
     private $raison_sortie;
-
-    /**
-     * @var \IuchBundle\Entity\Service
-     */
-    private $chef_service;
 
     /**
      * @var \IuchBundle\Entity\Photo
@@ -274,29 +284,6 @@ class User extends BaseUser
     public function getRaisonSortie()
     {
         return $this->raison_sortie;
-    }
-
-    /**
-     * Set chef_service
-     *
-     * @param \IuchBundle\Entity\Service $chef_service
-     *
-     * @return User
-     */
-    public function setChefService(\IuchBundle\Entity\Service $chef_service = null)
-    {
-        $this->chef_service = $chef_service;
-        return $this;
-    }
-
-    /**
-     * Get chefService
-     *
-     * @return \IuchBundle\Entity\Service
-     */
-    public function getChefService()
-    {
-        return $this->chef_service;
     }
 
     /**

@@ -28,15 +28,13 @@ IuchBundle\Entity\Service:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: service
 # Chef service
+
     oneToOne:
         chef_service:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: chef_service
-            orphanRemoval: true
             joinColumn:
                 name: chef_service
                 referencedColumnName: id
-                unique: true
-                onDelete: CASCADE
 
-    lifecycleCallbacks: {  }
+
+    lifecycleCallbacks: { }
