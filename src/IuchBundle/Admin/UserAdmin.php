@@ -228,15 +228,14 @@ class UserAdmin extends Admin
             ->end();
 
         $roles = array(
-            'ROLE_SONATA_CHARTE_ADMIN' => 'Chartes',
-            'ROLE_STATS_CHARTES' => 'Statistiques chartes',
             'ROLE_SONATA_USER_ADMIN_USER_ADMIN' => 'Utilisateurs',
-            'ROLE_SONATA_SERVICE_ADMIN' => 'Services',
-            'ROLE_SONATA_FONCTION_ADMIN' => 'Fonctions',
+            'ROLE_SONATA_CHARTE_ADMIN' => 'Chartes',
+            'ROLE_SONATA_TYPE_ADMIN' => 'Type tenu et materiel',
             'ROLE_SONATA_TENUE_ADMIN' => 'Tenues',
             'ROLE_SONATA_MATERIEL_ADMIN' => 'Materiel',
             'ROLE_SONATA_PHOTO_ADMIN' => 'Photos',
-            'ROLE_SONATA_INFOMAIL_ADMIN' => 'Infomails'
+            'ROLE_SONATA_INFOMAIL_ADMIN' => 'Infomails',
+            'ROLE_STATS_CHARTES' => 'Statistiques chartes'
         );
 
         // ['Utilisateurs', 'Fonctions', 'Services', 'Chartes', 'Tenues', 'Matériels', 'Infomails', 'Photos'];
