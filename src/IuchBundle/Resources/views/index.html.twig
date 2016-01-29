@@ -153,7 +153,11 @@
                                 <td scope="row">{{ tenue.type }}</td>
                                 <td scope="row">{{ tenue.nombreDonne }}</td>
                                 <td scope="row">{{ tenue.dateDonnee|date('d/m/Y') }}</td>
-                                <td scope="row">{{ tenue.dateRendu|date('d/m/Y') }}</td>
+                                <td scope="row">
+                                    {% if tenue.dateRendu is not null %}
+                                        {{ tenue.dateRendu|date('d/m/Y') }}
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -186,7 +190,11 @@
                                     {{ materiel.type }}
                                 </td>
                                 <td>{{ materiel.dateRemise|date('d/m/Y') }}</td>
-                                <td>{{ materiel.dateRendu|date('d/m/Y') }}</td>
+                                <td>
+                                    {% if materiel.dateRendu is not null %}
+                                        {{ materiel.dateRendu|date('d/m/Y') }}
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

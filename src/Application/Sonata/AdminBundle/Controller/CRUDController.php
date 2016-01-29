@@ -295,10 +295,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
         //on récupère le dernier mail de bienvenue créé
         $mail = end($mails);
 
-        if ($object->getEmail() == NULL){
-
-        }
-        elseif($mails === true) {
+        if($object->getEmail() != NULL && $mails != false) {
 
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
