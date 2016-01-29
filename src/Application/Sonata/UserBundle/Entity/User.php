@@ -34,9 +34,11 @@ class User extends BaseUser
         $this->dateOfBirth = new \DateTime('1950-01-01');
         $this->code_copieur = str_pad(mt_rand(0,999999),4,'0',STR_PAD_LEFT);
         $password = $this->getPassword();
-        $chef = $this->getService()->getChefService();
-        if ($chef == $this) {
-            return $this->chef_service = $this->getService();
+        if ($this->getService()) {
+            $chef = $this->getService()->getChefService();
+            if ($chef == $this) {
+                return $this->chef_service = $this->getService();
+            }
         }
     }
 
