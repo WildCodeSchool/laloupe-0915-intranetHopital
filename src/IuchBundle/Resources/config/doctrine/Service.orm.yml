@@ -32,8 +32,10 @@ IuchBundle\Entity\Service:
     oneToOne:
         chef_service:
             targetEntity: Application\Sonata\UserBundle\Entity\User
+            orphanRemoval: true
             joinColumn:
                 name: chef_service
                 referencedColumnName: id
+                onDelete: SET NULL
 
     lifecycleCallbacks: { }
