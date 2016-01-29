@@ -28,7 +28,7 @@ class MaterielAdmin extends Admin
                 'required' => false,
                 ))
             ->add('rendu', null, array(
-                'label'=>'Date de rendu'
+                'label'=>'Rendu (validé à date du jour)'
             ))
             ->add('perdu_vol', null, array(
                 'label'=>'Perdu/volé'
@@ -50,7 +50,7 @@ class MaterielAdmin extends Admin
                 'field_type' => 'sonata_type_date_range_picker',
             ))
             ->add('rendu', null, array(
-                'label' => 'Nombre de rendus'
+                'label' => 'Rendu'
             ))
             ->add('perdu_vol', null, array(
                 'label'=>'perdu/volé'
@@ -67,7 +67,7 @@ class MaterielAdmin extends Admin
 
         $listMapper
             ->add('rendu', null, array(
-                'label' => 'Nombre de rendus'
+                'label' => 'Rendu'
             ))
             ->add('perdu_vol', null, array(
                 'label' => 'Perdu/Volé'
@@ -106,7 +106,7 @@ class MaterielAdmin extends Admin
                 'label' => 'Utilisateur'
             ))
             ->add('rendu', null, array(
-                'label' => 'Nombre de rendus'
+                'label' => 'Rendu'
             ))
             ->add('perdu_vol', null, array(
                 'label'=>'Perdu/volé'
