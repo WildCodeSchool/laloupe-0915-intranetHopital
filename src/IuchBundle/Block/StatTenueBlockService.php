@@ -67,13 +67,14 @@ class StatTenueBlockService extends BaseBlockService
         $nbr_perdues = 0;
         $nbr_rendues = 0;
         foreach ($tenues as $tenue) {
-            $nbr_tenues += $tenue->getNombreDonne();
+            $nbr_tenues += $tenue->getNombreDonne() - $tenue->getNombreRendu();
 
             $nbr_rendues += $tenue->getNombreRendu();
 
             if ($tenue->getDateRendu() != null) {
                 if ($tenue->getNombreDonne() != $tenue->getNombreRendu()) {
                     $nbr_perdues += $tenue->getNombreDonne() - $tenue->getNombreRendu();
+                    $nbr_tenues -= $tenue->getNombreDonne() - $tenue->getNombreRendu();
                 }
             }
         }
