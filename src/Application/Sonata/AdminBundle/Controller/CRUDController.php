@@ -291,14 +291,14 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
 
     // IUCH welcomeMail send function - $object represent the created user
     private function sendWelcomeMail($object){
+        $mails = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findByType('mail de bienvenue');
+        //on récupère le dernier mail de bienvenue créé
+        $mail = end($mails);
 
         if ($object->getEmail() == NULL){
 
         }
-        else {
-            $mails = $this->get('doctrine')->getRepository('InfoMailBundle:InfoMail')->findByType('mail de bienvenue');
-
-            $mail = end($mails);
+        elseif($mails === true) {
 
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
