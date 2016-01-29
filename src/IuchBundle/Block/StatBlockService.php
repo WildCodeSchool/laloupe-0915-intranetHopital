@@ -151,9 +151,8 @@ class StatBlockService extends BaseBlockService
                 }
             }
             else {
-
-                // Si la charte est liée à toutes les services, alors on calcule sur la base de toutes les utilisateurs
-                $signaturee = $signaturesByChartesNO[$charteNO->getId()];
+                // Si la charte est liée à toutes les services, alors on calcule sur la base de tous les utilisateurs
+                $signaturee = $signaturesByChartesNO['toutes'][$charteNO->getId()];
                 $maxPercentage = $sortedUserByServices[null];
                 $percentage['toutes'][$charteNO->getNom()] = $signaturee / $maxPercentage * 100;
                 $percentage['toutes'][$charteNO->getNom()] = number_format($percentage['toutes'][$charteNO->getNom()], 0, '.', '');
