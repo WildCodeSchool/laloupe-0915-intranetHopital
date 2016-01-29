@@ -300,7 +300,7 @@ class CRUDController extends \Sonata\AdminBundle\Controller\CRUDController
             $destinataire = $object->getEmail();
             $sendMessage = \Swift_Message::newInstance()
                 ->setSubject($mail->getSubject())
-                ->setFrom('no-reply@gmail.com')
+                ->setFrom('sacha@ch-laloupe.fr')
                 ->setTo($destinataire)
                 ->setBody(
                     $this->renderView(

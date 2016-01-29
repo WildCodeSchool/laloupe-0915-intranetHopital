@@ -72,7 +72,7 @@ class editProfileListener
 
                     $message = \Swift_Message::newInstance()
                         ->setSubject('Changements dans le profil de ' . $eventArgs->getEntity())
-                        ->setFrom('send@example.com')
+                        ->setFrom('sacha@ch-laloupe.fr')
                         ->setTo($mail)
                         ->setBody(
                             $this->getMailBody($eventArgs->getEntityChangeSet(), $eventArgs->getEntity()),
