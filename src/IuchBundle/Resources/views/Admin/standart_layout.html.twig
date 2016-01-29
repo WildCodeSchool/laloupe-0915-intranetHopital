@@ -76,11 +76,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="treeview{% if active %} active{% endif %}">
-                    {% else %}
-                        <li class="treeview active">
-                    {% endif %}
+                    <li class="treeview active">
                         <a href="#">
                             {% autoescape %}
                                 {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
