@@ -12,7 +12,7 @@ class MaterielListener
     {
         if ($eventArgs->getEntity() instanceof Materiel) {
             // si le matériel est rendu ou perdu/volé alors la date de rendu est rentrée automatiquement à la date de changement.
-            if ($eventArgs->getEntity()->getRendu() === true || $eventArgs->getEntity()->getPerduVol === true) {
+            if ($eventArgs->getEntity()->getRendu() === true || $eventArgs->getEntity()->getPerduVol() === true) {
                 $eventArgs->getEntity()->setDateRendu( new \DateTime('now') );
             }
             // si jamais il y a eu une erreur sur le rendu, alors la date de rendu est de nouveau nulle
